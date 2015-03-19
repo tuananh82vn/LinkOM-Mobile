@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_search"
+          android:icon="@drawable/Search_normal"
+          android:title="Search"
+          android:showAsAction="ifRoom"/>
+    <item android:id="@+id/menu_help"
+          android:icon="@drawable/Help"
+          android:title="Help" 
+          android:showAsAction="ifRoom" />
+</menu>

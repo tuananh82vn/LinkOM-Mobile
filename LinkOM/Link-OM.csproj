@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CD924ACC-6352-499D-A2ED-271CD1DCC3D4}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LinkOM</RootNamespace>
+    <AssemblyName>Link-OM</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Json" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ConnectWebAPI.cs" />
+    <Compile Include="Adapter\TaskListAdapter.cs" />
+    <Compile Include="Helper\Settings.cs" />
+    <Compile Include="Activity\Task\OpenTaskActivity.cs" />
+    <Compile Include="Activity\Task\TaskActivity.cs" />
+    <Compile Include="Activity\Project\ProjectActivity.cs" />
+    <Compile Include="Activity\StartUp\CheckActivity.cs" />
+    <Compile Include="Activity\StartUp\HomeActivity.cs" />
+    <Compile Include="Activity\StartUp\LoginActivity.cs" />
+    <Compile Include="Adapter\ProjectListAdapter.cs" />
+    <Compile Include="Model\SendModel\objSort.cs" />
+    <Compile Include="Model\ReceiveModel\Login.cs" />
+    <Compile Include="Model\ReceiveModel\JsonData.cs" />
+    <Compile Include="Model\ViewModel\Project.cs" />
+    <Compile Include="Model\ReceiveModel\Results.cs" />
+    <Compile Include="Model\ViewModel\Task.cs" />
+    <Compile Include="Model\ReceiveModel\TaskListDetail.cs" />
+    <Compile Include="Activity\Project\ProjectDetailActivity.cs" />
+    <Compile Include="Model\ReceiveModel\ProjectDetail.cs" />
+    <Compile Include="Model\ViewModel\ProjectDetail.cs" />
+    <Compile Include="Model\ViewModel\Milestone.cs" />
+    <Compile Include="Model\ReceiveModel\ProjectList.cs" />
+    <Compile Include="Model\ReceiveModel\MilestoneList.cs" />
+    <Compile Include="Adapter\MilestoneListAdapter.cs" />
+    <Compile Include="Activity\StartUp\SplashActivity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\_SettingsStarted.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Home.axml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Login.axml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\values\Styles.xml" />
+    <AndroidResource Include="Resources\layout\TaskList.axml" />
+    <AndroidResource Include="Resources\layout\CheckInstance.axml">
+      <DeployService-Deploy>True</DeployService-Deploy>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Add_button.xml" />
+    <AndroidResource Include="Resources\drawable\Add_normal.png" />
+    <AndroidResource Include="Resources\drawable\Add_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Background.jpg" />
+    <AndroidResource Include="Resources\drawable\Background2.jpg" />
+    <AndroidResource Include="Resources\drawable\Back_button.xml" />
+    <AndroidResource Include="Resources\drawable\Back_normal.png" />
+    <AndroidResource Include="Resources\drawable\Back_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Document_button.xml" />
+    <AndroidResource Include="Resources\drawable\Document_normal.png" />
+    <AndroidResource Include="Resources\drawable\Document_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable\Issues_button.xml" />
+    <AndroidResource Include="Resources\drawable\Issues_normal.png" />
+    <AndroidResource Include="Resources\drawable\Issues_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Linkom.png" />
+    <AndroidResource Include="Resources\drawable\LinkOM_Logo.png" />
+    <AndroidResource Include="Resources\drawable\Milestone_button.xml" />
+    <AndroidResource Include="Resources\drawable\Milestone_normal.png" />
+    <AndroidResource Include="Resources\drawable\Milestone_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Project_button.xml" />
+    <AndroidResource Include="Resources\drawable\Project_normal.png" />
+    <AndroidResource Include="Resources\drawable\Project_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Search_button.xml" />
+    <AndroidResource Include="Resources\drawable\Search_normal.png" />
+    <AndroidResource Include="Resources\drawable\Search_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Synotive.png" />
+    <AndroidResource Include="Resources\drawable\Synotive_White.png" />
+    <AndroidResource Include="Resources\drawable\Synquis_Logo.png" />
+    <AndroidResource Include="Resources\drawable\Task_button.xml" />
+    <AndroidResource Include="Resources\drawable\Task_normal.png" />
+    <AndroidResource Include="Resources\drawable\Task_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Ticket_button.xml" />
+    <AndroidResource Include="Resources\drawable\Ticket_normal.png" />
+    <AndroidResource Include="Resources\drawable\Ticket_pressed.png" />
+    <AndroidResource Include="Resources\drawable\close.png" />
+    <AndroidResource Include="Resources\drawable\open.png" />
+    <AndroidResource Include="Resources\layout\OpenTaskView.axml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ProjectView.axml" />
+    <AndroidResource Include="Resources\layout\TaskView.axml" />
+    <AndroidResource Include="Resources\layout\ProjectDetailView.axml" />
+    <AndroidResource Include="Resources\layout\MilestoneList.axml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ProjectList.axml" />
+    <AndroidResource Include="Resources\drawable\Help.png" />
+    <AndroidResource Include="Resources\menu\menu1.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <XamarinComponentReference Include="json.net">
+      <Version>6.0.8.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="SettingsPlugin">
+      <Version>1.5.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Activity\" />
+    <Folder Include="Adapter\" />
+    <Folder Include="Helper\" />
+    <Folder Include="Activity\Task\" />
+    <Folder Include="Activity\Project\" />
+    <Folder Include="Activity\StartUp\" />
+    <Folder Include="Model\SendModel\" />
+    <Folder Include="Model\ReceiveModel\" />
+    <Folder Include="Model\ViewModel\" />
+    <Folder Include="Resources\menu\" />
+  </ItemGroup>
+</Project>
