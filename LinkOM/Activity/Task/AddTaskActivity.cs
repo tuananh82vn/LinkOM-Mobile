@@ -16,13 +16,88 @@ namespace LinkOM
 	[Activity (Label = "AddTaskActivity")]			
 	public class AddTaskActivity : Activity
 	{
+		const int Start_DATE_DIALOG_ID = 0;
+		const int End_DATE_DIALOG_ID = 1;
+
+		private TextView tv_StartDate;
+		private Button bt_StartDate;
+		private TextView tv_EndDate;
+		private Button bt_EndDate;
+
+		private DateTime StartDate;
+		private DateTime EndDate;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.AddTask);
-			// Create your application here
+
+			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
+
+			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
+
+			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+
+			st_Status.Adapter = StatusAdapter;
+
+
+			Spinner st_Priority = FindViewById<Spinner> (Resource.Id.sp_Priority);
+
+			var PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
+
+			PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+
+			st_Priority.Adapter = PriorityAdapter;
+
+			// get the current date
+			StartDate = DateTime.Today;
+
+			// get the current date
+			EndDate = DateTime.Today;
+
+
+
+			// capture our View elements
+			tv_StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
+			tv_StartDate.Text = StartDate.ToString ("d");
+			tv_EndDate = FindViewById<TextView> (Resource.Id.tv_EndDate);
+			tv_EndDate.Text = EndDate.ToString ("d");
+
+			bt_StartDate = FindViewById<Button> (Resource.Id.bt_StartDate);
+			bt_EndDate = FindViewById<Button> (Resource.Id.bt_EndDate);
+
+			// add a click event handler to the button
+			bt_StartDate.Click += delegate { ShowDialog (Start_DATE_DIALOG_ID); };
+			// add a click event handler to the button
+			bt_EndDate.Click += delegate { ShowDialog (End_DATE_DIALOG_ID); };
 		}
+
+
+		// the event received when the user "sets" the date in the dialog
+		void OnStartDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
+		{
+			tv_StartDate.Text = e.Date.ToString ("d");
+		}
+
+		// the event received when the user "sets" the date in the dialog
+		void OnEndDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
+		{
+			tv_EndDate.Text = e.Date.ToString ("d");
+		}
+
+		protected override Dialog OnCreateDialog (int id)
+		{
+			switch (id) {
+			case Start_DATE_DIALOG_ID:
+				return new DatePickerDialog (this, OnStartDateSet, StartDate.Year, StartDate.Month - 1, StartDate.Day); 
+			case End_DATE_DIALOG_ID:
+				return new DatePickerDialog (this, OnEndDateSet, EndDate.Year, EndDate.Month - 1, EndDate.Day); 
+			}
+
+			return null;
+		}
+
 	}
 }
 

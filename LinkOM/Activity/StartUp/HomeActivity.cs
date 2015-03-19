@@ -40,7 +40,7 @@ namespace LinkOM
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
-			MenuInflater.Inflate(Resource.Menu.menu1, menu);
+			MenuInflater.Inflate(Resource.Menu.menu_home, menu);
 			return base.OnPrepareOptionsMenu(menu);
 		}
 
@@ -69,6 +69,12 @@ namespace LinkOM
 				return true;
 			case Resource.Id.menu_help:
 				Toast.MakeText (this, "Menu Help Clicked", ToastLength.Short).Show ();
+				return true;
+			case Resource.Id.menu_server:
+				var activity = new Intent (this, typeof(CheckActivity));
+				activity.PutExtra ("CheckAgain", true);
+				StartActivity (activity);
+				this.Finish ();
 				return true;
 			}
 			return base.OnOptionsItemSelected(item);

@@ -8,4 +8,8 @@
           android:icon="@drawable/Help"
           android:title="Help" 
           android:showAsAction="ifRoom" />
+    <item android:id="@+id/menu_server"
+          android:icon="@drawable/Help"
+          android:title="Change Server" 
+          android:showAsAction="ifRoom" />
 </menu>

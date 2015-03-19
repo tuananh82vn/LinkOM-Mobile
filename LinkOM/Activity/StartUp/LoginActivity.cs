@@ -17,6 +17,13 @@ namespace LinkOM
     [Activity(Label = "Link-OM", Icon = "@drawable/icon")]
     public class LoginActivity : Activity
     {
+
+		public ProgressDialog progress;
+		private LoginService _loginService;
+
+		public EditText username;
+		public EditText password;
+
         protected override void OnCreate (Bundle bundle)
         {
             base.OnCreate (bundle);
@@ -24,65 +31,73 @@ namespace LinkOM
             // Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
 
+			progress = new ProgressDialog (this);
+			progress.Indeterminate = true;
+			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+			progress.SetMessage("Login in. Please wait...");
+			progress.SetCancelable(false);
+
+			_loginService = new LoginService();
+
 			Button button = FindViewById<Button>(Resource.Id.btLogin);
+			username = FindViewById<EditText>(Resource.Id.tv_username);
+			password = FindViewById<EditText>(Resource.Id.tv_password);
 
 			button.Click += btloginClick;  
         }
 
 		public void btloginClick(object sender, EventArgs e)
 		{
-			DoLogin ();
+			progress.Show();
+
+			LoginJson obj = _loginService.Login(username.Text, password.Text);
+
+			if(obj.Success)
+				onSuccessfulLogin(obj);
+			else
+				onFailLogin(obj);
 		}
 
-		private async void DoLogin()
+		private void onSuccessfulLogin(LoginJson obj)
 		{
-
-			using (ProgressDialog progress = new ProgressDialog(this))
-			{
-				progress.Indeterminate = true;
-				progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-				progress.SetMessage("Login in. Please wait...");
-				progress.SetCancelable(false);
-				progress.Show();
-
-				await Task<bool>.Run (() => {
-
-					EditText username = FindViewById<EditText>(Resource.Id.tv_username);
-					EditText password = FindViewById<EditText>(Resource.Id.tv_password);
-
-					string url = Settings.InstanceURL;
-
-					url=url+"/api/logon";
-
-					var logon = new
-					{
-						Item = new
-						{
-							UserName = username.Text,
-							Password = password.Text
-						}
-					};
-
-					string results= ConnectWebAPI.Request(url,logon);
-
-					LoginJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginJson> (results);
-
-					if (obj.Success) {
-						var activity = new Intent (this, typeof(HomeActivity));
-						activity.PutExtra ("TokenNumber", obj.TokenNumber);
-						progress.Dismiss();
-						StartActivity (activity);
-						this.Finish();
-					}
-					else
-						Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ();
-
-					return true;
-				}); 
-
-				progress.Dismiss();
-			}
+			progress.Hide();
+			var activity = new Intent (this, typeof(HomeActivity));
+			activity.PutExtra ("TokenNumber", obj.TokenNumber);
+			StartActivity (activity);
+			this.Finish();
 
 		}
+
+		private void onFailLogin(LoginJson obj)
+		{
+			progress.Hide();
+
+			Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ();
+		}
+
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			MenuInflater.Inflate(Resource.Menu.menu_login, menu);
+			return base.OnPrepareOptionsMenu(menu);
+		}
+
+		public override bool OnOptionsItemSelected(IMenuItem item)
+		{
+			switch (item.ItemId)
+			{
+			case Resource.Id.menu_reset:
+				Toast.MakeText (this, "Menu Reset Clicked", ToastLength.Short).Show ();
+				return true;
+			case Resource.Id.menu_server:
+				var activity = new Intent (this, typeof(CheckActivity));
+				activity.PutExtra ("CheckAgain", true);
+				StartActivity (activity);
+				this.Finish ();
+				return true;
+			}
+			return base.OnOptionsItemSelected(item);
+		}
+
+
     }
 }

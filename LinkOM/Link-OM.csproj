@@ -83,6 +83,8 @@
     <Compile Include="Adapter\MilestoneListAdapter.cs" />
     <Compile Include="Activity\StartUp\SplashActivity.cs" />
     <Compile Include="Activity\Task\AddTaskActivity.cs" />
+    <Compile Include="Helper\LoginTask.cs" />
+    <Compile Include="Helper\LoginService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -149,8 +151,9 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ProjectList.axml" />
     <AndroidResource Include="Resources\drawable\Help.png" />
-    <AndroidResource Include="Resources\menu\menu1.xml" />
     <AndroidResource Include="Resources\layout\AddTask.axml" />
+    <AndroidResource Include="Resources\menu\menu_home.xml" />
+    <AndroidResource Include="Resources\menu\menu_login.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -29,7 +29,10 @@ namespace LinkOM
 			EditText URLText = FindViewById<EditText>(Resource.Id.URLText);
 			Button button = FindViewById<Button>(Resource.Id.CheckButton);
 
-			Waiting ();
+			var CheckAgain = Intent.GetBooleanExtra ("CheckAgain",false);
+
+			if(!CheckAgain)
+				CheckServer();
 
             button.Click += (sender, e) => {
 
@@ -56,47 +59,43 @@ namespace LinkOM
 			if (results != "" && results != null) {
 				ResultsJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
 				if (obj.Success) {
-					progress.Dismiss();
 					StartActivity (typeof(LoginActivity));
+					this.Finish ();
 				}
 			}
 		}
 		private void DisplayResults(string url , string results){
 
-			if (results != null &&  results != "") {
+			if (results != null && results != "") {
 
 				ResultsJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
 				if (obj.Success) {
 					Settings.InstanceURL = url;
-					progress.Dismiss();
 					StartActivity (typeof(LoginActivity));
-				}
-				else
+					this.Finish ();
+				} else {
 					Toast.MakeText (this, "URL is not correct, try again", ToastLength.Short).Show ();
-			}
-			else
+				}
+			} else {
 				Toast.MakeText (this, "URL is not correct, try again", ToastLength.Short).Show ();
+			}
 		}
 
-		private async void Waiting()
-		{
-
-				progress = new ProgressDialog (this);
-				progress.Indeterminate = true;
-				progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-				progress.SetMessage("Contacting server. Please wait...");
-				progress.SetCancelable(false);
-				progress.Show();
-
-				await Task<bool>.Run (() => {
-					CheckServer();
-					return true;
-				}); 
-
-				progress.Dismiss();
-
-
-		}
+//		private async void Waiting()
+//		{
+//				progress = new ProgressDialog (this);
+//				progress.Indeterminate = true;
+//				progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+//				progress.SetMessage("Contacting server. Please wait...");
+//				progress.SetCancelable(false);
+//				progress.Show();
+//
+//				await Task<bool>.Run (() => {
+//					CheckServer();
+//					progress.Dismiss();
+//					return true;
+//				}); 
+//		}
 
 
     }
