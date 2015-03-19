@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">WeatherREST</string>
+		<string-array name="menu">
+		    <item>Add Task</item>
+		    <item>Add Ticket</item>
+		    <item>Add Issue</item>
+		    <item>Add Document</item>
+	  	</string-array>
 </resources>

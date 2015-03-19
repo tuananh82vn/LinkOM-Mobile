@@ -79,6 +79,8 @@ namespace LinkOM
 
 			projectListView.ItemClick += listView_ItemClick;
 
+			RegisterForContextMenu(projectListView);
+
 
 		}
 
@@ -96,6 +98,40 @@ namespace LinkOM
 			activity.PutExtra ("TokenNumber", TokenNumber);
 			activity.PutExtra ("ProjectId", ProjectId);
 			StartActivity (activity);
+		}
+
+		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+		{
+			if (v.Id == Resource.Id.ProjectListView)
+			{
+				var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+				menu.SetHeaderTitle(projectList.GetItemName(info.Position));
+				var menuItems = Resources.GetStringArray(Resource.Array.menu);
+				for (var i = 0; i < menuItems.Length; i++)
+					menu.Add(Menu.None, i, i, menuItems[i]);
+			}
+		}
+
+		public override bool OnContextItemSelected(IMenuItem item)
+		{
+			var info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
+			var menuItemIndex = item.ItemId;
+			var menuItems = Resources.GetStringArray(Resource.Array.menu);
+			var menuItemName = menuItems[menuItemIndex];
+
+			var ProjectName = projectList.GetItemName(info.Position);
+			var ProjectID =   projectList.GetItemId(info.Position);
+
+			if (menuItemName.Equals ("Add Task")) {
+				var activity = new Intent (this, typeof(AddTaskActivity));
+				activity.PutExtra ("TokenNumber", TokenNumber);
+				activity.PutExtra ("ProjectId", ProjectID);
+				StartActivity (activity);
+			}
+			else
+				Toast.MakeText(this, string.Format("Selected {0} for item {1}", menuItemName, ProjectName), ToastLength.Short).Show();
+
+			return true;
 		}
 	}
 }

@@ -40,6 +40,10 @@ namespace LinkOM
 			return long.Parse(_ProjectList [position].Id.ToString());
 		}
 
+		public string GetItemName (int position) {
+			return _ProjectList [position].Name;
+		}
+
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.ProjectList, parent, false);

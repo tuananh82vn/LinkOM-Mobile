@@ -24,10 +24,7 @@ namespace LinkOM
             // Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
 
-            // Get each input EditBox (for entering longitude and latitude) and
-            // the button from the layout resource:
-
-            Button button = FindViewById<Button>(Resource.Id.getWeatherButton);
+			Button button = FindViewById<Button>(Resource.Id.btLogin);
 
 			button.Click += btloginClick;  
         }
