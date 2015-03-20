@@ -17,8 +17,6 @@ namespace LinkOM
     [Activity(Label = "Link-OM", Icon = "@drawable/icon")]
     public class LoginActivity : Activity
     {
-
-		public ProgressDialog progress;
 		private LoginService _loginService;
 
 		public EditText username;
@@ -31,12 +29,6 @@ namespace LinkOM
             // Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
 
-			progress = new ProgressDialog (this);
-			progress.Indeterminate = true;
-			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-			progress.SetMessage("Login in. Please wait...");
-			progress.SetCancelable(false);
-
 			_loginService = new LoginService();
 
 			Button button = FindViewById<Button>(Resource.Id.btLogin);
@@ -46,9 +38,10 @@ namespace LinkOM
 			button.Click += btloginClick;  
         }
 
+
+
 		public void btloginClick(object sender, EventArgs e)
 		{
-			progress.Show();
 
 			LoginJson obj = _loginService.Login(username.Text, password.Text);
 
@@ -60,18 +53,14 @@ namespace LinkOM
 
 		private void onSuccessfulLogin(LoginJson obj)
 		{
-			progress.Hide();
 			var activity = new Intent (this, typeof(HomeActivity));
 			activity.PutExtra ("TokenNumber", obj.TokenNumber);
 			StartActivity (activity);
 			this.Finish();
-
 		}
 
 		private void onFailLogin(LoginJson obj)
 		{
-			progress.Hide();
-
 			Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ();
 		}
 

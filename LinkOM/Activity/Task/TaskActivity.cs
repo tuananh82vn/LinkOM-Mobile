@@ -31,73 +31,97 @@ namespace LinkOM
 			ImageButton button = FindViewById<ImageButton>(Resource.Id.bt_Back);
 			button.Click += btBackClick;
 
-			TextView tv_AllTask = FindViewById<TextView>(Resource.Id.tv_AllTask);
-			tv_AllTask.Click += AllTaskClick;
+			ImageButton bt_Add = FindViewById<ImageButton>(Resource.Id.bt_Add);
+			bt_Add.Click += btAddClick;
 
-			TextView tv_OpenTask = FindViewById<TextView>(Resource.Id.tv_OpenTask);
-			tv_OpenTask.Click += OpenTaskClick;
+			Button bt_Open = FindViewById<Button>(Resource.Id.bt_Open);
+			bt_Open.Click += btOpenClick;
 
-			TextView tv_OverDueTask = FindViewById<TextView>(Resource.Id.tv_OverDueTask);
-			tv_OverDueTask.Click += OverDueTaskClick;
+			Button bt_Closed = FindViewById<Button>(Resource.Id.bt_Close);
+			bt_Closed.Click += btClosedClick;
 
-			TextView tv_AssignByMeTask = FindViewById<TextView>(Resource.Id.tv_AssignByMeTask);
-			tv_AssignByMeTask.Click += AssignByMeTaskClick;
+			Button bt_Wating = FindViewById<Button>(Resource.Id.bt_Waiting);
+			bt_Wating.Click += WaitingTaskClick;
+
+			Button bt_Progress = FindViewById<Button>(Resource.Id.bt_Progress);
+			bt_Progress.Click += ProgressTaskClick;
+
+			Button bt_Query = FindViewById<Button>(Resource.Id.bt_Query);
+			bt_Query.Click += QueryTaskClick;
+
+			Button bt_Complete = FindViewById<Button>(Resource.Id.bt_Complete);
+			bt_Complete.Click += CompleteTaskClick;
+
+			Button bt_Future= FindViewById<Button>(Resource.Id.bt_Future);
+			bt_Future.Click += FutureTaskClick;
+
+//			TextView tv_AllTask = FindViewById<TextView>(Resource.Id.tv_AllTask);
+//			tv_AllTask.Click += AllTaskClick;
+//
+//			TextView tv_OpenTask = FindViewById<TextView>(Resource.Id.tv_OpenTask);
+//			tv_OpenTask.Click += OpenTaskClick;
+//
+//			TextView tv_OverDueTask = FindViewById<TextView>(Resource.Id.tv_OverDueTask);
+//			tv_OverDueTask.Click += OverDueTaskClick;
+//
+//			TextView tv_AssignByMeTask = FindViewById<TextView>(Resource.Id.tv_AssignByMeTask);
+//			tv_AssignByMeTask.Click += AssignByMeTaskClick;
 
 
-			string url = Settings.InstanceURL;
-
-			url=url+"/api/TaskList";
-
-
-			var objTask = new
-			{
-				Title = "Test",
-				AssignedToId = 2,
-				ClientId = string.Empty,
-				TaskStatusId = 1,
-				PriorityId = string.Empty,
-				DueBeforeDate = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectId = string.Empty,
-				AssignByMe = string.Empty,
-				Filter = string.Empty,
-				Label = string.Empty,
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						UserId = 2,
-						PageSize = 20,
-						PageNumber = 1,
-						SortMember = string.Empty,
-						SortDirection = string.Empty,
-						MainStatusId = 1,
-						Item = objTask
-					}
-				});
-
-			string results= ConnectWebAPI.Request(url,objsearch);
-
-			if (results != null && results != "") {
-
-				DataJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<DataJson> (results);
-
-				obj2 = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskListDetailJson> (obj.Data);
-
-				tv_AllTask.Text = obj2.TotalRecords.ToString ();
-
-				if (obj2.Items != null) {
-					tv_OpenTask.Text = CheckTask ("Open", obj2.Items).ToString ();
-					tv_OverDueTask.Text = CheckTask ("OverDue", obj2.Items).ToString ();
-					tv_AssignByMeTask.Text = CheckTask ("AssignByMe", obj2.Items).ToString ();
-				} else {
-					tv_OpenTask.Text = "0";
-					tv_OverDueTask.Text = "0";
-					tv_AssignByMeTask.Text = "0";
-				}
-			}
+//			string url = Settings.InstanceURL;
+//
+//			url=url+"/api/TaskList";
+//
+//
+//			var objTask = new
+//			{
+//				Title = "Test",
+//				AssignedToId = 2,
+//				ClientId = string.Empty,
+//				TaskStatusId = 1,
+//				PriorityId = string.Empty,
+//				DueBeforeDate = string.Empty,
+//				DepartmentId = string.Empty,
+//				ProjectId = string.Empty,
+//				AssignByMe = string.Empty,
+//				Filter = string.Empty,
+//				Label = string.Empty,
+//			};
+//
+//			var objsearch = (new
+//				{
+//					objApiSearch = new
+//					{
+//						UserId = 2,
+//						PageSize = 20,
+//						PageNumber = 1,
+//						SortMember = string.Empty,
+//						SortDirection = string.Empty,
+//						MainStatusId = 1,
+//						Item = objTask
+//					}
+//				});
+//
+//			string results= ConnectWebAPI.Request(url,objsearch);
+//
+//			if (results != null && results != "") {
+//
+//				DataJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<DataJson> (results);
+//
+//				obj2 = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskListDetailJson> (obj.Data);
+//
+//				tv_AllTask.Text = obj2.TotalRecords.ToString ();
+//
+//				if (obj2.Items != null) {
+//					tv_OpenTask.Text = CheckTask ("Open", obj2.Items).ToString ();
+//					tv_OverDueTask.Text = CheckTask ("OverDue", obj2.Items).ToString ();
+//					tv_AssignByMeTask.Text = CheckTask ("AssignByMe", obj2.Items).ToString ();
+//				} else {
+//					tv_OpenTask.Text = "0";
+//					tv_OverDueTask.Text = "0";
+//					tv_AssignByMeTask.Text = "0";
+//				}
+//			}
 		}
 
 		public void btBackClick(object sender, EventArgs e)
@@ -105,51 +129,57 @@ namespace LinkOM
 			OnBackPressed ();
 		}
 
-		public void AllTaskClick(object sender, EventArgs e)
+		public void btAddClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "All Task Clicked", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(AddTaskActivity));
+			StartActivity (activity);
 		}
 
-		public void OpenTaskClick(object sender, EventArgs e)
+		public void btOpenClick(object sender, EventArgs e)
 		{
-
-			string data = Newtonsoft.Json.JsonConvert.SerializeObject (obj2.Items);
-
-			var activity2 = new Intent (this, typeof(OpenTaskActivity));
-			activity2.PutExtra ("Json", data);
-			StartActivity (activity2);
-
+			Toast.MakeText (this, "Open Task Clicked", ToastLength.Short).Show ();
 		}
 
-		public void OverDueTaskClick(object sender, EventArgs e)
+		public void btClosedClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Over Due TaskClicked", ToastLength.Short).Show ();
+			Toast.MakeText (this, "Closed Task Clicked", ToastLength.Short).Show ();
 		}
 
-		public void AssignByMeTaskClick(object sender, EventArgs e)
+		public void WaitingTaskClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Assign By Me Task Clicked", ToastLength.Short).Show ();
+			Toast.MakeText (this, "Waiting Task Clicked", ToastLength.Short).Show ();
 		}
 
-		private int CheckTask(string status, List<Task>  list_Task){
-			int count = 0;
-			foreach (var task in list_Task) {
-				if (task.StatusName == status)
-					count++;
-			}
-			return count;
+		public void ProgressTaskClick(object sender, EventArgs e)
+		{
+			Toast.MakeText (this, "In Progress Task Clicked", ToastLength.Short).Show ();
 		}
 
-//		public static T DeepCopy<T>(T other)
-//		{
-//			using (MemoryStream ms = new MemoryStream())
-//			{
-//				BinaryFormatter formatter = new BinaryFormatter();
-//				formatter.Serialize(ms, other);
-//				ms.Position = 0;
-//				return (T)formatter.Deserialize(ms);
+		public void QueryTaskClick(object sender, EventArgs e)
+		{
+			Toast.MakeText (this, "Query Task Clicked", ToastLength.Short).Show ();
+		}
+
+		public void CompleteTaskClick(object sender, EventArgs e)
+		{
+			Toast.MakeText (this, "Complete Task Clicked", ToastLength.Short).Show ();
+		}
+
+		public void FutureTaskClick(object sender, EventArgs e)
+		{
+			Toast.MakeText (this, "Future Task Clicked", ToastLength.Short).Show ();
+		}
+
+//		private int CheckTask(string status, List<Task>  list_Task){
+//			int count = 0;
+//			foreach (var task in list_Task) {
+//				if (task.StatusName == status)
+//					count++;
 //			}
-//		}	
+//			return count;
+//		}
+
+	
 	}
 }
 

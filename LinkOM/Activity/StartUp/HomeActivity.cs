@@ -44,8 +44,6 @@ namespace LinkOM
 			return base.OnPrepareOptionsMenu(menu);
 		}
 
-
-
 		public void btTaskClick(object sender, EventArgs e)
 		{
 			var activity = new Intent (this, typeof(TaskActivity));

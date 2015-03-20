@@ -92,7 +92,7 @@ namespace LinkOM
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			//Get our item from the list adapter
-			long ProjectId = this.projectList.GetItemId(e.Position);
+			var ProjectId = this.projectList.GetItemId(e.Position);
 
 			var activity = new Intent (this, typeof(ProjectDetailActivity));
 			activity.PutExtra ("TokenNumber", TokenNumber);
@@ -120,12 +120,12 @@ namespace LinkOM
 			var menuItemName = menuItems[menuItemIndex];
 
 			var ProjectName = projectList.GetItemName(info.Position);
-			var ProjectID =   projectList.GetItemId(info.Position);
+			int ProjectId = int.Parse(projectList.GetItemId(info.Position).ToString());
 
 			if (menuItemName.Equals ("Add Task")) {
 				var activity = new Intent (this, typeof(AddTaskActivity));
 				activity.PutExtra ("TokenNumber", TokenNumber);
-				activity.PutExtra ("ProjectId", ProjectID);
+				activity.PutExtra ("ProjectId", ProjectId);
 				StartActivity (activity);
 			}
 			else

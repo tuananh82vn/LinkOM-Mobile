@@ -101,9 +101,6 @@ namespace LinkOM
 
 //			projectListView.ItemClick += listView_ItemClick;
 
-
-
-			// Create your application here
 		}
 
 		public void btBackClick(object sender, EventArgs e)

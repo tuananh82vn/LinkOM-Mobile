@@ -83,8 +83,9 @@
     <Compile Include="Adapter\MilestoneListAdapter.cs" />
     <Compile Include="Activity\StartUp\SplashActivity.cs" />
     <Compile Include="Activity\Task\AddTaskActivity.cs" />
-    <Compile Include="Helper\LoginTask.cs" />
     <Compile Include="Helper\LoginService.cs" />
+    <Compile Include="Helper\BitmapHelper.cs" />
+    <Compile Include="Adapter\ProjectSpinnerAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -154,6 +155,10 @@
     <AndroidResource Include="Resources\layout\AddTask.axml" />
     <AndroidResource Include="Resources\menu\menu_home.xml" />
     <AndroidResource Include="Resources\menu\menu_login.xml" />
+    <AndroidResource Include="Resources\layout\SpinnerItemDropdown.axml" />
+    <AndroidResource Include="Resources\layout\SpinnerItemText.axml" />
+    <AndroidResource Include="Resources\drawable\Projects.png" />
+    <AndroidResource Include="Resources\drawable\RoundButton.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
