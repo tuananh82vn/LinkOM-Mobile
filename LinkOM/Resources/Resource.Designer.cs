@@ -238,8 +238,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f070044
 			public const int bt_Issues = 2131165252;
 			
-			// aapt resource value: 0x7f070041
-			public const int bt_Milestone = 2131165249;
+			// aapt resource value: 0x7f070043
+			public const int bt_Milestone = 2131165251;
 			
 			// aapt resource value: 0x7f070081
 			public const int bt_Open = 2131165313;
@@ -256,8 +256,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f07001f
 			public const int bt_StartDate = 2131165215;
 			
-			// aapt resource value: 0x7f070043
-			public const int bt_Task = 2131165251;
+			// aapt resource value: 0x7f070041
+			public const int bt_Task = 2131165249;
 			
 			// aapt resource value: 0x7f070042
 			public const int bt_Ticket = 2131165250;
@@ -672,7 +672,10 @@ namespace LinkOM
 			public const int TaskList = 2130903051;
 			
 			// aapt resource value: 0x7f03000c
-			public const int TaskView = 2130903052;
+			public const int TaskListView = 2130903052;
+			
+			// aapt resource value: 0x7f03000d
+			public const int TaskView = 2130903053;
 			
 			static Layout()
 			{

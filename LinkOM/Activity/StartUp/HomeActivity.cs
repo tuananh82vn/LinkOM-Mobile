@@ -34,6 +34,21 @@ namespace LinkOM
 			ImageButton bt_Project = FindViewById<ImageButton>(Resource.Id.bt_Project);
 			bt_Project.Click += btProjectClick;
 
+			ImageButton bt_Ticket = FindViewById<ImageButton>(Resource.Id.bt_Ticket);
+			bt_Ticket.Click += bt_TicketClick;
+
+			ImageButton bt_Milestone = FindViewById<ImageButton>(Resource.Id.bt_Milestone);
+			bt_Milestone.Click += bt_MilestoneClick;
+
+			ImageButton bt_Issues = FindViewById<ImageButton>(Resource.Id.bt_Issues);
+			bt_Issues.Click += bt_IssuesClick;
+
+			ImageButton bt_Document = FindViewById<ImageButton>(Resource.Id.bt_Document);
+			bt_Document.Click += bt_DocumentClick;
+
+
+
+
 			TokenNumber = Intent.GetStringExtra ("TokenNumber") ?? "";
 
 		}
@@ -56,6 +71,26 @@ namespace LinkOM
 			var activity = new Intent (this, typeof(ProjectActivity));
 			activity.PutExtra ("TokenNumber", TokenNumber);
 			StartActivity (activity);
+		}
+
+		public void bt_TicketClick(object sender, EventArgs e)
+		{
+			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
+		}
+
+		public void bt_MilestoneClick(object sender, EventArgs e)
+		{
+			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
+		}
+
+		public void bt_IssuesClick(object sender, EventArgs e)
+		{
+			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
+		}
+
+		public void bt_DocumentClick(object sender, EventArgs e)
+		{
+			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)

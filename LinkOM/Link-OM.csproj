@@ -25,7 +25,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -86,6 +85,7 @@
     <Compile Include="Helper\LoginService.cs" />
     <Compile Include="Helper\BitmapHelper.cs" />
     <Compile Include="Adapter\ProjectSpinnerAdapter.cs" />
+    <Compile Include="Activity\Task\TaskListActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -159,6 +159,7 @@
     <AndroidResource Include="Resources\layout\SpinnerItemText.axml" />
     <AndroidResource Include="Resources\drawable\Projects.png" />
     <AndroidResource Include="Resources\drawable\RoundButton.xml" />
+    <AndroidResource Include="Resources\layout\TaskListView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

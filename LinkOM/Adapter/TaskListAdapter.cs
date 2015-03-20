@@ -40,21 +40,44 @@ namespace LinkOM
 			return long.Parse(_TaskList [position].Id.Value.ToString());
 		}
 
+		public string GetItemName (int position) {
+			return _TaskList [position].Title;
+		}
+
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TaskList, parent, false);
 
-			var TaskTitle = view.FindViewById<TextView> (Resource.Id.TaskTitle);
-			TaskTitle.Text = _TaskList [position].Id +":"+ _TaskList [position].Title;
+			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
+			TaskTitle.Text = _TaskList [position].Title;
 
-			var ProjectName = view.FindViewById<TextView> (Resource.Id.ProjectName);
+			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			ProjectName.Text = _TaskList [position].ProjectName;
 
-			var TaskDetail = view.FindViewById<TextView> (Resource.Id.TaskDetail);
-			TaskDetail.Text = _TaskList [position].TaskComment;
+			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
+			StartDate.Text = _TaskList [position].StartDate;
 
-			var TaskDue = view.FindViewById<TextView> (Resource.Id.TaskDue);
-			TaskDue.Text = _TaskList [position].EndDateString;
+			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
+			EndDate.Text = _TaskList [position].EndDate;
+
+			var ActualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
+			ActualHours.Text = _TaskList [position].ActHours;
+
+			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
+			AllocatedHours.Text = _TaskList [position].AllocatedHours;
+
+
+			var AssignTo = view.FindViewById<TextView> (Resource.Id.tv_AssignTo);
+			AssignTo.Text = _TaskList [position].AssignedTo;
+
+
+			var TaskStatus = view.FindViewById<ImageView> (Resource.Id.image_Status);
+			if(_TaskList [position].StatusName.Equals("Open"))
+				TaskStatus.SetImageResource(Resource.Drawable.open);
+			else
+				TaskStatus.SetImageResource(Resource.Drawable.close);
+
+
 
 			return view;
 		}

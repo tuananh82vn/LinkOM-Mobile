@@ -137,37 +137,44 @@ namespace LinkOM
 
 		public void btOpenClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Open Task Clicked", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(TaskListActivity));
+			StartActivity (activity);
 		}
 
 		public void btClosedClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Closed Task Clicked", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(TaskListActivity));
+			StartActivity (activity);
 		}
 
 		public void WaitingTaskClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Waiting Task Clicked", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(TaskListActivity));
+			StartActivity (activity);
 		}
 
 		public void ProgressTaskClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "In Progress Task Clicked", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(TaskListActivity));
+			StartActivity (activity);
 		}
 
 		public void QueryTaskClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Query Task Clicked", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(TaskListActivity));
+			StartActivity (activity);
 		}
 
 		public void CompleteTaskClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Complete Task Clicked", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(TaskListActivity));
+			StartActivity (activity);
 		}
 
 		public void FutureTaskClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Future Task Clicked", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(TaskListActivity));
+			StartActivity (activity);
 		}
 
 //		private int CheckTask(string status, List<Task>  list_Task){
