@@ -22,6 +22,10 @@ Global
 		Policies = $0
 		$0.VersionControlPolicy = $1
 		$1.inheritsSet = Mono
+		$0.DotNetNamingPolicy = $2
+		$2.DirectoryNamespaceAssociation = None
+		$2.ResourceNamePolicy = FileFormatDefault
+		version = 3.0
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

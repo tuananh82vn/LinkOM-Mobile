@@ -14,19 +14,19 @@ using System.Threading;
 
 namespace LinkOM
 {
-    [Activity(Label = "Link-OM", Icon = "@drawable/icon")]
-    public class LoginActivity : Activity
-    {
+	[Activity(Label = "Link-OM", Icon = "@drawable/icon")]
+	public class LoginActivity : Activity
+	{
 		private LoginService _loginService;
 
 		public EditText username;
 		public EditText password;
 
-        protected override void OnCreate (Bundle bundle)
-        {
-            base.OnCreate (bundle);
+		protected override void OnCreate (Bundle bundle)
+		{
+			base.OnCreate (bundle);
 
-            // Set our view from the "main" layout resource
+			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
 
 			_loginService = new LoginService();
@@ -36,7 +36,7 @@ namespace LinkOM
 			password = FindViewById<EditText>(Resource.Id.tv_password);
 
 			button.Click += btloginClick;  
-        }
+		}
 
 
 
@@ -45,10 +45,12 @@ namespace LinkOM
 
 			LoginJson obj = _loginService.Login(username.Text, password.Text);
 
-			if(obj.Success)
-				onSuccessfulLogin(obj);
-			else
-				onFailLogin(obj);
+			if (obj != null) {
+				if (obj.Success)
+					onSuccessfulLogin (obj);
+				else
+					onFailLogin (obj);
+			}
 		}
 
 		private void onSuccessfulLogin(LoginJson obj)
@@ -88,5 +90,5 @@ namespace LinkOM
 		}
 
 
-    }
+	}
 }
