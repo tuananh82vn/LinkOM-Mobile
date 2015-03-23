@@ -16,7 +16,7 @@ using Android.Content.PM;
 
 namespace LinkOM
 {
-	[Activity(Label = "", Icon = "@drawable/Synotive",ScreenOrientation = ScreenOrientation.Portrait)]		
+	[Activity(Label = "", Icon = "@drawable/Synotive")]		
 	public class HomeActivity : Activity
 	{
 		public string TokenNumber = "";

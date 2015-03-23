@@ -16,7 +16,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LinkOM
 {
-	[Activity (Label = "Task",ScreenOrientation = ScreenOrientation.Portrait)]				
+	[Activity (Label = "Task")]				
 	public class TaskActivity : Activity
 	{
 		public TaskListDetailJson obj2 ;

@@ -35,10 +35,23 @@ namespace LinkOM
 			username = FindViewById<EditText>(Resource.Id.tv_username);
 			password = FindViewById<EditText>(Resource.Id.tv_password);
 
+			var metrics = Resources.DisplayMetrics;
+			var widthInDp = ConvertPixelsToDp(metrics.WidthPixels);
+			var heightInDp = ConvertPixelsToDp(metrics.HeightPixels);
+
+			TextView widthView = FindViewById<TextView>(Resource.Id.tv_Width);
+			TextView heightView = FindViewById<TextView>(Resource.Id.tv_Height);
+			widthView.Text = widthInDp.ToString ();
+			heightView.Text = heightInDp.ToString ();
+
 			button.Click += btloginClick;  
 		}
 
-
+		private int ConvertPixelsToDp(float pixelValue)
+		{
+			var dp = (int) ((pixelValue)/Resources.DisplayMetrics.Density);
+			return dp;
+		}
 
 		public void btloginClick(object sender, EventArgs e)
 		{

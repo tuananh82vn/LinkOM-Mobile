@@ -16,7 +16,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LinkOM
 {
-	[Activity (Label = "Project",ScreenOrientation = ScreenOrientation.Portrait)]				
+	[Activity (Label = "Project")]				
 	public class ProjectActivity : Activity
 	{
 		public string TokenNumber;
