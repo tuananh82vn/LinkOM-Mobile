@@ -24,7 +24,8 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
-			// Create your application here
+			SetOrientaion ();
+
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Home);
 
@@ -46,11 +47,18 @@ namespace LinkOM
 			ImageButton bt_Document = FindViewById<ImageButton>(Resource.Id.bt_Document);
 			bt_Document.Click += bt_DocumentClick;
 
-
-
-
 			TokenNumber = Intent.GetStringExtra ("TokenNumber") ?? "";
 
+		}
+
+		private void SetOrientaion(){
+			int minWidth= Settings.SmallestWidth;
+			if (minWidth > 360) {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
+			else if (minWidth <= 360) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			}
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)

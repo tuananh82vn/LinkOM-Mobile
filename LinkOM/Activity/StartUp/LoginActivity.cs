@@ -11,40 +11,54 @@ using System.Json;
 using System.Threading.Tasks;
 using System.Text;
 using System.Threading;
+using Android.Views.InputMethods;
+using Android.Content.PM;
 
 namespace LinkOM
 {
 	[Activity(Label = "Link-OM", Icon = "@drawable/icon")]
-	public class LoginActivity : Activity
+	public class LoginActivity : Activity, TextView.IOnEditorActionListener
 	{
 		private LoginService _loginService;
 
 		public EditText username;
 		public EditText password;
 
+		ProgressBar progressIndicator;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
+			SetOrientaion ();
+
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
-
-			_loginService = new LoginService();
 
 			Button button = FindViewById<Button>(Resource.Id.btLogin);
 			username = FindViewById<EditText>(Resource.Id.tv_username);
 			password = FindViewById<EditText>(Resource.Id.tv_password);
 
-			var metrics = Resources.DisplayMetrics;
-			var widthInDp = ConvertPixelsToDp(metrics.WidthPixels);
-			var heightInDp = ConvertPixelsToDp(metrics.HeightPixels);
+			progressIndicator = FindViewById<ProgressBar> (Resource.Id.progressBar1);
 
-			TextView widthView = FindViewById<TextView>(Resource.Id.tv_Width);
-			TextView heightView = FindViewById<TextView>(Resource.Id.tv_Height);
-			widthView.Text = widthInDp.ToString ();
-			heightView.Text = heightInDp.ToString ();
 
+			//Set edit action listener to allow the next & go buttons on the input keyboard to interact with login.
+			username.SetOnEditorActionListener (this);
+			password.SetOnEditorActionListener (this);
+
+			username.RequestFocus ();
 			button.Click += btloginClick;  
+		}
+
+		private void SetOrientaion(){
+			int minWidth= Settings.SmallestWidth;
+			if (minWidth > 360) {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+
+			}
+			else if (minWidth <= 360) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			}
 		}
 
 		private int ConvertPixelsToDp(float pixelValue)
@@ -53,10 +67,29 @@ namespace LinkOM
 			return dp;
 		}
 
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			progressIndicator.Visibility = ViewStates.Invisible;
+		}
+
 		public void btloginClick(object sender, EventArgs e)
 		{
+			if (!string.IsNullOrEmpty (username.Text) && !string.IsNullOrEmpty (password.Text)) {
+				//this hides the keyboard
+				var imm = (InputMethodManager)GetSystemService (Context.InputMethodService);
+				imm.HideSoftInputFromWindow (password.WindowToken, HideSoftInputFlags.NotAlways);
 
-			LoginJson obj = _loginService.Login(username.Text, password.Text);
+				progressIndicator.Visibility = ViewStates.Visible;
+
+				Login ();
+			}
+		}
+
+		private void Login(){
+
+			_loginService = new LoginService();
+			LoginJson obj = _loginService.Login (username.Text, password.Text);
 
 			if (obj != null) {
 				if (obj.Success)
@@ -100,6 +133,28 @@ namespace LinkOM
 				return true;
 			}
 			return base.OnOptionsItemSelected(item);
+		}
+
+		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
+		{
+			//go edit action will login
+			if (actionId == ImeAction.Go) {
+				if (!string.IsNullOrEmpty (username.Text) && !string.IsNullOrEmpty (password.Text)) {
+					Login ();
+				} else if (string.IsNullOrEmpty (username.Text)) {
+					username.RequestFocus ();
+				} else {
+					password.RequestFocus ();
+				}
+				return true;
+				//next action will set focus to password edit text.
+			} else if (actionId == ImeAction.Next) {
+				if (!string.IsNullOrEmpty (username.Text)) {
+					password.RequestFocus ();
+				}
+				return true;
+			}
+			return false;
 		}
 
 
