@@ -101,6 +101,7 @@ namespace LinkOM
 
 		private void onSuccessfulLogin(LoginJson obj)
 		{
+			progressIndicator.Visibility = ViewStates.Invisible;
 			var activity = new Intent (this, typeof(HomeActivity));
 			activity.PutExtra ("TokenNumber", obj.TokenNumber);
 			StartActivity (activity);
@@ -110,6 +111,7 @@ namespace LinkOM
 		private void onFailLogin(LoginJson obj)
 		{
 			Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ();
+			progressIndicator.Visibility = ViewStates.Invisible;
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)

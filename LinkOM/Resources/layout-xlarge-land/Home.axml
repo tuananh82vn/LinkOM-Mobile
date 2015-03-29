@@ -106,10 +106,20 @@
             p1:orientation="vertical"
             p1:layout_width="match_parent"
             p1:layout_height="match_parent"
-            p1:id="@+id/linearLayout2"
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:background="#ffffffff" />
+            p1:id="@+id/linearLayout2">
+            <TabWidget
+                p1:minWidth="25px"
+                p1:minHeight="25px"
+                p1:layout_width="match_parent"
+                p1:layout_height="70.9dp"
+                p1:id="@+id/tabs" />
+            <FrameLayout
+                p1:minWidth="25px"
+                p1:minHeight="25px"
+                p1:layout_width="match_parent"
+                p1:layout_height="match_parent"
+                p1:id="@+id/tabcontent" />
+        </LinearLayout>
     </RelativeLayout>
     <RelativeLayout
         p1:minWidth="25px"

@@ -68,39 +68,39 @@ namespace LinkOM
 //			tv_AssignByMeTask.Click += AssignByMeTaskClick;
 
 
-//			string url = Settings.InstanceURL;
-//
-//			url=url+"/api/TaskList";
-//
-//
-//			var objTask = new
-//			{
-//				Title = "Test",
-//				AssignedToId = 2,
-//				ClientId = string.Empty,
-//				TaskStatusId = 1,
-//				PriorityId = string.Empty,
-//				DueBeforeDate = string.Empty,
-//				DepartmentId = string.Empty,
-//				ProjectId = string.Empty,
-//				AssignByMe = string.Empty,
-//				Filter = string.Empty,
-//				Label = string.Empty,
-//			};
-//
-//			var objsearch = (new
-//				{
-//					objApiSearch = new
-//					{
-//						UserId = 2,
-//						PageSize = 20,
-//						PageNumber = 1,
-//						SortMember = string.Empty,
-//						SortDirection = string.Empty,
-//						MainStatusId = 1,
-//						Item = objTask
-//					}
-//				});
+			string url = Settings.InstanceURL;
+
+			url=url+"/api/TaskList";
+
+
+			var objTask = new
+			{
+				Title = "",
+				AssignedToId = 2,
+				ClientId = string.Empty,
+				TaskStatusId = 1,
+				PriorityId = string.Empty,
+				DueBeforeDate = string.Empty,
+				DepartmentId = string.Empty,
+				ProjectId = string.Empty,
+				AssignByMe = string.Empty,
+				Filter = string.Empty,
+				Label = string.Empty,
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						UserId = 2,
+						PageSize = 20,
+						PageNumber = 1,
+						SortMember = string.Empty,
+						SortDirection = string.Empty,
+						MainStatusId = 1,
+						Item = objTask
+					}
+				});
 //
 //			string results= ConnectWebAPI.Request(url,objsearch);
 //
