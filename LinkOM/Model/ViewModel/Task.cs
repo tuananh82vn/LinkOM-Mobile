@@ -1,9 +1,11 @@
 ﻿using System;
+using Android.OS;
+using Java.Interop;
 
 namespace LinkOM
 {
 	[Serializable]
-	public class Task
+	public class Task 
 	{
 		public Nullable<int> Id { get; set; }
 		public string Guid { get; set; }
@@ -80,7 +82,6 @@ namespace LinkOM
 		public Nullable<bool> IsActive { get; set; }
 		public Nullable<bool> IsAddToMyWatch { get; set; }
 		public Nullable<int> TotalRows { get; set; }
-
 	}
 }
 

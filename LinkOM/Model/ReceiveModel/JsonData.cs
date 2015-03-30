@@ -2,10 +2,9 @@
 
 namespace LinkOM
 {
-	public class DataJson
+	public class JsonData
 	{
-		public string Data { get; set; }
-
+		public string Data { get; set;}
 	}
 }
 

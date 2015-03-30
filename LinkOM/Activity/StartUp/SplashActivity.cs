@@ -49,7 +49,7 @@ namespace LinkOM
 
 				}
 
-				Thread.Sleep (1000);
+				//Thread.Sleep (1000);
 				return true;
 			}); 
 			StartActivity(typeof(CheckActivity));

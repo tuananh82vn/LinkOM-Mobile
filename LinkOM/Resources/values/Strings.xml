@@ -7,13 +7,14 @@
 		    <item>Add Document</item>
 	  	</string-array>
 	  	<string-array name="TaskStatus">
-		    <item>Open</item>
+	  		<item>Open</item>
 		    <item>Closed</item>
 		    <item>Waiting On Client</item>
 		    <item>In Progress</item>
 		    <item>Query</item>
 		    <item>Complete</item>
 		    <item>Future Task</item>
+
 	  	</string-array>
 	  	<string-array name="TaskPriority">
 		    <item>Low</item>

@@ -36,6 +36,12 @@ namespace LinkOM
 			return null;
 		}
 
+		public Task GetItemAtPosition(int position)
+		{
+			return _TaskList[position];
+		}
+
+
 		public override long GetItemId (int position) {
 			return long.Parse(_TaskList [position].Id.Value.ToString());
 		}
@@ -51,14 +57,18 @@ namespace LinkOM
 			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
 			TaskTitle.Text = _TaskList [position].Title;
 
+
+			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
+			TaskCode.Text = _TaskList [position].Code;
+
 			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			ProjectName.Text = _TaskList [position].ProjectName;
 
 			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
-			StartDate.Text = _TaskList [position].StartDate;
+			StartDate.Text = _TaskList [position].StartDateString;
 
 			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
-			EndDate.Text = _TaskList [position].EndDate;
+			EndDate.Text = _TaskList [position].EndDateString;
 
 			var ActualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
 			ActualHours.Text = _TaskList [position].ActHours;
@@ -66,18 +76,16 @@ namespace LinkOM
 			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
 			AllocatedHours.Text = _TaskList [position].AllocatedHours;
 
-
 			var AssignTo = view.FindViewById<TextView> (Resource.Id.tv_AssignTo);
 			AssignTo.Text = _TaskList [position].AssignedTo;
 
+			var Owner = view.FindViewById<TextView> (Resource.Id.tv_Owner);
+			Owner.Text = _TaskList [position].Owner;
 
-			var TaskStatus = view.FindViewById<ImageView> (Resource.Id.image_Status);
-			if(_TaskList [position].StatusName.Equals("Open"))
-				TaskStatus.SetImageResource(Resource.Drawable.open);
-			else
-				TaskStatus.SetImageResource(Resource.Drawable.close);
+			var Status = view.FindViewById<TextView> (Resource.Id.tv_Status);
+			Status.Text = _TaskList [position].StatusName;
 
-
+				
 
 			return view;
 		}

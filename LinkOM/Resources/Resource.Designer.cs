@@ -205,65 +205,59 @@ namespace LinkOM
 			// aapt resource value: 0x7f07007d
 			public const int ProjectListView = 2131165309;
 			
-			// aapt resource value: 0x7f070054
-			public const int TaskListView = 2131165268;
+			// aapt resource value: 0x7f070055
+			public const int TaskListView = 2131165269;
 			
 			// aapt resource value: 0x7f07003b
 			public const int URLText = 2131165243;
 			
-			// aapt resource value: 0x7f07004e
-			public const int btLogin = 2131165262;
+			// aapt resource value: 0x7f07004f
+			public const int btLogin = 2131165263;
 			
-			// aapt resource value: 0x7f07008b
-			public const int bt_Add = 2131165323;
+			// aapt resource value: 0x7f07008d
+			public const int bt_Add = 2131165325;
 			
 			// aapt resource value: 0x7f070002
 			public const int bt_Back = 2131165186;
 			
-			// aapt resource value: 0x7f070085
-			public const int bt_Close = 2131165317;
-			
 			// aapt resource value: 0x7f070089
-			public const int bt_Complete = 2131165321;
+			public const int bt_Close = 2131165321;
 			
-			// aapt resource value: 0x7f070045
-			public const int bt_Document = 2131165253;
+			// aapt resource value: 0x7f070046
+			public const int bt_Document = 2131165254;
 			
 			// aapt resource value: 0x7f070022
 			public const int bt_EndDate = 2131165218;
 			
-			// aapt resource value: 0x7f07008a
-			public const int bt_Future = 2131165322;
+			// aapt resource value: 0x7f070045
+			public const int bt_Issues = 2131165253;
 			
 			// aapt resource value: 0x7f070044
-			public const int bt_Issues = 2131165252;
-			
-			// aapt resource value: 0x7f070043
-			public const int bt_Milestone = 2131165251;
-			
-			// aapt resource value: 0x7f070084
-			public const int bt_Open = 2131165316;
-			
-			// aapt resource value: 0x7f070087
-			public const int bt_Progress = 2131165319;
-			
-			// aapt resource value: 0x7f070040
-			public const int bt_Project = 2131165248;
+			public const int bt_Milestone = 2131165252;
 			
 			// aapt resource value: 0x7f070088
-			public const int bt_Query = 2131165320;
+			public const int bt_Open = 2131165320;
+			
+			// aapt resource value: 0x7f07008b
+			public const int bt_Progress = 2131165323;
+			
+			// aapt resource value: 0x7f070041
+			public const int bt_Project = 2131165249;
+			
+			// aapt resource value: 0x7f07008c
+			public const int bt_Query = 2131165324;
 			
 			// aapt resource value: 0x7f07001f
 			public const int bt_StartDate = 2131165215;
 			
-			// aapt resource value: 0x7f070041
-			public const int bt_Task = 2131165249;
-			
 			// aapt resource value: 0x7f070042
-			public const int bt_Ticket = 2131165250;
+			public const int bt_Task = 2131165250;
 			
-			// aapt resource value: 0x7f070086
-			public const int bt_Waiting = 2131165318;
+			// aapt resource value: 0x7f070043
+			public const int bt_Ticket = 2131165251;
+			
+			// aapt resource value: 0x7f07008a
+			public const int bt_Waiting = 2131165322;
 			
 			// aapt resource value: 0x7f070032
 			public const int bt_camera = 2131165234;
@@ -274,8 +268,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f070037
 			public const int button3 = 2131165239;
 			
-			// aapt resource value: 0x7f07004d
-			public const int cb_rememberMe = 2131165261;
+			// aapt resource value: 0x7f07004e
+			public const int cb_rememberMe = 2131165262;
 			
 			// aapt resource value: 0x7f07002a
 			public const int checkBox1 = 2131165226;
@@ -292,11 +286,20 @@ namespace LinkOM
 			// aapt resource value: 0x7f070028
 			public const int editText2 = 2131165224;
 			
+			// aapt resource value: 0x7f07003f
+			public const int editText_Title = 2131165247;
+			
+			// aapt resource value: 0x7f07007f
+			public const int field1 = 2131165311;
+			
+			// aapt resource value: 0x7f070080
+			public const int field2 = 2131165312;
+			
 			// aapt resource value: 0x7f07003c
 			public const int getSection = 2131165244;
 			
-			// aapt resource value: 0x7f070057
-			public const int imageStatus = 2131165271;
+			// aapt resource value: 0x7f070058
+			public const int imageStatus = 2131165272;
 			
 			// aapt resource value: 0x7f070038
 			public const int imageView1 = 2131165240;
@@ -304,8 +307,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f07003e
 			public const int imageView2 = 2131165246;
 			
-			// aapt resource value: 0x7f070051
-			public const int image_Status = 2131165265;
+			// aapt resource value: 0x7f070052
+			public const int image_Status = 2131165266;
 			
 			// aapt resource value: 0x7f070033
 			public const int iv_Photo = 2131165235;
@@ -355,35 +358,35 @@ namespace LinkOM
 			// aapt resource value: 0x7f070070
 			public const int list_Milestone = 2131165296;
 			
-			// aapt resource value: 0x7f07004b
-			public const int longSection = 2131165259;
-			
-			// aapt resource value: 0x7f07008d
-			public const int menu_help = 2131165325;
+			// aapt resource value: 0x7f07004c
+			public const int longSection = 2131165260;
 			
 			// aapt resource value: 0x7f07008f
-			public const int menu_reset = 2131165327;
+			public const int menu_help = 2131165327;
 			
-			// aapt resource value: 0x7f07008c
-			public const int menu_search = 2131165324;
+			// aapt resource value: 0x7f070091
+			public const int menu_reset = 2131165329;
 			
 			// aapt resource value: 0x7f07008e
-			public const int menu_server = 2131165326;
+			public const int menu_search = 2131165326;
 			
-			// aapt resource value: 0x7f07004f
-			public const int progressBar1 = 2131165263;
+			// aapt resource value: 0x7f070090
+			public const int menu_server = 2131165328;
+			
+			// aapt resource value: 0x7f070050
+			public const int progressBar1 = 2131165264;
 			
 			// aapt resource value: 0x7f070000
 			public const int relativeLayout1 = 2131165184;
 			
-			// aapt resource value: 0x7f070046
-			public const int relativeLayout2 = 2131165254;
+			// aapt resource value: 0x7f070047
+			public const int relativeLayout2 = 2131165255;
 			
-			// aapt resource value: 0x7f070049
-			public const int relativeLayout3 = 2131165257;
+			// aapt resource value: 0x7f07004a
+			public const int relativeLayout3 = 2131165258;
 			
-			// aapt resource value: 0x7f070056
-			public const int scrollView1 = 2131165270;
+			// aapt resource value: 0x7f070057
+			public const int scrollView1 = 2131165271;
 			
 			// aapt resource value: 0x7f070017
 			public const int sp_AssignedTo = 2131165207;
@@ -400,14 +403,14 @@ namespace LinkOM
 			// aapt resource value: 0x7f070011
 			public const int sp_Status = 2131165201;
 			
-			// aapt resource value: 0x7f070048
-			public const int tabcontent = 2131165256;
+			// aapt resource value: 0x7f070049
+			public const int tabcontent = 2131165257;
 			
-			// aapt resource value: 0x7f07003f
-			public const int tableLayout1 = 2131165247;
+			// aapt resource value: 0x7f070040
+			public const int tableLayout1 = 2131165248;
 			
-			// aapt resource value: 0x7f070052
-			public const int tableLayout2 = 2131165266;
+			// aapt resource value: 0x7f070053
+			public const int tableLayout2 = 2131165267;
 			
 			// aapt resource value: 0x7f070060
 			public const int tableLayout3 = 2131165280;
@@ -457,8 +460,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f070027
 			public const int tableRow9 = 2131165223;
 			
-			// aapt resource value: 0x7f070047
-			public const int tabs = 2131165255;
+			// aapt resource value: 0x7f070048
+			public const int tabs = 2131165256;
 			
 			// aapt resource value: 0x7f07007e
 			public const int text = 2131165310;
@@ -532,17 +535,14 @@ namespace LinkOM
 			// aapt resource value: 0x7f07007a
 			public const int textView43 = 2131165306;
 			
-			// aapt resource value: 0x7f070080
-			public const int textView44 = 2131165312;
-			
-			// aapt resource value: 0x7f070081
-			public const int textView46 = 2131165313;
+			// aapt resource value: 0x7f070084
+			public const int textView44 = 2131165316;
 			
 			// aapt resource value: 0x7f070082
-			public const int textView48 = 2131165314;
+			public const int textView46 = 2131165314;
 			
-			// aapt resource value: 0x7f07005a
-			public const int tv_ActuHours = 2131165274;
+			// aapt resource value: 0x7f070085
+			public const int textView48 = 2131165317;
 			
 			// aapt resource value: 0x7f070065
 			public const int tv_ActualEndDate = 2131165285;
@@ -559,8 +559,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f07007c
 			public const int tv_AllocatedHours = 2131165308;
 			
-			// aapt resource value: 0x7f070083
-			public const int tv_AssignTo = 2131165315;
+			// aapt resource value: 0x7f070086
+			public const int tv_AssignTo = 2131165318;
 			
 			// aapt resource value: 0x7f070063
 			public const int tv_Client = 2131165283;
@@ -568,11 +568,11 @@ namespace LinkOM
 			// aapt resource value: 0x7f070071
 			public const int tv_ClientName = 2131165297;
 			
-			// aapt resource value: 0x7f070058
-			public const int tv_Code = 2131165272;
+			// aapt resource value: 0x7f070059
+			public const int tv_Code = 2131165273;
 			
-			// aapt resource value: 0x7f070053
-			public const int tv_CreatedPerson = 2131165267;
+			// aapt resource value: 0x7f070054
+			public const int tv_CreatedPerson = 2131165268;
 			
 			// aapt resource value: 0x7f07006a
 			public const int tv_DeliveryManager = 2131165290;
@@ -589,8 +589,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f070021
 			public const int tv_EndDate = 2131165217;
 			
-			// aapt resource value: 0x7f070050
-			public const int tv_MilestoneName = 2131165264;
+			// aapt resource value: 0x7f070051
+			public const int tv_MilestoneName = 2131165265;
 			
 			// aapt resource value: 0x7f07006e
 			public const int tv_Notes = 2131165294;
@@ -604,29 +604,35 @@ namespace LinkOM
 			// aapt resource value: 0x7f070072
 			public const int tv_OpenTickets = 2131165298;
 			
+			// aapt resource value: 0x7f070087
+			public const int tv_Owner = 2131165319;
+			
 			// aapt resource value: 0x7f07006c
 			public const int tv_ProjectCoordinator = 2131165292;
 			
 			// aapt resource value: 0x7f07006b
 			public const int tv_ProjectManager = 2131165291;
 			
-			// aapt resource value: 0x7f070055
-			public const int tv_ProjectName = 2131165269;
+			// aapt resource value: 0x7f070056
+			public const int tv_ProjectName = 2131165270;
 			
-			// aapt resource value: 0x7f070059
-			public const int tv_RefCode = 2131165273;
+			// aapt resource value: 0x7f07005a
+			public const int tv_RefCode = 2131165274;
 			
 			// aapt resource value: 0x7f07001e
 			public const int tv_StartDate = 2131165214;
 			
-			// aapt resource value: 0x7f07007f
-			public const int tv_TaskName = 2131165311;
+			// aapt resource value: 0x7f070083
+			public const int tv_Status = 2131165315;
 			
-			// aapt resource value: 0x7f07004c
-			public const int tv_password = 2131165260;
+			// aapt resource value: 0x7f070081
+			public const int tv_TaskName = 2131165313;
 			
-			// aapt resource value: 0x7f07004a
-			public const int tv_username = 2131165258;
+			// aapt resource value: 0x7f07004d
+			public const int tv_password = 2131165261;
+			
+			// aapt resource value: 0x7f07004b
+			public const int tv_username = 2131165259;
 			
 			// aapt resource value: 0x7f070004
 			public const int webView1 = 2131165188;
@@ -651,40 +657,46 @@ namespace LinkOM
 			public const int CheckInstance = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Home = 2130903042;
+			public const int EditTask = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Login = 2130903043;
+			public const int Home = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int MilestoneList = 2130903044;
+			public const int Login = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int OpenTaskView = 2130903045;
+			public const int MilestoneList = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int ProjectDetailView = 2130903046;
+			public const int OpenTaskView = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int ProjectList = 2130903047;
+			public const int ProjectDetailView = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int ProjectView = 2130903048;
+			public const int ProjectList = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int SpinnerItemDropdown = 2130903049;
+			public const int ProjectView = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int SpinnerItemText = 2130903050;
+			public const int SpinnerItemDropdown = 2130903050;
 			
 			// aapt resource value: 0x7f03000b
-			public const int TaskList = 2130903051;
+			public const int SpinnerItemText = 2130903051;
 			
 			// aapt resource value: 0x7f03000c
-			public const int TaskListView = 2130903052;
+			public const int StatusRow = 2130903052;
 			
 			// aapt resource value: 0x7f03000d
-			public const int TaskView = 2130903053;
+			public const int TaskList = 2130903053;
+			
+			// aapt resource value: 0x7f03000e
+			public const int TaskListView = 2130903054;
+			
+			// aapt resource value: 0x7f03000f
+			public const int TaskView = 2130903055;
 			
 			static Layout()
 			{

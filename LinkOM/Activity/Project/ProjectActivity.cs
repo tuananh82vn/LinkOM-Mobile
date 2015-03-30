@@ -33,7 +33,7 @@ namespace LinkOM
 			buttonBack.Click += btBackClick;
 
 
-			TokenNumber = Intent.GetStringExtra ("TokenNumber") ?? "";
+			TokenNumber = Settings.Token;
 
 
 			string url = Settings.InstanceURL;
@@ -95,8 +95,9 @@ namespace LinkOM
 			var ProjectId = this.projectList.GetItemId(e.Position);
 
 			var activity = new Intent (this, typeof(ProjectDetailActivity));
-			activity.PutExtra ("TokenNumber", TokenNumber);
+
 			activity.PutExtra ("ProjectId", ProjectId);
+
 			StartActivity (activity);
 		}
 

@@ -99,9 +99,8 @@ namespace LinkOM
 
 			//Handle Project Spinner
 
+			TokenNumber = Settings.Token;
 
-
-			TokenNumber = Intent.GetStringExtra ("TokenNumber") ?? "";
 			int ProjectId = Intent.GetIntExtra ("ProjectId",0);
 
 			string url = Settings.InstanceURL;

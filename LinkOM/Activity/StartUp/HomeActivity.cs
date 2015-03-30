@@ -70,14 +70,12 @@ namespace LinkOM
 		public void btTaskClick(object sender, EventArgs e)
 		{
 			var activity = new Intent (this, typeof(TaskActivity));
-			activity.PutExtra ("TokenNumber", TokenNumber);
 			StartActivity (activity);
 		}
 
 		public void btProjectClick(object sender, EventArgs e)
 		{
 			var activity = new Intent (this, typeof(ProjectActivity));
-			activity.PutExtra ("TokenNumber", TokenNumber);
 			StartActivity (activity);
 		}
 

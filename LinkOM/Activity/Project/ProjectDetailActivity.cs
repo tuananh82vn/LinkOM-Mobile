@@ -25,7 +25,7 @@ namespace LinkOM
 			buttonBack.Click += btBackClick;
 
 
-			string TokenNumber = Intent.GetStringExtra ("TokenNumber") ?? "";
+			string TokenNumber = Settings.Token;
 
 			long ProjectId = Intent.GetLongExtra ("ProjectId",0);
 
@@ -151,6 +151,11 @@ namespace LinkOM
 			if(obj.ActualEndDate!=null)
 				ActualEndDate.Text = obj.ActualEndDate.Value.ToShortDateString();
 
+			var AllocatedHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
+			if (obj.AllocatedHours != null)
+				AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
+
+
 			var DeliveryManager = FindViewById<TextView> (Resource.Id.tv_DeliveryManager);
 			DeliveryManager.Text = obj.DeliveryManagerName;
 
@@ -161,10 +166,12 @@ namespace LinkOM
 			ProjectCoordinator.Text = obj.ProjectCoordinatorName;
 
 			var Notes = FindViewById<TextView> (Resource.Id.tv_Notes);
-			//Notes.Text = obj.Notes;
+			if(obj.Notes!=null)
+				Notes.Text = obj.Notes;
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			//Description.Text = obj.Description;
+			if(obj.Description!=null)
+				Description.Text = obj.Description;
 
 		}
 	}

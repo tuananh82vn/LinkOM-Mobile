@@ -101,6 +101,9 @@ namespace LinkOM
 
 		private void onSuccessfulLogin(LoginJson obj)
 		{
+			Settings.UserId = obj.UserId;
+			Settings.Token = obj.TokenNumber;
+
 			progressIndicator.Visibility = ViewStates.Invisible;
 			var activity = new Intent (this, typeof(HomeActivity));
 			activity.PutExtra ("TokenNumber", obj.TokenNumber);
