@@ -43,7 +43,7 @@ namespace LinkOM
 				Title = "",
 				AssignedToId = string.Empty,
 				ClientId = string.Empty,
-				TaskStatusId = StatusId, //this is for Open Task
+				TaskStatusId = StatusId,
 				PriorityId = string.Empty,
 				DueBeforeDate = string.Empty,
 				DepartmentId = string.Empty,

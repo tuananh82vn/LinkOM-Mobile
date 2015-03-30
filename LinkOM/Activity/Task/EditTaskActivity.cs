@@ -85,7 +85,6 @@ namespace LinkOM
 				sp_Project.SetSelection(projectList.getPositionById(model.ProjectId.Value)); 
 
 			//Handle Status
-
 			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
 			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
 			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
@@ -96,6 +95,7 @@ namespace LinkOM
 				st_Status.SetSelection(index); 
 			}
 
+			//Handle priority
 			Spinner st_Priority = FindViewById<Spinner> (Resource.Id.sp_Priority);
 			var PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
 			PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);

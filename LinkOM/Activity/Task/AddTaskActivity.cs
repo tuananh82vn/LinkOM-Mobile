@@ -53,8 +53,6 @@ namespace LinkOM
 			ImageButton bt_Back = FindViewById<ImageButton>(Resource.Id.bt_Back);
 			bt_Back.Click += btBackClick;
 
-
-
 			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
 			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
 			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
@@ -70,8 +68,6 @@ namespace LinkOM
 
 			// get the current date
 			EndDate = DateTime.Today;
-
-
 
 			// capture our View elements
 			tv_StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
