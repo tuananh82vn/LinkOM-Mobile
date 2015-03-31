@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background2">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="203.5dp"
+        android:id="@+id/linearLayout1">
+        <ImageView
+            android:src="@drawable/LinkOM_Logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView1"
+            android:layout_marginLeft="0.0dp"
+            android:layout_marginRight="0.0dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:id="@+id/latSection">
+        <TextView
+            android:text="Website:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="72.5dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:id="@+id/latLabel"
+            android:layout_marginLeft="0.0dp"
+            android:layout_marginRight="0.0dp"
+            android:textColor="#ffffffff" />
+        <EditText
+            android:text="http://synotive.link-om.com"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/URLText"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="5dp"
+            android:textColor="#ffffffff" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/getSection"
+        android:minWidth="25px"
+        android:minHeight="25px">
+        <Button
+            android:id="@+id/CheckButton"
+            android:layout_width="match_parent"
+            android:layout_height="62.2dp"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Check"
+            android:layout_marginRight="0.0dp"
+            android:textColor="#ffffffff" />
+    </LinearLayout>
+    <ImageView
+        android:src="@drawable/Synquis_Logo"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/imageView2"
+        android:layout_marginTop="203.7dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginBottom="0.0dp" />
+</LinearLayout>

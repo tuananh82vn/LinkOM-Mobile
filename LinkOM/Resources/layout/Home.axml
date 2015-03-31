@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/relativeLayout1"
+    p1:background="#ffffffff">
+    <LinearLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="52.0dp"
+        p1:id="@+id/linearLayout1">
+        <ImageView
+            p1:src="@drawable/Linkom"
+            p1:layout_width="170.0dp"
+            p1:layout_height="60dp"
+            p1:id="@+id/imageView1"
+            p1:layout_marginLeft="10.0dp"
+            p1:layout_gravity="center_horizontal" />
+    </LinearLayout>
+    <TableLayout
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="match_parent"
+        p1:layout_below="@id/linearLayout1"
+        p1:id="@+id/tableLayout1">
+        <TableRow
+            p1:id="@+id/tableRow1">
+            <ImageButton
+                p1:id="@+id/bt_Project"
+                p1:layout_column="0"
+                p1:layout_width="149dp"
+                p1:layout_height="149dp"
+                p1:layout_marginLeft="25.0dp"
+                p1:layout_marginRight="5.0dp"
+                p1:layout_marginTop="10.0dp"
+                p1:background="@drawable/Project_button" />
+            <ImageButton
+                p1:id="@+id/bt_Task"
+                p1:layout_column="1"
+                p1:layout_width="149dp"
+                p1:layout_height="149dp"
+                p1:background="@drawable/Task_button"
+                p1:layout_marginLeft="5.0dp"
+                p1:layout_marginRight="10.0dp"
+                p1:layout_marginTop="10.0dp" />
+        </TableRow>
+        <TableRow
+            p1:id="@+id/tableRow2">
+            <ImageButton
+                p1:id="@+id/bt_Ticket"
+                p1:layout_column="0"
+                p1:layout_width="149dp"
+                p1:layout_height="149dp"
+                p1:background="@drawable/Ticket_button"
+                p1:layout_marginLeft="25.0dp"
+                p1:layout_marginRight="5.0dp"
+                p1:layout_marginTop="10.0dp" />
+            <ImageButton
+                p1:id="@+id/bt_Milestone"
+                p1:layout_column="1"
+                p1:layout_width="149dp"
+                p1:layout_height="149dp"
+                p1:background="@drawable/Milestone_button"
+                p1:layout_marginLeft="5.0dp"
+                p1:layout_marginRight="10.0dp"
+                p1:layout_marginTop="10.0dp" />
+        </TableRow>
+        <TableRow
+            p1:id="@+id/tableRow3">
+            <ImageButton
+                p1:id="@+id/bt_Issues"
+                p1:layout_column="0"
+                p1:layout_width="149dp"
+                p1:layout_height="149dp"
+                p1:background="@drawable/Issues_button"
+                p1:layout_marginLeft="25.0dp"
+                p1:layout_marginRight="5.0dp"
+                p1:layout_marginTop="10.0dp" />
+            <ImageButton
+                p1:id="@+id/bt_Document"
+                p1:layout_column="1"
+                p1:layout_width="149dp"
+                p1:layout_height="149dp"
+                p1:background="@drawable/Document_button"
+                p1:layout_marginLeft="5.0dp"
+                p1:layout_marginRight="10.0dp"
+                p1:layout_marginTop="10.0dp" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>

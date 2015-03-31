@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="fill_parent"
+    android:background="#006197"
+    android:id="@+id/FlyOutMenu"
+    android:padding="4dp">
+    <TextView
+        android:text="Menu"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textColor="#ffffffff"
+        android:padding="4dp" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:id="@+id/view1"
+        android:background="#ffc1c1c1"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_Project"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/Projects"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView1" />
+        <TextView
+            android:text="Project"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view2"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_Task"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/Tasks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+        <TextView
+            android:text="Task"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_Ticket"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/Tickets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+        <TextView
+            android:text="Ticket"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_Issues"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/Issues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+        <TextView
+            android:text="Issues"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_Milestone"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/Milestones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+        <TextView
+            android:text="Milestone"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_Document"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/Documents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+        <TextView
+            android:text="Document"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_ChangeServer"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/iconelse"
+            android:layout_width="35.9dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+        <TextView
+            android:text="Change Server"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+</LinearLayout>

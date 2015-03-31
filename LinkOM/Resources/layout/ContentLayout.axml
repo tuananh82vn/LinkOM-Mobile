@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/FlyOutContent"
+    android:background="#ffffffff">
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view1"
+        android:background="#ff609ec1" />
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frameLayout1"
+        android:background="#006197">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/MenuButton"
+                android:layout_margin="4dp"
+                android:background="@drawable/action_menu" />
+            <TextView
+                android:text="Link-OM"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="258.7dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/textView2"
+                android:gravity="center"
+                android:textColor="#fff6f6f6"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0.0dp" />
+            <View
+                android:layout_width="40dp"
+                android:layout_height="33.5dp"
+                android:id="@+id/SignOutButton"
+                android:layout_margin="6dp"
+                android:background="@drawable/Lock" />
+        </LinearLayout>
+    </FrameLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view2"
+        android:background="#ff609ec1" />
+    <TableLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tableLayout1">
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_marginTop="50dp">
+            <ImageButton
+                android:id="@+id/bt_Project"
+                android:layout_column="0"
+                android:layout_width="149dp"
+                android:layout_height="149dp"
+                android:layout_marginLeft="25.0dp"
+                android:layout_marginRight="5.0dp"
+                android:layout_marginTop="10.0dp"
+                android:background="@drawable/Project_button" />
+            <ImageButton
+                android:id="@+id/bt_Task"
+                android:layout_column="1"
+                android:layout_width="149dp"
+                android:layout_height="149dp"
+                android:background="@drawable/Task_button"
+                android:layout_marginLeft="5.0dp"
+                android:layout_marginRight="10.0dp"
+                android:layout_marginTop="10.0dp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow2">
+            <ImageButton
+                android:id="@+id/bt_Ticket"
+                android:layout_column="0"
+                android:layout_width="149dp"
+                android:layout_height="149dp"
+                android:background="@drawable/Ticket_button"
+                android:layout_marginLeft="25.0dp"
+                android:layout_marginRight="5.0dp"
+                android:layout_marginTop="10.0dp" />
+            <ImageButton
+                android:id="@+id/bt_Milestone"
+                android:layout_column="1"
+                android:layout_width="149dp"
+                android:layout_height="149dp"
+                android:background="@drawable/Milestone_button"
+                android:layout_marginLeft="5.0dp"
+                android:layout_marginRight="10.0dp"
+                android:layout_marginTop="10.0dp" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow3">
+            <ImageButton
+                android:id="@+id/bt_Issues"
+                android:layout_column="0"
+                android:layout_width="149dp"
+                android:layout_height="149dp"
+                android:background="@drawable/Issues_button"
+                android:layout_marginLeft="25.0dp"
+                android:layout_marginRight="5.0dp"
+                android:layout_marginTop="10.0dp" />
+            <ImageButton
+                android:id="@+id/bt_Document"
+                android:layout_column="1"
+                android:layout_width="149dp"
+                android:layout_height="149dp"
+                android:background="@drawable/Document_button"
+                android:layout_marginLeft="5.0dp"
+                android:layout_marginRight="10.0dp"
+                android:layout_marginTop="10.0dp" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
