@@ -18,6 +18,9 @@ namespace LinkOM
 		private const string TokenKey = "TokenKey";
 		private static readonly string TokenKey_Default = string.Empty;
 
+		private const string UserNameKey = "UserNameKey";
+		private static readonly string UserNameKey_Default = string.Empty;
+
 		private static ISettings AppSettings
 		{
 			get
@@ -48,6 +51,12 @@ namespace LinkOM
 		{
 			get { return AppSettings.GetValueOrDefault(TokenKey, TokenKey_Default); }
 			set { AppSettings.AddOrUpdateValue(TokenKey, value); }
+		}
+
+		public static string Username
+		{
+			get { return AppSettings.GetValueOrDefault(UserNameKey, UserNameKey_Default); }
+			set { AppSettings.AddOrUpdateValue(UserNameKey, value); }
 		}
 	}
 }

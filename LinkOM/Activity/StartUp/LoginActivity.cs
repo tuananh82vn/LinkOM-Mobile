@@ -30,7 +30,7 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
-			SetOrientaion ();
+			//SetOrientaion ();
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
@@ -103,6 +103,7 @@ namespace LinkOM
 		{
 			Settings.UserId = obj.UserId;
 			Settings.Token = obj.TokenNumber;
+			Settings.Username = obj.UserName;
 
 			progressIndicator.Visibility = ViewStates.Invisible;
 			var activity = new Intent (this, typeof(HomeActivity));

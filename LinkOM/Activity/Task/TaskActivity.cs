@@ -15,6 +15,8 @@ using Android.Content.PM;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Android.Graphics;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace LinkOM
 {
@@ -22,6 +24,13 @@ namespace LinkOM
 	public class TaskActivity : Activity
 	{
 		public TaskList obj ;
+		public ImageButton bt_Add;
+		public Button bt_Open;
+		public Button bt_Closed;
+		public Button bt_Wating;
+		public Button bt_Progress;
+		public Button bt_Query;
+		public ProgressDialog progress;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -33,43 +42,43 @@ namespace LinkOM
 			ImageButton button = FindViewById<ImageButton>(Resource.Id.bt_Back);
 			button.Click += btBackClick;
 
-			ImageButton bt_Add = FindViewById<ImageButton>(Resource.Id.bt_Add);
+			bt_Add = FindViewById<ImageButton>(Resource.Id.bt_Add);
 			bt_Add.Click += btAddClick;
 
-			Button bt_Open = FindViewById<Button>(Resource.Id.bt_Open);
+			bt_Open = FindViewById<Button>(Resource.Id.bt_Open);
 			bt_Open.Click += btOpenClick;
 
-			Button bt_Closed = FindViewById<Button>(Resource.Id.bt_Close);
+			bt_Closed = FindViewById<Button>(Resource.Id.bt_Close);
 			bt_Closed.Click += btClosedClick;
 
-			Button bt_Wating = FindViewById<Button>(Resource.Id.bt_Waiting);
+			bt_Wating = FindViewById<Button>(Resource.Id.bt_Waiting);
 			bt_Wating.Click += WaitingTaskClick;
 
-			Button bt_Progress = FindViewById<Button>(Resource.Id.bt_Progress);
+			bt_Progress = FindViewById<Button>(Resource.Id.bt_Progress);
 			bt_Progress.Click += ProgressTaskClick;
 
-			Button bt_Query = FindViewById<Button>(Resource.Id.bt_Query);
+			bt_Query = FindViewById<Button>(Resource.Id.bt_Query);
 			bt_Query.Click += QueryTaskClick;
 
-//			Button bt_Complete = FindViewById<Button>(Resource.Id.bt_Complete);
-//			bt_Complete.Click += CompleteTaskClick;
-//
-//			Button bt_Future= FindViewById<Button>(Resource.Id.bt_Future);
-//			bt_Future.Click += FutureTaskClick;
 
-			string url = Settings.InstanceURL;
+			progress = new ProgressDialog (this);
+			progress.Indeterminate = true;
+			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+			progress.SetMessage("Loading Task...");
+			progress.SetCancelable(false);
+			progress.Show();
 
 			//Get all status task
 
-			string url2= url+"/api/TaskStatusList";
-
-			string results1= ConnectWebAPI.Request(url2,"");
-
-			if (results1 != null && results1 != "") {
-
-				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results1);
-
-				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
+//			string url2= url+"/api/TaskStatusList";
+//
+//			string results1= ConnectWebAPI.Request(url2,"");
+//
+//			if (results1 != null && results1 != "") {
+//
+//				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results1);
+//
+//				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
 
 //				if(statusList.Items.Count>0){
 //
@@ -118,62 +127,75 @@ namespace LinkOM
 //					}
 //				}
 
-			}
+//			}
+
+			ThreadPool.QueueUserWorkItem (o => InitData ());
+
+		}
+
+		private void InitData ()
+		{
+				string url = Settings.InstanceURL;
+				// Get all Task
+				url=url+"/api/TaskList";
+
+				List<objSort> objSort = new List<objSort>{
+					new objSort{ColumnName = "T.ProjectName", Direction = "1"},
+					new objSort{ColumnName = "T.EndDate", Direction = "2"}
+				};
 
 
-			// Get all Task
-			url=url+"/api/TaskList";
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
-				new objSort{ColumnName = "T.EndDate", Direction = "2"}
-			};
-
-
-			var objTask = new
-			{
-				Title = string.Empty,
-				AssignedToId = string.Empty,
-				ClientId = string.Empty,
-				TaskStatusId = string.Empty,
-				PriorityId = string.Empty,
-				DueBeforeDate = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectId = string.Empty,
-				AssignByMe = true,
-				Filter = string.Empty,
-				Label = string.Empty,
-			};
-
-			var objsearch = (new
+				var objTask = new
 				{
-					objApiSearch = new
+					Title = string.Empty,
+					AssignedToId = string.Empty,
+					ClientId = string.Empty,
+					TaskStatusId = string.Empty,
+					PriorityId = string.Empty,
+					DueBeforeDate = string.Empty,
+					DepartmentId = string.Empty,
+					ProjectId = string.Empty,
+					AssignByMe = true,
+					Filter = string.Empty,
+					Label = string.Empty,
+				};
+
+				var objsearch = (new
 					{
-						UserId = Settings.UserId,
-						TokenNumber =Settings.Token,
-						PageSize = 100,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objTask
-					}
-				});
+						objApiSearch = new
+						{
+							UserId = Settings.UserId,
+							TokenNumber =Settings.Token,
+							PageSize = 100,
+							PageNumber = 1,
+							Sort = objSort,
+							Item = objTask
+						}
+					});
 
-			string results= ConnectWebAPI.Request(url,objsearch);
+				string results= ConnectWebAPI.Request(url,objsearch);
 
-			if (results != null && results != "") {
+				if (results != null && results != "") {
 
-				TaskList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results);
+					TaskList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results);
 
-				if (obj.Items != null) {
-					bt_Open.Text = CheckTask ("Open", obj.Items).ToString ();
-					bt_Closed.Text = CheckTask ("Closed", obj.Items).ToString ();
-					bt_Wating.Text= CheckTask ("Waiting On Client", obj.Items).ToString ();
-					bt_Progress.Text= CheckTask ("In Progress", obj.Items).ToString ();
-					bt_Query.Text= CheckTask ("On Hold", obj.Items).ToString ();
-//					bt_Complete.Text= CheckTask ("Complete", obj.Items).ToString ();
-//					bt_Future.Text= CheckTask ("Future", obj.Items).ToString ();
-				} 
-			}
+					if (obj.Items != null) {
+
+						var OpenTask = CheckTask ("Open", obj.Items).ToString ();
+						var ClosedTask = CheckTask ("Closed", obj.Items).ToString ();
+						var WaitingTask = CheckTask ("Waiting On Client", obj.Items).ToString ();
+						var ProgressTask = CheckTask ("In Progress", obj.Items).ToString ();
+						var OnHoldTask = CheckTask ("On Hold", obj.Items).ToString ();
+
+						RunOnUiThread (() => bt_Open.Text =  OpenTask);
+						RunOnUiThread (() => bt_Closed.Text =  ClosedTask);
+						RunOnUiThread (() => bt_Wating.Text =  WaitingTask);
+						RunOnUiThread (() => bt_Progress.Text =  ProgressTask);
+						RunOnUiThread (() => bt_Query.Text =  OnHoldTask);
+
+						RunOnUiThread (() => progress.Dismiss());
+					} 
+				}
 		}
 
 		public void btBackClick(object sender, EventArgs e)

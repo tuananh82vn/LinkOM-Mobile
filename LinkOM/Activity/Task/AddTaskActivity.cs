@@ -69,7 +69,6 @@ namespace LinkOM
 			// get the current date
 			EndDate = DateTime.Today;
 
-			// capture our View elements
 			tv_StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
 			tv_StartDate.Text = StartDate.ToString ("d");
 			tv_EndDate = FindViewById<TextView> (Resource.Id.tv_EndDate);

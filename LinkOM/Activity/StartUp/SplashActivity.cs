@@ -26,32 +26,32 @@ namespace LinkOM
 			Init ();
 		}
 
-		private async void Init()
+		private void Init()
 		{
 			// Simulate a long loading process on app startup.
-			await Task<bool>.Run (() => {
-
-				int smallestWidth = Settings.SmallestWidth;
-
-
-				if(smallestWidth==0) {
-
-				var metrics = Resources.DisplayMetrics;
-				var widthPixels = metrics.WidthPixels;
-				var heightPixels = metrics.HeightPixels;
-
-				float scaleFactor = metrics.Density;
-
-				float widthDp = widthPixels / scaleFactor;
-				float heightDp = heightPixels / scaleFactor;
-
-					Settings.SmallestWidth = int.Parse(Math.Min(widthDp, heightDp).ToString());
-
-				}
-
-				//Thread.Sleep (1000);
-				return true;
-			}); 
+//			await Task<bool>.Run (() => {
+//
+//				int smallestWidth = Settings.SmallestWidth;
+//
+//
+//				if(smallestWidth==0) {
+//
+//				var metrics = Resources.DisplayMetrics;
+//				var widthPixels = metrics.WidthPixels;
+//				var heightPixels = metrics.HeightPixels;
+//
+//				float scaleFactor = metrics.Density;
+//
+//				float widthDp = widthPixels / scaleFactor;
+//				float heightDp = heightPixels / scaleFactor;
+//
+//					Settings.SmallestWidth = int.Parse(Math.Min(widthDp, heightDp).ToString());
+//
+//				}
+//
+//				//Thread.Sleep (1000);
+//				return true;
+//			}); 
 			StartActivity(typeof(CheckActivity));
 			this.Finish();
 		}

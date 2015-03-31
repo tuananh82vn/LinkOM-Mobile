@@ -12,9 +12,7 @@
 		    <item>Waiting On Client</item>
 		    <item>In Progress</item>
 		    <item>Query</item>
-		    <item>Complete</item>
-		    <item>Future Task</item>
-
+		    <item>On Hold</item>
 	  	</string-array>
 	  	<string-array name="TaskPriority">
 		    <item>Low</item>

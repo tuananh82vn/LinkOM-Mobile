@@ -18,7 +18,7 @@ namespace LinkOM
 	{
 		public List<Task> _TaskList;
 		public TaskListAdapter taskList;
-
+		public int StatusId;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -30,42 +30,47 @@ namespace LinkOM
 
 			buttonBack.Click += btBackClick;
 
-			string url = Settings.InstanceURL;
+			StatusId= Intent.GetIntExtra ("StatusId",0);
 
-			url=url+"/api/TaskList";
+			InitData ();
+		}
 
-			int StatusId= Intent.GetIntExtra ("StatusId",0);
-
+		private void InitData(){
+			
 			if (StatusId != 0) {
+				
+				string url = Settings.InstanceURL;
+
+				url=url+"/api/TaskList";
 
 				var objTask = new
-			{
-				Title = "",
-				AssignedToId = string.Empty,
-				ClientId = string.Empty,
-				TaskStatusId = StatusId,
-				PriorityId = string.Empty,
-				DueBeforeDate = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectId = string.Empty,
-				AssignByMe = string.Empty,
-				Filter = string.Empty,
-				Label = string.Empty,
-			};
+				{
+					Title = "",
+					AssignedToId = string.Empty,
+					ClientId = string.Empty,
+					TaskStatusId = StatusId,
+					PriorityId = string.Empty,
+					DueBeforeDate = string.Empty,
+					DepartmentId = string.Empty,
+					ProjectId = string.Empty,
+					AssignByMe = string.Empty,
+					Filter = string.Empty,
+					Label = string.Empty,
+				};
 
 				var objsearch = (new
-				{
-					objApiSearch = new
 					{
-						UserId = Settings.UserId,
-						TokenNumber = Settings.Token,
-						PageSize = 100,
-						PageNumber = 1,
-						SortMember = string.Empty,
-						SortDirection = string.Empty,
-						Item = objTask
-					}
-				});
+						objApiSearch = new
+						{
+							UserId = Settings.UserId,
+							TokenNumber = Settings.Token,
+							PageSize = 100,
+							PageNumber = 1,
+							SortMember = string.Empty,
+							SortDirection = string.Empty,
+							Item = objTask
+						}
+					});
 
 				string results = ConnectWebAPI.Request (url, objsearch);
 
@@ -85,9 +90,12 @@ namespace LinkOM
 					} 
 				}
 			}
-
-
 		}
+
+//		protected override void OnResume(){
+//			InitData ();
+//			base.OnResume();
+//		}
 
 		public void btBackClick(object sender, EventArgs e)
 		{
@@ -104,6 +112,8 @@ namespace LinkOM
 			activity.PutExtra ("Task", Newtonsoft.Json.JsonConvert.SerializeObject(model));
 
 			StartActivity (activity);
+
+			this.Finish ();
 
 		}
 	}

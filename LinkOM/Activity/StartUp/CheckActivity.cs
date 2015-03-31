@@ -29,12 +29,7 @@ namespace LinkOM
 			EditText URLText = FindViewById<EditText>(Resource.Id.URLText);
 			Button button = FindViewById<Button>(Resource.Id.CheckButton);
 
-			var CheckAgain = Intent.GetBooleanExtra ("CheckAgain",false);
-
-			if(!CheckAgain)
-				CheckServer();
-
-            button.Click += (sender, e) => {
+			button.Click += (sender, e) => {
 
 				string url1 = URLText.Text;
 
@@ -44,8 +39,21 @@ namespace LinkOM
 
 				DisplayResults(url1,results1);
 
-            };
+			};
 
+			progress = new ProgressDialog (this);
+			progress.Indeterminate = true;
+			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+			progress.SetMessage("Checking Server...");
+			progress.SetCancelable(false);
+			progress.Show();
+
+
+			var CheckAgain = Intent.GetBooleanExtra ("CheckAgain",false);
+
+			if (!CheckAgain) {
+				ThreadPool.QueueUserWorkItem (o => CheckServer());
+			}
         }
 
 		public void CheckServer()
@@ -69,15 +77,17 @@ namespace LinkOM
 			if (results != null && results != "") {
 
 				ResultsJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
+				RunOnUiThread (() => progress.Dismiss());
 				if (obj.Success) {
 					Settings.InstanceURL = url;
 					StartActivity (typeof(LoginActivity));
 					this.Finish ();
 				} else {
-					Toast.MakeText (this, "URL is not correct, try again", ToastLength.Short).Show ();
+					RunOnUiThread (() => Toast.MakeText (this, "No Connection to server, try again later", ToastLength.Short).Show ());
 				}
 			} else {
-				Toast.MakeText (this, "URL is not correct, try again", ToastLength.Short).Show ();
+				RunOnUiThread (() => progress.Dismiss());
+				RunOnUiThread (() => Toast.MakeText (this, "No Connection to server, try again later", ToastLength.Short).Show ());
 			}
 		}
 
