@@ -18,6 +18,7 @@ namespace LinkOM
     public class CheckActivity : Activity
     {
 		public ProgressDialog progress;
+		public EditText URLText;
 
         protected override void OnCreate (Bundle bundle)
         {
@@ -26,19 +27,14 @@ namespace LinkOM
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.CheckInstance);
 
-			EditText URLText = FindViewById<EditText>(Resource.Id.URLText);
+			URLText = FindViewById<EditText>(Resource.Id.URLText);
+			URLText.Text = Settings.InstanceURL;
+
 			Button button = FindViewById<Button>(Resource.Id.CheckButton);
 
 			button.Click += (sender, e) => {
-
-				string url1 = URLText.Text;
-
-				string url2 = url1 + "/API/Verify";
-
-				string results1= ConnectWebAPI.Request(url2,"");
-
-				DisplayResults(url1,results1);
-
+				progress.Show();
+				ThreadPool.QueueUserWorkItem (o => CheckServerAgain ());
 			};
 
 			progress = new ProgressDialog (this);
@@ -46,14 +42,13 @@ namespace LinkOM
 			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
 			progress.SetMessage("Checking Server...");
 			progress.SetCancelable(false);
-			progress.Show();
-
 
 			var CheckAgain = Intent.GetBooleanExtra ("CheckAgain",false);
 
 			if (!CheckAgain) {
-				ThreadPool.QueueUserWorkItem (o => CheckServer());
-			}
+				progress.Show();
+				ThreadPool.QueueUserWorkItem (o => CheckServer ());
+			} 
         }
 
 		public void CheckServer()
@@ -72,12 +67,24 @@ namespace LinkOM
 				}
 			}
 		}
+
+		private void CheckServerAgain(){
+			
+			string url1 = URLText.Text;
+
+			string url2 = url1 + "/API/Verify";
+
+			string results1= ConnectWebAPI.Request(url2,"");
+
+			DisplayResults(url1,results1);
+
+		}
+
 		private void DisplayResults(string url , string results){
+			RunOnUiThread (() => progress.Dismiss());
 
 			if (results != null && results != "") {
-
 				ResultsJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
-				RunOnUiThread (() => progress.Dismiss());
 				if (obj.Success) {
 					Settings.InstanceURL = url;
 					StartActivity (typeof(LoginActivity));
@@ -86,27 +93,9 @@ namespace LinkOM
 					RunOnUiThread (() => Toast.MakeText (this, "No Connection to server, try again later", ToastLength.Short).Show ());
 				}
 			} else {
-				RunOnUiThread (() => progress.Dismiss());
 				RunOnUiThread (() => Toast.MakeText (this, "No Connection to server, try again later", ToastLength.Short).Show ());
 			}
 		}
-
-//		private async void Waiting()
-//		{
-//				progress = new ProgressDialog (this);
-//				progress.Indeterminate = true;
-//				progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-//				progress.SetMessage("Contacting server. Please wait...");
-//				progress.SetCancelable(false);
-//				progress.Show();
-//
-//				await Task<bool>.Run (() => {
-//					CheckServer();
-//					progress.Dismiss();
-//					return true;
-//				}); 
-//		}
-
-
+			
     }
 }

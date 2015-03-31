@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1"
+    p1:background="#ffffffff">
+    <TableRow
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow2"
+        p1:layout_marginTop="5.0dp">
+        <TextView
+            p1:text="Task Name"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:id="@+id/tv_TaskName"
+            p1:layout_height="35.6dp"
+            p1:gravity="left"
+            p1:layout_width="match_parent"
+            p1:textColor="#ff000000"
+            p1:textSize="15dp"
+            p1:textStyle="bold"
+            p1:layout_marginLeft="5.0dp" />
+    </TableRow>
+    <TableRow
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow9"
+        p1:layout_marginBottom="0dp"
+        p1:layout_marginTop="0dp">
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:id="@+id/linearLayout2"
+            p1:layout_height="wrap_content"
+            p1:layout_marginTop="0dp"
+            p1:layout_marginBottom="0dp">
+            <TextView
+                p1:text="Code:"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView46"
+                p1:gravity="center_vertical"
+                p1:textColor="#ff0da719"
+                p1:textSize="14dp"
+                p1:layout_marginLeft="5.0dp" />
+            <TextView
+                p1:text="TSK-001"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/tv_Code"
+                p1:gravity="center_vertical"
+                p1:layout_marginLeft="5dp"
+                p1:textColor="#5A5A5A"
+                p1:textSize="12dp" />
+            <TextView
+                p1:text="Status:"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView46"
+                p1:gravity="center_vertical"
+                p1:textColor="#ff0da719"
+                p1:textSize="14dp"
+                p1:layout_marginLeft="5.0dp" />
+            <TextView
+                p1:text="TSK-001"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/tv_Status"
+                p1:gravity="center_vertical"
+                p1:layout_marginLeft="5dp"
+                p1:textColor="#5A5A5A"
+                p1:textSize="12dp" />
+        </LinearLayout>
+    </TableRow>
+    <TableRow
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow9"
+        p1:layout_marginTop="0dp"
+        p1:layout_marginRight="0dp">
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:id="@+id/linearLayout2"
+            p1:layout_height="wrap_content"
+            p1:layout_marginTop="0dp"
+            p1:layout_marginBottom="0dp">
+            <TextView
+                p1:text="Project :"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView44"
+                p1:gravity="center_vertical"
+                p1:layout_marginLeft="5dp"
+                p1:textColor="#ffff8c00"
+                p1:textSize="14dp" />
+            <TextView
+                p1:text="Project Name"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/tv_ProjectName"
+                p1:gravity="center_vertical"
+                p1:layout_marginLeft="5dp"
+                p1:textColor="#5A5A5A"
+                p1:textSize="12dp" />
+        </LinearLayout>
+    </TableRow>
+    <TableRow
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow6">
+        <TableLayout
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:id="@+id/tableLayout2"
+            p1:stretchColumns="0,1"
+            p1:layout_height="wrap_content">
+            <TableRow
+                p1:id="@+id/tableRow7">
+                <TextView
+                    p1:text="Start Date"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_column="0"
+                    p1:id="@+id/textView40"
+                    p1:layout_marginLeft="5.0dp"
+                    p1:gravity="center_vertical"
+                    p1:layout_height="wrap_content"
+                    p1:textColor="#ffff0000" />
+                <TextView
+                    p1:text="End Date"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_column="1"
+                    p1:id="@+id/textView41"
+                    p1:gravity="center_vertical"
+                    p1:textColor="#ff00942b"
+                    p1:layout_height="wrap_content" />
+                <TextView
+                    p1:text="Actu. Hrs"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_column="2"
+                    p1:id="@+id/textView42"
+                    p1:layout_marginLeft="5.8dp"
+                    p1:textColor="#ffff0000"
+                    p1:layout_marginRight="10.8dp"
+                    p1:gravity="right"
+                    p1:layout_height="wrap_content" />
+                <TextView
+                    p1:text="Allo. Hrs"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_column="3"
+                    p1:id="@+id/textView43"
+                    p1:textColor="#ff00942b"
+                    p1:layout_marginRight="10.7dp"
+                    p1:gravity="right"
+                    p1:layout_height="wrap_content" />
+            </TableRow>
+            <TableRow
+                p1:id="@+id/tableRow8"
+                p1:layout_height="40dp"
+                p1:layout_marginBottom="5dp">
+                <TextView
+                    p1:text="01/01/2015"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_column="0"
+                    p1:id="@+id/tv_StartDate"
+                    p1:layout_marginLeft="4.2dp"
+                    p1:gravity="center_vertical"
+                    p1:layout_height="wrap_content" />
+                <TextView
+                    p1:text="01/01/2015"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_column="1"
+                    p1:id="@+id/tv_EndDate"
+                    p1:gravity="center_vertical"
+                    p1:layout_height="wrap_content" />
+                <TextView
+                    p1:text="0"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_column="2"
+                    p1:id="@+id/tv_ActualHours"
+                    p1:layout_marginLeft="5dp"
+                    p1:gravity="right"
+                    p1:layout_width="75.2dp"
+                    p1:layout_marginRight="10.8dp"
+                    p1:layout_height="wrap_content" />
+                <TextView
+                    p1:text="0"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_column="3"
+                    p1:id="@+id/tv_AllocatedHours"
+                    p1:layout_marginRight="10.4dp"
+                    p1:gravity="right"
+                    p1:layout_width="68.7dp"
+                    p1:layout_height="wrap_content" />
+            </TableRow>
+        </TableLayout>
+    </TableRow>
+    <TableRow
+        p1:minWidth="25px"
+        p1:minHeight="25px"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow10">
+        <LinearLayout
+            p1:orientation="horizontal"
+            p1:id="@+id/linearLayout3"
+            p1:layout_height="wrap_content"
+            p1:layout_width="match_parent">
+            <TextView
+                p1:text="Assign To:"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView48"
+                p1:gravity="center_vertical"
+                p1:layout_marginLeft="5dp"
+                p1:textColor="#ff0025a3" />
+            <TextView
+                p1:text="Staff"
+                p1:textAppearance="?android:attr/textAppearanceSmall"
+                p1:layout_width="130dp"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/tv_AssignTo"
+                p1:gravity="center_vertical"
+                p1:layout_marginLeft="5dp" />
+            <TextView
+                p1:text="Owner:"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView48"
+                p1:gravity="center_vertical"
+                p1:layout_marginLeft="5dp"
+                p1:textColor="#ff0025a3" />
+            <TextView
+                p1:text="Owner"
+                p1:textAppearance="?android:attr/textAppearanceSmall"
+                p1:layout_width="130dp"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/tv_Owner"
+                p1:gravity="center_vertical"
+                p1:layout_marginLeft="5dp" />
+        </LinearLayout>
+    </TableRow>
+</LinearLayout>

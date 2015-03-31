@@ -99,6 +99,8 @@
     <Compile Include="Model\ViewModel\Status.cs" />
     <Compile Include="Model\ReceiveModel\JsonData.cs" />
     <Compile Include="Model\ReceiveModel\StatusList.cs" />
+    <Compile Include="FlyOutContainer.cs" />
+    <Compile Include="Activity\StartUp\MainActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -112,7 +114,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
     <AndroidResource Include="Resources\values\Styles.xml" />
-    <AndroidResource Include="Resources\layout\TaskList.axml" />
     <AndroidResource Include="Resources\layout\CheckInstance.axml">
       <DeployService-Deploy>True</DeployService-Deploy>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -154,30 +155,41 @@
     <AndroidResource Include="Resources\drawable\Ticket_pressed.png" />
     <AndroidResource Include="Resources\drawable\close.png" />
     <AndroidResource Include="Resources\drawable\open.png" />
-    <AndroidResource Include="Resources\layout\OpenTaskView.axml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\ProjectView.axml" />
-    <AndroidResource Include="Resources\layout\TaskView.axml" />
     <AndroidResource Include="Resources\layout\ProjectDetailView.axml" />
     <AndroidResource Include="Resources\layout\MilestoneList.axml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ProjectList.axml" />
     <AndroidResource Include="Resources\drawable\Help.png" />
-    <AndroidResource Include="Resources\layout\AddTask.axml" />
     <AndroidResource Include="Resources\menu\menu_home.xml" />
     <AndroidResource Include="Resources\menu\menu_login.xml" />
     <AndroidResource Include="Resources\layout\SpinnerItemDropdown.axml" />
     <AndroidResource Include="Resources\layout\SpinnerItemText.axml" />
     <AndroidResource Include="Resources\drawable\Projects.png" />
     <AndroidResource Include="Resources\drawable\RoundButton.xml" />
-    <AndroidResource Include="Resources\layout\TaskListView.axml" />
     <AndroidResource Include="Resources\drawable-land\Background.jpg" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout-xlarge-land\Home.axml" />
-    <AndroidResource Include="Resources\layout\EditTask.axml" />
     <AndroidResource Include="Resources\layout\StatusRow.xml" />
+    <AndroidResource Include="Resources\layout\ContentLayout.axml" />
+    <AndroidResource Include="Resources\layout\MenuLayout.axml" />
+    <AndroidResource Include="Resources\drawable\action_menu.png" />
+    <AndroidResource Include="Resources\drawable\icon1.png" />
+    <AndroidResource Include="Resources\drawable\iconelse.png" />
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\drawable\Lock.png" />
+    <AndroidResource Include="Resources\drawable\Documents.png" />
+    <AndroidResource Include="Resources\drawable\Issues.png" />
+    <AndroidResource Include="Resources\drawable\Milestones.png" />
+    <AndroidResource Include="Resources\drawable\Tasks.png" />
+    <AndroidResource Include="Resources\drawable\Tickets.png" />
+    <AndroidResource Include="Resources\layout\AddTask.axml" />
+    <AndroidResource Include="Resources\layout\EditTask.axml" />
+    <AndroidResource Include="Resources\layout\TaskList.axml" />
+    <AndroidResource Include="Resources\layout\TaskListView.axml" />
+    <AndroidResource Include="Resources\layout\TaskView.axml" />
+    <AndroidResource Include="Resources\layout\OpenTaskView.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

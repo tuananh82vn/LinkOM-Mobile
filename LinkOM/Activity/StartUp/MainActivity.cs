@@ -10,24 +10,39 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Newtonsoft.Json;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 using Android.Content.PM;
 
 
 namespace LinkOM
 {
-	[Activity(Label = "Link-OM", Icon = "@drawable/Synotive")]		
-	public class HomeActivity : Activity
+	[Activity (Label = "Link-OM")]			
+	public class MainActivity : Activity
 	{
-		public string TokenNumber = "";
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			SetOrientaion ();
-
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Home);
+			SetContentView (Resource.Layout.Main);
+
+			var menu = FindViewById<FlyOutContainer> (Resource.Id.FlyOutContainer);
+
+			var menuButton = FindViewById (Resource.Id.MenuButton);
+			menuButton.Click += (sender, e) => {
+				menu.AnimatedOpened = !menu.AnimatedOpened;
+			};
+
+			var drawable = new StateListDrawable ();
+			drawable.AddState (new[] { Android.Resource.Attribute.StatePressed },
+				new ColorDrawable () { Color = Color.Yellow });
+
+			var SignOutButton = FindViewById (Resource.Id.SignOutButton);
+			//SignOutButton.SetBackgroundDrawable (drawable);
+
+			SignOutButton.Click += SignOutButton_Click;
+			// Create your application here
 
 			ImageButton bt_Task = FindViewById<ImageButton>(Resource.Id.bt_Task);
 			bt_Task.Click += btTaskClick;
@@ -47,8 +62,14 @@ namespace LinkOM
 			ImageButton bt_Document = FindViewById<ImageButton>(Resource.Id.bt_Document);
 			bt_Document.Click += bt_DocumentClick;
 
-			TokenNumber = Intent.GetStringExtra ("TokenNumber") ?? "";
+			var menu_Project = FindViewById (Resource.Id.menu_Project);
+			menu_Project.Click +=	menu_Project_Click;		
 
+			var menu_Task = FindViewById (Resource.Id.menu_Task);
+			menu_Task.Click +=	menu_Task_Click;		
+
+			var menu_ChangeServer = FindViewById (Resource.Id.menu_ChangeServer);
+			menu_ChangeServer.Click +=	menu_ChangeServer_Click;	
 		}
 
 		private void SetOrientaion(){
@@ -61,10 +82,24 @@ namespace LinkOM
 			}
 		}
 
-		public override bool OnCreateOptionsMenu(IMenu menu)
+		void menu_ChangeServer_Click (object sender, EventArgs e)
 		{
-			MenuInflater.Inflate(Resource.Menu.menu_home, menu);
-			return base.OnPrepareOptionsMenu(menu);
+			var activity = new Intent (this, typeof(CheckActivity));
+			activity.PutExtra ("CheckAgain", true);
+			StartActivity (activity);
+			this.Finish ();
+		}
+
+		void menu_Task_Click (object sender, EventArgs e)
+		{
+			var activity = new Intent (this, typeof(TaskActivity));
+			StartActivity (activity);
+		}
+
+		void menu_Project_Click (object sender, EventArgs e)
+		{
+			var activity = new Intent (this, typeof(ProjectActivity));
+			StartActivity (activity);
 		}
 
 		public void btTaskClick(object sender, EventArgs e)
@@ -99,36 +134,10 @@ namespace LinkOM
 			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
 		}
 
-		public override bool OnOptionsItemSelected(IMenuItem item)
-		{
-			switch (item.ItemId)
-			{
-			case Resource.Id.menu_search:
-				Toast.MakeText (this, "Menu Search Clicked", ToastLength.Short).Show ();
-				return true;
-			case Resource.Id.menu_help:
-				Toast.MakeText (this, "Menu Help Clicked", ToastLength.Short).Show ();
-				return true;
-			case Resource.Id.menu_server:
-				var activity = new Intent (this, typeof(CheckActivity));
-				activity.PutExtra ("CheckAgain", true);
-				StartActivity (activity);
-				this.Finish ();
-				return true;
-			}
-			return base.OnOptionsItemSelected(item);
-		}
-
 		public override void OnBackPressed() {
 			ShowAlert ();
 		}
 
-		private void finish(){
-			//SaveData();     
-			base.OnBackPressed();
-			this.Finish ();
-			Android.OS.Process.KillProcess (Android.OS.Process.MyPid ());
-		}
 		public void ShowAlert()
 		{
 			Android.App.AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -149,6 +158,18 @@ namespace LinkOM
 				});
 
 			alertDialog.Show();
+		}
+
+		void SignOutButton_Click (object sender, EventArgs e)
+		{
+			ShowAlert ();
+		}
+
+		private void finish(){
+			//SaveData();     
+			base.OnBackPressed();
+			this.Finish ();
+			Android.OS.Process.KillProcess (Android.OS.Process.MyPid ());
 		}
 	}
 }

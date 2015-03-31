@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/relativeLayout1"
+    p1:background="#ffffffff">
+    <LinearLayout
+        p1:orientation="horizontal"
+        p1:layout_width="match_parent"
+        p1:layout_height="50dp"
+        p1:id="@+id/linearLayout1">
+        <ImageButton
+            p1:id="@+id/bt_Back"
+            p1:layout_width="44dp"
+            p1:layout_height="44dp"
+            p1:background="@drawable/Back_button"
+            p1:layout_marginLeft="5dp"
+            p1:layout_marginTop="5dp"
+            p1:layout_marginRight="5dp"
+            p1:layout_marginBottom="5dp" />
+        <TextView
+            p1:text="Edit Task"
+            p1:textAppearance="?android:attr/textAppearanceLarge"
+            p1:layout_width="match_parent"
+            p1:layout_height="match_parent"
+            p1:id="@+id/textView10"
+            p1:gravity="center_vertical"
+            p1:textSize="20dp"
+            p1:layout_marginLeft="10.0dp" />
+    </LinearLayout>
+    <WebView
+        p1:layout_width="match_parent"
+        p1:layout_height="2dp"
+        p1:layout_below="@id/linearLayout1"
+        p1:id="@+id/webView1"
+        p1:background="#ff000000" />
+    <LinearLayout
+        p1:orientation="vertical"
+        p1:layout_width="match_parent"
+        p1:layout_height="match_parent"
+        p1:layout_below="@id/webView1"
+        p1:id="@+id/linearLayout2">
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow1">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout3"
+                p1:layout_height="match_parent">
+                <TextView
+                    p1:text="Title:"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView11"
+                    p1:gravity="center_vertical"
+                    p1:layout_marginLeft="5dp"
+                    p1:layout_marginRight="5dp"
+                    p1:textStyle="bold" />
+                <EditText
+                    p1:layout_width="match_parent"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/editText1"
+                    p1:layout_marginRight="5dp" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow2">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout4"
+                p1:layout_height="match_parent">
+                <TextView
+                    p1:text="Project:"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView12"
+                    p1:gravity="center_vertical"
+                    p1:layout_marginLeft="5dp"
+                    p1:layout_marginRight="5dp"
+                    p1:textStyle="bold" />
+                <Spinner
+                    p1:layout_width="match_parent"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/sp_Project"
+                    p1:layout_marginRight="5dp" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow3">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout5"
+                p1:layout_height="match_parent">
+                <TextView
+                    p1:text="Status:"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView13"
+                    p1:gravity="center_vertical"
+                    p1:layout_marginLeft="5dp"
+                    p1:layout_marginRight="5dp"
+                    p1:textStyle="bold" />
+                <Spinner
+                    p1:layout_width="128.8dp"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/sp_Status"
+                    p1:layout_gravity="center_vertical"
+                    p1:spinnerMode="dropdown" />
+                <TextView
+                    p1:text="Priority:"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView14"
+                    p1:gravity="center_vertical"
+                    p1:layout_marginLeft="5dp"
+                    p1:layout_marginRight="5dp"
+                    p1:textStyle="bold" />
+                <Spinner
+                    p1:layout_width="match_parent"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/sp_Priority"
+                    p1:layout_marginRight="5dp" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow4">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout6"
+                p1:layout_height="match_parent">
+                <TextView
+                    p1:text="Assigned To:"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView15"
+                    p1:layout_marginLeft="5dp"
+                    p1:layout_marginRight="5dp"
+                    p1:gravity="center_vertical"
+                    p1:textStyle="bold" />
+                <Spinner
+                    p1:layout_width="match_parent"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/sp_AssignedTo"
+                    p1:layout_marginRight="5dp" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow5">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout7"
+                p1:layout_height="match_parent">
+                <TextView
+                    p1:text="Owner:"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView15"
+                    p1:layout_marginLeft="5dp"
+                    p1:layout_marginRight="5dp"
+                    p1:gravity="center_vertical"
+                    p1:textStyle="bold" />
+                <Spinner
+                    p1:layout_width="match_parent"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/sp_Owner"
+                    p1:layout_marginRight="5dp" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow6">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout8"
+                p1:layout_height="match_parent">
+                <TextView
+                    p1:text="Start Date:"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView16"
+                    p1:textStyle="bold"
+                    p1:gravity="center_vertical"
+                    p1:layout_marginLeft="5dp" />
+                <EditText
+                    p1:inputType="date"
+                    p1:layout_width="78dp"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/tv_StartDate"
+                    p1:gravity="center_vertical"
+                    p1:textSize="10dp"
+                    p1:text="01/01/2015" />
+                <Button
+                    p1:text="..."
+                    p1:layout_width="35.0dp"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/bt_StartDate" />
+                <TextView
+                    p1:text="End Date:"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView17"
+                    p1:gravity="center_vertical"
+                    p1:textStyle="bold" />
+                <EditText
+                    p1:inputType="date"
+                    p1:layout_width="78dp"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/tv_EndDate"
+                    p1:gravity="center_vertical"
+                    p1:textSize="10dp"
+                    p1:text="01/01/2015" />
+                <Button
+                    p1:text="..."
+                    p1:layout_width="35.0dp"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/bt_EndDate" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/tableRow7">
+            <LinearLayout
+                p1:orientation="vertical"
+                p1:id="@+id/linearLayout9"
+                p1:layout_height="wrap_content">
+                <TableRow
+                    p1:minWidth="25px"
+                    p1:minHeight="25px"
+                    p1:layout_width="match_parent"
+                    p1:layout_height="37.3dp"
+                    p1:id="@+id/tableRow8">
+                    <TextView
+                        p1:text="Description"
+                        p1:id="@+id/textView18"
+                        p1:layout_height="match_parent"
+                        p1:gravity="center_vertical"
+                        p1:textStyle="bold"
+                        p1:layout_marginLeft="5dp" />
+                </TableRow>
+                <TableRow
+                    p1:minWidth="25px"
+                    p1:minHeight="25px"
+                    p1:layout_width="match_parent"
+                    p1:layout_height="wrap_content"
+                    p1:id="@+id/tableRow9">
+                    <EditText
+                        p1:inputType="textMultiLine"
+                        p1:id="@+id/editText2"
+                        p1:layout_height="118.1dp" />
+                </TableRow>
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow10">
+            <CheckBox
+                p1:text="Add To Watch List "
+                p1:id="@+id/checkBox1" />
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow11">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout10"
+                p1:layout_height="match_parent">
+                <CheckBox
+                    p1:text="Internal ?"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/checkBox2"
+                    p1:checked="true" />
+                <CheckBox
+                    p1:text="Management ?"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/checkBox3" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow12">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout11"
+                p1:layout_height="match_parent">
+                <TextView
+                    p1:text="Attach Photo:"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/textView19"
+                    p1:gravity="center_vertical"
+                    p1:layout_marginLeft="5dp" />
+                <Button
+                    p1:text="Camera"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/bt_camera" />
+                <ImageView
+                    p1:src="@android:drawable/ic_menu_gallery"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/iv_Photo" />
+            </LinearLayout>
+        </TableRow>
+        <TableRow
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="35dp"
+            p1:id="@+id/tableRow13"
+            p1:layout_marginTop="10dp">
+            <LinearLayout
+                p1:orientation="horizontal"
+                p1:id="@+id/linearLayout12"
+                p1:layout_height="match_parent">
+                <Button
+                    p1:text="Save"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/button2"
+                    p1:layout_marginLeft="124.6dp" />
+                <Button
+                    p1:text="Cancel"
+                    p1:layout_width="wrap_content"
+                    p1:layout_height="match_parent"
+                    p1:id="@+id/button3" />
+            </LinearLayout>
+        </TableRow>
+    </LinearLayout>
+</RelativeLayout>

@@ -52,7 +52,7 @@ namespace LinkOM
 //				//Thread.Sleep (1000);
 //				return true;
 //			}); 
-			StartActivity(typeof(CheckActivity));
+			StartActivity(typeof(LoginActivity));
 			this.Finish();
 		}
 	}

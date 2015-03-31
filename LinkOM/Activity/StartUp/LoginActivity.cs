@@ -106,7 +106,7 @@ namespace LinkOM
 			Settings.Username = obj.UserName;
 
 			progressIndicator.Visibility = ViewStates.Invisible;
-			var activity = new Intent (this, typeof(HomeActivity));
+			var activity = new Intent (this, typeof(MainActivity));
 			activity.PutExtra ("TokenNumber", obj.TokenNumber);
 			StartActivity (activity);
 			this.Finish();
