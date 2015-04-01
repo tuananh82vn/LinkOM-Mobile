@@ -10,15 +10,19 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Support.V4.Widget;
+using System.Threading.Tasks;
 
 namespace LinkOM
 {
 	[Activity (Label = "TaskList")]			
 	public class TaskListActivity : Activity
 	{
-		public List<Task> _TaskList;
+		public List<TaskObject> _TaskList;
 		public TaskListAdapter taskList;
 		public int StatusId;
+		public SwipeRefreshLayout refresher;
+		public bool loading;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -32,11 +36,29 @@ namespace LinkOM
 			StatusId= Intent.GetIntExtra ("StatusId",0);
 
 			InitData ();
+
+			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+
+			refresher.SetColorScheme (Resource.Color.xam_green,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_dark_blue);
+
+			refresher.Refresh += HandleRefresh;
 		}
 
-		private void InitData(){
+		async void HandleRefresh (object sender, EventArgs e)
+		{
+			await InitData ();
+			refresher.Refreshing = false;
+		}
+
+		private async Task InitData(){
 			
 			if (StatusId != 0) {
+
+				Console.WriteLine ("Begin load data");
+
+				if (loading)
+					return;
+				loading = true;
 				
 				string url = Settings.InstanceURL;
 
@@ -88,6 +110,12 @@ namespace LinkOM
 						taskListView.ItemClick += listView_ItemClick;
 					} 
 				}
+
+				await Task.Delay (2000);
+
+				loading = false;
+
+				Console.WriteLine ("End load data");
 			}
 		}
 
@@ -99,7 +127,7 @@ namespace LinkOM
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 
-			Task model = this.taskList.GetItemAtPosition (e.Position);
+			TaskObject model = this.taskList.GetItemAtPosition (e.Position);
 
 			var activity = new Intent (this, typeof(EditTaskActivity));
 

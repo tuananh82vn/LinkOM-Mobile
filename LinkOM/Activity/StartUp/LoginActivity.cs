@@ -20,6 +20,8 @@ namespace LinkOM
 	public class LoginActivity : Activity, TextView.IOnEditorActionListener
 	{
 		private LoginService _loginService;
+		private System.Timers.Timer _timer;
+		private int _countSeconds;
 
 		public EditText username;
 		public EditText password;
@@ -39,23 +41,43 @@ namespace LinkOM
 			button.Click += btloginClick;  
 
 			username = FindViewById<EditText>(Resource.Id.tv_username);
-			password = FindViewById<EditText>(Resource.Id.tv_password);
+			username.SetOnEditorActionListener (this);
+			username.RequestFocus ();
 
+			password = FindViewById<EditText>(Resource.Id.tv_password);
+			password.SetOnEditorActionListener (this);
 
 			progress = new ProgressDialog (this);
 			progress.Indeterminate = true;
 			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-			progress.SetMessage("Login...");
-			progress.SetCancelable(false);
+
+			_timer = new System.Timers.Timer();
+			//Trigger event every second
+			_timer.Interval = 1000;
+			_timer.Elapsed += OnTimedEvent;
+			//count down 5 seconds
+			_countSeconds = 10;
 
 
-			//Set edit action listener to allow the next & go buttons on the input keyboard to interact with login.
-			username.SetOnEditorActionListener (this);
-			password.SetOnEditorActionListener (this);
 
-			username.RequestFocus ();
+		}
 
 
+		private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
+		{
+			_countSeconds--;
+
+			//Update visual representation here
+			//Remember to do it on UI thread
+			RunOnUiThread (() => progress.SetMessage(_countSeconds.ToString()));
+
+			if (_countSeconds == 0)
+			{
+				RunOnUiThread (() => progress.SetCancelable(true));
+				RunOnUiThread (() => progress.SetMessage("No Connection..."));
+				_timer.Stop();
+
+			}
 		}
 
 		private void SetOrientaion(){
@@ -92,8 +114,11 @@ namespace LinkOM
 		}
 
 		private void Login(){
-			
+
+			RunOnUiThread (() => progress.SetCancelable(false));
 			RunOnUiThread (() => progress.Show());
+
+			_timer.Enabled = true;
 
 			_loginService = new LoginService();
 			LoginJson obj = _loginService.Login (username.Text, password.Text);
@@ -105,6 +130,9 @@ namespace LinkOM
 					onSuccessfulLogin (obj);
 				else
 					onFailLogin (obj);
+			} else {
+				
+				RunOnUiThread (() => Toast.MakeText (this, "No Connection", ToastLength.Short).Show ());
 			}
 		}
 

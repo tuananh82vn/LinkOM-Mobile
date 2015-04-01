@@ -25,7 +25,7 @@ namespace LinkOM
 
 
 		private EditText editText_Title;
-		public Task model;
+		public TaskObject model;
 
 		private TextView tv_StartDate;
 		private Button bt_StartDate;
@@ -77,7 +77,7 @@ namespace LinkOM
 
 			//Init variable
 			string jsonTask = Intent.GetStringExtra("Task");
-			model = Newtonsoft.Json.JsonConvert.DeserializeObject<Task> (jsonTask);
+			model = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskObject> (jsonTask);
 
 
 			//Handle Title

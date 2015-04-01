@@ -5,7 +5,7 @@ namespace LinkOM
 {
 	public class TaskList
 	{
-		public List<Task> Items { get; set; }
+		public List<TaskObject> Items { get; set; }
 		public int PageNumber { get; set; }
 		public int TotalRecords { get; set; }
 		public bool Success { get; set; }

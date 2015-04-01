@@ -5,7 +5,7 @@ using Java.Interop;
 namespace LinkOM
 {
 	[Serializable]
-	public class Task 
+	public class TaskObject 
 	{
 		public Nullable<int> Id { get; set; }
 		public string Guid { get; set; }

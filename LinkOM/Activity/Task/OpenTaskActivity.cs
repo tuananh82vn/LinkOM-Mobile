@@ -27,7 +27,7 @@ namespace LinkOM
 
 			string text = Intent.GetStringExtra ("Json") ?? "Data not available";
 
-			List<Task> items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Task>> (text);
+			List<TaskObject> items = Newtonsoft.Json.JsonConvert.DeserializeObject<List<TaskObject>> (text);
 
 			var taskList = new TaskListAdapter (this,items);
 

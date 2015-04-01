@@ -22,12 +22,18 @@ namespace LinkOM
 				}
 			};
 
-			string results= ConnectWebAPI.Request(url,logon);
+			try {
 
-			obj = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginJson> (results);
+				string results= ConnectWebAPI.Request(url,logon);
 
-			return obj;
+				obj = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginJson> (results);
 
+				return obj;
+				
+			} catch (Exception ex) {
+
+				return null;
+			}
 		}
 	}
 }

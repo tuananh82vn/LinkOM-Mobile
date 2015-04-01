@@ -8,11 +8,11 @@ namespace LinkOM
 {
 	public class TaskListAdapter : BaseAdapter
 	{
-		List<Task> _TaskList;
+		List<TaskObject> _TaskList;
 
 		Activity _activity;
 
-		public TaskListAdapter (Activity activity, List<Task> data)
+		public TaskListAdapter (Activity activity, List<TaskObject> data)
 		{
 			_activity = activity;
 			_TaskList = data;
@@ -36,7 +36,7 @@ namespace LinkOM
 			return null;
 		}
 
-		public Task GetItemAtPosition(int position)
+		public TaskObject GetItemAtPosition(int position)
 		{
 			return _TaskList[position];
 		}

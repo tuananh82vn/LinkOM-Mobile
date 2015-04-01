@@ -17,12 +17,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Android.Graphics;
 using System.Threading.Tasks;
 using System.Threading;
+using Android.Support.V4.Widget;
 
 namespace LinkOM
 {
 	[Activity (Label = "Task")]				
 	public class TaskActivity : Activity
 	{
+		public bool loading;
+
 		public TaskList obj ;
 		public ImageButton bt_Add;
 		public Button bt_Open;
@@ -132,8 +135,11 @@ namespace LinkOM
 
 		}
 
-		private void InitData ()
+
+		public void InitData ()
 		{
+
+
 				string url = Settings.InstanceURL;
 				// Get all Task
 				url=url+"/api/TaskList";
@@ -258,7 +264,7 @@ namespace LinkOM
 //			StartActivity (activity);
 //		}
 
-		private int CheckTask(string status, List<Task>  list_Task){
+		private int CheckTask(string status, List<TaskObject>  list_Task){
 			int count = 0;
 			foreach (var task in list_Task) {
 				if (task.StatusName == status)

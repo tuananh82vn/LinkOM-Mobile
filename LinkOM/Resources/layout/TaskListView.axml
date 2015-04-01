@@ -50,8 +50,14 @@
         android:layout_height="1dp"
         android:id="@+id/view2"
         android:background="#ff609ec1" />
-    <ListView
-        android:id="@+id/TaskListView"
+    <LinkOM.ScrollChildSwipeRefreshLayout
+        android:id="@+id/refresher"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#ffffffff">
+        <ListView
+            android:id="@+id/TaskListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinkOM.ScrollChildSwipeRefreshLayout>
 </LinearLayout>

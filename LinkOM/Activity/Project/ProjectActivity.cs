@@ -16,16 +16,19 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 using System.Threading;
 using System.Threading.Tasks;
+using Android.Support.V4.Widget;
 
 namespace LinkOM
 {
 	[Activity (Label = "Project")]				
 	public class ProjectActivity : ListActivity
 	{
+		public bool loading;
+
 		public string TokenNumber;
 		public ProjectListAdapter projectList; 
 		public ListView projectListView;
-
+		public SwipeRefreshLayout refresher;
 	
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -37,6 +40,29 @@ namespace LinkOM
 			var BackButton = FindViewById(Resource.Id.BackButton);
 			BackButton.Click += btBackClick;
 
+			InitData ();
+
+			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+
+			refresher.SetColorScheme (Resource.Color.xam_dark_blue,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_green);
+
+			refresher.Refresh += HandleRefresh;
+
+		}
+
+		async void HandleRefresh (object sender, EventArgs e)
+		{
+			await InitData ();
+			refresher.Refreshing = false;
+		}
+
+		public async Task InitData(){
+
+			Console.WriteLine ("Begin load data");
+
+			if (loading)
+				return;
+			loading = true;
 
 			TokenNumber = Settings.Token;
 			string url = Settings.InstanceURL;
@@ -69,8 +95,7 @@ namespace LinkOM
 					}
 				});
 
-
-			string results= ConnectWebAPI.Request(url,objsearch);
+			string results=  ConnectWebAPI.Request(url,objsearch);
 
 			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
 
@@ -84,8 +109,12 @@ namespace LinkOM
 
 			RegisterForContextMenu(projectListView);
 
-		}
+			await Task.Delay (2000);
 
+			loading = false;
+
+			Console.WriteLine ("End load data");
+		}
 
 		private void finish(){
 			//SaveData();     

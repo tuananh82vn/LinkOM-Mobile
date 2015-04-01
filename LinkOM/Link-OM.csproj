@@ -61,6 +61,9 @@
     <Reference Include="Refractored.Xam.Settings">
       <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\Components\xamandroidsupportv4-18-21.0.3.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android.Export" />
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +82,6 @@
     <Compile Include="Model\ReceiveModel\Login.cs" />
     <Compile Include="Model\ViewModel\Project.cs" />
     <Compile Include="Model\ReceiveModel\Results.cs" />
-    <Compile Include="Model\ViewModel\Task.cs" />
     <Compile Include="Activity\Project\ProjectDetailActivity.cs" />
     <Compile Include="Model\ReceiveModel\ProjectDetail.cs" />
     <Compile Include="Model\ViewModel\ProjectDetail.cs" />
@@ -93,13 +95,15 @@
     <Compile Include="Adapter\ProjectSpinnerAdapter.cs" />
     <Compile Include="Activity\Task\TaskListActivity.cs" />
     <Compile Include="Helper\LoginService.cs" />
-    <Compile Include="Model\ReceiveModel\Task.cs" />
     <Compile Include="Activity\Task\EditTaskActivity.cs" />
     <Compile Include="Model\ViewModel\Status.cs" />
     <Compile Include="Model\ReceiveModel\JsonData.cs" />
     <Compile Include="Model\ReceiveModel\StatusList.cs" />
     <Compile Include="FlyOutContainer.cs" />
     <Compile Include="Activity\StartUp\MainActivity.cs" />
+    <Compile Include="Model\ReceiveModel\TaskList.cs" />
+    <Compile Include="Model\ViewModel\TaskObject.cs" />
+    <Compile Include="SwipeRefreshLayout.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -191,6 +195,7 @@
     <AndroidResource Include="Resources\drawable\Back_normal.png" />
     <AndroidResource Include="Resources\drawable\Back_pressed.png" />
     <AndroidResource Include="Resources\layout\Task.axml" />
+    <AndroidResource Include="Resources\values\Theme.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -213,6 +218,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="json.net">
       <Version>6.0.8.1</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="xamandroidsupportv4-18">
+      <Version>21.0.3.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
