@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/FlyOutContent"
+    android:background="#ffffffff">
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view1"
+        android:background="#ff609ec1" />
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frameLayout1"
+        android:background="#006197">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/BackButton"
+                android:layout_margin="4dp"
+                android:background="@drawable/Back_button" />
+            <TextView
+                android:text="Project Name"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/tv_projectname"
+                android:gravity="center_vertical"
+                android:textColor="#fff6f6f6"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0.0dp"
+                android:textSize="15dp" />
+        </LinearLayout>
+    </FrameLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view2"
+        android:background="#ff609ec1" />
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="677.3dp"
+        android:layout_below="@id/linearLayout1"
+        android:id="@+id/scrollView1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout2"
+            android:minWidth="25px"
+            android:minHeight="25px">
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tableRow1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp">
+                <ImageView
+                    android:src="@drawable/open"
+                    android:id="@+id/imageStatus"
+                    android:layout_gravity="left"
+                    android:layout_width="65.0dp"
+                    android:layout_height="27.2dp"
+                    android:layout_marginLeft="5.0dp" />
+                <TableLayout
+                    android:id="@+id/tableLayout1"
+                    android:stretchColumns="*">
+                    <TableRow
+                        android:id="@+id/tableRow2">
+                        <TextView
+                            android:text="Code"
+                            android:layout_column="0"
+                            android:id="@+id/textView12"
+                            android:layout_height="match_parent"
+                            android:autoText="true"
+                            android:gravity="left"
+                            android:layout_marginLeft="10dp" />
+                        <TextView
+                            android:text="Ref Code"
+                            android:layout_column="1"
+                            android:id="@+id/textView13" />
+                        <TextView
+                            android:text="Allo. hrs"
+                            android:layout_column="2"
+                            android:id="@+id/textView15"
+                            android:layout_marginRight="10.0dp" />
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow3">
+                        <TextView
+                            android:text="Text"
+                            android:layout_column="0"
+                            android:id="@+id/tv_Code"
+                            android:layout_marginLeft="10.0dp" />
+                        <TextView
+                            android:text="Text"
+                            android:layout_column="1"
+                            android:id="@+id/tv_RefCode" />
+                        <TextView
+                            android:text="0"
+                            android:layout_column="2"
+                            android:id="@+id/tv_AlloHours" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tableRow4"
+                android:layout_marginBottom="5dp">
+                <TableLayout
+                    android:id="@+id/tableLayout2"
+                    android:stretchColumns="*">
+                    <TableRow
+                        android:id="@+id/tableRow5">
+                        <TextView
+                            android:text="Department"
+                            android:layout_column="0"
+                            android:id="@+id/textView23"
+                            android:layout_marginLeft="4.2dp"
+                            android:layout_width="197.0dp" />
+                        <TextView
+                            android:text="Start Date"
+                            android:layout_column="1"
+                            android:id="@+id/textView24"
+                            android:layout_marginRight="5.0dp" />
+                        <TextView
+                            android:text="End Date"
+                            android:layout_column="2"
+                            android:id="@+id/textView25" />
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow6">
+                        <TextView
+                            android:text="Department"
+                            android:layout_column="0"
+                            android:id="@+id/tv_Department"
+                            android:layout_marginLeft="4.2dp"
+                            android:textColor="#ffe8a341"
+                            android:layout_width="187.5dp" />
+                        <TextView
+                            android:text="01/01/2015"
+                            android:layout_column="1"
+                            android:id="@+id/tv_StartDate"
+                            android:textColor="#ffa0c673"
+                            android:layout_marginRight="5.8dp" />
+                        <TextView
+                            android:text="01/01/2015"
+                            android:layout_column="2"
+                            android:id="@+id/tv_EndDate"
+                            android:textColor="#ffdf8585"
+                            android:layout_marginRight="11.7dp" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/tableRow5">
+                <TableLayout
+                    android:id="@+id/tableLayout3"
+                    android:stretchColumns="*">
+                    <TableRow
+                        android:id="@+id/tableRow7">
+                        <TextView
+                            android:text="Client"
+                            android:layout_column="0"
+                            android:id="@+id/textView25"
+                            android:layout_marginLeft="4.2dp"
+                            android:layout_width="197.0dp" />
+                        <TextView
+                            android:text="Actual Start"
+                            android:layout_column="1"
+                            android:id="@+id/textView26"
+                            android:layout_marginRight="5.0dp" />
+                        <TextView
+                            android:text="Actual End"
+                            android:layout_column="2"
+                            android:id="@+id/textView27" />
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow8">
+                        <TextView
+                            android:text="Client"
+                            android:layout_column="0"
+                            android:id="@+id/tv_Client"
+                            android:layout_marginLeft="4.2dp"
+                            android:textColor="#ffe8a341"
+                            android:layout_width="187.5dp" />
+                        <TextView
+                            android:text="01/01/2015"
+                            android:layout_column="1"
+                            android:id="@+id/tv_ActualStartDate"
+                            android:textColor="#ffa0c673"
+                            android:layout_marginRight="5.8dp" />
+                        <TextView
+                            android:text="01/01/2015"
+                            android:layout_column="2"
+                            android:id="@+id/tv_ActualEndDate"
+                            android:textColor="#ffdf8585"
+                            android:layout_marginRight="10.0dp" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/tableRow6">
+                <TableLayout
+                    android:id="@+id/tableLayout4"
+                    android:stretchColumns="*">
+                    <TableRow
+                        android:id="@+id/tableRow9">
+                        <TextView
+                            android:text="Delivery Manager"
+                            android:layout_column="0"
+                            android:id="@+id/textView28"
+                            android:layout_marginLeft="4.2dp"
+                            android:layout_width="113.5dp" />
+                        <TextView
+                            android:text="Project Manager"
+                            android:layout_column="1"
+                            android:id="@+id/textView29"
+                            android:layout_marginRight="5.0dp" />
+                        <TextView
+                            android:text="Project Coordinator"
+                            android:layout_column="2"
+                            android:id="@+id/textView30"
+                            android:layout_marginRight="10.9dp" />
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow10">
+                        <TextView
+                            android:text="Delivery Manager"
+                            android:layout_column="0"
+                            android:id="@+id/tv_DeliveryManager"
+                            android:layout_marginLeft="4.2dp"
+                            android:textColor="#ffe8a341"
+                            android:layout_width="70dp" />
+                        <TextView
+                            android:text="Project Manager"
+                            android:layout_column="1"
+                            android:id="@+id/tv_ProjectManager"
+                            android:textColor="#ffa0c673"
+                            android:layout_marginRight="5.8dp" />
+                        <TextView
+                            android:text="Project Coordinator"
+                            android:layout_column="2"
+                            android:textColor="#ffdf8585"
+                            android:id="@+id/tv_ProjectCoordinator" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/tableRow7">
+                <TableLayout
+                    android:id="@+id/tableLayout5"
+                    android:stretchColumns="*">
+                    <TableRow
+                        android:id="@+id/tableRow11">
+                        <TextView
+                            android:text="Notes"
+                            android:layout_column="0"
+                            android:id="@+id/textView30"
+                            android:layout_marginLeft="4.2dp"
+                            android:layout_width="128.3dp" />
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow12"
+                        android:minWidth="25px"
+                        android:minHeight="25px">
+                        <TextView
+                            android:text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words"
+                            android:layout_column="0"
+                            android:id="@+id/tv_Notes"
+                            android:textSize="10dp"
+                            android:textColor="#ff717171"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="15dp"
+                            android:gravity="center_vertical" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/tableRow7">
+                <TableLayout
+                    android:id="@+id/tableLayout5"
+                    android:stretchColumns="*">
+                    <TableRow
+                        android:id="@+id/tableRow11">
+                        <TextView
+                            android:text="Description"
+                            android:layout_column="0"
+                            android:id="@+id/textView30"
+                            android:layout_marginLeft="4.2dp"
+                            android:layout_width="wrap_content" />
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow12"
+                        android:minWidth="25px"
+                        android:minHeight="25px">
+                        <TextView
+                            android:text="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words"
+                            android:layout_column="0"
+                            android:id="@+id/tv_Description"
+                            android:textSize="10dp"
+                            android:textColor="#ff717171"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="15.0dp"
+                            android:gravity="center_vertical" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/tableRow7">
+                <TableLayout
+                    android:id="@+id/tableLayout5"
+                    android:stretchColumns="*"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TableRow
+                        android:id="@+id/tableRow11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="Milestone"
+                            android:layout_column="0"
+                            android:id="@+id/textView30"
+                            android:layout_marginLeft="4.2dp"
+                            android:layout_width="wrap_content" />
+                    </TableRow>
+                    <TableRow
+                        android:id="@+id/tableRow12"
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:layout_height="185.8dp"
+                        android:layout_width="wrap_content">
+                        <ListView
+                            android:minWidth="25px"
+                            android:minHeight="25px"
+                            android:layout_column="0"
+                            android:id="@+id/list_Milestone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="154.4dp" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

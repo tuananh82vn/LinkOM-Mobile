@@ -1,363 +1,374 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
-    p1:layout_width="match_parent"
-    p1:layout_height="match_parent"
-    p1:id="@+id/relativeLayout1"
-    p1:background="#ffffffff">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/FlyOutContent"
+    android:background="#ffffffff">
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view1"
+        android:background="#ff609ec1" />
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/frameLayout1"
+        android:background="#006197">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout1">
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/BackButton"
+                android:layout_margin="4dp"
+                android:background="@drawable/Back_button" />
+            <TextView
+                android:text="Edit Task"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/textView2"
+                android:gravity="center_vertical"
+                android:textColor="#fff6f6f6"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="0.0dp"
+                android:textSize="25dp" />
+        </LinearLayout>
+    </FrameLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view2"
+        android:background="#ff609ec1" />
     <LinearLayout
-        p1:orientation="horizontal"
-        p1:layout_width="match_parent"
-        p1:layout_height="50dp"
-        p1:id="@+id/linearLayout1">
-        <ImageButton
-            p1:id="@+id/bt_Back"
-            p1:layout_width="44dp"
-            p1:layout_height="44dp"
-            p1:background="@drawable/Back_button"
-            p1:layout_marginLeft="5dp"
-            p1:layout_marginTop="5dp"
-            p1:layout_marginRight="5dp"
-            p1:layout_marginBottom="5dp" />
-        <TextView
-            p1:text="Edit Task"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="match_parent"
-            p1:id="@+id/textView10"
-            p1:gravity="center_vertical"
-            p1:textSize="20dp"
-            p1:layout_marginLeft="10.0dp" />
-    </LinearLayout>
-    <WebView
-        p1:layout_width="match_parent"
-        p1:layout_height="2dp"
-        p1:layout_below="@id/linearLayout1"
-        p1:id="@+id/webView1"
-        p1:background="#ff000000" />
-    <LinearLayout
-        p1:orientation="vertical"
-        p1:layout_width="match_parent"
-        p1:layout_height="match_parent"
-        p1:layout_below="@id/webView1"
-        p1:id="@+id/linearLayout2">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout2">
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="35dp"
-            p1:id="@+id/tableRow1">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/tableRow1">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout3"
-                p1:layout_height="match_parent">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout3"
+                android:layout_height="match_parent">
                 <TextView
-                    p1:text="Title:"
-                    p1:textAppearance="?android:attr/textAppearanceSmall"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView11"
-                    p1:gravity="center_vertical"
-                    p1:layout_marginLeft="5dp"
-                    p1:layout_marginRight="5dp"
-                    p1:textStyle="bold" />
+                    android:text="Title:"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView11"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textStyle="bold" />
                 <EditText
-                    p1:layout_width="match_parent"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/editText_Title"
-                    p1:layout_marginRight="5dp"
-                    p1:textSize="15dp"
-                    p1:text="Hello" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/editText_Title"
+                    android:layout_marginRight="5dp"
+                    android:textSize="15dp"
+                    android:text="Hello" />
             </LinearLayout>
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="35dp"
-            p1:id="@+id/tableRow2">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/tableRow2">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout4"
-                p1:layout_height="match_parent">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout4"
+                android:layout_height="match_parent">
                 <TextView
-                    p1:text="Project:"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView12"
-                    p1:gravity="center_vertical"
-                    p1:layout_marginLeft="5dp"
-                    p1:layout_marginRight="5dp"
-                    p1:textStyle="bold" />
+                    android:text="Project:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView12"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textStyle="bold" />
                 <Spinner
-                    p1:layout_width="match_parent"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/sp_Project"
-                    p1:layout_marginRight="5dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/sp_Project"
+                    android:layout_marginRight="5dp"
+                    android:spinnerMode="dialog" />
             </LinearLayout>
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="35dp"
-            p1:id="@+id/tableRow3">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/tableRow3">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout5"
-                p1:layout_height="match_parent">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout5"
+                android:layout_height="match_parent">
                 <TextView
-                    p1:text="Status:"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView13"
-                    p1:gravity="center_vertical"
-                    p1:layout_marginLeft="5dp"
-                    p1:layout_marginRight="5dp"
-                    p1:textStyle="bold" />
+                    android:text="Status:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView13"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textStyle="bold" />
                 <Spinner
-                    p1:layout_width="137.6dp"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/sp_Status"
-                    p1:layout_gravity="center_vertical"
-                    p1:spinnerMode="dropdown" />
+                    android:layout_width="137.6dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/sp_Status"
+                    android:layout_gravity="center_vertical"
+                    android:spinnerMode="dialog" />
                 <TextView
-                    p1:text="Priority:"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView14"
-                    p1:gravity="center_vertical"
-                    p1:layout_marginLeft="5dp"
-                    p1:layout_marginRight="5dp"
-                    p1:textStyle="bold" />
+                    android:text="Priority:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView14"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textStyle="bold" />
                 <Spinner
-                    p1:layout_width="match_parent"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/sp_Priority"
-                    p1:layout_marginRight="5dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/sp_Priority"
+                    android:layout_marginRight="5dp"
+                    android:spinnerMode="dialog" />
             </LinearLayout>
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="35dp"
-            p1:id="@+id/tableRow4">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/tableRow4">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout6"
-                p1:layout_height="match_parent">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout6"
+                android:layout_height="match_parent">
                 <TextView
-                    p1:text="Assigned To:"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView15"
-                    p1:layout_marginLeft="5dp"
-                    p1:layout_marginRight="5dp"
-                    p1:gravity="center_vertical"
-                    p1:textStyle="bold" />
+                    android:text="Assigned To:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView15"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold" />
                 <Spinner
-                    p1:layout_width="match_parent"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/sp_AssignedTo"
-                    p1:layout_marginRight="5dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/sp_AssignedTo"
+                    android:layout_marginRight="5dp" />
             </LinearLayout>
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="35dp"
-            p1:id="@+id/tableRow5">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/tableRow5">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout7"
-                p1:layout_height="match_parent">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout7"
+                android:layout_height="match_parent">
                 <TextView
-                    p1:text="Owner:"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView15"
-                    p1:layout_marginLeft="5dp"
-                    p1:layout_marginRight="5dp"
-                    p1:gravity="center_vertical"
-                    p1:textStyle="bold" />
+                    android:text="Owner:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView15"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold" />
                 <Spinner
-                    p1:layout_width="match_parent"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/sp_Owner"
-                    p1:layout_marginRight="5dp" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/sp_Owner"
+                    android:layout_marginRight="5dp" />
             </LinearLayout>
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="35dp"
-            p1:id="@+id/tableRow6">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/tableRow6">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout8"
-                p1:layout_height="match_parent">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout8"
+                android:layout_height="match_parent">
                 <TextView
-                    p1:text="Start Date:"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView16"
-                    p1:textStyle="bold"
-                    p1:gravity="center_vertical"
-                    p1:layout_marginLeft="5dp" />
+                    android:text="Start Date:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView16"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp" />
                 <EditText
-                    p1:inputType="date"
-                    p1:layout_width="78dp"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/tv_StartDate"
-                    p1:gravity="center_vertical"
-                    p1:textSize="10dp"
-                    p1:text="01/01/2015" />
+                    android:inputType="date"
+                    android:layout_width="78dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_StartDate"
+                    android:gravity="center_vertical"
+                    android:textSize="10dp"
+                    android:text="01/01/2015" />
                 <Button
-                    p1:text="..."
-                    p1:layout_width="35.0dp"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/bt_StartDate" />
+                    android:text="..."
+                    android:layout_width="35.0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/bt_StartDate" />
                 <TextView
-                    p1:text="End Date:"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView17"
-                    p1:gravity="center_vertical"
-                    p1:textStyle="bold" />
+                    android:text="End Date:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView17"
+                    android:gravity="center_vertical"
+                    android:textStyle="bold" />
                 <EditText
-                    p1:inputType="date"
-                    p1:layout_width="78dp"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/tv_EndDate"
-                    p1:gravity="center_vertical"
-                    p1:textSize="10dp"
-                    p1:text="01/01/2015" />
+                    android:inputType="date"
+                    android:layout_width="78dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_EndDate"
+                    android:gravity="center_vertical"
+                    android:textSize="10dp"
+                    android:text="01/01/2015" />
                 <Button
-                    p1:text="..."
-                    p1:layout_width="35.0dp"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/bt_EndDate" />
+                    android:text="..."
+                    android:layout_width="35.0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/bt_EndDate" />
             </LinearLayout>
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/tableRow7"
-            p1:layout_marginTop="10dp">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow7"
+            android:layout_marginTop="10dp">
             <LinearLayout
-                p1:orientation="vertical"
-                p1:id="@+id/linearLayout9"
-                p1:layout_height="wrap_content">
+                android:orientation="vertical"
+                android:id="@+id/linearLayout9"
+                android:layout_height="wrap_content">
                 <TableRow
-                    p1:minWidth="25px"
-                    p1:minHeight="25px"
-                    p1:layout_width="match_parent"
-                    p1:layout_height="wrap_content"
-                    p1:id="@+id/tableRow8">
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tableRow8">
                     <TextView
-                        p1:text="Description:"
-                        p1:id="@+id/textView18"
-                        p1:layout_height="wrap_content"
-                        p1:gravity="center_vertical"
-                        p1:textStyle="bold"
-                        p1:layout_marginLeft="5dp" />
+                        android:text="Description:"
+                        android:id="@+id/textView18"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="5dp" />
                 </TableRow>
                 <TableRow
-                    p1:minWidth="25px"
-                    p1:minHeight="25px"
-                    p1:layout_width="match_parent"
-                    p1:layout_height="wrap_content"
-                    p1:id="@+id/tableRow9">
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tableRow9">
                     <EditText
-                        p1:inputType="textMultiLine"
-                        p1:id="@+id/editText2"
-                        p1:layout_height="47.3dp" />
+                        android:inputType="textMultiLine"
+                        android:id="@+id/editText2"
+                        android:layout_height="47.3dp" />
                 </TableRow>
             </LinearLayout>
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="35dp"
-            p1:id="@+id/tableRow11"
-            p1:layout_marginTop="10dp">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:id="@+id/tableRow11"
+            android:layout_marginTop="10dp">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout10"
-                p1:layout_height="match_parent">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout10"
+                android:layout_height="match_parent">
                 <CheckBox
-                    p1:text="Watch List ?"
-                    p1:id="@+id/checkBox1"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent" />
+                    android:text="Watch List ?"
+                    android:id="@+id/checkBox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
                 <CheckBox
-                    p1:text="Internal ?"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/checkBox2"
-                    p1:checked="true" />
+                    android:text="Internal ?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/checkBox2"
+                    android:checked="true" />
                 <CheckBox
-                    p1:text="Management ?"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/checkBox3" />
+                    android:text="Management ?"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/checkBox3" />
             </LinearLayout>
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="50dp"
-            p1:id="@+id/tableRow12">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/tableRow12">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout11"
-                p1:layout_height="match_parent"
-                p1:layout_width="wrap_content">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout11"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content">
                 <TextView
-                    p1:text="Attach Photo:"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/textView19"
-                    p1:gravity="center_vertical"
-                    p1:layout_marginLeft="5dp" />
+                    android:text="Attach Photo:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView19"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp" />
                 <Button
-                    p1:text="Camera"
-                    p1:layout_width="wrap_content"
-                    p1:layout_height="wrap_content"
-                    p1:id="@+id/bt_camera"
-                    p1:gravity="center" />
+                    android:text="Camera"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bt_camera"
+                    android:gravity="center" />
             </LinearLayout>
             <ImageView
-                p1:src="@android:drawable/ic_menu_gallery"
-                p1:id="@+id/iv_Photo"
-                p1:layout_column="1"
-                p1:layout_height="match_parent"
-                p1:layout_width="56.5dp" />
+                android:src="@android:drawable/ic_menu_gallery"
+                android:id="@+id/iv_Photo"
+                android:layout_column="1"
+                android:layout_height="match_parent"
+                android:layout_width="56.5dp" />
         </TableRow>
         <TableRow
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="50dp"
-            p1:id="@+id/tableRow13"
-            p1:layout_marginTop="10dp">
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/tableRow13"
+            android:layout_marginTop="10dp">
             <LinearLayout
-                p1:orientation="horizontal"
-                p1:id="@+id/linearLayout12"
-                p1:layout_height="50dp">
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout12"
+                android:layout_height="50dp">
                 <Button
-                    p1:text="Save"
-                    p1:layout_width="match_parent"
-                    p1:layout_height="match_parent"
-                    p1:id="@+id/bt_Save"
-                    p1:gravity="center" />
+                    android:text="Save"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/bt_Save"
+                    android:gravity="center" />
             </LinearLayout>
         </TableRow>
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

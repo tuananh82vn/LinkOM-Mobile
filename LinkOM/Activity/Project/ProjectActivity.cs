@@ -14,28 +14,31 @@ using Android.Content.PM;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+using System.Threading;
+using System.Threading.Tasks;
+
 namespace LinkOM
 {
 	[Activity (Label = "Project")]				
-	public class ProjectActivity : Activity
+	public class ProjectActivity : ListActivity
 	{
 		public string TokenNumber;
 		public ProjectListAdapter projectList; 
+		public ListView projectListView;
 
-		protected override void OnCreate (Bundle bundle)
+	
+		protected override void OnCreate (Bundle savedInstanceState)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate (savedInstanceState);
 
-			SetContentView (Resource.Layout.ProjectView);
+			SetContentView (Resource.Layout.Project);
 			// Create your application here
 
-			ImageButton buttonBack = FindViewById<ImageButton>(Resource.Id.bt_Back);
-			buttonBack.Click += btBackClick;
+			var BackButton = FindViewById(Resource.Id.BackButton);
+			BackButton.Click += btBackClick;
 
 
 			TokenNumber = Settings.Token;
-
-
 			string url = Settings.InstanceURL;
 
 			url=url+"/api/ProjectList";
@@ -73,7 +76,7 @@ namespace LinkOM
 
 			projectList = new ProjectListAdapter (this,ProjectList.Items);
 
-			var projectListView = FindViewById<ListView> (Resource.Id.ProjectListView);
+			projectListView = FindViewById<ListView> (Android.Resource.Id.List);
 
 			projectListView.Adapter = projectList;
 
@@ -81,8 +84,15 @@ namespace LinkOM
 
 			RegisterForContextMenu(projectListView);
 
-
 		}
+
+
+		private void finish(){
+			//SaveData();     
+			this.Finish ();
+			Android.OS.Process.KillProcess (Android.OS.Process.MyPid ());
+		}
+
 
 		public void btBackClick(object sender, EventArgs e)
 		{
@@ -103,7 +113,7 @@ namespace LinkOM
 
 		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
 		{
-			if (v.Id == Resource.Id.ProjectListView)
+			if (v.Id == Android.Resource.Id.List)
 			{
 				var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 				menu.SetHeaderTitle(projectList.GetItemName(info.Position));
@@ -125,7 +135,6 @@ namespace LinkOM
 
 			if (menuItemName.Equals ("Add Task")) {
 				var activity = new Intent (this, typeof(AddTaskActivity));
-				activity.PutExtra ("TokenNumber", TokenNumber);
 				activity.PutExtra ("ProjectId", ProjectId);
 				StartActivity (activity);
 			}

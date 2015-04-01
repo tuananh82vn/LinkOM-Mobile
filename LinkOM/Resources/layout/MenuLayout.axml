@@ -32,7 +32,7 @@
         android:layout_margin="4dp">
         <ImageView
             android:src="@drawable/Projects"
-            android:layout_width="wrap_content"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView1" />
         <TextView
@@ -63,7 +63,7 @@
         android:layout_margin="4dp">
         <ImageView
             android:src="@drawable/Tasks"
-            android:layout_width="wrap_content"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2" />
         <TextView
@@ -94,7 +94,7 @@
         android:layout_margin="4dp">
         <ImageView
             android:src="@drawable/Tickets"
-            android:layout_width="wrap_content"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2" />
         <TextView
@@ -125,7 +125,7 @@
         android:layout_margin="4dp">
         <ImageView
             android:src="@drawable/Issues"
-            android:layout_width="wrap_content"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2" />
         <TextView
@@ -156,7 +156,7 @@
         android:layout_margin="4dp">
         <ImageView
             android:src="@drawable/Milestones"
-            android:layout_width="wrap_content"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2" />
         <TextView
@@ -187,7 +187,7 @@
         android:layout_margin="4dp">
         <ImageView
             android:src="@drawable/Documents"
-            android:layout_width="wrap_content"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2" />
         <TextView
@@ -218,7 +218,7 @@
         android:layout_margin="4dp">
         <ImageView
             android:src="@drawable/iconelse"
-            android:layout_width="35.9dp"
+            android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2" />
         <TextView

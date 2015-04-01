@@ -19,9 +19,9 @@ namespace LinkOM
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-			SetContentView (Resource.Layout.ProjectDetailView);
+			SetContentView (Resource.Layout.ProjectDetailLayout);
 
-			ImageButton buttonBack = FindViewById<ImageButton>(Resource.Id.bt_Back);
+			var buttonBack = FindViewById(Resource.Id.BackButton);
 			buttonBack.Click += btBackClick;
 
 
@@ -99,8 +99,6 @@ namespace LinkOM
 
 			milestoneListView.Adapter = MilestoneList;
 
-//			projectListView.ItemClick += listView_ItemClick;
-
 		}
 
 		public void btBackClick(object sender, EventArgs e)
@@ -110,7 +108,7 @@ namespace LinkOM
 
 		public void DisplayProject(ProjectDetail obj){
 
-			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			var ProjectName = FindViewById<TextView> (Resource.Id.tv_projectname);
 			ProjectName.Text = obj.ProjectName;
 
 			var Code = FindViewById<TextView> (Resource.Id.tv_Code);

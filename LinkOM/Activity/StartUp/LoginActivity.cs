@@ -24,7 +24,7 @@ namespace LinkOM
 		public EditText username;
 		public EditText password;
 
-		ProgressBar progressIndicator;
+		public ProgressDialog progress;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -36,10 +36,17 @@ namespace LinkOM
 			SetContentView (Resource.Layout.Login);
 
 			Button button = FindViewById<Button>(Resource.Id.btLogin);
+			button.Click += btloginClick;  
+
 			username = FindViewById<EditText>(Resource.Id.tv_username);
 			password = FindViewById<EditText>(Resource.Id.tv_password);
 
-			progressIndicator = FindViewById<ProgressBar> (Resource.Id.progressBar1);
+
+			progress = new ProgressDialog (this);
+			progress.Indeterminate = true;
+			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+			progress.SetMessage("Login...");
+			progress.SetCancelable(false);
 
 
 			//Set edit action listener to allow the next & go buttons on the input keyboard to interact with login.
@@ -47,7 +54,8 @@ namespace LinkOM
 			password.SetOnEditorActionListener (this);
 
 			username.RequestFocus ();
-			button.Click += btloginClick;  
+
+
 		}
 
 		private void SetOrientaion(){
@@ -70,7 +78,6 @@ namespace LinkOM
 		protected override void OnResume ()
 		{
 			base.OnResume ();
-			progressIndicator.Visibility = ViewStates.Invisible;
 		}
 
 		public void btloginClick(object sender, EventArgs e)
@@ -80,16 +87,18 @@ namespace LinkOM
 				var imm = (InputMethodManager)GetSystemService (Context.InputMethodService);
 				imm.HideSoftInputFromWindow (password.WindowToken, HideSoftInputFlags.NotAlways);
 
-				progressIndicator.Visibility = ViewStates.Visible;
-
-				Login ();
+				ThreadPool.QueueUserWorkItem (o => Login());
 			}
 		}
 
 		private void Login(){
+			
+			RunOnUiThread (() => progress.Show());
 
 			_loginService = new LoginService();
 			LoginJson obj = _loginService.Login (username.Text, password.Text);
+
+			RunOnUiThread (() => progress.Dismiss());
 
 			if (obj != null) {
 				if (obj.Success)
@@ -105,7 +114,6 @@ namespace LinkOM
 			Settings.Token = obj.TokenNumber;
 			Settings.Username = obj.UserName;
 
-			progressIndicator.Visibility = ViewStates.Invisible;
 			var activity = new Intent (this, typeof(MainActivity));
 			activity.PutExtra ("TokenNumber", obj.TokenNumber);
 			StartActivity (activity);
@@ -114,8 +122,7 @@ namespace LinkOM
 
 		private void onFailLogin(LoginJson obj)
 		{
-			Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ();
-			progressIndicator.Visibility = ViewStates.Invisible;
+			RunOnUiThread (() => Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ());
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)

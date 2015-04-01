@@ -73,7 +73,6 @@
     <Compile Include="Activity\Task\TaskActivity.cs" />
     <Compile Include="Activity\Project\ProjectActivity.cs" />
     <Compile Include="Activity\StartUp\CheckActivity.cs" />
-    <Compile Include="Activity\StartUp\HomeActivity.cs" />
     <Compile Include="Activity\StartUp\LoginActivity.cs" />
     <Compile Include="Adapter\ProjectListAdapter.cs" />
     <Compile Include="Model\SendModel\objSort.cs" />
@@ -123,9 +122,6 @@
     <AndroidResource Include="Resources\drawable\Add_pressed.png" />
     <AndroidResource Include="Resources\drawable\Background.jpg" />
     <AndroidResource Include="Resources\drawable\Background2.jpg" />
-    <AndroidResource Include="Resources\drawable\Back_button.xml" />
-    <AndroidResource Include="Resources\drawable\Back_normal.png" />
-    <AndroidResource Include="Resources\drawable\Back_pressed.png" />
     <AndroidResource Include="Resources\drawable\Document_button.xml" />
     <AndroidResource Include="Resources\drawable\Document_normal.png" />
     <AndroidResource Include="Resources\drawable\Document_pressed.png" />
@@ -155,8 +151,6 @@
     <AndroidResource Include="Resources\drawable\Ticket_pressed.png" />
     <AndroidResource Include="Resources\drawable\close.png" />
     <AndroidResource Include="Resources\drawable\open.png" />
-    <AndroidResource Include="Resources\layout\ProjectView.axml" />
-    <AndroidResource Include="Resources\layout\ProjectDetailView.axml" />
     <AndroidResource Include="Resources\layout\MilestoneList.axml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
@@ -172,13 +166,11 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout-xlarge-land\Home.axml" />
     <AndroidResource Include="Resources\layout\StatusRow.xml" />
-    <AndroidResource Include="Resources\layout\ContentLayout.axml" />
     <AndroidResource Include="Resources\layout\MenuLayout.axml" />
     <AndroidResource Include="Resources\drawable\action_menu.png" />
     <AndroidResource Include="Resources\drawable\icon1.png" />
     <AndroidResource Include="Resources\drawable\iconelse.png" />
     <AndroidResource Include="Resources\layout\Main.axml" />
-    <AndroidResource Include="Resources\drawable\Lock.png" />
     <AndroidResource Include="Resources\drawable\Documents.png" />
     <AndroidResource Include="Resources\drawable\Issues.png" />
     <AndroidResource Include="Resources\drawable\Milestones.png" />
@@ -188,8 +180,17 @@
     <AndroidResource Include="Resources\layout\EditTask.axml" />
     <AndroidResource Include="Resources\layout\TaskList.axml" />
     <AndroidResource Include="Resources\layout\TaskListView.axml" />
-    <AndroidResource Include="Resources\layout\TaskView.axml" />
     <AndroidResource Include="Resources\layout\OpenTaskView.axml" />
+    <AndroidResource Include="Resources\layout\MainContentLayout.axml" />
+    <AndroidResource Include="Resources\layout\Project.axml" />
+    <AndroidResource Include="Resources\layout\ProjectDetailLayout.axml" />
+    <AndroidResource Include="Resources\drawable\Lock_button.xml" />
+    <AndroidResource Include="Resources\drawable\Lock_normal.png" />
+    <AndroidResource Include="Resources\drawable\Lock_pressed.png" />
+    <AndroidResource Include="Resources\drawable\Back_button.xml" />
+    <AndroidResource Include="Resources\drawable\Back_normal.png" />
+    <AndroidResource Include="Resources\drawable\Back_pressed.png" />
+    <AndroidResource Include="Resources\layout\Task.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

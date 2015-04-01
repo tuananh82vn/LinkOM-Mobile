@@ -27,7 +27,7 @@
                 android:layout_margin="4dp"
                 android:background="@drawable/Back_button" />
             <TextView
-                android:text="Task"
+                android:text="Project"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="260dp"
                 android:layout_height="fill_parent"
@@ -51,7 +51,7 @@
         android:id="@+id/view2"
         android:background="#ff609ec1" />
     <ListView
-        android:id="@+id/TaskListView"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

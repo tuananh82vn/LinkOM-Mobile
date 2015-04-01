@@ -50,15 +50,17 @@ namespace LinkOM
 
 			SetContentView (Resource.Layout.AddTask);
 
-			ImageButton bt_Back = FindViewById<ImageButton>(Resource.Id.bt_Back);
-			bt_Back.Click += btBackClick;
+			var BackButton = FindViewById(Resource.Id.BackButton);
+			BackButton.Click += btBackClick;
 
 			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
+			st_Status.Prompt= "Select...";
 			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
 			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			st_Status.Adapter = StatusAdapter;
 
 			Spinner st_Priority = FindViewById<Spinner> (Resource.Id.sp_Priority);
+			st_Priority.Prompt= "Select...";
 			var PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
 			PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			st_Priority.Adapter = PriorityAdapter;
@@ -95,8 +97,6 @@ namespace LinkOM
 			//Handle Project Spinner
 
 			TokenNumber = Settings.Token;
-
-			int ProjectId = Intent.GetIntExtra ("ProjectId",0);
 
 			string url = Settings.InstanceURL;
 
@@ -136,11 +136,9 @@ namespace LinkOM
 			projectList = new ProjectSpinnerAdapter (this,ProjectList.Items);
 
 			Spinner sp_Project = FindViewById<Spinner> (Resource.Id.sp_Project);
-			//var ProjectAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
+			sp_Project.Prompt= "Select Project";
 			sp_Project.Adapter = projectList;
 
-			if(ProjectId!=0)
-			sp_Project.SetSelection(projectList.getPositionById(ProjectId)); 
 		}
 
 		public void btBackClick(object sender, EventArgs e)

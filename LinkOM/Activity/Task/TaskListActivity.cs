@@ -26,8 +26,7 @@ namespace LinkOM
 
 			SetContentView (Resource.Layout.TaskListView);
 
-			ImageButton buttonBack = FindViewById<ImageButton>(Resource.Id.bt_Back);
-
+			var buttonBack = FindViewById(Resource.Id.BackButton);
 			buttonBack.Click += btBackClick;
 
 			StatusId= Intent.GetIntExtra ("StatusId",0);
@@ -91,11 +90,6 @@ namespace LinkOM
 				}
 			}
 		}
-
-//		protected override void OnResume(){
-//			InitData ();
-//			base.OnResume();
-//		}
 
 		public void btBackClick(object sender, EventArgs e)
 		{

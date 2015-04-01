@@ -36,14 +36,14 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
-			SetContentView (Resource.Layout.TaskView);
+			SetContentView (Resource.Layout.Task);
 			// Create your application here
 
-			ImageButton button = FindViewById<ImageButton>(Resource.Id.bt_Back);
-			button.Click += btBackClick;
+			var BackButton = FindViewById(Resource.Id.BackButton);
+			BackButton.Click += btBackClick;
 
-			bt_Add = FindViewById<ImageButton>(Resource.Id.bt_Add);
-			bt_Add.Click += btAddClick;
+			var AddButton = FindViewById(Resource.Id.AddButton);
+			AddButton.Click += btAddClick;
 
 			bt_Open = FindViewById<Button>(Resource.Id.bt_Open);
 			bt_Open.Click += btOpenClick;
@@ -59,7 +59,6 @@ namespace LinkOM
 
 			bt_Query = FindViewById<Button>(Resource.Id.bt_Query);
 			bt_Query.Click += QueryTaskClick;
-
 
 			progress = new ProgressDialog (this);
 			progress.Indeterminate = true;

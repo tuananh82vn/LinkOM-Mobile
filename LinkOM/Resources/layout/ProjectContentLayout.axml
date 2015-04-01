@@ -23,26 +23,25 @@
             <View
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:id="@+id/BackButton"
+                android:id="@+id/MenuButton"
                 android:layout_margin="4dp"
-                android:background="@drawable/Back_button" />
+                android:background="@drawable/action_menu" />
             <TextView
-                android:text="Task"
+                android:text="Link-OM"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:layout_width="260dp"
+                android:layout_width="258.7dp"
                 android:layout_height="fill_parent"
                 android:id="@+id/textView2"
                 android:gravity="center"
                 android:textColor="#fff6f6f6"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="0.0dp"
-                android:textSize="25dp" />
+                android:layout_marginRight="0.0dp" />
             <View
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:id="@+id/AddButton"
-                android:background="@drawable/Add_button"
-                android:layout_marginTop="9dp" />
+                android:layout_width="40dp"
+                android:layout_height="33.5dp"
+                android:id="@+id/SignOutButton"
+                android:layout_margin="6dp"
+                android:background="@drawable/Lock" />
         </LinearLayout>
     </FrameLayout>
     <View
@@ -51,7 +50,7 @@
         android:id="@+id/view2"
         android:background="#ff609ec1" />
     <ListView
-        android:id="@+id/TaskListView"
+        android:id="@+id/ProjectListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

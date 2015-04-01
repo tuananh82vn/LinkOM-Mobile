@@ -49,8 +49,8 @@ namespace LinkOM
 
 			//Init UI
 
-			ImageButton bt_Back = FindViewById<ImageButton>(Resource.Id.bt_Back);
-			bt_Back.Click += btBackClick;
+			var  BackButton = FindViewById(Resource.Id.BackButton);
+			BackButton.Click += btBackClick;
 
 			Button bt_Save = FindViewById<Button>(Resource.Id.bt_Save);
 			bt_Save.Click += btSaveClick;
