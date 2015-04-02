@@ -65,6 +65,9 @@
       <HintPath>..\Components\xamandroidsupportv4-18-21.0.3.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android.Export" />
+    <Reference Include="com.alliance.calendar">
+      <HintPath>..\Components\alliance-calendar-component-1.0\lib\android\com.alliance.calendar.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -107,6 +110,9 @@
     <Compile Include="UIControl\SwipeRefreshLayout.cs" />
     <Compile Include="UIControl\MyAnimation.cs" />
     <Compile Include="Activity\Issues\IssuesActivity.cs" />
+    <Compile Include="Activity\Milestones\MilestonesActivity.cs" />
+    <Compile Include="Helper\JavaHolder.cs" />
+    <Compile Include="Helper\ObjectExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -200,6 +206,8 @@
     <AndroidResource Include="Resources\drawable\Profile.png" />
     <AndroidResource Include="Resources\drawable\Server.png" />
     <AndroidResource Include="Resources\layout-xlarge-land\Main.axml" />
+    <AndroidResource Include="Resources\layout\Milestones.axml" />
+    <AndroidResource Include="Resources\drawable\edit_text_style.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -226,6 +234,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
       <Version>21.0.3.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="alliance-calendar-component">
+      <Version>1.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

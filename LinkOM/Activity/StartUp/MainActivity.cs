@@ -118,7 +118,8 @@ namespace LinkOM
 
 		public void bt_MilestoneClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(MilestonesActivity));
+			StartActivity (activity);
 		}
 
 		public void bt_IssuesClick(object sender, EventArgs e)

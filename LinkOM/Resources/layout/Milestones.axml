@@ -27,7 +27,7 @@
                 android:layout_margin="4dp"
                 android:background="@drawable/Back_button" />
             <TextView
-                android:text="Task"
+                android:text="Milestone"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="260dp"
                 android:layout_height="fill_parent"
@@ -40,8 +40,8 @@
             <View
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:id="@+id/SearchButton"
-                android:background="@drawable/Search_button"
+                android:id="@+id/AddButton"
+                android:background="@drawable/Add_button"
                 android:layout_marginTop="9dp" />
         </LinearLayout>
     </FrameLayout>
@@ -50,28 +50,16 @@
         android:layout_height="1dp"
         android:id="@+id/view2"
         android:background="#ff609ec1" />
-    <FrameLayout
+    <LinearLayout
         android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <LinkOM.ScrollChildSwipeRefreshLayout
-            android:id="@+id/refresher"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffffff">
-            <ListView
-                android:id="@+id/TaskListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinkOM.ScrollChildSwipeRefreshLayout>
-        <EditText
-            android:id="@+id/etSearch"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="@drawable/edit_text_style"
-            android:hint="Search"
-            android:textColor="#000"
-            android:imeOptions="actionSearch"
-            android:inputType="text" />
-    </FrameLayout>
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout2">
+        <com.alliance.calendar.CustomCalendar
+            android:id="@+id/CalendarControl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
 </LinearLayout>

@@ -12,11 +12,13 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V4.Widget;
 using System.Threading.Tasks;
+using Android.Views.InputMethods;
+using Android.Text;
 
 namespace LinkOM
 {
 	[Activity (Label = "TaskList")]			
-	public class TaskListActivity : Activity
+	public class TaskListActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public List<TaskObject> _TaskList;
 		public TaskListAdapter taskList;
@@ -24,14 +26,31 @@ namespace LinkOM
 		public SwipeRefreshLayout refresher;
 		public bool loading;
 
+		private EditText mSearch;
+		private bool mAnimatedDown;
+		private bool mIsAnimating;
+		public ListView taskListView ;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			SetContentView (Resource.Layout.TaskListContainer);
 
+			taskListView = FindViewById<ListView> (Resource.Id.TaskListView);
+
+			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
+			mSearch.Alpha = 0;
+			mSearch.SetOnEditorActionListener (this);
+			mSearch.TextChanged += InputSearchOnTextChanged;
+
+
+
 			var buttonBack = FindViewById(Resource.Id.BackButton);
 			buttonBack.Click += btBackClick;
+
+			var SearchButton = FindViewById(Resource.Id.SearchButton);
+			SearchButton.Click += btSearchClick;
 
 			StatusId= Intent.GetIntExtra ("StatusId",0);
 
@@ -42,6 +61,11 @@ namespace LinkOM
 			refresher.SetColorScheme (Resource.Color.xam_green,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_dark_blue);
 
 			refresher.Refresh += HandleRefresh;
+		}
+
+		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
+		{
+			taskList.Filter.InvokeFilter(mSearch.Text);
 		}
 
 		async void HandleRefresh (object sender, EventArgs e)
@@ -103,8 +127,6 @@ namespace LinkOM
 
 						taskList = new TaskListAdapter (this, obj.Items);
 
-						var taskListView = FindViewById<ListView> (Resource.Id.TaskListView);
-
 						taskListView.Adapter = taskList;
 
 						taskListView.ItemClick += listView_ItemClick;
@@ -124,6 +146,58 @@ namespace LinkOM
 			OnBackPressed ();
 		}
 
+		public void btSearchClick(object sender, EventArgs e)
+		{
+			if (!mAnimatedDown)
+			{
+				//Listview is up
+				MyAnimation anim = new MyAnimation(taskListView, taskListView.Height - mSearch.Height);
+				anim.Duration = 500;
+				taskListView.StartAnimation(anim);
+				anim.AnimationStart += anim_AnimationStartDown;
+				anim.AnimationEnd += anim_AnimationEndDown;
+				refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+			}
+
+			else
+			{
+				//Listview is down
+				MyAnimation anim = new MyAnimation(taskListView, taskListView.Height + mSearch.Height);
+				anim.Duration = 500;
+				taskListView.StartAnimation(anim);
+				anim.AnimationStart += anim_AnimationStartUp;
+				anim.AnimationEnd += anim_AnimationEndUp;
+				refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+			}
+
+			mAnimatedDown = !mAnimatedDown;
+		}
+
+		void anim_AnimationEndUp(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
+		{
+			mIsAnimating = false;
+			mSearch.ClearFocus();
+			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
+			inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
+		}
+
+		void anim_AnimationEndDown(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
+		{
+			mIsAnimating = false;
+		}
+
+		void anim_AnimationStartDown(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
+		{
+			mIsAnimating = true;
+			mSearch.Animate().AlphaBy(1.0f).SetDuration(500).Start();
+		}
+
+		void anim_AnimationStartUp(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
+		{
+			mIsAnimating = true;
+			mSearch.Animate().AlphaBy(-1.0f).SetDuration(300).Start();
+		}
+
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 
@@ -137,6 +211,19 @@ namespace LinkOM
 
 			this.Finish ();
 
+		}
+
+		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
+		{
+			//go edit action will login
+			if (actionId == ImeAction.Search) {
+				if (!string.IsNullOrEmpty (mSearch.Text)) {
+					taskList.Filter.InvokeFilter(mSearch.Text);
+				} 
+				return true;
+				//next action will set focus to password edit text.
+			} 
+			return false;
 		}
 	}
 }

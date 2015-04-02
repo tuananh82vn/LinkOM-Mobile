@@ -3,20 +3,38 @@ using Android.Widget;
 using System.Collections.Generic;
 using Android.App;
 using Android.Views;
+using Java.Lang;
+using Object = Java.Lang.Object; 
+using System.Linq;
 
 namespace LinkOM
 {
-	public class TaskListAdapter : BaseAdapter
+	public class TaskListAdapter : BaseAdapter<TaskObject>, IFilterable
 	{
-		List<TaskObject> _TaskList;
+		private List<TaskObject> _originalData;
+		private List<TaskObject> _TaskList;
 
 		Activity _activity;
+
+		public Filter Filter { get; private set; }
 
 		public TaskListAdapter (Activity activity, List<TaskObject> data)
 		{
 			_activity = activity;
 			_TaskList = data;
+
+			Filter = new TaskFilter(this);
 		}
+
+//		public override long GetItemId(int position)
+//		{
+//			return position;
+//		} 
+
+		public override TaskObject this[int position]
+		{
+			get { return _TaskList[position]; }
+		} 
 
 		public override int Count 
 		{
@@ -40,6 +58,13 @@ namespace LinkOM
 		{
 			return _TaskList[position];
 		}
+
+		public override void NotifyDataSetChanged()
+		{
+			// If you are using cool stuff like sections
+			// remember to update the indices here!
+			base.NotifyDataSetChanged();
+		} 
 
 
 		public override long GetItemId (int position) {
@@ -85,10 +110,58 @@ namespace LinkOM
 			var Status = view.FindViewById<TextView> (Resource.Id.tv_Status);
 			Status.Text = _TaskList [position].StatusName;
 
-				
-
 			return view;
 		}
+
+		private class TaskFilter : Filter
+		{
+			private readonly TaskListAdapter _adapter;
+			public TaskFilter(TaskListAdapter adapter)
+			{
+				_adapter = adapter;
+			}
+
+			protected override FilterResults PerformFiltering(ICharSequence constraint)
+			{
+				var returnObj = new FilterResults();
+
+				var results = new List<TaskObject>();
+
+				if (_adapter._originalData == null)
+					_adapter._originalData = _adapter._TaskList; 
+
+				if (constraint == null) return returnObj;
+
+				if (_adapter._originalData != null && _adapter._originalData.Any())
+				{
+					// Compare constraint to all names lowercased.
+					// It they are contained they are added to results.
+
+
+					results.AddRange(_adapter._originalData.Where(t => t.Title.ToLower().Contains(constraint.ToString().ToLower())));
+				}
+
+				// Nasty piece of .NET to Java wrapping, be careful with this!
+				returnObj.Values = FromArray(results.Select(r => r.ToJavaObject()).ToArray());
+				returnObj.Count = results.Count;
+
+				constraint.Dispose();
+
+				return returnObj;
+			}
+
+			protected override void PublishResults(ICharSequence constraint, FilterResults results)
+			{
+				using (var values = results.Values)
+					_adapter._TaskList = values.ToArray<Object>()
+						.Select(r => r.ToNetObject<TaskObject>()).ToList();
+				_adapter.NotifyDataSetChanged();
+
+				// Don't do this and see GREF counts rising
+				constraint.Dispose();
+				results.Dispose();
+			}
+		} 
 	}
 }
 
