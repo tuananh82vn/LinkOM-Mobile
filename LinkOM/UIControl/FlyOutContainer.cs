@@ -150,6 +150,7 @@ namespace LinkOM
 
 		void UpdateParallax ()
 		{
+			Console.WriteLine ("Update Parallax");
 			var openness = ((float)(MaxOffset - contentOffsetX)) / MaxOffset;
 			MenuView.OffsetLeftAndRight ((int)(-openness * MaxOffset * ParallaxSpeedRatio) - MenuView.Left);
 		}

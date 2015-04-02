@@ -128,5 +128,5 @@
         p1:layout_height="match_parent"
         p1:layout_below="@id/relativeLayout2"
         p1:id="@+id/relativeLayout3"
-        p1:background="#ffffb4b4" />
+        p1:background="#ffffffff" />
 </RelativeLayout>

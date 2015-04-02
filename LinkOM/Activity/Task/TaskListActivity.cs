@@ -28,7 +28,7 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
-			SetContentView (Resource.Layout.TaskListView);
+			SetContentView (Resource.Layout.TaskListContainer);
 
 			var buttonBack = FindViewById(Resource.Id.BackButton);
 			buttonBack.Click += btBackClick;

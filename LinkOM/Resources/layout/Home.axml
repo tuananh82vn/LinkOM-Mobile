@@ -60,11 +60,11 @@
                 p1:layout_marginRight="5.0dp"
                 p1:layout_marginTop="10.0dp" />
             <ImageButton
-                p1:id="@+id/bt_Milestone"
+                p1:id="@+id/bt_Issues"
                 p1:layout_column="1"
                 p1:layout_width="149dp"
                 p1:layout_height="149dp"
-                p1:background="@drawable/Milestone_button"
+                p1:background="@drawable/Issues_button"
                 p1:layout_marginLeft="5.0dp"
                 p1:layout_marginRight="10.0dp"
                 p1:layout_marginTop="10.0dp" />
@@ -72,11 +72,11 @@
         <TableRow
             p1:id="@+id/tableRow3">
             <ImageButton
-                p1:id="@+id/bt_Issues"
+                p1:id="@+id/bt_Milestone"
                 p1:layout_column="0"
                 p1:layout_width="149dp"
                 p1:layout_height="149dp"
-                p1:background="@drawable/Issues_button"
+                p1:background="@drawable/Milestone_button"
                 p1:layout_marginLeft="25.0dp"
                 p1:layout_marginRight="5.0dp"
                 p1:layout_marginTop="10.0dp" />

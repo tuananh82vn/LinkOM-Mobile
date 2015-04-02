@@ -32,7 +32,7 @@ namespace LinkOM
 		public Button bt_Closed;
 		public Button bt_Wating;
 		public Button bt_Progress;
-		public Button bt_Query;
+		public Button bt_Hold;
 		public ProgressDialog progress;
 
 		protected override void OnCreate (Bundle bundle)
@@ -49,19 +49,24 @@ namespace LinkOM
 			AddButton.Click += btAddClick;
 
 			bt_Open = FindViewById<Button>(Resource.Id.bt_Open);
+			bt_Open.SetBackgroundColor (Color.Blue);
 			bt_Open.Click += btOpenClick;
 
 			bt_Closed = FindViewById<Button>(Resource.Id.bt_Close);
+			bt_Closed.SetBackgroundColor (Color.Green);
 			bt_Closed.Click += btClosedClick;
 
 			bt_Wating = FindViewById<Button>(Resource.Id.bt_Waiting);
+			bt_Wating.SetBackgroundColor (Color.YellowGreen);
 			bt_Wating.Click += WaitingTaskClick;
 
 			bt_Progress = FindViewById<Button>(Resource.Id.bt_Progress);
+			bt_Progress.SetBackgroundColor (Color.Orange);
 			bt_Progress.Click += ProgressTaskClick;
 
-			bt_Query = FindViewById<Button>(Resource.Id.bt_Query);
-			bt_Query.Click += QueryTaskClick;
+			bt_Hold = FindViewById<Button>(Resource.Id.bt_Hold);
+			bt_Hold.SetBackgroundColor (Color.BlueViolet);
+			bt_Hold.Click += HoldTaskClick;
 
 			progress = new ProgressDialog (this);
 			progress.Indeterminate = true;
@@ -196,7 +201,7 @@ namespace LinkOM
 						RunOnUiThread (() => bt_Closed.Text =  ClosedTask);
 						RunOnUiThread (() => bt_Wating.Text =  WaitingTask);
 						RunOnUiThread (() => bt_Progress.Text =  ProgressTask);
-						RunOnUiThread (() => bt_Query.Text =  OnHoldTask);
+						RunOnUiThread (() => bt_Hold.Text =  OnHoldTask);
 
 						RunOnUiThread (() => progress.Dismiss());
 					} 
@@ -243,26 +248,13 @@ namespace LinkOM
 			StartActivity (activity);
 		}
 
-		public void QueryTaskClick(object sender, EventArgs e)
+		public void HoldTaskClick(object sender, EventArgs e)
 		{
 			var activity = new Intent (this, typeof(TaskListActivity));
 			activity.PutExtra ("StatusId", 5);
 			StartActivity (activity);
 		}
-//
-//		public void CompleteTaskClick(object sender, EventArgs e)
-//		{
-//			var activity = new Intent (this, typeof(TaskListActivity));
-//			activity.PutExtra ("StatusId", 5);
-//			StartActivity (activity);
-//		}
-//
-//		public void FutureTaskClick(object sender, EventArgs e)
-//		{
-//			var activity = new Intent (this, typeof(TaskListActivity));
-//			activity.PutExtra ("StatusId", 6);
-//			StartActivity (activity);
-//		}
+
 
 		private int CheckTask(string status, List<TaskObject>  list_Task){
 			int count = 0;

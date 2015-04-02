@@ -41,7 +41,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:id="@+id/AddButton"
-                android:background="@drawable/Add_button"
+                android:background="@drawable/Search_button"
                 android:layout_marginTop="9dp" />
         </LinearLayout>
     </FrameLayout>

@@ -50,13 +50,14 @@ namespace LinkOM
 			progress = new ProgressDialog (this);
 			progress.Indeterminate = true;
 			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+			progress.SetMessage ("Please wait... 5");
 
 			_timer = new System.Timers.Timer();
 			//Trigger event every second
 			_timer.Interval = 1000;
 			_timer.Elapsed += OnTimedEvent;
 			//count down 5 seconds
-			_countSeconds = 10;
+			_countSeconds = 5;
 
 
 
@@ -69,7 +70,7 @@ namespace LinkOM
 
 			//Update visual representation here
 			//Remember to do it on UI thread
-			RunOnUiThread (() => progress.SetMessage(_countSeconds.ToString()));
+			RunOnUiThread (() => progress.SetMessage("Please wait... "+_countSeconds.ToString()));
 
 			if (_countSeconds == 0)
 			{

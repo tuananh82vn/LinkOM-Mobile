@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView1"
         android:textColor="#ffffffff"
-        android:padding="4dp" />
+        android:padding="4dp"
+        android:textStyle="bold" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dp"
@@ -208,6 +209,24 @@
         android:layout_gravity="center"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="14dp" />
+    <TextView
+        android:text="Setting"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:textColor="#ffffffff"
+        android:padding="4dp"
+        android:layout_marginTop="10.8dp"
+        android:textStyle="bold" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:id="@+id/view1"
+        android:background="#ffc1c1c1"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:minWidth="25px"
@@ -217,12 +236,74 @@
         android:id="@+id/menu_ChangeServer"
         android:layout_margin="4dp">
         <ImageView
-            android:src="@drawable/iconelse"
+            android:src="@drawable/Server"
             android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2" />
         <TextView
             android:text="Change Server"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_ChangeServer"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/Profile"
+            android:layout_width="37dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+        <TextView
+            android:text="Profile"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:textColor="#fff8f8f8" />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view3"
+        android:background="#abe4e4e4"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="14dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/menu_ChangeServer"
+        android:layout_margin="4dp">
+        <ImageView
+            android:src="@drawable/Help"
+            android:layout_width="37dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" />
+        <TextView
+            android:text="Help"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

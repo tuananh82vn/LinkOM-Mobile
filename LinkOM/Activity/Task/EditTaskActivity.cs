@@ -45,7 +45,7 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
-			SetContentView (Resource.Layout.EditTask);
+			SetContentView (Resource.Layout.TaskEdit);
 
 			//Init UI
 

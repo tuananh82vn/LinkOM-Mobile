@@ -99,20 +99,20 @@
     <Compile Include="Model\ViewModel\Status.cs" />
     <Compile Include="Model\ReceiveModel\JsonData.cs" />
     <Compile Include="Model\ReceiveModel\StatusList.cs" />
-    <Compile Include="FlyOutContainer.cs" />
     <Compile Include="Activity\StartUp\MainActivity.cs" />
     <Compile Include="Model\ReceiveModel\TaskList.cs" />
     <Compile Include="Model\ViewModel\TaskObject.cs" />
-    <Compile Include="SwipeRefreshLayout.cs" />
+    <Compile Include="Activity\Ticket\TicketActivity.cs" />
+    <Compile Include="UIControl\FlyOutContainer.cs" />
+    <Compile Include="UIControl\SwipeRefreshLayout.cs" />
+    <Compile Include="UIControl\MyAnimation.cs" />
+    <Compile Include="Activity\Issues\IssuesActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\_SettingsStarted.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Home.axml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\Login.axml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
@@ -168,7 +168,6 @@
     <AndroidResource Include="Resources\drawable\RoundButton.xml" />
     <AndroidResource Include="Resources\drawable-land\Background.jpg" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\layout-xlarge-land\Home.axml" />
     <AndroidResource Include="Resources\layout\StatusRow.xml" />
     <AndroidResource Include="Resources\layout\MenuLayout.axml" />
     <AndroidResource Include="Resources\drawable\action_menu.png" />
@@ -180,10 +179,7 @@
     <AndroidResource Include="Resources\drawable\Milestones.png" />
     <AndroidResource Include="Resources\drawable\Tasks.png" />
     <AndroidResource Include="Resources\drawable\Tickets.png" />
-    <AndroidResource Include="Resources\layout\AddTask.axml" />
-    <AndroidResource Include="Resources\layout\EditTask.axml" />
     <AndroidResource Include="Resources\layout\TaskList.axml" />
-    <AndroidResource Include="Resources\layout\TaskListView.axml" />
     <AndroidResource Include="Resources\layout\OpenTaskView.axml" />
     <AndroidResource Include="Resources\layout\MainContentLayout.axml" />
     <AndroidResource Include="Resources\layout\Project.axml" />
@@ -196,6 +192,14 @@
     <AndroidResource Include="Resources\drawable\Back_pressed.png" />
     <AndroidResource Include="Resources\layout\Task.axml" />
     <AndroidResource Include="Resources\values\Theme.xml" />
+    <AndroidResource Include="Resources\layout\Ticket.axml" />
+    <AndroidResource Include="Resources\layout\TaskEdit.axml" />
+    <AndroidResource Include="Resources\layout\TaskAdd.axml" />
+    <AndroidResource Include="Resources\layout\TaskListContainer.axml" />
+    <AndroidResource Include="Resources\layout\Issues.axml" />
+    <AndroidResource Include="Resources\drawable\Profile.png" />
+    <AndroidResource Include="Resources\drawable\Server.png" />
+    <AndroidResource Include="Resources\layout-xlarge-land\Main.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -240,5 +244,10 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Resources\drawable-land\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Activity\Ticket\" />
+    <Folder Include="Activity\Issues\" />
+    <Folder Include="Activity\Milestones\" />
+    <Folder Include="Activity\Document\" />
+    <Folder Include="UIControl\" />
   </ItemGroup>
 </Project>

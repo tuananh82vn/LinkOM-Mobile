@@ -27,6 +27,7 @@ namespace LinkOM
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
+
 			var menu = FindViewById<FlyOutContainer> (Resource.Id.MainContainer);
 
 			var menuButton = FindViewById (Resource.Id.MenuButton);
@@ -111,7 +112,8 @@ namespace LinkOM
 
 		public void bt_TicketClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(TicketActivity));
+			StartActivity (activity);
 		}
 
 		public void bt_MilestoneClick(object sender, EventArgs e)
@@ -121,7 +123,8 @@ namespace LinkOM
 
 		public void bt_IssuesClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(IssuesActivity));
+			StartActivity (activity);
 		}
 
 		public void bt_DocumentClick(object sender, EventArgs e)

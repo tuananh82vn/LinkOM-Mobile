@@ -27,7 +27,7 @@
                 android:layout_margin="4dp"
                 android:background="@drawable/Back_button" />
             <TextView
-                android:text="Task"
+                android:text="Ticket"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="260dp"
                 android:layout_height="fill_parent"
@@ -111,86 +111,6 @@
                 android:layout_height="70dp"
                 android:layout_width="wrap_content">
                 <TextView
-                    android:text="Closed"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_width="280.5dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView11"
-                    android:gravity="center_vertical"
-                    android:background="#ffffffff"
-                    android:textColor="#ff000000"
-                    android:textStyle="normal"
-                    android:textSize="20dp"
-                    android:layout_marginLeft="10dp" />
-                <Button
-                    android:id="@+id/bt_Close"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/RoundButton"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textColor="#fff" />
-            </LinearLayout>
-        </TableRow>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ff609ec1" />
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tableRow1"
-            android:layout_marginBottom="1dp"
-            android:layout_marginTop="1dp">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout3"
-                android:layout_height="70dp"
-                android:layout_width="wrap_content">
-                <TextView
-                    android:text="Waiting"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_width="280.5dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView11"
-                    android:gravity="center_vertical"
-                    android:background="#ffffffff"
-                    android:textColor="#ff000000"
-                    android:textStyle="normal"
-                    android:textSize="20dp"
-                    android:layout_marginLeft="10dp" />
-                <Button
-                    android:id="@+id/bt_Waiting"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/RoundButton"
-                    android:gravity="center"
-                    android:text="0"
-                    android:textColor="#fff" />
-            </LinearLayout>
-        </TableRow>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ff609ec1" />
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tableRow1"
-            android:layout_marginBottom="1dp"
-            android:layout_marginTop="1dp">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout3"
-                android:layout_height="70dp"
-                android:layout_width="wrap_content">
-                <TextView
                     android:text="In Progress"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="280.5dp"
@@ -231,7 +151,7 @@
                 android:layout_height="70dp"
                 android:layout_width="wrap_content">
                 <TextView
-                    android:text="On Hold"
+                    android:text="Waiting On Client"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:layout_width="280.5dp"
                     android:layout_height="match_parent"
@@ -243,7 +163,127 @@
                     android:textSize="20dp"
                     android:layout_marginLeft="10dp" />
                 <Button
-                    android:id="@+id/bt_Hold"
+                    android:id="@+id/bt_Waiting"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/RoundButton"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#fff" />
+            </LinearLayout>
+        </TableRow>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/view1"
+            android:background="#ff609ec1" />
+        <TableRow
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout3"
+                android:layout_height="70dp"
+                android:layout_width="wrap_content">
+                <TextView
+                    android:text="Rejected"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="280.5dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView11"
+                    android:gravity="center_vertical"
+                    android:background="#ffffffff"
+                    android:textColor="#ff000000"
+                    android:textStyle="normal"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp" />
+                <Button
+                    android:id="@+id/bt_Reject"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/RoundButton"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#fff" />
+            </LinearLayout>
+        </TableRow>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/view1"
+            android:background="#ff609ec1" />
+        <TableRow
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout3"
+                android:layout_height="70dp"
+                android:layout_width="wrap_content">
+                <TextView
+                    android:text="Reopen"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="280.5dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView11"
+                    android:gravity="center_vertical"
+                    android:background="#ffffffff"
+                    android:textColor="#ff000000"
+                    android:textStyle="normal"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp" />
+                <Button
+                    android:id="@+id/bt_Reopen"
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/RoundButton"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#fff" />
+            </LinearLayout>
+        </TableRow>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:id="@+id/view1"
+            android:background="#ff609ec1" />
+        <TableRow
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tableRow1"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout3"
+                android:layout_height="70dp"
+                android:layout_width="wrap_content">
+                <TextView
+                    android:text="Closed"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_width="280.5dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView11"
+                    android:gravity="center_vertical"
+                    android:background="#ffffffff"
+                    android:textColor="#ff000000"
+                    android:textStyle="normal"
+                    android:textSize="20dp"
+                    android:layout_marginLeft="10dp" />
+                <Button
+                    android:id="@+id/bt_Close"
                     android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/RoundButton"
