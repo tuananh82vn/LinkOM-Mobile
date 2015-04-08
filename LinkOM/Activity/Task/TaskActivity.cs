@@ -75,67 +75,6 @@ namespace LinkOM
 			progress.SetCancelable(false);
 			progress.Show();
 
-			//Get all status task
-
-//			string url2= url+"/api/TaskStatusList";
-//
-//			string results1= ConnectWebAPI.Request(url2,"");
-//
-//			if (results1 != null && results1 != "") {
-//
-//				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results1);
-//
-//				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
-
-//				if(statusList.Items.Count>0){
-//
-//					TableRow [] TableRowList = new TableRow [statusList.Items.Count];
-//
-//					LinearLayout [] LinearLayoutList = new LinearLayout [statusList.Items.Count];
-//
-//					TextView [] TextViewList = new TextView [statusList.Items.Count];
-//
-//					Button [] ButtonList = new Button [statusList.Items.Count];
-//
-//					for (int i = 1; i < statusList.Items.Count; i++) {
-//
-//
-//						TextViewList [i] = new TextView (this);
-//						ViewGroup.LayoutParams layoutParams_TextView = new ViewGroup.LayoutParams (120, 35);
-//						TextViewList [i].LayoutParameters = layoutParams_TextView;
-//						TextViewList [i].Gravity = GravityFlags.Center;
-//						TextViewList [i].SetBackgroundColor (Color.ParseColor ("#ff045FBC"));
-//						TextViewList [i].SetTextColor(Color.ParseColor("#ffffffff"));
-//						TextViewList [i].TextSize = 20;
-//						TextViewList [i].Text = statusList.Items [i].Name;
-//
-//						//						p1:layout_marginLeft="100dp"
-//						//						p1:textStyle="normal"
-//
-//						//						ButtonList [i] = new Button (this);
-//
-//						LinearLayoutList [i] = new LinearLayout (this);
-//						LinearLayout.LayoutParams layoutParams_Linear = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent,ViewGroup.LayoutParams.WrapContent);
-//						LinearLayoutList [i].LayoutParameters = layoutParams_Linear;
-//						LinearLayoutList [i].Orientation = Orientation.Horizontal;
-//
-//						LinearLayoutList [i].AddView (TextViewList [i],0);
-//
-//
-//						TableRowList [i] = new TableRow (this);
-//						TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(ViewGroup.LayoutParams.MatchParent,ViewGroup.LayoutParams.WrapContent);
-//						layoutParams_TableRow.TopMargin = 15;
-//						TableRowList [i] .LayoutParameters = layoutParams_TableRow;
-//
-//						TableRowList [i].AddView (LinearLayoutList [i],0);
-//
-//						linear.AddView (TableRowList [i]);
-//
-//					}
-//				}
-
-//			}
-
 			ThreadPool.QueueUserWorkItem (o => InitData ());
 
 		}

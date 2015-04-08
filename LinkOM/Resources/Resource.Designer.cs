@@ -568,8 +568,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f0a002a
 			public const int bt_Project = 2131361834;
 			
-			// aapt resource value: 0x7f0a00b1
-			public const int bt_Reject = 2131361969;
+			// aapt resource value: 0x7f0a00b2
+			public const int bt_Reject = 2131361970;
 			
 			// aapt resource value: 0x7f0a001e
 			public const int bt_Reopen = 2131361822;
@@ -685,6 +685,9 @@ namespace LinkOM
 			// aapt resource value: 0x7f0a009a
 			public const int linearLayout9 = 2131361946;
 			
+			// aapt resource value: 0x7f0a00b1
+			public const int linearLayout_Main = 2131361969;
+			
 			// aapt resource value: 0x7f0a0075
 			public const int list_Milestone = 2131361909;
 			
@@ -712,17 +715,17 @@ namespace LinkOM
 			// aapt resource value: 0x7f0a003e
 			public const int menu_Ticket = 2131361854;
 			
+			// aapt resource value: 0x7f0a00b4
+			public const int menu_help = 2131361972;
+			
+			// aapt resource value: 0x7f0a00b6
+			public const int menu_reset = 2131361974;
+			
 			// aapt resource value: 0x7f0a00b3
-			public const int menu_help = 2131361971;
+			public const int menu_search = 2131361971;
 			
 			// aapt resource value: 0x7f0a00b5
-			public const int menu_reset = 2131361973;
-			
-			// aapt resource value: 0x7f0a00b2
-			public const int menu_search = 2131361970;
-			
-			// aapt resource value: 0x7f0a00b4
-			public const int menu_server = 2131361972;
+			public const int menu_server = 2131361973;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int monday = 2131361792;
@@ -1099,6 +1102,9 @@ namespace LinkOM
 			
 			// aapt resource value: 0x7f030016
 			public const int Ticket = 2130903062;
+			
+			// aapt resource value: 0x7f030017
+			public const int Ticket_backup = 2130903063;
 			
 			static Layout()
 			{
