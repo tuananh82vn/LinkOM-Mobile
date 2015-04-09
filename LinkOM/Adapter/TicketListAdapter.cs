@@ -9,38 +9,38 @@ using System.Linq;
 
 namespace LinkOM
 {
-	public class TaskListAdapter : BaseAdapter<TaskObject>, IFilterable
+	public class TicketListAdapter : BaseAdapter<TicketObject>, IFilterable
 	{
-		private List<TaskObject> _originalData;
-		private List<TaskObject> _TaskList;
+		private List<TicketObject> _originalData;
+		private List<TicketObject> _TicketList;
 
 		Activity _activity;
 
 		public Filter Filter { get; private set; }
 
-		public TaskListAdapter (Activity activity, List<TaskObject> data)
+		public TicketListAdapter (Activity activity, List<TicketObject> data)
 		{
 			_activity = activity;
-			_TaskList = data;
+			_TicketList = data;
 
-			Filter = new TaskFilter(this);
+			Filter = new TicketFilter(this);
 		}
 
-		public override TaskObject this[int position]
+		public override TicketObject this[int position]
 		{
-			get { return _TaskList[position]; }
+			get { return _TicketList[position]; }
 		} 
 
 		public override int Count 
 		{
 			get 
-				{  
-					if (_TaskList == null)
-					{
-						return 0;
-					}
-					return _TaskList.Count; 
+			{  
+				if (_TicketList == null)
+				{
+					return 0;
 				}
+				return _TicketList.Count; 
+			}
 		}
 
 		public override Java.Lang.Object GetItem (int position) {
@@ -49,9 +49,9 @@ namespace LinkOM
 			return null;
 		}
 
-		public TaskObject GetItemAtPosition(int position)
+		public TicketObject GetItemAtPosition(int position)
 		{
-			return _TaskList[position];
+			return _TicketList[position];
 		}
 
 		public override void NotifyDataSetChanged()
@@ -63,11 +63,11 @@ namespace LinkOM
 
 
 		public override long GetItemId (int position) {
-			return long.Parse(_TaskList [position].Id.Value.ToString());
+			return long.Parse(_TicketList [position].Id.ToString());
 		}
 
 		public string GetItemName (int position) {
-			return _TaskList [position].Title;
+			return _TicketList [position].Title;
 		}
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
@@ -75,43 +75,43 @@ namespace LinkOM
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TaskList, parent, false);
 
 			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
-			TaskTitle.Text = _TaskList [position].Title;
+			TaskTitle.Text = _TicketList [position].Title;
 
 
 			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
-			TaskCode.Text = _TaskList [position].Code;
+			TaskCode.Text = _TicketList [position].Code;
 
 			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
-			ProjectName.Text = _TaskList [position].ProjectName;
+			ProjectName.Text = _TicketList [position].ProjectName;
 
 			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
-			StartDate.Text = _TaskList [position].StartDateString;
+			StartDate.Text = _TicketList [position].StartDateString;
 
 			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
-			EndDate.Text = _TaskList [position].EndDateString;
+			EndDate.Text = _TicketList [position].EndDateString;
 
 			var ActualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
-			ActualHours.Text = _TaskList [position].ActHours;
+			ActualHours.Text = _TicketList [position].ActHours;
 
 			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
-			AllocatedHours.Text = _TaskList [position].AllocatedHours;
+			AllocatedHours.Text = _TicketList [position].AllocatedHours.ToString();
 
 			var AssignTo = view.FindViewById<TextView> (Resource.Id.tv_AssignTo);
-			AssignTo.Text = _TaskList [position].AssignedTo;
+			AssignTo.Text = _TicketList [position].AssignedTo;
 
 			var Owner = view.FindViewById<TextView> (Resource.Id.tv_Owner);
-			Owner.Text = _TaskList [position].Owner;
+			Owner.Text = _TicketList [position].Owner;
 
 			var Status = view.FindViewById<TextView> (Resource.Id.tv_Status);
-			Status.Text = _TaskList [position].StatusName;
+			Status.Text = _TicketList [position].TicketStatusName;
 
 			return view;
 		}
 
-		private class TaskFilter : Filter
+		private class TicketFilter : Filter
 		{
-			private readonly TaskListAdapter _adapter;
-			public TaskFilter(TaskListAdapter adapter)
+			private readonly TicketListAdapter _adapter;
+			public TicketFilter(TicketListAdapter adapter)
 			{
 				_adapter = adapter;
 			}
@@ -120,10 +120,10 @@ namespace LinkOM
 			{
 				var returnObj = new FilterResults();
 
-				var results = new List<TaskObject>();
+				var results = new List<TicketObject>();
 
 				if (_adapter._originalData == null)
-					_adapter._originalData = _adapter._TaskList; 
+					_adapter._originalData = _adapter._TicketList; 
 
 				if (constraint == null) return returnObj;
 
@@ -148,8 +148,8 @@ namespace LinkOM
 			protected override void PublishResults(ICharSequence constraint, FilterResults results)
 			{
 				using (var values = results.Values)
-					_adapter._TaskList = values.ToArray<Object>()
-						.Select(r => r.ToNetObject<TaskObject>()).ToList();
+					_adapter._TicketList = values.ToArray<Object>()
+						.Select(r => r.ToNetObject<TicketObject>()).ToList();
 				_adapter.NotifyDataSetChanged();
 
 				// Don't do this and see GREF counts rising

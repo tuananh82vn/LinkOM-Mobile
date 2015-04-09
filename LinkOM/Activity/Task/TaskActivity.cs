@@ -18,22 +18,17 @@ using Android.Graphics;
 using System.Threading.Tasks;
 using System.Threading;
 using Android.Support.V4.Widget;
+using Android.Util;
 
 namespace LinkOM
 {
 	[Activity (Label = "Task")]				
 	public class TaskActivity : Activity
 	{
-		public bool loading;
-
-		public TaskList obj ;
-		public ImageButton bt_Add;
-		public Button bt_Open;
-		public Button bt_Closed;
-		public Button bt_Wating;
-		public Button bt_Progress;
-		public Button bt_Hold;
+		public LinearLayout LinearLayout_Master;
 		public ProgressDialog progress;
+		public List<Button> buttonList;
+		public TaskList taskList;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -45,29 +40,6 @@ namespace LinkOM
 			var BackButton = FindViewById(Resource.Id.BackButton);
 			BackButton.Click += btBackClick;
 
-			var AddButton = FindViewById(Resource.Id.AddButton);
-			AddButton.Click += btAddClick;
-
-			bt_Open = FindViewById<Button>(Resource.Id.bt_Open);
-			bt_Open.SetBackgroundColor (Color.Blue);
-			bt_Open.Click += btOpenClick;
-
-			bt_Closed = FindViewById<Button>(Resource.Id.bt_Close);
-			bt_Closed.SetBackgroundColor (Color.Green);
-			bt_Closed.Click += btClosedClick;
-
-			bt_Wating = FindViewById<Button>(Resource.Id.bt_Waiting);
-			bt_Wating.SetBackgroundColor (Color.YellowGreen);
-			bt_Wating.Click += WaitingTaskClick;
-
-			bt_Progress = FindViewById<Button>(Resource.Id.bt_Progress);
-			bt_Progress.SetBackgroundColor (Color.Orange);
-			bt_Progress.Click += ProgressTaskClick;
-
-			bt_Hold = FindViewById<Button>(Resource.Id.bt_Hold);
-			bt_Hold.SetBackgroundColor (Color.BlueViolet);
-			bt_Hold.Click += HoldTaskClick;
-
 			progress = new ProgressDialog (this);
 			progress.Indeterminate = true;
 			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
@@ -77,123 +49,111 @@ namespace LinkOM
 
 			ThreadPool.QueueUserWorkItem (o => InitData ());
 
-		}
 
+		}
 
 		public void InitData ()
 		{
+			string url = Settings.InstanceURL;
+
+			//Load data
+			string url_Task= url+"/api/TaskList";
+
+			List<objSort> objSort = new List<objSort>{
+				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
+				new objSort{ColumnName = "T.EndDate", Direction = "2"}
+			};
 
 
-				string url = Settings.InstanceURL;
-				// Get all Task
-				url=url+"/api/TaskList";
+			var objTask = new
+			{
+				Title = string.Empty,
+				AssignedToId = string.Empty,
+				ClientId = string.Empty,
+				TaskStatusId = string.Empty,
+				PriorityId = string.Empty,
+				DueBeforeDate = string.Empty,
+				DepartmentId = string.Empty,
+				ProjectId = string.Empty,
+				AssignByMe = true,
+				Filter = string.Empty,
+				Label = string.Empty,
+			};
 
-				List<objSort> objSort = new List<objSort>{
-					new objSort{ColumnName = "T.ProjectName", Direction = "1"},
-					new objSort{ColumnName = "T.EndDate", Direction = "2"}
-				};
-
-
-				var objTask = new
+			var objsearch = (new
 				{
-					Title = string.Empty,
-					AssignedToId = string.Empty,
-					ClientId = string.Empty,
-					TaskStatusId = string.Empty,
-					PriorityId = string.Empty,
-					DueBeforeDate = string.Empty,
-					DepartmentId = string.Empty,
-					ProjectId = string.Empty,
-					AssignByMe = true,
-					Filter = string.Empty,
-					Label = string.Empty,
-				};
-
-				var objsearch = (new
+					objApiSearch = new
 					{
-						objApiSearch = new
-						{
-							UserId = Settings.UserId,
-							TokenNumber =Settings.Token,
-							PageSize = 100,
-							PageNumber = 1,
-							Sort = objSort,
-							Item = objTask
-						}
-					});
+						UserId = Settings.UserId,
+						TokenNumber =Settings.Token,
+						PageSize = 100,
+						PageNumber = 1,
+						Sort = objSort,
+						Item = objTask
+					}
+				});
 
-				string results= ConnectWebAPI.Request(url,objsearch);
+			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
 
-				if (results != null && results != "") {
+			if (results_Task != null && results_Task != "") {
 
-					TaskList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results);
+				taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results_Task);
 
-					if (obj.Items != null) {
+			}
 
-						var OpenTask = CheckTask ("Open", obj.Items).ToString ();
-						var ClosedTask = CheckTask ("Closed", obj.Items).ToString ();
-						var WaitingTask = CheckTask ("Waiting On Client", obj.Items).ToString ();
-						var ProgressTask = CheckTask ("In Progress", obj.Items).ToString ();
-						var OnHoldTask = CheckTask ("On Hold", obj.Items).ToString ();
 
-						RunOnUiThread (() => bt_Open.Text =  OpenTask);
-						RunOnUiThread (() => bt_Closed.Text =  ClosedTask);
-						RunOnUiThread (() => bt_Wating.Text =  WaitingTask);
-						RunOnUiThread (() => bt_Progress.Text =  ProgressTask);
-						RunOnUiThread (() => bt_Hold.Text =  OnHoldTask);
+			//Init layout
+			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
 
-						RunOnUiThread (() => progress.Dismiss());
-					} 
+
+
+			string url_TaskStatusList= url+"/api/TaskStatusList";
+
+			string results_TaskList= ConnectWebAPI.Request(url_TaskStatusList,"");
+
+			if (results_TaskList != null && results_TaskList != "") {
+
+				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TaskList);
+
+				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
+
+				if (statusList.Items.Count > 0) {
+
+					buttonList = new List<Button> (statusList.Items.Count);
+
+
+					for (int i = 0; i < statusList.Items.Count; i++) {
+						//Init button
+						Button button = new Button (this);
+						//Add button into View
+						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,GetColor(statusList.Items [i].ColourName),button);
+						//Get number of task
+						var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList.Items).ToString ();
+						RunOnUiThread (() => button.Text =  NumberOfTask);
+						buttonList.Add (button);
+					}
 				}
-		}
+			}
 
-		public void btBackClick(object sender, EventArgs e)
-		{
-			OnBackPressed ();
-		}
 
-		public void btAddClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (this, typeof(AddTaskActivity));
-			StartActivity (activity);
+
+			RunOnUiThread (() => progress.Dismiss());
 		}
 
 
-		public void btOpenClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (this, typeof(TaskListActivity));
-			activity.PutExtra ("StatusId", 1);
-			StartActivity (activity);
-		}
 
-		public void btClosedClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (this, typeof(TaskListActivity));
-			activity.PutExtra ("StatusId", 2);
-			StartActivity (activity);
+		private Color GetColor(string ColorName){
+			try
+			{
+				if (ColorName.Equals("orange")) return Color.Orange;
+				else
+					return Color.ParseColor(ColorName);
+			}
+			catch(Exception)
+			{
+				return Color.Red;
+			}
 		}
-
-		public void WaitingTaskClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (this, typeof(TaskListActivity));
-			activity.PutExtra ("StatusId", 3);
-			StartActivity (activity);
-		}
-
-		public void ProgressTaskClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (this, typeof(TaskListActivity));
-			activity.PutExtra ("StatusId", 4);
-			StartActivity (activity);
-		}
-
-		public void HoldTaskClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (this, typeof(TaskListActivity));
-			activity.PutExtra ("StatusId", 5);
-			StartActivity (activity);
-		}
-
 
 		private int CheckTask(string status, List<TaskObject>  list_Task){
 			int count = 0;
@@ -204,7 +164,70 @@ namespace LinkOM
 			return count;
 		}
 
-	
+		private void AddRow(int id,string Title, Color color, Button button){
+
+			TableRow tableRow = new TableRow (this);
+			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(70));
+			layoutParams_TableRow.TopMargin = dpToPx(1);
+			layoutParams_TableRow.BottomMargin = dpToPx(1);
+			tableRow .LayoutParameters = layoutParams_TableRow;
+
+			LinearLayout LinearLayout_Inside = new LinearLayout (this);
+			TableRow.LayoutParams layoutParams_Linear = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(70));
+			LinearLayout_Inside.LayoutParameters = layoutParams_Linear;
+			LinearLayout_Inside.Orientation = Orientation.Horizontal;
+
+			TextView textView = new TextView (this);
+			TableRow.LayoutParams layoutParams_textView = new TableRow.LayoutParams (dpToPx(280), dpToPx(70));
+			layoutParams_textView.LeftMargin = dpToPx (10);
+			textView.LayoutParameters = layoutParams_textView;
+			textView.Gravity = GravityFlags.CenterVertical;
+			textView.TextSize = 20;
+			textView.Text = Title;
+
+			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, TableRow.LayoutParams.MatchParent);
+			button.LayoutParameters = layoutParams_button;
+			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
+			button.Text="0";
+			button.SetTextColor (Color.Black);
+			button.SetBackgroundColor (color);
+			button.Tag = id;
+			button.Click += HandleMyButton;
+
+
+			View view = new View (this);
+			TableRow.LayoutParams layoutParams_view = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, dpToPx(1));
+			view.LayoutParameters = layoutParams_view;
+			view.SetBackgroundColor (Color.Black);
+
+			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
+			RunOnUiThread (() => LinearLayout_Inside.AddView (button));
+			RunOnUiThread (() => tableRow.AddView (LinearLayout_Inside));
+			RunOnUiThread (() => LinearLayout_Master.AddView (tableRow));
+			RunOnUiThread (() => LinearLayout_Master.AddView (view));
+		}
+
+		private int dpToPx(int dp)
+		{
+			float density = Resources.DisplayMetrics.Density;
+			return Int32.Parse(Math.Round((float)dp * density).ToString());
+		}
+
+		public void btBackClick(object sender, EventArgs e)
+		{
+			OnBackPressed ();
+		}
+
+		private void HandleMyButton(object sender, EventArgs e)
+		{
+			Button myNewButton = (Button)sender;
+			int whichOne = (int)myNewButton.Tag;
+			// do stuff
+
+			var activity = new Intent (this, typeof(TaskListActivity));
+			activity.PutExtra ("StatusId", whichOne);
+			StartActivity (activity);
+		}
 	}
 }
 

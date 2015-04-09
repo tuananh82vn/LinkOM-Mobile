@@ -28,7 +28,7 @@ namespace LinkOM
 		public LinearLayout LinearLayout_Master;
 		public ProgressDialog progress;
 		public List<Button> buttonList;
-		public TaskList taskList;
+		public TicketList ticketList;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -43,7 +43,7 @@ namespace LinkOM
 			progress = new ProgressDialog (this);
 			progress.Indeterminate = true;
 			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-			progress.SetMessage("Loading Task...");
+			progress.SetMessage("Loading Ticket...");
 			progress.SetCancelable(false);
 			progress.Show();
 
@@ -57,27 +57,20 @@ namespace LinkOM
 			string url = Settings.InstanceURL;
 
 			//Load data
-			string url_Task= url+"/api/TaskList";
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
-				new objSort{ColumnName = "T.EndDate", Direction = "2"}
-			};
+			string url_Ticket= url+"/api/TicketList";
 
 
-			var objTask = new
+			var objTicket = new
 			{
-				Title = string.Empty,
-				AssignedToId = string.Empty,
-				ClientId = string.Empty,
-				TaskStatusId = string.Empty,
-				PriorityId = string.Empty,
-				DueBeforeDate = string.Empty,
-				DepartmentId = string.Empty,
 				ProjectId = string.Empty,
-				AssignByMe = true,
-				Filter = string.Empty,
-				Label = string.Empty,
+				TicketStatusId = string.Empty,
+				DepartmentId = string.Empty,
+				Title = string.Empty,
+				PriorityId = string.Empty,
+				Label= string.Empty,
+				DueBefore = string.Empty,
+				AssignTo = string.Empty,
+				AssignByMe = string.Empty,
 			};
 
 			var objsearch = (new
@@ -88,16 +81,18 @@ namespace LinkOM
 						TokenNumber =Settings.Token,
 						PageSize = 100,
 						PageNumber = 1,
-						Sort = objSort,
-						Item = objTask
+						SortMember ="",
+						SortDirection = "",
+						MainStatusId=1,
+						Item = objTicket
 					}
 				});
 
-			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
+			string results_Ticket= ConnectWebAPI.Request(url_Ticket,objsearch);
 
-			if (results_Task != null && results_Task != "") {
+			if (results_Ticket != null && results_Ticket != "") {
 
-				taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results_Task);
+				ticketList = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results_Ticket);
 
 			}
 
@@ -107,13 +102,13 @@ namespace LinkOM
 
 
 
-			string url_TaskStatusList= url+"/api/TaskStatusList";
+			string url_TicketStatusList= url+"/api/TicketStatusList";
 
-			string results_TaskList= ConnectWebAPI.Request(url_TaskStatusList,"");
+			string results_TicketList= ConnectWebAPI.Request(url_TicketStatusList,"");
 
-			if (results_TaskList != null && results_TaskList != "") {
+			if (results_TicketList != null && results_TicketList != "") {
 
-				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TaskList);
+				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TicketList);
 
 				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
 
@@ -126,10 +121,10 @@ namespace LinkOM
 						//Init button
 						Button button = new Button (this);
 						//Add button into View
-						AddRow (i+1,statusList.Items [i].Name,GetColor(statusList.Items [i].ColourName),button);
+						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,GetColor(statusList.Items [i].ColourName),button);
 						//Get number of task
-						var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList.Items).ToString ();
-						RunOnUiThread (() => button.Text =  NumberOfTask);
+						var NumberOfTicket = CheckTicket (statusList.Items [i].Name, ticketList.Items).ToString ();
+						RunOnUiThread (() => button.Text =  NumberOfTicket);
 						buttonList.Add (button);
 					}
 				}
@@ -143,25 +138,30 @@ namespace LinkOM
 
 
 		private Color GetColor(string ColorName){
-			try{
-				return Color.ParseColor(ColorName);
-				}
-			catch(Exception){
-				return Color.Blue;
+			try
+			{
+				if (ColorName.Equals("orange")) return Color.Orange;
+				else
+					if (ColorName.Equals("pink")) return Color.Pink;
+				else
+					return Color.ParseColor(ColorName);
+			}
+			catch(Exception)
+			{
+				return Color.Red;
 			}
 		}
 
-		private int CheckTask(string status, List<TaskObject>  list_Task){
+		private int CheckTicket(string status, List<TicketObject>  list_Ticket){
 			int count = 0;
-			foreach (var task in list_Task) {
-				if (task.StatusName == status)
+			foreach (var ticket in list_Ticket) {
+				if (ticket.TicketStatusName == status)
 					count++;
 			}
 			return count;
 		}
 
 		private void AddRow(int id,string Title, Color color, Button button){
-			
 
 			TableRow tableRow = new TableRow (this);
 			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(70));
@@ -186,7 +186,7 @@ namespace LinkOM
 			button.LayoutParameters = layoutParams_button;
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
 			button.Text="0";
-			button.SetTextColor (Color.White);
+			button.SetTextColor (Color.Black);
 			button.SetBackgroundColor (color);
 			button.Tag = id;
 			button.Click += HandleMyButton;
@@ -220,6 +220,10 @@ namespace LinkOM
 			Button myNewButton = (Button)sender;
 			int whichOne = (int)myNewButton.Tag;
 			// do stuff
+
+			var activity = new Intent (this, typeof(TicketListActivity));
+			activity.PutExtra ("StatusId", whichOne);
+			StartActivity (activity);
 		}
 	}
 }

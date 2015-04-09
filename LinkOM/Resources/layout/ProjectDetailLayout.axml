@@ -14,7 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/frameLayout1"
-        android:background="#006197">
+        android:background="#5ECA72">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"

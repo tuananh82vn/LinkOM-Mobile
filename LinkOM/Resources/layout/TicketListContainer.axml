@@ -14,7 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/frameLayout1"
-        android:background="#936DBA">
+        android:background="#EE686B">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -27,7 +27,7 @@
                 android:layout_margin="4dp"
                 android:background="@drawable/Back_button" />
             <TextView
-                android:text="Task"
+                android:text="Ticket"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="260dp"
                 android:layout_height="fill_parent"
@@ -60,7 +60,7 @@
             android:layout_height="match_parent"
             android:background="#ffffffff">
             <ListView
-                android:id="@+id/TaskListView"
+                android:id="@+id/TicketListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinkOM.ScrollChildSwipeRefreshLayout>
