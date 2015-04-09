@@ -14,6 +14,8 @@ using Android.Graphics.Drawables;
 using Android.Graphics;
 using Android.Content.PM;
 
+using SharpShowcaseView;
+using SharpShowcaseView.Targets;
 
 namespace LinkOM
 {
@@ -66,6 +68,11 @@ namespace LinkOM
 
 			var menu_ChangeServer = FindViewById (Resource.Id.menu_ChangeServer);
 			menu_ChangeServer.Click +=	menu_ChangeServer_Click;	
+
+
+			var target = new ViewTarget(Resource.Id.bt_Project, this);
+			showcaseView = ShowcaseView.InsertShowcaseView(target, this, Resource.String.showcase_main_title, Resource.String.showcase_main_message);
+			showcaseView.SetOnShowcaseEventListener(this);
 		}
 
 		private void SetOrientaion(){
