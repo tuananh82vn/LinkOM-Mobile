@@ -17,11 +17,11 @@ using Android.Text;
 
 namespace LinkOM
 {
-	[Activity (Label = "TicketList")]			
-	public class TicketListActivity : Activity, TextView.IOnEditorActionListener
+	[Activity (Label = "IssuesList")]			
+	public class IssuesListActivity : Activity, TextView.IOnEditorActionListener
 	{
-		public List<TicketObject> _TicketList;
-		public TicketListAdapter ticketList;
+		public List<IssuesObject> _IssuesList;
+		public IssuesListAdapter issuesList;
 		public int StatusId;
 		public SwipeRefreshLayout refresher;
 		public bool loading;
@@ -29,15 +29,15 @@ namespace LinkOM
 		private EditText mSearch;
 		private bool mAnimatedDown;
 		private bool mIsAnimating;
-		public ListView ticketListView ;
+		public ListView issuesListView ;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
-			SetContentView (Resource.Layout.TicketListContainer);
+			SetContentView (Resource.Layout.IssuesListContainer);
 
-			ticketListView = FindViewById<ListView> (Resource.Id.TicketListView);
+			issuesListView = FindViewById<ListView> (Resource.Id.IssuesListView);
 
 			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
 			mSearch.Alpha = 0;
@@ -52,7 +52,7 @@ namespace LinkOM
 			var SearchButton = FindViewById(Resource.Id.SearchButton);
 			SearchButton.Click += btSearchClick;
 
-			StatusId= Intent.GetIntExtra ("TicketStatusId",0);
+			StatusId= Intent.GetIntExtra ("IssuesStatusId",0);
 
 			InitData ();
 
@@ -65,7 +65,7 @@ namespace LinkOM
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
 		{
-			ticketList.Filter.InvokeFilter(mSearch.Text);
+			issuesList.Filter.InvokeFilter(mSearch.Text);
 		}
 
 		async void HandleRefresh (object sender, EventArgs e)
@@ -78,20 +78,18 @@ namespace LinkOM
 
 			if (StatusId != 0) {
 
-				Console.WriteLine ("Begin load data");
-
 				if (loading)
 					return;
 				loading = true;
 
 				string url = Settings.InstanceURL;
 
-				url=url+"/api/TicketList";
+				url=url+"/api/IssueList";
 
 				var objTicket = new
 				{
 					ProjectId = string.Empty,
-					TicketStatusId = StatusId,
+					IssueStatusId = StatusId,
 					DepartmentId = string.Empty,
 					Title = string.Empty,
 					PriorityId = string.Empty,
@@ -120,23 +118,20 @@ namespace LinkOM
 
 				if (results != null && results != "") {
 
-					TicketList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
+					IssuesList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
 
 					if (obj.Items != null) {
 
-						ticketList = new TicketListAdapter (this, obj.Items);
+						issuesList = new IssuesListAdapter (this, obj.Items);
 
-						ticketListView.Adapter = ticketList;
+						issuesListView.Adapter = issuesList;
 
-						//ticketListView.ItemClick += listView_ItemClick;
+						//issuesListView.ItemClick += listView_ItemClick;
 					} 
 				}
 
-				await Task.Delay (2000);
-
 				loading = false;
 
-				Console.WriteLine ("End load data");
 			}
 		}
 
@@ -150,9 +145,9 @@ namespace LinkOM
 			if (!mAnimatedDown)
 			{
 				//Listview is up
-				MyAnimation anim = new MyAnimation(ticketListView, ticketListView.Height - mSearch.Height);
+				MyAnimation anim = new MyAnimation(issuesListView, issuesListView.Height - mSearch.Height);
 				anim.Duration = 500;
-				ticketListView.StartAnimation(anim);
+				issuesListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartDown;
 				anim.AnimationEnd += anim_AnimationEndDown;
 				refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
@@ -161,9 +156,9 @@ namespace LinkOM
 			else
 			{
 				//Listview is down
-				MyAnimation anim = new MyAnimation(ticketListView, ticketListView.Height + mSearch.Height);
+				MyAnimation anim = new MyAnimation(issuesListView, issuesListView.Height + mSearch.Height);
 				anim.Duration = 500;
-				ticketListView.StartAnimation(anim);
+				issuesListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartUp;
 				anim.AnimationEnd += anim_AnimationEndUp;
 				refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
@@ -197,27 +192,12 @@ namespace LinkOM
 			mSearch.Animate().AlphaBy(-1.0f).SetDuration(300).Start();
 		}
 
-//		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-//		{
-//
-//			TaskObject model = this.ticketList.GetItemAtPosition (e.Position);
-//
-//			var activity = new Intent (this, typeof(EditTaskActivity));
-//
-//			activity.PutExtra ("Task", Newtonsoft.Json.JsonConvert.SerializeObject(model));
-//
-//			StartActivity (activity);
-//
-//			this.Finish ();
-//
-//		}
-
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
 		{
 			//go edit action will login
 			if (actionId == ImeAction.Search) {
 				if (!string.IsNullOrEmpty (mSearch.Text)) {
-					ticketList.Filter.InvokeFilter(mSearch.Text);
+					issuesList.Filter.InvokeFilter(mSearch.Text);
 				} 
 				return true;
 				//next action will set focus to password edit text.

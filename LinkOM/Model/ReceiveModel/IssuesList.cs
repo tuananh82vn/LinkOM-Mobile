@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace LinkOM
 {
-	public class IssuesList
+	public class TicketList
 	{
-		public List<IssuesObject> Items { get; set; }
+		public List<TicketObject> Items { get; set; }
 		public int PageNumber { get; set; }
 		public int TotalRecords { get; set; }
 		public bool Success { get; set; }

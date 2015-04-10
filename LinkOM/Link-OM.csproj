@@ -126,6 +126,11 @@
     <Compile Include="Model\ViewModel\TicketObject.cs" />
     <Compile Include="Activity\Ticket\TicketListActivity.cs" />
     <Compile Include="Adapter\TicketListAdapter.cs" />
+    <Compile Include="Model\ReceiveModel\IssuesList.cs" />
+    <Compile Include="Model\ViewModel\IssuesObject.cs" />
+    <Compile Include="Helper\ColorHelper.cs" />
+    <Compile Include="Activity\Issues\IssuesListActivity.cs" />
+    <Compile Include="Adapter\IssuesListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -222,6 +227,7 @@
     <AndroidResource Include="Resources\drawable\edit_text_style.xml" />
     <AndroidResource Include="Resources\layout\TicketListContainer.axml" />
     <AndroidResource Include="Resources\layout\Task.axml" />
+    <AndroidResource Include="Resources\layout\IssuesListContainer.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

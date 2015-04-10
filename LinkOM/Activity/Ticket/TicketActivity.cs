@@ -20,15 +20,20 @@ using System.Threading;
 using Android.Support.V4.Widget;
 using Android.Util;
 
+using RadialProgress;
+using System.Timers;
+
 namespace LinkOM
 {
 	[Activity (Label = "Ticket")]				
 	public class TicketActivity : Activity
 	{
 		public LinearLayout LinearLayout_Master;
-		public ProgressDialog progress;
+
 		public List<Button> buttonList;
 		public TicketList ticketList;
+		public RadialProgressView progressView;
+		private System.Timers.Timer _timer;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -40,17 +45,28 @@ namespace LinkOM
 			var BackButton = FindViewById(Resource.Id.BackButton);
 			BackButton.Click += btBackClick;
 
-			progress = new ProgressDialog (this);
-			progress.Indeterminate = true;
-			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-			progress.SetMessage("Loading Ticket...");
-			progress.SetCancelable(false);
-			progress.Show();
+			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
+			progressView.MinValue = 0;
+			progressView.MaxValue = 100;
+
+
+			_timer = new System.Timers.Timer(10);
+			_timer.Elapsed += HandleElapsed;
+			_timer.Start();
 
 			ThreadPool.QueueUserWorkItem (o => InitData ());
 
 
 		}
+
+		void HandleElapsed (object sender, ElapsedEventArgs e)
+		{
+			progressView.Value ++;
+			if (progressView.Value >= 100) {
+				progressView.Value = 0;
+			}
+		}
+
 
 		public void InitData ()
 		{
@@ -121,7 +137,7 @@ namespace LinkOM
 						//Init button
 						Button button = new Button (this);
 						//Add button into View
-						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,GetColor(statusList.Items [i].ColourName),button);
+						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button);
 						//Get number of task
 						var NumberOfTicket = CheckTicket (statusList.Items [i].Name, ticketList.Items).ToString ();
 						RunOnUiThread (() => button.Text =  NumberOfTicket);
@@ -131,26 +147,12 @@ namespace LinkOM
 			}
 
 
-
-			RunOnUiThread (() => progress.Dismiss());
+			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
 		}
 
 
 
-		private Color GetColor(string ColorName){
-			try
-			{
-				if (ColorName.Equals("orange")) return Color.Orange;
-				else
-					if (ColorName.Equals("pink")) return Color.Pink;
-				else
-					return Color.ParseColor(ColorName);
-			}
-			catch(Exception)
-			{
-				return Color.Red;
-			}
-		}
+
 
 		private int CheckTicket(string status, List<TicketObject>  list_Ticket){
 			int count = 0;
@@ -212,6 +214,8 @@ namespace LinkOM
 
 		public void btBackClick(object sender, EventArgs e)
 		{
+			_timer.Stop ();
+			this.Finish ();
 			OnBackPressed ();
 		}
 
@@ -222,7 +226,7 @@ namespace LinkOM
 			// do stuff
 
 			var activity = new Intent (this, typeof(TicketListActivity));
-			activity.PutExtra ("StatusId", whichOne);
+			activity.PutExtra ("TicketStatusId", whichOne);
 			StartActivity (activity);
 		}
 	}

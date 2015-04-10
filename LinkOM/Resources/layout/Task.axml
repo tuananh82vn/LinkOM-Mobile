@@ -57,7 +57,7 @@
         <radialprogress.RadialProgressView
             android:id="@+id/tinyProgress"
             progress_type="small"
-            progress_color="#00FF00"
+            progress_color="#936DBA"
             min_value="0"
             max_value="100"
             value="0"

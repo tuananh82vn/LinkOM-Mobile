@@ -1,29 +1,37 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
+using System.Threading;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-
 using Android.Widget;
 using Android.Content.PM;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using Android.Graphics;
-using System.Threading.Tasks;
-using System.Threading;
 using Android.Support.V4.Widget;
+using Android.Util;
+
+using RadialProgress;
+using System.Timers;
 
 namespace LinkOM
 {
 	[Activity (Label = "Issues")]				
 	public class IssuesActivity : Activity
 	{
+		public LinearLayout LinearLayout_Master;
+		//		public ProgressDialog progress;
+		public List<Button> buttonList;
+		public IssuesList issuesList;
+		public RadialProgressView progressView;
+		private System.Timers.Timer _timer;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -35,29 +43,184 @@ namespace LinkOM
 			var BackButton = FindViewById(Resource.Id.BackButton);
 			BackButton.Click += btBackClick;
 
-			var bt_Open = FindViewById<Button>(Resource.Id.bt_Open);
-			bt_Open.SetBackgroundColor (Color.Blue);
 
-			var bt_Fixed = FindViewById<Button>(Resource.Id.bt_Fixed);
-			bt_Fixed.SetBackgroundColor (Color.LightYellow);
+			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
+			progressView.MinValue = 0;
+			progressView.MaxValue = 100;
 
-			var bt_Reproduce = FindViewById<Button>(Resource.Id.bt_Reproduce);
-			bt_Reproduce.SetBackgroundColor (Color.DeepPink);
 
-			var bt_Reopen = FindViewById<Button>(Resource.Id.bt_Reopen);
-			bt_Reopen.SetBackgroundColor (Color.Violet);
+			_timer = new System.Timers.Timer(10);
+			_timer.Elapsed += HandleElapsed;
+			_timer.Start();
 
-			var bt_Duplicate = FindViewById<Button>(Resource.Id.bt_Duplicate);
-			bt_Duplicate.SetBackgroundColor (Color.DarkRed);
+			ThreadPool.QueueUserWorkItem (o => InitData ());
 
-			var bt_Closed = FindViewById<Button>(Resource.Id.bt_Closed);
-			bt_Closed.SetBackgroundColor (Color.Green);
 
+		}
+
+		void HandleElapsed (object sender, ElapsedEventArgs e)
+		{
+			progressView.Value ++;
+			if (progressView.Value >= 100) {
+				progressView.Value = 0;
+			}
+		}
+
+		public void InitData ()
+		{
+			string url = Settings.InstanceURL;
+
+			//Load data
+			string url_Issues= url+"/api/IssueList";
+
+
+			var objIssues = new
+			{
+				ProjectId = string.Empty,
+				IssuesStatusId = string.Empty,
+				DepartmentId = string.Empty,
+				Title = string.Empty,
+				PriorityId = string.Empty,
+				Label= string.Empty,
+				DueBefore = string.Empty,
+				AssignTo = string.Empty,
+				AssignByMe = string.Empty,
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						UserId = Settings.UserId,
+						TokenNumber =Settings.Token,
+						PageSize = 100,
+						PageNumber = 1,
+						SortMember ="",
+						SortDirection = "",
+						MainStatusId=1,
+						Item = objIssues
+					}
+				});
+
+			string results_Issues= ConnectWebAPI.Request(url_Issues,objsearch);
+
+			if (results_Issues != null && results_Issues != "") {
+
+				issuesList = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results_Issues);
+
+			}
+
+
+			//Init layout
+			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
+
+
+
+			string url_IssuesStatusList= url+"/api/IssueStatusList";
+
+			string results_IssuesList= ConnectWebAPI.Request(url_IssuesStatusList,"");
+
+			if (results_IssuesList != null && results_IssuesList != "") {
+
+				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_IssuesList);
+
+				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
+
+				if (statusList.Items.Count > 0) {
+
+					buttonList = new List<Button> (statusList.Items.Count);
+
+					for (int i = 0; i < statusList.Items.Count; i++) {
+						//Init button
+						Button button = new Button (this);
+						//Add button into View
+						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button);
+						//Get number of task
+						var NumberOfIssues = CheckIssues (statusList.Items [i].Name, issuesList.Items).ToString ();
+						RunOnUiThread (() => button.Text =  NumberOfIssues);
+						buttonList.Add (button);
+					}
+				}
+			}
+
+			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
+		}
+
+
+		private int CheckIssues(string status, List<IssuesObject>  list_Issues){
+			int count = 0;
+			foreach (var task in list_Issues) {
+				if (task.StatusName == status)
+					count++;
+			}
+			return count;
+		}
+
+		private void AddRow(int id,string Title, Color color, Button button){
+
+			TableRow tableRow = new TableRow (this);
+			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(70));
+			layoutParams_TableRow.TopMargin = dpToPx(1);
+			layoutParams_TableRow.BottomMargin = dpToPx(1);
+			tableRow .LayoutParameters = layoutParams_TableRow;
+
+			LinearLayout LinearLayout_Inside = new LinearLayout (this);
+			TableRow.LayoutParams layoutParams_Linear = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(70));
+			LinearLayout_Inside.LayoutParameters = layoutParams_Linear;
+			LinearLayout_Inside.Orientation = Orientation.Horizontal;
+
+			TextView textView = new TextView (this);
+			TableRow.LayoutParams layoutParams_textView = new TableRow.LayoutParams (dpToPx(280), dpToPx(70));
+			layoutParams_textView.LeftMargin = dpToPx (10);
+			textView.LayoutParameters = layoutParams_textView;
+			textView.Gravity = GravityFlags.CenterVertical;
+			textView.TextSize = 20;
+			textView.Text = Title;
+
+			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, TableRow.LayoutParams.MatchParent);
+			button.LayoutParameters = layoutParams_button;
+			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
+			button.Text="0";
+			button.SetTextColor (Color.Black);
+			button.SetBackgroundColor (color);
+			button.Tag = id;
+			button.Click += HandleMyButton;
+
+
+			View view = new View (this);
+			TableRow.LayoutParams layoutParams_view = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, dpToPx(1));
+			view.LayoutParameters = layoutParams_view;
+			view.SetBackgroundColor (Color.Black);
+
+			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
+			RunOnUiThread (() => LinearLayout_Inside.AddView (button));
+			RunOnUiThread (() => tableRow.AddView (LinearLayout_Inside));
+			RunOnUiThread (() => LinearLayout_Master.AddView (tableRow));
+			RunOnUiThread (() => LinearLayout_Master.AddView (view));
+		}
+
+		private int dpToPx(int dp)
+		{
+			float density = Resources.DisplayMetrics.Density;
+			return Int32.Parse(Math.Round((float)dp * density).ToString());
 		}
 
 		public void btBackClick(object sender, EventArgs e)
 		{
+			_timer.Stop ();
+			this.Finish ();
 			OnBackPressed ();
+		}
+
+		private void HandleMyButton(object sender, EventArgs e)
+		{
+			Button myNewButton = (Button)sender;
+			int whichOne = (int)myNewButton.Tag;
+			// do stuff
+
+			var activity = new Intent (this, typeof(IssuesListActivity));
+			activity.PutExtra ("IssuesStatusId", whichOne);
+			StartActivity (activity);
 		}
 	}
 }

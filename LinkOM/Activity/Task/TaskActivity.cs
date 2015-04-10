@@ -146,7 +146,7 @@ namespace LinkOM
 						//Init button
 						Button button = new Button (this);
 						//Add button into View
-						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,GetColor(statusList.Items [i].ColourName),button);
+						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button);
 						//Get number of task
 						var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList.Items).ToString ();
 						RunOnUiThread (() => button.Text =  NumberOfTask);
@@ -162,18 +162,7 @@ namespace LinkOM
 
 
 
-		private Color GetColor(string ColorName){
-			try
-			{
-				if (ColorName.Equals("orange")) return Color.Orange;
-				else
-					return Color.ParseColor(ColorName);
-			}
-			catch(Exception)
-			{
-				return Color.Red;
-			}
-		}
+
 
 		private int CheckTask(string status, List<TaskObject>  list_Task){
 			int count = 0;
@@ -235,6 +224,8 @@ namespace LinkOM
 
 		public void btBackClick(object sender, EventArgs e)
 		{
+			_timer.Stop ();
+			this.Finish ();
 			OnBackPressed ();
 		}
 
@@ -245,7 +236,7 @@ namespace LinkOM
 			// do stuff
 
 			var activity = new Intent (this, typeof(TaskListActivity));
-			activity.PutExtra ("StatusId", whichOne);
+			activity.PutExtra ("TaskStatusId", whichOne);
 			StartActivity (activity);
 		}
 	}

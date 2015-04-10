@@ -20,7 +20,7 @@ namespace LinkOM
 	[Activity (Label = "TaskList")]			
 	public class TaskListActivity : Activity, TextView.IOnEditorActionListener
 	{
-		public List<TaskObject> _TaskList;
+		public List<IssuesObject> _TaskList;
 		public TaskListAdapter taskList;
 		public int StatusId;
 		public SwipeRefreshLayout refresher;
@@ -52,7 +52,7 @@ namespace LinkOM
 			var SearchButton = FindViewById(Resource.Id.SearchButton);
 			SearchButton.Click += btSearchClick;
 
-			StatusId= Intent.GetIntExtra ("StatusId",0);
+			StatusId= Intent.GetIntExtra ("TaskStatusId",0);
 
 			InitData ();
 

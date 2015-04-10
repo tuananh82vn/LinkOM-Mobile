@@ -40,8 +40,8 @@
             <View
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:id="@+id/AddButton"
-                android:background="@drawable/Add_button"
+                android:id="@+id/SearchButton"
+                android:background="@drawable/Search_button"
                 android:layout_marginTop="9dp" />
         </LinearLayout>
     </FrameLayout>
@@ -54,22 +54,24 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <radialprogress.RadialProgressView
-            android:id="@+id/tinyProgress"
-            progress_type="small"
-            progress_color="#0292C5"
-            min_value="0"
-            max_value="100"
-            value="0"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center" />
-        <LinearLayout
-            android:orientation="vertical"
-            android:minWidth="25px"
-            android:minHeight="25px"
+        <LinkOM.ScrollChildSwipeRefreshLayout
+            android:id="@+id/refresher"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/linearLayout_Main" />
+            android:background="#ffffffff">
+            <ListView
+                android:id="@+id/IssuesListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinkOM.ScrollChildSwipeRefreshLayout>
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/edit_text_style"
+            android:hint="Search"
+            android:textColor="#000"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
     </FrameLayout>
 </LinearLayout>
