@@ -228,6 +228,7 @@
     <AndroidResource Include="Resources\layout\TicketListContainer.axml" />
     <AndroidResource Include="Resources\layout\Task.axml" />
     <AndroidResource Include="Resources\layout\IssuesListContainer.axml" />
+    <AndroidResource Include="Resources\drawable\Background3.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

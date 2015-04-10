@@ -20,25 +20,32 @@ namespace LinkOM
 		const int End_DATE_DIALOG_ID = 1;
 
 		public ProjectSpinnerAdapter projectList; 
+
 		public Spinner sp_Project;
+
 		public ArrayAdapter PriorityAdapter;
 
-
 		private EditText editText_Title;
+		private EditText editText_AllocatedHours;
+
 		public TaskObject model;
 
 		private TextView tv_StartDate;
-		private Button bt_StartDate;
 		private TextView tv_EndDate;
+
 		private Button bt_EndDate;
+		private Button bt_StartDate;
 
 		private DateTime StartDate;
 		private DateTime EndDate;
 
+		private CheckBox cb_WatchList;
+		private CheckBox cb_Internal;
+		private CheckBox cb_Management;
+
+
 		private int Selected_ProjectID;
-
 		private int Selected_PriorityID;
-
 		private int Selected_StatusID;
 
 		protected override void OnCreate (Bundle bundle)
@@ -52,8 +59,11 @@ namespace LinkOM
 			var  BackButton = FindViewById(Resource.Id.BackButton);
 			BackButton.Click += btBackClick;
 
-			Button bt_Save = FindViewById<Button>(Resource.Id.bt_Save);
+			Button bt_Save = FindViewById<Button>(Resource.Id.ok_button);
 			bt_Save.Click += btSaveClick;
+
+			Button bt_Cancel = FindViewById<Button>(Resource.Id.cancel_button);
+			bt_Cancel.Click += btBackClick;
 
 			// get the current date
 			StartDate = DateTime.Today;
@@ -83,7 +93,25 @@ namespace LinkOM
 			//Handle Title
 			editText_Title = FindViewById<EditText> (Resource.Id.editText_Title);
 			editText_Title.Text= model.Title;
+
+			//Allocated Hours
+			editText_AllocatedHours = FindViewById<EditText> (Resource.Id.editText_AlloHours);
+			editText_AllocatedHours.Text= model.AllocatedHours;
+
+			//
+			cb_WatchList = FindViewById<CheckBox> (Resource.Id.cb_WatchList);
+			if(model.IsAddToMyWatch.HasValue)
+				cb_WatchList.Checked = model.IsAddToMyWatch.Value;
 			
+
+			cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
+			if(model.IsInternal.HasValue)
+			cb_Internal.Checked = model.IsInternal.Value;
+
+			cb_Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
+			if(model.IsManagerial.HasValue)
+			cb_Management.Checked = model.IsManagerial.Value;
+
 			GetProjectList ();
 
 			GetStatusList ();
@@ -232,6 +260,8 @@ namespace LinkOM
 				EndDate= String.Empty,
 				PriorityId= Selected_PriorityID,
 				TaskStatusId= Selected_StatusID,
+				AllocatedHours= editText_AllocatedHours.Text,
+				IsUserWatch = cb_WatchList.Checked,
 				UpdatedBy = model.CreatedBy,
 			};
 
@@ -247,13 +277,16 @@ namespace LinkOM
 
 			string results= ConnectWebAPI.Request(url,objEditTask);
 
-			ResultsJson ResultsJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
+			if (results != null) {
+				ResultsJson ResultsJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
 
-			if (ResultsJson.Success) {
-				Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
+				if (ResultsJson.Success) {
+					Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
+				} else
+					Toast.MakeText (this, ResultsJson.ErrorMessage, ToastLength.Short).Show ();
 			}
 			else
-				Toast.MakeText (this, ResultsJson.ErrorMessage, ToastLength.Short).Show ();
+				Toast.MakeText (this, "Error to connect to server", ToastLength.Short).Show ();
 
 		}
 

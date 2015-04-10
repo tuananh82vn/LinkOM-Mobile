@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/FlyOutContent"
-    android:background="#ffffffff">
+    android:background="#ffffffff"
+    android:divider="?android:dividerHorizontal">
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -44,331 +45,369 @@
         android:layout_height="1dp"
         android:id="@+id/view2"
         android:background="#ff609ec1" />
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/linearLayout2">
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
+        android:layout_height="541.8dp">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/tableRow1">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout3"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="Title:"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView11"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textStyle="bold" />
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/editText_Title"
-                    android:layout_marginRight="5dp"
-                    android:textSize="15dp"
-                    android:text="Hello" />
-            </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/tableRow2">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout4"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="Project:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView12"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textStyle="bold" />
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sp_Project"
-                    android:layout_marginRight="5dp"
-                    android:spinnerMode="dialog" />
-            </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/tableRow3">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout5"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="Status:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView13"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textStyle="bold" />
-                <Spinner
-                    android:layout_width="137.6dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sp_Status"
-                    android:layout_gravity="center_vertical"
-                    android:spinnerMode="dialog" />
-                <TextView
-                    android:text="Priority:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView14"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:textStyle="bold" />
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sp_Priority"
-                    android:layout_marginRight="5dp"
-                    android:spinnerMode="dialog" />
-            </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/tableRow4">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout6"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="Assigned To:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView15"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:gravity="center_vertical"
-                    android:textStyle="bold" />
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sp_AssignedTo"
-                    android:layout_marginRight="5dp" />
-            </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/tableRow5">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout7"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="Owner:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView15"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:gravity="center_vertical"
-                    android:textStyle="bold" />
-                <Spinner
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sp_Owner"
-                    android:layout_marginRight="5dp" />
-            </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/tableRow6">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout8"
-                android:layout_height="match_parent">
-                <TextView
-                    android:text="Start Date:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView16"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="5dp" />
-                <EditText
-                    android:inputType="date"
-                    android:layout_width="78dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/tv_StartDate"
-                    android:gravity="center_vertical"
-                    android:textSize="10dp"
-                    android:text="01/01/2015" />
-                <Button
-                    android:text="..."
-                    android:layout_width="35.0dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/bt_StartDate" />
-                <TextView
-                    android:text="End Date:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textView17"
-                    android:gravity="center_vertical"
-                    android:textStyle="bold" />
-                <EditText
-                    android:inputType="date"
-                    android:layout_width="78dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/tv_EndDate"
-                    android:gravity="center_vertical"
-                    android:textSize="10dp"
-                    android:text="01/01/2015" />
-                <Button
-                    android:text="..."
-                    android:layout_width="35.0dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/bt_EndDate" />
-            </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tableRow7"
-            android:layout_marginTop="10dp">
-            <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/linearLayout9"
-                android:layout_height="wrap_content">
-                <TableRow
-                    android:minWidth="25px"
-                    android:minHeight="25px"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tableRow8">
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout2">
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tableRow1">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout3"
+                    android:layout_height="match_parent">
                     <TextView
-                        android:text="Description:"
-                        android:id="@+id/textView18"
-                        android:layout_height="wrap_content"
+                        android:text="Title:"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView11"
                         android:gravity="center_vertical"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="5dp" />
-                </TableRow>
-                <TableRow
-                    android:minWidth="25px"
-                    android:minHeight="25px"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tableRow9">
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textStyle="bold" />
                     <EditText
-                        android:inputType="textMultiLine"
-                        android:id="@+id/editText2"
-                        android:layout_height="47.3dp" />
-                </TableRow>
-            </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:id="@+id/tableRow11"
-            android:layout_marginTop="10dp">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout10"
-                android:layout_height="match_parent">
-                <CheckBox
-                    android:text="Watch List ?"
-                    android:id="@+id/checkBox1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <CheckBox
-                    android:text="Internal ?"
-                    android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText_Title"
+                        android:layout_marginRight="5dp"
+                        android:textSize="15dp"
+                        android:text="Hello" />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tableRow2">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout4"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Project:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView12"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textStyle="bold" />
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/sp_Project"
+                        android:layout_marginRight="5dp"
+                        android:spinnerMode="dialog" />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tableRow3">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout5"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Status:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView13"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textStyle="bold" />
+                    <Spinner
+                        android:layout_width="137.6dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/sp_Status"
+                        android:layout_gravity="center_vertical"
+                        android:spinnerMode="dialog" />
+                    <TextView
+                        android:text="Priority:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView14"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:textStyle="bold" />
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/sp_Priority"
+                        android:layout_marginRight="5dp"
+                        android:spinnerMode="dialog" />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tableRow4">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout6"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Assigned To:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView15"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold" />
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/sp_AssignedTo"
+                        android:layout_marginRight="5dp" />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tableRow5">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout7"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Owner:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView15"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold" />
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/sp_Owner"
+                        android:layout_marginRight="5dp" />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tableRow6">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout8"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Start Date:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView16"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="5dp" />
+                    <EditText
+                        android:inputType="date"
+                        android:layout_width="78dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tv_StartDate"
+                        android:gravity="center_vertical"
+                        android:textSize="10dp"
+                        android:text="01/01/2015" />
+                    <Button
+                        android:text="..."
+                        android:layout_width="35.0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/bt_StartDate" />
+                    <TextView
+                        android:text="End Date:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView17"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:inputType="date"
+                        android:layout_width="78dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/tv_EndDate"
+                        android:gravity="center_vertical"
+                        android:textSize="10dp"
+                        android:text="01/01/2015" />
+                    <Button
+                        android:text="..."
+                        android:layout_width="35.0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/bt_EndDate" />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tableRow7"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout9"
+                    android:layout_height="wrap_content">
+                    <TableRow
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tableRow8">
+                        <TextView
+                            android:text="Description:"
+                            android:id="@+id/textView18"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="5dp" />
+                    </TableRow>
+                    <TableRow
+                        android:minWidth="25px"
+                        android:minHeight="25px"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tableRow9">
+                        <EditText
+                            android:inputType="textMultiLine"
+                            android:id="@+id/editText2"
+                            android:layout_height="47.3dp" />
+                    </TableRow>
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tableRow11"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout10"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:text="Watch List ?"
+                        android:id="@+id/cb_WatchList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                    <CheckBox
+                        android:text="Internal ?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/cb_Internal" />
+                    <CheckBox
+                        android:text="Management ?"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/cb_Management" />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/tableRow11"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout10"
                     android:layout_height="match_parent"
-                    android:id="@+id/checkBox2"
-                    android:checked="true" />
-                <CheckBox
-                    android:text="Management ?"
-                    android:layout_width="wrap_content"
+                    android:minWidth="25px"
+                    android:minHeight="25px">
+                    <TextView
+                        android:text="Allocated Hours:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView15"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center_vertical"
+                        android:textStyle="bold" />
+                    <EditText
+                        android:inputType="numberDecimal"
+                        android:layout_width="58.3dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/editText_AlloHours"
+                        android:text="0"
+                        android:gravity="right" />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/tableRow12">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayout11"
                     android:layout_height="match_parent"
-                    android:id="@+id/checkBox3" />
-            </LinearLayout>
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/tableRow12">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout11"
-                android:layout_height="match_parent"
-                android:layout_width="wrap_content">
-                <TextView
-                    android:text="Attach Photo:"
-                    android:layout_width="wrap_content"
+                    android:layout_width="wrap_content">
+                    <TextView
+                        android:text="Attach Photo:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/textView19"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="5dp" />
+                    <Button
+                        android:text="Camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bt_camera"
+                        android:gravity="center" />
+                </LinearLayout>
+                <ImageView
+                    android:src="@android:drawable/ic_menu_gallery"
+                    android:id="@+id/iv_Photo"
+                    android:layout_column="1"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView19"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="5dp" />
-                <Button
-                    android:text="Camera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/bt_camera"
-                    android:gravity="center" />
-            </LinearLayout>
-            <ImageView
-                android:src="@android:drawable/ic_menu_gallery"
-                android:id="@+id/iv_Photo"
-                android:layout_column="1"
-                android:layout_height="match_parent"
-                android:layout_width="56.5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/tableRow13"
-            android:layout_marginTop="10dp">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:id="@+id/linearLayout12"
-                android:layout_height="50dp">
-                <Button
-                    android:text="Save"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/bt_Save"
-                    android:gravity="center" />
-            </LinearLayout>
-        </TableRow>
+                    android:layout_width="56.5dp" />
+            </TableRow>
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        style="?android:buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#ff878787">
+        <Button
+            style="?android:buttonBarButtonStyle"
+            android:id="@+id/cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textColor="#ffffffff" />
+        <Button
+            style="?android:buttonBarButtonStyle"
+            android:id="@+id/ok_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Save"
+            android:textColor="#ffffffff" />
     </LinearLayout>
 </LinearLayout>
