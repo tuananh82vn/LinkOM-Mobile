@@ -14,6 +14,8 @@ using System.Threading;
 using Android.Views.InputMethods;
 using Android.Content.PM;
 
+using RadialProgress;
+
 namespace LinkOM
 {
 	[Activity(Label = "Link-OM", Icon = "@drawable/icon")]
@@ -27,6 +29,9 @@ namespace LinkOM
 		public EditText password;
 
 		public ProgressDialog progress;
+
+		public RadialProgressView progressView;
+
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -47,17 +52,25 @@ namespace LinkOM
 			password = FindViewById<EditText>(Resource.Id.tv_password);
 			password.SetOnEditorActionListener (this);
 
-			progress = new ProgressDialog (this);
-			progress.Indeterminate = true;
-			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-			progress.SetMessage ("Please wait... 5");
+//			progress = new ProgressDialog (this);
+//			progress.Indeterminate = true;
+//			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+//			progress.SetMessage ("Please wait... 5");
+
+
+			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
+			progressView.MinValue = 0;
+			progressView.MaxValue = 100;
+			progressView.Visibility=ViewStates.Invisible;
+
+
 
 			_timer = new System.Timers.Timer();
 			//Trigger event every second
-			_timer.Interval = 1000;
+			_timer.Interval = 10;
 			_timer.Elapsed += OnTimedEvent;
 			//count down 5 seconds
-			_countSeconds = 5;
+			_countSeconds = 0;
 
 
 
@@ -66,19 +79,27 @@ namespace LinkOM
 
 		private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			_countSeconds--;
+	//		_countSeconds++;
 
 			//Update visual representation here
 			//Remember to do it on UI thread
-			RunOnUiThread (() => progress.SetMessage("Please wait... "+_countSeconds.ToString()));
 
-			if (_countSeconds == 0)
-			{
-				RunOnUiThread (() => progress.SetCancelable(true));
-				RunOnUiThread (() => progress.SetMessage("No Connection..."));
-				_timer.Stop();
+//			RunOnUiThread (() => progress.SetMessage("Please wait... "+_countSeconds.ToString()));
 
+			RunOnUiThread (() => progressView.Value ++);
+
+			if (progressView.Value >= 100) {
+				progressView.Value = 0;
 			}
+
+
+//			if (_countSeconds == 10)
+//			{
+////				RunOnUiThread (() => progress.SetCancelable(true));
+////				RunOnUiThread (() => progress.SetMessage("No Connection..."));
+//				_timer.Stop();
+//
+//			}
 		}
 
 		private void SetOrientaion(){
@@ -107,8 +128,13 @@ namespace LinkOM
 		{
 			if (!string.IsNullOrEmpty (username.Text) && !string.IsNullOrEmpty (password.Text)) {
 				//this hides the keyboard
+				progressView.Visibility=ViewStates.Visible;
+
 				var imm = (InputMethodManager)GetSystemService (Context.InputMethodService);
 				imm.HideSoftInputFromWindow (password.WindowToken, HideSoftInputFlags.NotAlways);
+
+				//add progress when click login
+
 
 				ThreadPool.QueueUserWorkItem (o => Login());
 			}
@@ -116,15 +142,15 @@ namespace LinkOM
 
 		private void Login(){
 
-			RunOnUiThread (() => progress.SetCancelable(false));
-			RunOnUiThread (() => progress.Show());
+//			RunOnUiThread (() => progress.SetCancelable(false));
+//			RunOnUiThread (() => progress.Show());
 
 			_timer.Enabled = true;
 
 			_loginService = new LoginService();
 			LoginJson obj = _loginService.Login (username.Text, password.Text);
 
-			RunOnUiThread (() => progress.Dismiss());
+//			RunOnUiThread (() => progress.Dismiss());
 
 			if (obj != null) {
 				if (obj.Success)

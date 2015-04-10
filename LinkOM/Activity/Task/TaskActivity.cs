@@ -1,24 +1,25 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
+using System.Threading;
 
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
-
 using Android.Widget;
 using Android.Content.PM;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using Android.Graphics;
-using System.Threading.Tasks;
-using System.Threading;
 using Android.Support.V4.Widget;
 using Android.Util;
+
+using RadialProgress;
+using System.Timers;
 
 namespace LinkOM
 {
@@ -26,9 +27,11 @@ namespace LinkOM
 	public class TaskActivity : Activity
 	{
 		public LinearLayout LinearLayout_Master;
-		public ProgressDialog progress;
+//		public ProgressDialog progress;
 		public List<Button> buttonList;
 		public TaskList taskList;
+		public RadialProgressView progressView;
+		private System.Timers.Timer _timer;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -40,16 +43,33 @@ namespace LinkOM
 			var BackButton = FindViewById(Resource.Id.BackButton);
 			BackButton.Click += btBackClick;
 
-			progress = new ProgressDialog (this);
-			progress.Indeterminate = true;
-			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-			progress.SetMessage("Loading Task...");
-			progress.SetCancelable(false);
-			progress.Show();
+//			progress = new ProgressDialog (this);
+//			progress.Indeterminate = true;
+//			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
+//			progress.SetMessage("Loading Task...");
+//			progress.SetCancelable(false);
+//			progress.Show();
+
+			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
+			progressView.MinValue = 0;
+			progressView.MaxValue = 100;
+//			progressView.Visibility=ViewStates.Invisible;
+
+			_timer = new System.Timers.Timer(10);
+			_timer.Elapsed += HandleElapsed;
+			_timer.Start();
 
 			ThreadPool.QueueUserWorkItem (o => InitData ());
 
 
+		}
+
+		void HandleElapsed (object sender, ElapsedEventArgs e)
+		{
+			progressView.Value ++;
+			if (progressView.Value >= 100) {
+				progressView.Value = 0;
+			}
 		}
 
 		public void InitData ()
@@ -137,7 +157,7 @@ namespace LinkOM
 
 
 
-			RunOnUiThread (() => progress.Dismiss());
+			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
 		}
 
 

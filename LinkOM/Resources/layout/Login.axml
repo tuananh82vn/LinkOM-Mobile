@@ -85,11 +85,15 @@
             android:text="Login"
             android:layout_marginRight="0.0dp"
             android:textColor="#ffffffff" />
-        <ProgressBar
-            style="?android:attr/progressBarStyleSmall"
-            android:layout_width="match_parent"
-            android:layout_height="24.6dp"
-            android:id="@+id/progressBar1"
-            android:visibility="invisible" />
+        <radialprogress.RadialProgressView
+            android:id="@+id/tinyProgress"
+            progress_type="tiny"
+            progress_color="#00FF00"
+            min_value="0"
+            max_value="100"
+            value="0"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center" />
     </LinearLayout>
 </LinearLayout>

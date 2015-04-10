@@ -718,9 +718,6 @@ namespace LinkOM
 			// aapt resource value: 0x7f0a0000
 			public const int monday = 2131361792;
 			
-			// aapt resource value: 0x7f0a0026
-			public const int progressBar1 = 2131361830;
-			
 			// aapt resource value: 0x7f0a004e
 			public const int refresher = 2131361870;
 			
@@ -903,6 +900,9 @@ namespace LinkOM
 			
 			// aapt resource value: 0x7f0a00a9
 			public const int textView48 = 2131361961;
+			
+			// aapt resource value: 0x7f0a0026
+			public const int tinyProgress = 2131361830;
 			
 			// aapt resource value: 0x7f0a0066
 			public const int tv_ActualEndDate = 2131361894;
@@ -1131,6 +1131,21 @@ namespace LinkOM
 			
 			// aapt resource value: 0x7f060000
 			public const int Hello = 2131099648;
+			
+			// aapt resource value: 0x7f060006
+			public const int dismissed_message = 2131099654;
+			
+			// aapt resource value: 0x7f060003
+			public const int showcase_project_message = 2131099651;
+			
+			// aapt resource value: 0x7f060002
+			public const int showcase_project_title = 2131099650;
+			
+			// aapt resource value: 0x7f060005
+			public const int showcase_task_message = 2131099653;
+			
+			// aapt resource value: 0x7f060004
+			public const int showcase_task_title = 2131099652;
 			
 			static String()
 			{

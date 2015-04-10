@@ -14,14 +14,16 @@ using Android.Graphics.Drawables;
 using Android.Graphics;
 using Android.Content.PM;
 
-using SharpShowcaseView;
-using SharpShowcaseView.Targets;
 
 namespace LinkOM
 {
 	[Activity(Label = "Link-OM", Icon = "@drawable/Synotive")]			
 	public class MainActivity : Activity
 	{
+		static float SHOWCASE_Button_SCALE = 0.8f;
+
+
+	
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -67,12 +69,21 @@ namespace LinkOM
 			menu_Task.Click +=	menu_Task_Click;		
 
 			var menu_ChangeServer = FindViewById (Resource.Id.menu_ChangeServer);
-			menu_ChangeServer.Click +=	menu_ChangeServer_Click;	
+			menu_ChangeServer.Click +=	menu_ChangeServer_Click;
+
+//			mOptions.Block = false;
+//			mOptions.HideOnClickOutside = false;
+//			mOptions.NoButton = true;
+//			mOptions.FadeInDuration = 3;
+//
+//
+//			mViews = new ShowcaseViews(this, new MyShowcaseAcknowledgeListener(this));
+//			mViews.AddView( new ShowcaseViews.ItemViewProperties(Resource.Id.bt_Project, Resource.String.showcase_project_title, Resource.String.showcase_project_message, SHOWCASE_Button_SCALE));
+//			mViews.AddView( new ShowcaseViews.ItemViewProperties(Resource.Id.bt_Task, Resource.String.showcase_task_title, Resource.String.showcase_task_message, SHOWCASE_Button_SCALE));
+//			mViews.Show();
 
 
-			var target = new ViewTarget(Resource.Id.bt_Project, this);
-			showcaseView = ShowcaseView.InsertShowcaseView(target, this, Resource.String.showcase_main_title, Resource.String.showcase_main_message);
-			showcaseView.SetOnShowcaseEventListener(this);
+	
 		}
 
 		private void SetOrientaion(){
@@ -177,6 +188,8 @@ namespace LinkOM
 			this.Finish ();
 			Android.OS.Process.KillProcess (Android.OS.Process.MyPid ());
 		}
+
+
 	}
 }
 
