@@ -109,8 +109,6 @@ namespace LinkOM
 
 			RegisterForContextMenu(projectListView);
 
-			await Task.Delay (2000);
-
 			loading = false;
 
 			Console.WriteLine ("End load data");

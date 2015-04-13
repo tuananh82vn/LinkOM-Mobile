@@ -14,7 +14,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/frameLayout1"
-        android:background="#39CCC0">
+        android:background="#E8A455">
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -27,7 +27,7 @@
                 android:layout_margin="4dp"
                 android:background="@drawable/Back_button" />
             <TextView
-                android:text="Milestone"
+                android:text="Document"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="260dp"
                 android:layout_height="fill_parent"
@@ -50,23 +50,13 @@
         android:layout_height="1dp"
         android:id="@+id/view2"
         android:background="#ff609ec1" />
-    <LinearLayout
-        android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
+    <LinkOM.ScrollChildSwipeRefreshLayout
+        android:id="@+id/refresher"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/linearLayout2">
-        <monodroid.timessquare.CalendarPickerView
-            android:id="@+id/calendar_view"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp"
-            android:scrollbarStyle="outsideOverlay"
-            android:clipToPadding="false"
-            android:background="#FFFFFF" />
-    </LinearLayout>
+            android:layout_height="match_parent" />
+    </LinkOM.ScrollChildSwipeRefreshLayout>
 </LinearLayout>

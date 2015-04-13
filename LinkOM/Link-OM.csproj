@@ -77,6 +77,9 @@
     <Reference Include="RadialProgress.Android">
       <HintPath>..\Components\radialprogress-1.0.1.3\lib\android\RadialProgress.Android.dll</HintPath>
     </Reference>
+    <Reference Include="MonoDroid.TimesSquare">
+      <HintPath>..\Components\MonoDroid.TimesSquare\MonoDroid.TimesSquare.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -131,6 +134,10 @@
     <Compile Include="Helper\ColorHelper.cs" />
     <Compile Include="Activity\Issues\IssuesListActivity.cs" />
     <Compile Include="Adapter\IssuesListAdapter.cs" />
+    <Compile Include="Activity\Document\DocumentActivity.cs" />
+    <Compile Include="Model\ReceiveModel\DocumentList.cs" />
+    <Compile Include="Model\ViewModel\Documents.cs" />
+    <Compile Include="Adapter\DocumentListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -229,6 +236,8 @@
     <AndroidResource Include="Resources\layout\Task.axml" />
     <AndroidResource Include="Resources\layout\IssuesListContainer.axml" />
     <AndroidResource Include="Resources\drawable\Background3.png" />
+    <AndroidResource Include="Resources\layout\Document.axml" />
+    <AndroidResource Include="Resources\layout\DocumentList.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

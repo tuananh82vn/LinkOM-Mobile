@@ -66,15 +66,12 @@ namespace LinkOM
 
 			var objMilestone = new
 			{
+				Title = string.Empty,
 				ProjectId = ProjectId,
 				StatusId = string.Empty,
-				DepartmentId = string.Empty,
-				Title = string.Empty,
 				PriorityId = string.Empty,
-				Label = string.Empty,
-				DueBefore = string.Empty,
-				AssignTo = string.Empty,
-				AssignByMe = string.Empty,
+				DepartmentId = string.Empty,
+				ClientId = string.Empty,
 			};
 
 			var objsearch2 = (new
@@ -91,13 +88,16 @@ namespace LinkOM
 
 			string temp = ConnectWebAPI.Request(url,objsearch2);
 
-			MilestoneListJson Milestone = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (temp);
+			if (temp != null) {
 
-			MilestoneListAdapter MilestoneList = new MilestoneListAdapter (this,Milestone.Items);
+				MilestoneListJson Milestone = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (temp);
 
-			var milestoneListView = FindViewById<ListView> (Resource.Id.list_Milestone);
+				MilestoneListAdapter MilestoneList = new MilestoneListAdapter (this, Milestone.Items);
 
-			milestoneListView.Adapter = MilestoneList;
+				var milestoneListView = FindViewById<ListView> (Resource.Id.list_Milestone);
+
+				milestoneListView.Adapter = MilestoneList;
+			}
 
 		}
 

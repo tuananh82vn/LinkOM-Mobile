@@ -68,8 +68,25 @@ namespace LinkOM
 			var menu_Task = FindViewById (Resource.Id.menu_Task);
 			menu_Task.Click +=	menu_Task_Click;		
 
+			var menu_Ticket = FindViewById (Resource.Id.menu_Ticket);
+			menu_Ticket.Click +=	menu_Ticket_Click;		
+
+			var menu_Issues = FindViewById (Resource.Id.menu_Issues);
+			menu_Issues.Click +=	menu_Issues_Click;		
+
+
+			var menu_Milestone = FindViewById (Resource.Id.menu_Milestone);
+			menu_Milestone.Click +=	menu_Milestone_Click;		
+
+			var menu_Document = FindViewById (Resource.Id.menu_Document);
+			menu_Document.Click +=	menu_Document_Click;	
+
+
 			var menu_ChangeServer = FindViewById (Resource.Id.menu_ChangeServer);
 			menu_ChangeServer.Click +=	menu_ChangeServer_Click;
+
+
+
 
 //			mOptions.Block = false;
 //			mOptions.HideOnClickOutside = false;
@@ -110,9 +127,33 @@ namespace LinkOM
 			StartActivity (activity);
 		}
 
+		void menu_Ticket_Click (object sender, EventArgs e)
+		{
+			var activity = new Intent (this, typeof(TicketActivity));
+			StartActivity (activity);
+		}
+
+		void menu_Issues_Click (object sender, EventArgs e)
+		{
+			var activity = new Intent (this, typeof(IssuesActivity));
+			StartActivity (activity);
+		}
+
 		void menu_Project_Click (object sender, EventArgs e)
 		{
 			var activity = new Intent (this, typeof(ProjectActivity));
+			StartActivity (activity);
+		}
+
+		void menu_Milestone_Click (object sender, EventArgs e)
+		{
+			var activity = new Intent (this, typeof(MilestonesActivity));
+			StartActivity (activity);
+		}
+
+		void menu_Document_Click (object sender, EventArgs e)
+		{
+			var activity = new Intent (this, typeof(DocumentActivity));
 			StartActivity (activity);
 		}
 
@@ -148,7 +189,8 @@ namespace LinkOM
 
 		public void bt_DocumentClick(object sender, EventArgs e)
 		{
-			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
+			var activity = new Intent (this, typeof(DocumentActivity));
+			StartActivity (activity);
 		}
 
 		public override void OnBackPressed() {
