@@ -140,8 +140,8 @@ namespace LinkOM
 
 		public void DisplayProject(ProjectDetail obj){
 
-//			var ProjectName = FindViewById<TextView> (Resource.Id.tv_projectname);
-//			ProjectName.Text = obj.ProjectName;
+			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			ProjectName.Text = obj.ProjectName;
 
 			var Code = FindViewById<TextView> (Resource.Id.tv_Code);
 			Code.Text = obj.Code;
@@ -149,15 +149,15 @@ namespace LinkOM
 			var RefCode = FindViewById<TextView> (Resource.Id.tv_RefCode);
 			RefCode.Text = obj.ReferenceCode;
 
-			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
-			if(obj.AllocatedHours!=null)
-				AlloHours.Text = obj.AllocatedHours.Value.ToString();
+			var AllocatedHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
+			if (obj.AllocatedHours != null)
+				AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
 
-//			var ProjectStatus = FindViewById<ImageView> (Resource.Id.imageStatus);
-//			if(obj.ProjectStatus.Equals("Open"))
-//				ProjectStatus.SetImageResource(Resource.Drawable.open);
-//			else
-//				ProjectStatus.SetImageResource(Resource.Drawable.close);
+			var ProjectStatus = FindViewById<TextView> (Resource.Id.tv_Status);
+			ProjectStatus.Text = obj.ProjectStatus;
+
+			var ProjectPhase = FindViewById<TextView> (Resource.Id.tv_Phase);
+			ProjectPhase.Text = obj.ProjectPhase;
 
 			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			DepartmentName.Text = obj.DepartmentName;
@@ -170,9 +170,6 @@ namespace LinkOM
 			if(obj.EndDate!=null)
 			EndDate.Text = obj.EndDate.Value.ToShortDateString();
 
-			var ClientName = FindViewById<TextView> (Resource.Id.tv_Client);
-			ClientName.Text = obj.ClientName;
-
 			var ActualStartDate = FindViewById<TextView> (Resource.Id.tv_ActualStartDate);
 			if(obj.ActualStartDate!=null)
 				ActualStartDate.Text = obj.ActualStartDate.Value.ToShortDateString();
@@ -181,10 +178,9 @@ namespace LinkOM
 			if(obj.ActualEndDate!=null)
 				ActualEndDate.Text = obj.ActualEndDate.Value.ToShortDateString();
 
-			var AllocatedHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
-			if (obj.AllocatedHours != null)
-				AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
 
+			var ClientName = FindViewById<TextView> (Resource.Id.tv_Client);
+			ClientName.Text = obj.ClientName;
 
 			var DeliveryManager = FindViewById<TextView> (Resource.Id.tv_DeliveryManager);
 			DeliveryManager.Text = obj.DeliveryManagerName;

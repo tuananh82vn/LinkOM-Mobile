@@ -67,7 +67,7 @@
       <HintPath>..\Components\alliance-calendar-component-1.0\lib\android\com.alliance.calendar.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.22.0.0.0\lib\MonoAndroid10\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>..\Components\XamarinActionBarSherlock-4.4.0.6\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
       <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.22.0.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
@@ -258,7 +258,6 @@
     <AndroidResource Include="Resources\drawable\ic_action_overflow.png" />
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
     <AndroidResource Include="Resources\values\color_a.xml" />
-    <AndroidResource Include="Resources\layout\Project2.axml" />
     <AndroidResource Include="Resources\drawable\back.png" />
     <AndroidResource Include="Resources\menu\ProjectMenu.xml" />
     <AndroidResource Include="Resources\drawable\add.png" />
