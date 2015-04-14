@@ -27,4 +27,6 @@
 
   		<string name="dismissed_message">Access additional options here.</string>
 
+  		<string name="widget_name">LinkOM.Widget</string>
+
 </resources>

@@ -30,7 +30,9 @@ namespace LinkOM
 		int startX = -1, startY = -1;
 
 		const int BezelArea = 30; //dip
+
 		const int MaxOverlayAlpha = 170;
+
 		const float ParallaxSpeedRatio = 0.25f;
 
 		int touchSlop;
@@ -61,11 +63,18 @@ namespace LinkOM
 
 		void Initialize ()
 		{
+			Console.WriteLine ("Initialize");
+
 			var config = ViewConfiguration.Get (Context);
 			this.touchSlop = config.ScaledTouchSlop;
 			this.pagingTouchSlop = config.ScaledPagingTouchSlop;
+
 			this.minFlingVelocity = config.ScaledMinimumFlingVelocity;
 			this.maxFlingVelocity = config.ScaledMaximumFlingVelocity;
+
+			Console.WriteLine ("maxFlingVelocity :" + this.maxFlingVelocity);
+
+
 			const int BaseShadowColor = 0;
 			var shadowColors = new[] {
 				Color.Argb (0x90, BaseShadowColor, BaseShadowColor, BaseShadowColor).ToArgb (),
@@ -117,22 +126,43 @@ namespace LinkOM
 
 		public void SetOpened (bool opened, bool animated = true)
 		{
+			
+
+			long AnimationTime = Context.Resources.GetInteger (Android.Resource.Integer.ConfigLongAnimTime);
+			AnimationTime = 3000;
+
+			Console.WriteLine ("SetOpened Start : " + opened);
+
 			this.opened = opened;
-			if (!animated)
+			if (!animated) {
+				
+				Console.WriteLine ("!animated");
+
 				SetNewOffset (opened ? MaxOffset : 0);
+			}
 			else {
+				
 				if (animator != null) {
 					animator.Cancel ();
 					animator = null;
 				}
 
+				Console.WriteLine ("MaxOffset : " + MaxOffset);
+
 				animator = ValueAnimator.OfInt (contentOffsetX, opened ? MaxOffset : 0);
 				animator.SetInterpolator (interpolator);
-				animator.SetDuration (Context.Resources.GetInteger (Android.Resource.Integer.ConfigMediumAnimTime));
+				animator.SetDuration (AnimationTime);
 				animator.Update += (sender, e) => SetNewOffset ((int)e.Animation.AnimatedValue);
-				animator.AnimationEnd += (sender, e) => { animator.RemoveAllListeners (); animator = null; };
+				animator.AnimationEnd += (sender, e) => 
+				{ 
+					Console.WriteLine ("AnimationEnd");
+					animator.RemoveAllListeners (); 
+					animator = null; 
+				};
 				animator.Start ();
 			}
+
+			Console.WriteLine ("SetOpened End");
 		}
 
 		void SetNewOffset (int newOffset)
@@ -151,7 +181,10 @@ namespace LinkOM
 		void UpdateParallax ()
 		{
 			var openness = ((float)(MaxOffset - contentOffsetX)) / MaxOffset;
-			MenuView.OffsetLeftAndRight ((int)(-openness * MaxOffset * ParallaxSpeedRatio) - MenuView.Left);
+
+			int value = (int)(-openness * MaxOffset * ParallaxSpeedRatio) - MenuView.Left;
+
+			MenuView.OffsetLeftAndRight (value);
 		}
 
 		public override bool OnInterceptTouchEvent (MotionEvent ev)
@@ -169,6 +202,7 @@ namespace LinkOM
 				CaptureMovementCheck (e);
 				return true;
 			}
+
 			if (!isTracking && !CaptureMovementCheck (e))
 				return true;
 
@@ -181,8 +215,9 @@ namespace LinkOM
 				SetNewOffset (stateBeforeTracking ?
 					MaxOffset - Math.Min (MaxOffset, traveledDistance)
 					: Math.Max (0, traveledDistance));
-			} else if (e.Action == MotionEventActions.Up
-				&& stateBeforeTracking == opened) {
+			} 
+			else if (e.Action == MotionEventActions.Up && stateBeforeTracking == opened) 
+			{
 				velocityTracker.ComputeCurrentVelocity (1000, maxFlingVelocity);
 				if (Math.Abs (velocityTracker.XVelocity) > minFlingVelocity)
 					SetOpened (!opened);
@@ -201,6 +236,7 @@ namespace LinkOM
 
 		bool CaptureMovementCheck (MotionEvent ev)
 		{
+
 			if (ev.Action == MotionEventActions.Down) {
 				startX = (int)ev.GetX ();
 				startY = (int)ev.GetY ();

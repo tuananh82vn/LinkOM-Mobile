@@ -49,6 +49,7 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+	<Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Json" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -138,6 +139,9 @@
     <Compile Include="Model\ReceiveModel\DocumentList.cs" />
     <Compile Include="Model\ViewModel\Documents.cs" />
     <Compile Include="Adapter\DocumentListAdapter.cs" />
+    <Compile Include="Widget\BlogPost.cs" />
+    <Compile Include="Widget\UpdateService.cs" />
+    <Compile Include="Widget\WordWidget.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -238,6 +242,14 @@
     <AndroidResource Include="Resources\drawable\Background3.png" />
     <AndroidResource Include="Resources\layout\Document.axml" />
     <AndroidResource Include="Resources\layout\DocumentList.axml" />
+    <AndroidResource Include="Resources\drawable\star_logo.png" />
+    <AndroidResource Include="Resources\drawable\widget_bg.xml" />
+    <AndroidResource Include="Resources\drawable\widget_bg_normal.9.png" />
+    <AndroidResource Include="Resources\drawable\widget_bg_pressed.9.png" />
+    <AndroidResource Include="Resources\drawable\widget_bg_selected.9.png" />
+    <AndroidResource Include="Resources\layout\widget_message.xml" />
+    <AndroidResource Include="Resources\layout\widget_word.xml" />
+    <AndroidResource Include="xml\widget_word.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -299,5 +311,7 @@
     <Folder Include="Activity\Milestones\" />
     <Folder Include="Activity\Document\" />
     <Folder Include="UIControl\" />
+    <Folder Include="Widget\" />
+    <Folder Include="xml\" />
   </ItemGroup>
 </Project>
