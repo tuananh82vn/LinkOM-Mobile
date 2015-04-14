@@ -49,7 +49,7 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-	<Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Json" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
@@ -72,14 +72,17 @@
     <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
       <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.22.0.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Controls.FlipNumbers.Android">
-      <HintPath>..\Components\flipnumbers-1.1.0.1\lib\android\Xamarin.Controls.FlipNumbers.Android.dll</HintPath>
-    </Reference>
     <Reference Include="RadialProgress.Android">
       <HintPath>..\Components\radialprogress-1.0.1.3\lib\android\RadialProgress.Android.dll</HintPath>
     </Reference>
     <Reference Include="MonoDroid.TimesSquare">
       <HintPath>..\Components\MonoDroid.TimesSquare\MonoDroid.TimesSquare.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionBarSherlock">
+      <HintPath>..\Components\XamarinActionBarSherlock-4.4.0.6\lib\android\ActionBarSherlock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Controls.FlipNumbers.Android">
+      <HintPath>..\Components\flipnumbers-1.1.0.1\lib\android\Xamarin.Controls.FlipNumbers.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -222,9 +225,6 @@
     <AndroidResource Include="Resources\drawable\Lock_button.xml" />
     <AndroidResource Include="Resources\drawable\Lock_normal.png" />
     <AndroidResource Include="Resources\drawable\Lock_pressed.png" />
-    <AndroidResource Include="Resources\drawable\Back_button.xml" />
-    <AndroidResource Include="Resources\drawable\Back_normal.png" />
-    <AndroidResource Include="Resources\drawable\Back_pressed.png" />
     <AndroidResource Include="Resources\values\Theme.xml" />
     <AndroidResource Include="Resources\layout\Ticket.axml" />
     <AndroidResource Include="Resources\layout\TaskEdit.axml" />
@@ -250,6 +250,25 @@
     <AndroidResource Include="Resources\layout\widget_message.xml" />
     <AndroidResource Include="Resources\layout\widget_word.xml" />
     <AndroidResource Include="xml\widget_word.xml" />
+    <AndroidResource Include="Resources\values\CustomStyle.xml" />
+    <AndroidResource Include="Resources\menu\ProjectDetailMenu.xml" />
+    <AndroidResource Include="Resources\drawable\ic_action_about.png" />
+    <AndroidResource Include="Resources\drawable\ic_action_call.png" />
+    <AndroidResource Include="Resources\drawable\ic_action_help.png" />
+    <AndroidResource Include="Resources\drawable\ic_action_overflow.png" />
+    <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
+    <AndroidResource Include="Resources\values\color_a.xml" />
+    <AndroidResource Include="Resources\layout\Project2.axml" />
+    <AndroidResource Include="Resources\drawable\back.png" />
+    <AndroidResource Include="Resources\menu\ProjectMenu.xml" />
+    <AndroidResource Include="Resources\drawable\add.png" />
+    <AndroidResource Include="Resources\drawable\back_button.xml" />
+    <AndroidResource Include="Resources\drawable\Back_normal.png" />
+    <AndroidResource Include="Resources\drawable\Back_pressed.png" />
+    <AndroidResource Include="Resources\drawable\edit.png" />
+    <AndroidResource Include="Resources\drawable\search.png" />
+    <AndroidResource Include="Resources\drawable\about.png" />
+    <AndroidResource Include="Resources\drawable\reload.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -282,12 +301,12 @@
       <Version>1.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
-    <XamarinComponentReference Include="flipnumbers">
-      <Version>1.1.0.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="radialprogress">
       <Version>1.0.1.3</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="flipnumbers">
+      <Version>1.1.0.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

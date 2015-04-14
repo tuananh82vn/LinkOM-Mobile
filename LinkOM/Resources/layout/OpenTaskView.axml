@@ -13,7 +13,7 @@
             p1:id="@+id/bt_Back"
             p1:layout_width="50dp"
             p1:layout_height="50dp"
-            p1:background="@drawable/Back_button"
+            p1:background="@drawable/Back"
             p1:layout_marginLeft="10dp"
             p1:layout_marginTop="10dp"
             p1:layout_marginRight="0.0dp" />

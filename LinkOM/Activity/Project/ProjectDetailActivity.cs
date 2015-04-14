@@ -13,17 +13,24 @@ using Android.Widget;
 
 namespace LinkOM
 {
-	[Activity (Label = "ProjectDetailActivity")]			
+	[Activity (Label = "ProjectDetailActivity", Theme = "@style/CustomTheme")]			
 	public class ProjectDetailActivity : Activity
 	{
+		private ImageButton overflowButton;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.ProjectDetailLayout);
 
-			var buttonBack = FindViewById(Resource.Id.BackButton);
-			buttonBack.Click += btBackClick;
-
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.project_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
 
 			string TokenNumber = Settings.Token;
 
@@ -53,63 +60,88 @@ namespace LinkOM
 
 			DisplayProject (ProjectDetail.Item);
 
-			// Load Milestone and display 
+//			// Load Milestone and display 
+//
+//			url = Settings.InstanceURL;
+//
+//			url=url+"/api/MilestoneList";
+//
+//			List<objSort> objSort = new List<objSort>{
+//				new objSort{ColumnName = "P.StartDate", Direction = "1"},
+//				new objSort{ColumnName = "C.Name", Direction = "2"}
+//			};
+//
+//			var objMilestone = new
+//			{
+//				Title = string.Empty,
+//				ProjectId = ProjectId,
+//				StatusId = string.Empty,
+//				PriorityId = string.Empty,
+//				DepartmentId = string.Empty,
+//				ClientId = string.Empty,
+//			};
+//
+//			var objsearch2 = (new
+//			{
+//				objApiSearch = new
+//				{
+//					TokenNumber = TokenNumber,
+//					PageSize = 20,
+//					PageNumber = 1,
+//					Sort = objSort,
+//					Item = objMilestone
+//				}
+//			});
+//
+//			string temp = ConnectWebAPI.Request(url,objsearch2);
 
-			url = Settings.InstanceURL;
-
-			url=url+"/api/MilestoneList";
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "P.StartDate", Direction = "1"},
-				new objSort{ColumnName = "C.Name", Direction = "2"}
-			};
-
-			var objMilestone = new
-			{
-				Title = string.Empty,
-				ProjectId = ProjectId,
-				StatusId = string.Empty,
-				PriorityId = string.Empty,
-				DepartmentId = string.Empty,
-				ClientId = string.Empty,
-			};
-
-			var objsearch2 = (new
-			{
-				objApiSearch = new
-				{
-					TokenNumber = TokenNumber,
-					PageSize = 20,
-					PageNumber = 1,
-					Sort = objSort,
-					Item = objMilestone
-				}
-			});
-
-			string temp = ConnectWebAPI.Request(url,objsearch2);
-
-			if (temp != null) {
-
-				MilestoneListJson Milestone = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (temp);
-
-				MilestoneListAdapter MilestoneList = new MilestoneListAdapter (this, Milestone.Items);
-
-				var milestoneListView = FindViewById<ListView> (Resource.Id.list_Milestone);
-
-				milestoneListView.Adapter = MilestoneList;
-			}
+//			if (temp != null) {
+//
+//				MilestoneListJson Milestone = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (temp);
+//
+//				MilestoneListAdapter MilestoneList = new MilestoneListAdapter (this, Milestone.Items);
+//
+//				var milestoneListView = FindViewById<ListView> (Resource.Id.list_Milestone);
+//
+//				milestoneListView.Adapter = MilestoneList;
+//			}
 
 		}
 
-		public void btBackClick(object sender, EventArgs e)
+
+		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
-			OnBackPressed ();
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.ProjectDetailMenu, menu);
+
+			return true;
+		}
+
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+				case Android.Resource.Id.Home:
+					OnBackPressed ();
+					break;
+				case Resource.Id.add:
+					break;
+				default:
+					break;
+			}
+
+			return true;
 		}
 
 		public void DisplayProject(ProjectDetail obj){
 
-			var ProjectName = FindViewById<TextView> (Resource.Id.tv_projectname);
-			ProjectName.Text = obj.ProjectName;
+//			var ProjectName = FindViewById<TextView> (Resource.Id.tv_projectname);
+//			ProjectName.Text = obj.ProjectName;
 
 			var Code = FindViewById<TextView> (Resource.Id.tv_Code);
 			Code.Text = obj.Code;
@@ -121,11 +153,11 @@ namespace LinkOM
 			if(obj.AllocatedHours!=null)
 				AlloHours.Text = obj.AllocatedHours.Value.ToString();
 
-			var ProjectStatus = FindViewById<ImageView> (Resource.Id.imageStatus);
-			if(obj.ProjectStatus.Equals("Open"))
-				ProjectStatus.SetImageResource(Resource.Drawable.open);
-			else
-				ProjectStatus.SetImageResource(Resource.Drawable.close);
+//			var ProjectStatus = FindViewById<ImageView> (Resource.Id.imageStatus);
+//			if(obj.ProjectStatus.Equals("Open"))
+//				ProjectStatus.SetImageResource(Resource.Drawable.open);
+//			else
+//				ProjectStatus.SetImageResource(Resource.Drawable.close);
 
 			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			DepartmentName.Text = obj.DepartmentName;

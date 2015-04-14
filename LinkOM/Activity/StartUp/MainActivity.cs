@@ -17,32 +17,31 @@ using Android.Content.PM;
 
 namespace LinkOM
 {
-	[Activity(Label = "Link-OM", Icon = "@drawable/Synotive")]			
+	[Activity(Label = "Link-OM", Theme = "@style/MainTheme")]					
 	public class MainActivity : Activity
 	{
-		static float SHOWCASE_Button_SCALE = 0.8f;
 
-
-	
+		public FlyOutContainer Menu  ;
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+			RequestWindowFeature (WindowFeatures.ActionBar);
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
 
-			var menu = FindViewById<FlyOutContainer> (Resource.Id.MainContainer);
 
-			var menuButton = FindViewById (Resource.Id.MenuButton);
-			menuButton.Click += (sender, e) => {
-				menu.AnimatedOpened = !menu.AnimatedOpened;
-			};
+			Menu = FindViewById<FlyOutContainer> (Resource.Id.MainContainer);
 
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			//ActionBar.SetTitle(Resource.String.project_detail_title);
+			//ActionBar.SetSubtitle(Resource.String.actionbar_sub);
+			//ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
 
-			var SignOutButton = FindViewById (Resource.Id.SignOutButton);
-			SignOutButton.Click += SignOutButton_Click;
-			// Create your application here
 
 			ImageButton bt_Task = FindViewById<ImageButton>(Resource.Id.bt_Task);
 			bt_Task.Click += btTaskClick;
@@ -86,21 +85,22 @@ namespace LinkOM
 			menu_ChangeServer.Click +=	menu_ChangeServer_Click;
 
 
+		}
 
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
 
-//			mOptions.Block = false;
-//			mOptions.HideOnClickOutside = false;
-//			mOptions.NoButton = true;
-//			mOptions.FadeInDuration = 3;
-//
-//
-//			mViews = new ShowcaseViews(this, new MyShowcaseAcknowledgeListener(this));
-//			mViews.AddView( new ShowcaseViews.ItemViewProperties(Resource.Id.bt_Project, Resource.String.showcase_project_title, Resource.String.showcase_project_message, SHOWCASE_Button_SCALE));
-//			mViews.AddView( new ShowcaseViews.ItemViewProperties(Resource.Id.bt_Task, Resource.String.showcase_task_title, Resource.String.showcase_task_message, SHOWCASE_Button_SCALE));
-//			mViews.Show();
+			switch (item.ItemId)
+			{
+				case Android.Resource.Id.Home:
+					Menu.AnimatedOpened = !Menu.AnimatedOpened;
+					break;
+				default:
+					break;
+			}
 
-
-	
+			return true;
 		}
 
 		private void SetOrientaion(){

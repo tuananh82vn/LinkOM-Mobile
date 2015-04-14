@@ -3,6 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+using System.Threading;
+using System.Threading.Tasks;
 
 using Android.App;
 using Android.Content;
@@ -11,16 +16,12 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
-using System.Threading;
-using System.Threading.Tasks;
 using Android.Support.V4.Widget;
 
 namespace LinkOM
 {
-	[Activity (Label = "Project")]				
+	[Activity (Label = "Project", Theme = "@style/CustomTheme")]				
 	public class ProjectActivity : ListActivity
 	{
 		public bool loading;
@@ -34,11 +35,17 @@ namespace LinkOM
 		{
 			base.OnCreate (savedInstanceState);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.Project);
 			// Create your application here
 
-			var BackButton = FindViewById(Resource.Id.BackButton);
-			BackButton.Click += btBackClick;
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.project_detail_title);
+			//ActionBar.SetSubtitle(Resource.String.actionbar_sub);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
 
 			InitData ();
 
@@ -114,16 +121,20 @@ namespace LinkOM
 			Console.WriteLine ("End load data");
 		}
 
-		private void finish(){
-			//SaveData();     
-			this.Finish ();
-			Android.OS.Process.KillProcess (Android.OS.Process.MyPid ());
-		}
-
-
-		public void btBackClick(object sender, EventArgs e)
+		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
-			OnBackPressed ();
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+			default:
+				break;
+			}
+
+			return true;
 		}
 
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
@@ -131,11 +142,22 @@ namespace LinkOM
 			//Get our item from the list adapter
 			var ProjectId = this.projectList.GetItemId(e.Position);
 
-			var activity = new Intent (this, typeof(ProjectDetailActivity));
+			Intent addAccountIntent = new Intent (this, typeof(ProjectDetailActivity));
+			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			addAccountIntent.PutExtra ("ProjectId", ProjectId);
+			StartActivity(addAccountIntent);
 
-			activity.PutExtra ("ProjectId", ProjectId);
+		}
 
-			StartActivity (activity);
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.ProjectMenu, menu);
+
+			return true;
 		}
 
 		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)

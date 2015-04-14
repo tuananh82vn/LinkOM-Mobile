@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
 		<string-array name="menu">
 		    <item>Add Task</item>
 		    <item>Add Ticket</item>
 		    <item>Add Issue</item>
 		    <item>Add Document</item>
 	  	</string-array>
+
 	  	<string-array name="TaskStatus">
 	  		<item>Open</item>
 		    <item>Closed</item>
@@ -14,6 +16,7 @@
 		    <item>Query</item>
 		    <item>On Hold</item>
 	  	</string-array>
+
 	  	<string-array name="TaskPriority">
 		    <item>Low</item>
 		    <item>Medium</item>
@@ -29,4 +32,6 @@
 
   		<string name="widget_name">LinkOM.Widget</string>
 
+  		<string name="project_detail_title">Project Detail</string>
+  		<string name="project_title">Project</string>
 </resources>
