@@ -78,32 +78,37 @@ namespace LinkOM
 			TaskTitle.Text = _TaskList [position].Title;
 
 
-			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
-			TaskCode.Text = _TaskList [position].Code;
+//			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
+//			TaskCode.Text = _TaskList [position].Code;
 
 			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			ProjectName.Text = _TaskList [position].ProjectName;
 
-			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
-			StartDate.Text = _TaskList [position].StartDateString;
+//			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
+//			StartDate.Text = _TaskList [position].StartDateString;
+//
+//			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
+//			EndDate.Text = _TaskList [position].EndDateString;
+//
+//			var ActualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
+//			ActualHours.Text = _TaskList [position].ActHours;
+//
+//			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
+//			AllocatedHours.Text = _TaskList [position].AllocatedHours;
+//
+//			var AssignTo = view.FindViewById<TextView> (Resource.Id.tv_AssignTo);
+//			AssignTo.Text = _TaskList [position].AssignedTo;
+//
+//			var Owner = view.FindViewById<TextView> (Resource.Id.tv_Owner);
+//			Owner.Text = _TaskList [position].Owner;
 
-			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
-			EndDate.Text = _TaskList [position].EndDateString;
-
-			var ActualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
-			ActualHours.Text = _TaskList [position].ActHours;
-
-			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
-			AllocatedHours.Text = _TaskList [position].AllocatedHours;
-
-			var AssignTo = view.FindViewById<TextView> (Resource.Id.tv_AssignTo);
-			AssignTo.Text = _TaskList [position].AssignedTo;
-
-			var Owner = view.FindViewById<TextView> (Resource.Id.tv_Owner);
-			Owner.Text = _TaskList [position].Owner;
-
-			var Status = view.FindViewById<TextView> (Resource.Id.tv_Status);
-			Status.Text = _TaskList [position].StatusName;
+			var Priority = view.FindViewById<ImageView> (Resource.Id.image_Priority);
+			if(_TaskList [position].PriorityName.Equals("High"))
+				Priority.SetImageResource(Resource.Drawable.hight_priority);
+				else if(_TaskList [position].PriorityName.Equals("Medium"))
+						Priority.SetImageResource(Resource.Drawable.medium_priority);
+							else if(_TaskList [position].PriorityName.Equals("Low"))
+								Priority.SetImageResource(Resource.Drawable.low_priority);
 
 			return view;
 		}

@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace LinkOM
 {
-	[Activity (Label = "ProjectDetailActivity", Theme = "@style/CustomTheme")]			
+	[Activity (Label = "ProjectDetailActivity", Theme = "@style/Theme.Customtheme")]	
 	public class ProjectDetailActivity : Activity
 	{
 		private ImageButton overflowButton;

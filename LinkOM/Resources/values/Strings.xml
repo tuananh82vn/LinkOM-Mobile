@@ -8,32 +8,19 @@
 		    <item>Add Document</item>
 	  	</string-array>
 
-	  	<string-array name="TaskStatus">
-	  		<item>Open</item>
-		    <item>Closed</item>
-		    <item>Waiting On Client</item>
-		    <item>In Progress</item>
-		    <item>Query</item>
-		    <item>On Hold</item>
-	  	</string-array>
-
 	  	<string-array name="TaskPriority">
 		    <item>Low</item>
 		    <item>Medium</item>
 		    <item>High</item>
 	  	</string-array>
 
-	  	<string name="showcase_project_title">Project</string>
-  		<string name="showcase_project_message">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"</string>
-  		<string name="showcase_task_title">Task</string>
-  		<string name="showcase_task_message">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"</string>
+		<string name="widget_name">LinkOM.Widget</string>
 
-  		<string name="dismissed_message">Access additional options here.</string>
-
-  		<string name="widget_name">LinkOM.Widget</string>
-
+		<string name="project_title">Project</string>
   		<string name="project_edit_title">Project Edit</string>
   		<string name="project_detail_title">Project Detail</string>
-  		<string name="project_title">Project</string>
+
   		<string name="task_title">Task</string>
+  		<string name="task_title_edit">Task Edit</string>
+  		<string name="task_title_detail">Task Detail</string>
 </resources>

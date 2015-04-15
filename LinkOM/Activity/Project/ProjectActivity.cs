@@ -21,7 +21,7 @@ using Android.Support.V4.Widget;
 
 namespace LinkOM
 {
-	[Activity (Label = "Project", Theme = "@style/CustomTheme")]				
+	[Activity (Label = "Project", Theme = "@style/Theme.Customtheme")]			
 	public class ProjectActivity : ListActivity
 	{
 		public bool loading;

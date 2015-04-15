@@ -114,7 +114,7 @@ namespace LinkOM
 
 			GetProjectList ();
 
-			GetStatusList ();
+			//GetStatusList ();
 
 			GetPriorityList ();
 		}
@@ -134,20 +134,20 @@ namespace LinkOM
 			st_Priority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Priority_ItemSelected);
 		}
 
-		private void GetStatusList(){
-			//Handle Status
-			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
-			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
-			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-			st_Status.Adapter = StatusAdapter;
-
-			if(model.StatusName!=""){
-				int index = StatusAdapter.GetPosition (model.StatusName);
-				st_Status.SetSelection(index); 
-			}
-
-			st_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
-		}
+//		private void GetStatusList(){
+//			//Handle Status
+//			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
+//			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
+//			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+//			st_Status.Adapter = StatusAdapter;
+//
+//			if(model.StatusName!=""){
+//				int index = StatusAdapter.GetPosition (model.StatusName);
+//				st_Status.SetSelection(index); 
+//			}
+//
+//			st_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
+//		}
 
 		private void GetProjectList(){
 			//Handle Project Spinner

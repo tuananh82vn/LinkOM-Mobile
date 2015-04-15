@@ -53,11 +53,11 @@ namespace LinkOM
 			var BackButton = FindViewById(Resource.Id.BackButton);
 			BackButton.Click += btBackClick;
 
-			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
-			st_Status.Prompt= "Select...";
-			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
-			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
-			st_Status.Adapter = StatusAdapter;
+//			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
+//			st_Status.Prompt= "Select...";
+//			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
+//			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+//			st_Status.Adapter = StatusAdapter;
 
 			Spinner st_Priority = FindViewById<Spinner> (Resource.Id.sp_Priority);
 			st_Priority.Prompt= "Select...";

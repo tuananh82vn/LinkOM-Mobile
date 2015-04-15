@@ -72,7 +72,7 @@ namespace LinkOM
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TaskList, parent, false);
+			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.Ticket, parent, false);
 
 			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
 			TaskTitle.Text = _TicketList [position].Title;
@@ -84,26 +84,26 @@ namespace LinkOM
 			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			ProjectName.Text = _TicketList [position].ProjectName;
 
-			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
-			StartDate.Text = _TicketList [position].StartDateString;
-
-			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
-			EndDate.Text = _TicketList [position].EndDateString;
-
-			var ActualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
-			ActualHours.Text = _TicketList [position].ActHours;
-
-			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
-			AllocatedHours.Text = _TicketList [position].AllocatedHours.ToString();
-
-			var AssignTo = view.FindViewById<TextView> (Resource.Id.tv_AssignTo);
-			AssignTo.Text = _TicketList [position].AssignedTo;
-
-			var Owner = view.FindViewById<TextView> (Resource.Id.tv_Owner);
-			Owner.Text = _TicketList [position].Owner;
-
-			var Status = view.FindViewById<TextView> (Resource.Id.tv_Status);
-			Status.Text = _TicketList [position].TicketStatusName;
+//			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
+//			StartDate.Text = _TicketList [position].StartDateString;
+//
+//			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
+//			EndDate.Text = _TicketList [position].EndDateString;
+//
+//			var ActualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
+//			ActualHours.Text = _TicketList [position].ActHours;
+//
+//			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
+//			AllocatedHours.Text = _TicketList [position].AllocatedHours.ToString();
+//
+//			var AssignTo = view.FindViewById<TextView> (Resource.Id.tv_AssignTo);
+//			AssignTo.Text = _TicketList [position].AssignedTo;
+//
+//			var Owner = view.FindViewById<TextView> (Resource.Id.tv_Owner);
+//			Owner.Text = _TicketList [position].Owner;
+//
+//			var Status = view.FindViewById<TextView> (Resource.Id.tv_Status);
+//			Status.Text = _TicketList [position].TicketStatusName;
 
 			return view;
 		}

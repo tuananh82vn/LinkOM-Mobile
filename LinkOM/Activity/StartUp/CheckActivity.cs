@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace LinkOM
 {
-	[Activity(Label = "Link-OM", Icon = "@drawable/icon", NoHistory = true)]
+	[Activity(Label = "Link-OM", Icon = "@drawable/icon", NoHistory = true, Theme = "@style/Theme.Customtheme")]
     public class CheckActivity : Activity
     {
 		public ProgressDialog progress;

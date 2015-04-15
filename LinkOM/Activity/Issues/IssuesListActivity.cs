@@ -58,7 +58,7 @@ namespace LinkOM
 
 			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
 
-			refresher.SetColorScheme (Resource.Color.xam_green,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_dark_blue);
+			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
 
 			refresher.Refresh += HandleRefresh;
 		}

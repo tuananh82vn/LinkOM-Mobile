@@ -72,14 +72,14 @@ namespace LinkOM
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.TaskList, parent, false);
+			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.IssuesList, parent, false);
 
-			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
-			TaskTitle.Text = _IssuesList [position].Title;
-
-
-			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
-			TaskCode.Text = _IssuesList [position].Code;
+//			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
+//			TaskTitle.Text = _IssuesList [position].Title;
+//
+//
+//			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
+//			TaskCode.Text = _IssuesList [position].Code;
 
 			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			ProjectName.Text = _IssuesList [position].ProjectName;
@@ -93,8 +93,8 @@ namespace LinkOM
 //			var ActualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
 //			ActualHours.Text = _IssuesList [position].ActHours;
 
-			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
-			AllocatedHours.Text = _IssuesList [position].AllocatedHours.ToString();
+//			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
+//			AllocatedHours.Text = _IssuesList [position].AllocatedHours.ToString();
 
 //			var AssignTo = view.FindViewById<TextView> (Resource.Id.tv_AssignTo);
 //			AssignTo.Text = _IssuesList [position].AssignedTo;

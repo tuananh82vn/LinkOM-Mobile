@@ -17,7 +17,7 @@ using Android.Text;
 
 namespace LinkOM
 {
-	[Activity (Label = "TaskList", Theme = "@style/CustomTheme")]		
+	[Activity (Label = "TaskList", Theme = "@style/Theme.Customtheme")]			
 	public class TaskListActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public List<IssuesObject> _TaskList;
@@ -58,7 +58,7 @@ namespace LinkOM
 
 			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
 
-			refresher.SetColorScheme (Resource.Color.xam_green,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_dark_blue);
+			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
 
 			refresher.Refresh += HandleRefresh;
 		}
@@ -109,8 +109,6 @@ namespace LinkOM
 		private async Task InitData(){
 			
 			if (StatusId != 0) {
-
-				Console.WriteLine ("Begin load data");
 
 				if (loading)
 					return;
@@ -165,11 +163,8 @@ namespace LinkOM
 					} 
 				}
 
-				await Task.Delay (2000);
-
 				loading = false;
 
-				Console.WriteLine ("End load data");
 			}
 		}
 
@@ -221,13 +216,13 @@ namespace LinkOM
 		void anim_AnimationStartDown(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
 		{
 			mIsAnimating = true;
-			mSearch.Animate().AlphaBy(1.0f).SetDuration(500).Start();
+			mSearch.Animate().AlphaBy(1.0f).SetDuration(1000).Start();
 		}
 
 		void anim_AnimationStartUp(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
 		{
 			mIsAnimating = true;
-			mSearch.Animate().AlphaBy(-1.0f).SetDuration(300).Start();
+			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
 		}
 
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

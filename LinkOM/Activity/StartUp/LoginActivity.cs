@@ -18,7 +18,7 @@ using RadialProgress;
 
 namespace LinkOM
 {
-	[Activity(Label = "Link-OM", Icon = "@drawable/icon")]
+	[Activity(Label = "Link-OM", Icon = "@drawable/icon", Theme = "@style/Theme.Customtheme")]
 	public class LoginActivity : Activity, TextView.IOnEditorActionListener
 	{
 		private LoginService _loginService;

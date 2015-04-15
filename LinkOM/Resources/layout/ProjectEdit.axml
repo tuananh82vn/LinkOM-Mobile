@@ -55,7 +55,8 @@
                 android:layout_marginTop="0dp"
                 android:gravity="center_vertical"
                 android:nextFocusUp="@id/editText_ProjectName"
-                android:nextFocusLeft="@id/editText_ProjectName" />
+                android:nextFocusLeft="@id/editText_ProjectName"
+                android:textSize="14dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -63,7 +64,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tableRow1"
-            android:layout_marginBottom="0dp">
+            android:layout_marginBottom="0dp"
+            android:layout_gravity="center_vertical">
             <LinkOM.MyTextView
                 android:id="@+id/MyTextView"
                 android:text="REF CODE"
@@ -72,7 +74,7 @@
                 android:layout_width="100dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
@@ -85,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
@@ -103,9 +105,10 @@
                 android:layout_column="0"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_width="100dp"
-                android:layout_marginTop="0dp" />
+                android:layout_marginTop="0dp"
+                android:textSize="14dp" />
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_column="1"
@@ -129,7 +132,7 @@
                 android:layout_width="120dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
@@ -142,11 +145,11 @@
                 android:layout_width="150dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="5dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -161,7 +164,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/spinner1"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="20dp"
+                android:spinnerMode="dialog"
+                android:gravity="center_vertical" />
             <Spinner
                 android:layout_width="150dp"
                 android:layout_column="1"
@@ -185,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
@@ -207,7 +212,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:gravity="center_vertical"
                 android:layout_marginTop="0dp" />
             <EditText
@@ -218,7 +222,8 @@
                 android:id="@+id/editText_AllocatedHours"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:imeOptions="actionDone" />
+                android:imeOptions="actionDone"
+                android:textSize="14dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -236,7 +241,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:gravity="center_vertical"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp" />
@@ -249,7 +253,8 @@
                 android:layout_marginRight="20dp"
                 android:clickable="true"
                 android:cursorVisible="false"
-                android:focusable="false" />
+                android:focusable="false"
+                android:textSize="14dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -267,7 +272,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:gravity="center_vertical"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp" />
@@ -280,7 +284,8 @@
                 android:layout_marginRight="20dp"
                 android:clickable="true"
                 android:cursorVisible="false"
-                android:focusable="false" />
+                android:focusable="false"
+                android:textSize="14dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -298,7 +303,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:gravity="center_vertical"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp" />
@@ -312,7 +316,8 @@
                 android:layout_marginRight="20dp"
                 android:clickable="true"
                 android:cursorVisible="false"
-                android:focusable="false" />
+                android:focusable="false"
+                android:textSize="14dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -330,7 +335,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:gravity="center_vertical"
                 android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp" />
@@ -344,7 +348,8 @@
                 android:layout_marginRight="20dp"
                 android:clickable="true"
                 android:cursorVisible="false"
-                android:focusable="false" />
+                android:focusable="false"
+                android:textSize="14dp" />
         </TableRow>
         <TableRow
             android:minHeight="25px"
@@ -360,23 +365,23 @@
                 android:layout_height="wrap_content"
                 android:layout_width="160dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="5dp" />
             <LinkOM.MyTextView
                 android:id="@+id/MyTextView"
                 android:text="DEPARTMENT"
                 android:layout_column="1"
                 android:layout_height="wrap_content"
                 android:layout_width="160dp"
-                android:layout_marginTop="10dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
                 android:layout_marginBottom="0dp"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -413,11 +418,11 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="5dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -512,11 +517,11 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="5dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -531,7 +536,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="80dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -548,11 +553,11 @@
                 android:layout_width="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="14dp"
-                android:layout_marginBottom="0dp" />
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="5dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -567,7 +572,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="80dp" />
         </TableRow>
     </LinearLayout>
 </ScrollView>

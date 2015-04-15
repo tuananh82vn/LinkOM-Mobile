@@ -23,7 +23,7 @@ using System.Timers;
 
 namespace LinkOM
 {
-	[Activity (Label = "Task", Theme = "@style/CustomTheme")]				
+	[Activity (Label = "Task", Theme = "@style/Theme.Customtheme")]					
 	public class TaskActivity : Activity
 	{
 		public LinearLayout LinearLayout_Master;

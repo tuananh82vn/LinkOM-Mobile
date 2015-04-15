@@ -17,7 +17,7 @@ using Android.Content.PM;
 
 namespace LinkOM
 {
-	[Activity(Label = "Link-OM", Theme = "@style/MainTheme")]					
+	[Activity(Label = "Link-OM", Theme = "@style/Theme.Customtheme")]					
 	public class MainActivity : Activity
 	{
 

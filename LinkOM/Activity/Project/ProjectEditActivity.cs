@@ -14,7 +14,7 @@ using Android.Views.InputMethods;
 
 namespace LinkOM
 {
-	[Activity (Label = "ProjectEditActivity", Theme = "@style/CustomTheme")]				
+	[Activity (Label = "ProjectEditActivity", Theme = "@style/Theme.Customtheme")]		
 	public class ProjectEditActivity : Activity, TextView.IOnEditorActionListener
 	{
 		const int Start_DATE_DIALOG_ID = 0;
