@@ -32,6 +32,8 @@
 
   		<string name="widget_name">LinkOM.Widget</string>
 
+  		<string name="project_edit_title">Project Edit</string>
   		<string name="project_detail_title">Project Detail</string>
   		<string name="project_title">Project</string>
+  		<string name="task_title">Task</string>
 </resources>

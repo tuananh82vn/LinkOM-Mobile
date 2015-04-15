@@ -145,6 +145,8 @@
     <Compile Include="Widget\BlogPost.cs" />
     <Compile Include="Widget\UpdateService.cs" />
     <Compile Include="Widget\WordWidget.cs" />
+    <Compile Include="Activity\Project\ProjectEditActivity.cs" />
+    <Compile Include="UIControl\MyTextView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -198,7 +200,6 @@
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ProjectList.axml" />
     <AndroidResource Include="Resources\drawable\Help.png" />
-    <AndroidResource Include="Resources\menu\menu_home.xml" />
     <AndroidResource Include="Resources\menu\menu_login.xml" />
     <AndroidResource Include="Resources\layout\SpinnerItemDropdown.axml" />
     <AndroidResource Include="Resources\layout\SpinnerItemText.axml" />
@@ -251,7 +252,6 @@
     <AndroidResource Include="Resources\layout\widget_word.xml" />
     <AndroidResource Include="xml\widget_word.xml" />
     <AndroidResource Include="Resources\values\CustomStyle.xml" />
-    <AndroidResource Include="Resources\menu\ProjectDetailMenu.xml" />
     <AndroidResource Include="Resources\drawable\ic_action_about.png" />
     <AndroidResource Include="Resources\drawable\ic_action_call.png" />
     <AndroidResource Include="Resources\drawable\ic_action_help.png" />
@@ -259,7 +259,6 @@
     <AndroidResource Include="Resources\drawable\ic_action_refresh.png" />
     <AndroidResource Include="Resources\values\color_a.xml" />
     <AndroidResource Include="Resources\drawable\back.png" />
-    <AndroidResource Include="Resources\menu\ProjectMenu.xml" />
     <AndroidResource Include="Resources\drawable\add.png" />
     <AndroidResource Include="Resources\drawable\back_button.xml" />
     <AndroidResource Include="Resources\drawable\Back_normal.png" />
@@ -268,6 +267,14 @@
     <AndroidResource Include="Resources\drawable\search.png" />
     <AndroidResource Include="Resources\drawable\about.png" />
     <AndroidResource Include="Resources\drawable\reload.png" />
+    <AndroidResource Include="Resources\layout\ProjectEdit.axml" />
+    <AndroidResource Include="Resources\drawable\save.png" />
+    <AndroidResource Include="Resources\values\Attrs.xml" />
+    <AndroidResource Include="Resources\menu\SearchMenu.xml" />
+    <AndroidResource Include="Resources\menu\AddMenu.xml" />
+    <AndroidResource Include="Resources\menu\SaveMenu.xml" />
+    <AndroidResource Include="Resources\menu\FullMenu.xml" />
+    <AndroidResource Include="Resources\menu\AddSearchMenu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -331,5 +338,10 @@
     <Folder Include="UIControl\" />
     <Folder Include="Widget\" />
     <Folder Include="xml\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Assets\Fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\Fonts\arial.ttf" />
   </ItemGroup>
 </Project>

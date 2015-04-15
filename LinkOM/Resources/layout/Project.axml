@@ -5,13 +5,8 @@
     android:layout_height="fill_parent"
     android:id="@+id/FlyOutContent"
     android:background="#ffffffff">
-    <LinkOM.ScrollChildSwipeRefreshLayout
-        android:id="@+id/refresher"
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
-            android:id="@android:id/list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinkOM.ScrollChildSwipeRefreshLayout>
+        android:layout_height="match_parent" />
 </LinearLayout>

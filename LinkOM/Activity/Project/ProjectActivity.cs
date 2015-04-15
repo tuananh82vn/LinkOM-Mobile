@@ -29,7 +29,7 @@ namespace LinkOM
 		public string TokenNumber;
 		public ProjectListAdapter projectList; 
 		public ListView projectListView;
-		public SwipeRefreshLayout refresher;
+		//public SwipeRefreshLayout refresher;
 	
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -41,7 +41,7 @@ namespace LinkOM
 			// Create your application here
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
-			ActionBar.SetTitle(Resource.String.project_detail_title);
+			ActionBar.SetTitle(Resource.String.project_title);
 			//ActionBar.SetSubtitle(Resource.String.actionbar_sub);
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -49,19 +49,19 @@ namespace LinkOM
 
 			InitData ();
 
-			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-
-			refresher.SetColorScheme (Resource.Color.xam_dark_blue,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_green);
-
-			refresher.Refresh += HandleRefresh;
+//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+//
+//			refresher.SetColorScheme (Resource.Color.xam_dark_blue,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_green);
+//
+//			refresher.Refresh += HandleRefresh;
 
 		}
 
-		async void HandleRefresh (object sender, EventArgs e)
-		{
-			await InitData ();
-			refresher.Refreshing = false;
-		}
+//		async void HandleRefresh (object sender, EventArgs e)
+//		{
+//			await InitData ();
+//			refresher.Refreshing = false;
+//		}
 
 		public async Task InitData(){
 
@@ -121,6 +121,7 @@ namespace LinkOM
 			Console.WriteLine ("End load data");
 		}
 
+		//Handle item on action bar clicked
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			base.OnOptionsItemSelected (item);
@@ -137,6 +138,7 @@ namespace LinkOM
 			return true;
 		}
 
+		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			//Get our item from the list adapter
@@ -149,49 +151,50 @@ namespace LinkOM
 
 		}
 
+		//Init menu on action bar
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
 			base.OnCreateOptionsMenu (menu);
 
 			MenuInflater inflater = this.MenuInflater;
 
-			inflater.Inflate (Resource.Menu.ProjectMenu, menu);
+			inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
 
 			return true;
 		}
 
-		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
-		{
-			if (v.Id == Android.Resource.Id.List)
-			{
-				var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-				menu.SetHeaderTitle(projectList.GetItemName(info.Position));
-				var menuItems = Resources.GetStringArray(Resource.Array.menu);
-				for (var i = 0; i < menuItems.Length; i++)
-					menu.Add(Menu.None, i, i, menuItems[i]);
-			}
-		}
+//		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+//		{
+//			if (v.Id == Android.Resource.Id.List)
+//			{
+//				var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+//				menu.SetHeaderTitle(projectList.GetItemName(info.Position));
+//				var menuItems = Resources.GetStringArray(Resource.Array.menu);
+//				for (var i = 0; i < menuItems.Length; i++)
+//					menu.Add(Menu.None, i, i, menuItems[i]);
+//			}
+//		}
 
-		public override bool OnContextItemSelected(IMenuItem item)
-		{
-			var info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
-			var menuItemIndex = item.ItemId;
-			var menuItems = Resources.GetStringArray(Resource.Array.menu);
-			var menuItemName = menuItems[menuItemIndex];
-
-			var ProjectName = projectList.GetItemName(info.Position);
-			int ProjectId = int.Parse(projectList.GetItemId(info.Position).ToString());
-
-			if (menuItemName.Equals ("Add Task")) {
-				var activity = new Intent (this, typeof(AddTaskActivity));
-				activity.PutExtra ("ProjectId", ProjectId);
-				StartActivity (activity);
-			}
-			else
-				Toast.MakeText(this, string.Format("Selected {0} for item {1}", menuItemName, ProjectName), ToastLength.Short).Show();
-
-			return true;
-		}
+//		public override bool OnContextItemSelected(IMenuItem item)
+//		{
+//			var info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
+//			var menuItemIndex = item.ItemId;
+//			var menuItems = Resources.GetStringArray(Resource.Array.menu);
+//			var menuItemName = menuItems[menuItemIndex];
+//
+//			var ProjectName = projectList.GetItemName(info.Position);
+//			int ProjectId = int.Parse(projectList.GetItemId(info.Position).ToString());
+//
+//			if (menuItemName.Equals ("Add Task")) {
+//				var activity = new Intent (this, typeof(AddTaskActivity));
+//				activity.PutExtra ("ProjectId", ProjectId);
+//				StartActivity (activity);
+//			}
+//			else
+//				Toast.MakeText(this, string.Format("Selected {0} for item {1}", menuItemName, ProjectName), ToastLength.Short).Show();
+//
+//			return true;
+//		}
 	}
 }
 

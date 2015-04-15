@@ -23,7 +23,7 @@ using System.Timers;
 
 namespace LinkOM
 {
-	[Activity (Label = "Task")]				
+	[Activity (Label = "Task", Theme = "@style/CustomTheme")]				
 	public class TaskActivity : Activity
 	{
 		public LinearLayout LinearLayout_Master;
@@ -37,31 +37,55 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.Task);
 			// Create your application here
 
-			var BackButton = FindViewById(Resource.Id.BackButton);
-			BackButton.Click += btBackClick;
-
-//			progress = new ProgressDialog (this);
-//			progress.Indeterminate = true;
-//			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-//			progress.SetMessage("Loading Task...");
-//			progress.SetCancelable(false);
-//			progress.Show();
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.task_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
 
 			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
 			progressView.MinValue = 0;
 			progressView.MaxValue = 100;
-//			progressView.Visibility=ViewStates.Invisible;
 
 			_timer = new System.Timers.Timer(10);
 			_timer.Elapsed += HandleElapsed;
 			_timer.Start();
 
 			ThreadPool.QueueUserWorkItem (o => InitData ());
+		}
 
+		//Handle item on action bar clicked
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
 
+			switch (item.ItemId)
+			{
+				case Android.Resource.Id.Home:
+					OnBackPressed ();
+					break;
+				default:
+					break;
+			}
+
+			return true;
+		}
+
+		//Init menu on action bar
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.AddMenu, menu);
+
+			return true;
 		}
 
 		void HandleElapsed (object sender, ElapsedEventArgs e)

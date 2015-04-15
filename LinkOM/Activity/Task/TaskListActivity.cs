@@ -17,7 +17,7 @@ using Android.Text;
 
 namespace LinkOM
 {
-	[Activity (Label = "TaskList")]			
+	[Activity (Label = "TaskList", Theme = "@style/CustomTheme")]		
 	public class TaskListActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public List<IssuesObject> _TaskList;
@@ -35,22 +35,22 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.TaskListContainer);
 
-			taskListView = FindViewById<ListView> (Resource.Id.TaskListView);
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.task_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
 
+			taskListView = FindViewById<ListView> (Resource.Id.TaskListView);
 			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
 			mSearch.Alpha = 0;
 			mSearch.SetOnEditorActionListener (this);
 			mSearch.TextChanged += InputSearchOnTextChanged;
 
-
-
-			var buttonBack = FindViewById(Resource.Id.BackButton);
-			buttonBack.Click += btBackClick;
-
-			var SearchButton = FindViewById(Resource.Id.SearchButton);
-			SearchButton.Click += btSearchClick;
 
 			StatusId= Intent.GetIntExtra ("TaskStatusId",0);
 
@@ -61,6 +61,38 @@ namespace LinkOM
 			refresher.SetColorScheme (Resource.Color.xam_green,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_dark_blue);
 
 			refresher.Refresh += HandleRefresh;
+		}
+
+		//Handle item on action bar clicked
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+			case Resource.Id.search:
+				btSearchClick ();
+				break;
+			default:
+				break;
+			}
+
+			return true;
+		}
+
+		//Init menu on action bar
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.SearchMenu, menu);
+
+			return true;
 		}
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
@@ -146,7 +178,7 @@ namespace LinkOM
 			OnBackPressed ();
 		}
 
-		public void btSearchClick(object sender, EventArgs e)
+		public void btSearchClick()
 		{
 			if (!mAnimatedDown)
 			{

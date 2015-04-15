@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/mainMenu"
+android:background="@color/light_gray">
+	<item android:id="@+id/save"
+				android:icon="@drawable/save"
+				android:showAsAction="always"
+				android:orderInCategory="100"
+				android:title="New">
+	</item>
+</menu>
