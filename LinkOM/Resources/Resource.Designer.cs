@@ -5349,14 +5349,14 @@ namespace LinkOM
 			// aapt resource value: 0x7f080061
 			public const int ActionBar_Solid_Customtheme = 2131230817;
 			
-			// aapt resource value: 0x7f080063
-			public const int ActionBar_Transparent_Customtheme = 2131230819;
+			// aapt resource value: 0x7f080062
+			public const int ActionBar_Transparent_Customtheme = 2131230818;
 			
-			// aapt resource value: 0x7f080066
-			public const int ActionBarTabStyle_Customtheme = 2131230822;
+			// aapt resource value: 0x7f080065
+			public const int ActionBarTabStyle_Customtheme = 2131230821;
 			
-			// aapt resource value: 0x7f080069
-			public const int ActionButton_CloseMode_Customtheme = 2131230825;
+			// aapt resource value: 0x7f080068
+			public const int ActionButton_CloseMode_Customtheme = 2131230824;
 			
 			// aapt resource value: 0x7f080001
 			public const int CalendarCell = 2131230721;
@@ -5370,20 +5370,20 @@ namespace LinkOM
 			// aapt resource value: 0x7f080000
 			public const int CalendarTitle = 2131230720;
 			
-			// aapt resource value: 0x7f080065
-			public const int DropDownListView_Customtheme = 2131230821;
+			// aapt resource value: 0x7f080064
+			public const int DropDownListView_Customtheme = 2131230820;
+			
+			// aapt resource value: 0x7f080066
+			public const int DropDownNav_Customtheme = 2131230822;
+			
+			// aapt resource value: 0x7f08006b
+			public const int MyTheme_ActionBar_TitleTextStyle = 2131230827;
+			
+			// aapt resource value: 0x7f080063
+			public const int PopupMenu_Customtheme = 2131230819;
 			
 			// aapt resource value: 0x7f080067
-			public const int DropDownNav_Customtheme = 2131230823;
-			
-			// aapt resource value: 0x7f080062
-			public const int MyTheme_ActionBar_TitleTextStyle = 2131230818;
-			
-			// aapt resource value: 0x7f080064
-			public const int PopupMenu_Customtheme = 2131230820;
-			
-			// aapt resource value: 0x7f080068
-			public const int ProgressBar_Customtheme = 2131230824;
+			public const int ProgressBar_Customtheme = 2131230823;
 			
 			// aapt resource value: 0x7f08004d
 			public const int Sherlock___TextAppearance_Small = 2131230797;
@@ -5499,8 +5499,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f080060
 			public const int Theme_Customtheme = 2131230816;
 			
-			// aapt resource value: 0x7f08006a
-			public const int Theme_Customtheme_Widget = 2131230826;
+			// aapt resource value: 0x7f080069
+			public const int Theme_Customtheme_Widget = 2131230825;
 			
 			// aapt resource value: 0x7f08005b
 			public const int Theme_Sherlock = 2131230811;
@@ -5517,8 +5517,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f08005e
 			public const int Theme_Sherlock_NoActionBar = 2131230814;
 			
-			// aapt resource value: 0x7f08006b
-			public const int Theme_Splash = 2131230827;
+			// aapt resource value: 0x7f08006a
+			public const int Theme_Splash = 2131230826;
 			
 			// aapt resource value: 0x7f080007
 			public const int Widget = 2131230727;
