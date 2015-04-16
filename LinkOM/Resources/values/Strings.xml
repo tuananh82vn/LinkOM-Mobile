@@ -8,6 +8,26 @@
 		    <item>Add Document</item>
 	  	</string-array>
 
+	  	<string-array name="TaskStatus">
+		    <item>Open</item>
+		    <item>Waiting</item>
+		    <item>In Progress</item>
+		    <item>On Hold</item>
+		    <item>Closed</item>
+	  	</string-array>
+
+	  	<string-array name="Phase">
+		    <item>Development</item>
+		    <item>Execution</item>
+	  	</string-array>
+
+	  	<string-array name="Label">
+		    <item>Design</item>
+		    <item>GUI</item>
+		    <item>Development</item>
+		    <item>Improvement</item>
+	  	</string-array>
+
 	  	<string-array name="TaskPriority">
 		    <item>Low</item>
 		    <item>Medium</item>

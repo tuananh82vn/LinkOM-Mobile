@@ -16,37 +16,64 @@ namespace LinkOM
 	[Activity (Label = "TaskEditActivity", Theme = "@style/Theme.Customtheme")]			
 	public class TaskEditActivity : Activity
 	{
+		public string results;
+
 		const int Start_DATE_DIALOG_ID = 0;
 		const int End_DATE_DIALOG_ID = 1;
+		const int Actual_Start_DATE_DIALOG_ID = 2;
+		const int Actual_End_DATE_DIALOG_ID = 3;
+
+
+		public TaskObject TaskDetail;
 
 		public ProjectSpinnerAdapter projectList; 
-
-		public Spinner sp_Project;
-
 		public ArrayAdapter PriorityAdapter;
 
-		private EditText editText_Title;
-		private EditText editText_AllocatedHours;
-
-		public TaskObject model;
-
-		private TextView tv_StartDate;
-		private TextView tv_EndDate;
-
-		private Button bt_EndDate;
-		private Button bt_StartDate;
-
-		private DateTime StartDate;
-		private DateTime EndDate;
-
-		private CheckBox cb_WatchList;
-		private CheckBox cb_Internal;
-		private CheckBox cb_Management;
+		public DateTime StartDate;
+		public DateTime EndDate;
+		public DateTime ActualStartDate;
+		public DateTime ActualEndDate;
 
 
-		private int Selected_ProjectID;
-		private int Selected_PriorityID;
-		private int Selected_StatusID;
+		public int Selected_ProjectID;
+		public int Selected_PriorityID;
+		public int Selected_StatusID;
+		public int Selected_PhaseID;
+
+
+		public EditText editText_Title;
+
+		public Spinner spinner_Project ;
+
+		public CheckBox cb_Internal ;
+
+		public CheckBox cb_WatchList ;
+
+		public CheckBox cb_Management ;
+
+		public Spinner spinner_Status ;
+
+		public Spinner spinner_Priority ;
+
+		public Spinner spinner_AssignedTo ;
+
+		public Spinner spinner_Owner;
+
+		public EditText editText_StartDate ;
+
+		public EditText editText_EndDate ;
+
+		public EditText editText_ActualStartDate ;
+
+		public EditText editText_ActualEndDate ;
+
+		public EditText editText_AllocatedHours ;
+
+		public EditText editText_Description ;
+
+		public Spinner spinner_Phase ;
+
+		public Spinner spinner_Label;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -62,66 +89,104 @@ namespace LinkOM
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
 
-			//Init UI
+			LoadTask ();
 
-			Button bt_Save = FindViewById<Button>(Resource.Id.ok_button);
-			bt_Save.Click += btSaveClick;
-
-			Button bt_Cancel = FindViewById<Button>(Resource.Id.cancel_button);
-			bt_Cancel.Click += btBackClick;
-
-			// get the current date
-			StartDate = DateTime.Today;
-
-			// get the current date
-			EndDate = DateTime.Today;
-
-			tv_StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
-			tv_StartDate.Text = StartDate.ToString ("d");
-			tv_EndDate = FindViewById<TextView> (Resource.Id.tv_EndDate);
-			tv_EndDate.Text = EndDate.ToString ("d");
-
-			bt_StartDate = FindViewById<Button> (Resource.Id.bt_StartDate);
-			bt_EndDate = FindViewById<Button> (Resource.Id.bt_EndDate);
-
-			// add a click event handler to the button
-			bt_StartDate.Click += delegate { ShowDialog (Start_DATE_DIALOG_ID); };
-			// add a click event handler to the button
-			bt_EndDate.Click += delegate { ShowDialog (End_DATE_DIALOG_ID); };
-
-
-			//Init variable
-			string jsonTask = Intent.GetStringExtra("Task");
-			model = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskObject> (jsonTask);
-
-
-			//Handle Title
-			editText_Title = FindViewById<EditText> (Resource.Id.editText_Title);
-			editText_Title.Text= model.Title;
-
-			//Allocated Hours
-			editText_AllocatedHours = FindViewById<EditText> (Resource.Id.editText_AlloHours);
-			editText_AllocatedHours.Text= model.AllocatedHours;
-
-			//
-			cb_WatchList = FindViewById<CheckBox> (Resource.Id.cb_WatchList);
-			if(model.IsAddToMyWatch.HasValue)
-				cb_WatchList.Checked = model.IsAddToMyWatch.Value;
-			
-
-			cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-			if(model.IsInternal.HasValue)
-			cb_Internal.Checked = model.IsInternal.Value;
-
-			cb_Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-			if(model.IsManagerial.HasValue)
-			cb_Management.Checked = model.IsManagerial.Value;
+			InitControl ();
 
 			GetProjectList ();
 
-			//GetStatusList ();
+			GetStatusList ();
 
 			GetPriorityList ();
+
+//			GetStaffList ();
+//
+			GetPhaseList ();
+
+//			GetLabel ();
+
+			DisplayTask (TaskDetail);
+		}
+
+		public void LoadTask(){
+
+			results= Intent.GetStringExtra ("Task");
+
+			TaskDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskObject> (results);
+		}
+
+		public void InitControl(){
+			
+			editText_Title = FindViewById<EditText> (Resource.Id.editText_Title);
+
+			spinner_Project = FindViewById<Spinner> (Resource.Id.spinner_Project);
+
+			cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
+
+			cb_WatchList = FindViewById<CheckBox> (Resource.Id.cb_WatchList);
+
+			cb_Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
+
+			spinner_Status = FindViewById<Spinner> (Resource.Id.spinner_Status);
+
+			spinner_Priority = FindViewById<Spinner> (Resource.Id.spinner_Priority);
+
+			spinner_AssignedTo = FindViewById<Spinner> (Resource.Id.spinner_AssignedTo);
+
+			spinner_Owner= FindViewById<Spinner> (Resource.Id.spinner_Owner);
+
+			editText_StartDate = FindViewById<EditText> (Resource.Id.editText_StartDate);
+
+			editText_EndDate = FindViewById<EditText> (Resource.Id.editText_EndDate);
+
+			editText_ActualStartDate = FindViewById<EditText> (Resource.Id.editText_ActualStartDate);
+
+			editText_ActualEndDate = FindViewById<EditText> (Resource.Id.editText_ActualEndDate);
+
+			editText_AllocatedHours = FindViewById<EditText> (Resource.Id.editText_AllocatedHours);
+
+			editText_Description = FindViewById<EditText> (Resource.Id.editText_Description);
+
+			spinner_Phase = FindViewById<Spinner> (Resource.Id.spinner_Phase);
+
+			spinner_Label= FindViewById<Spinner> (Resource.Id.spinner_Label);
+
+			editText_StartDate.Click += delegate { ShowDialog (Start_DATE_DIALOG_ID); };
+			editText_EndDate.Click += delegate { ShowDialog (End_DATE_DIALOG_ID); };
+			editText_ActualStartDate.Click += delegate { ShowDialog (Actual_Start_DATE_DIALOG_ID); };
+			editText_ActualEndDate.Click += delegate { ShowDialog (Actual_End_DATE_DIALOG_ID); };
+
+		}
+
+
+
+		public void DisplayTask(TaskObject obj){
+
+			editText_Title.Text = obj.Title;
+
+			if(obj.IsInternal.HasValue)
+				cb_Internal.Checked = obj.IsInternal.Value;
+
+
+			if(obj.IsAddToMyWatch.HasValue)
+				cb_WatchList.Checked = obj.IsAddToMyWatch.Value;
+
+			if(obj.IsManagerial.HasValue)
+				cb_Management.Checked = obj.IsManagerial.Value;
+			
+
+			editText_StartDate.Text = obj.StartDateString;
+
+			editText_EndDate.Text = obj.EndDateString;
+
+			editText_ActualStartDate.Text = obj.ActualStartDateString;
+
+			editText_ActualEndDate.Text = obj.ActualEndDateString;
+
+			editText_AllocatedHours.Text = obj.AllocatedHours;
+
+			editText_Description.Text = obj.Description;
+
 		}
 
 		//Handle item on action bar clicked
@@ -131,11 +196,16 @@ namespace LinkOM
 
 			switch (item.ItemId)
 			{
-			case Android.Resource.Id.Home:
-				OnBackPressed ();
-				break;
-			default:
-				break;
+				case Android.Resource.Id.Home:
+					OnBackPressed ();
+					break;
+
+				case Resource.Id.save:
+					OnBackPressed ();
+					break;
+
+				default:
+					break;
 			}
 
 			return true;
@@ -155,33 +225,46 @@ namespace LinkOM
 
 		private void GetPriorityList(){
 			//Handle priority
-			Spinner st_Priority = FindViewById<Spinner> (Resource.Id.sp_Priority);
+
 			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
 			PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-			st_Priority.Adapter = PriorityAdapter;
+			spinner_Priority.Adapter = PriorityAdapter;
 
-			if(model.PriorityName!=""){
-				int index = PriorityAdapter.GetPosition (model.PriorityName);
-				st_Priority.SetSelection(index); 
+			if(TaskDetail.PriorityName!=""){
+				int index = PriorityAdapter.GetPosition (TaskDetail.PriorityName);
+				spinner_Priority.SetSelection(index); 
 			}
 
-			st_Priority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Priority_ItemSelected);
+			spinner_Priority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Priority_ItemSelected);
 		}
 
-//		private void GetStatusList(){
-//			//Handle Status
-//			Spinner st_Status = FindViewById<Spinner> (Resource.Id.sp_Status);
-//			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
-//			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-//			st_Status.Adapter = StatusAdapter;
-//
-//			if(model.StatusName!=""){
-//				int index = StatusAdapter.GetPosition (model.StatusName);
-//				st_Status.SetSelection(index); 
-//			}
-//
-//			st_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
-//		}
+		private void GetStatusList(){
+
+			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
+			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+			spinner_Status.Adapter = StatusAdapter;
+
+			if(TaskDetail.StatusName!=""){
+				int index = StatusAdapter.GetPosition (TaskDetail.StatusName);
+				spinner_Status.SetSelection(index); 
+			}
+
+			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
+		}
+
+		private void GetPhaseList(){
+
+			var PhaseAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.Phase, Android.Resource.Layout.SimpleSpinnerItem);
+			PhaseAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+			spinner_Phase.Adapter = PhaseAdapter;
+
+			if(TaskDetail.ProjectPhaseName!=""){
+				int index = PhaseAdapter.GetPosition (TaskDetail.ProjectPhaseName);
+				spinner_Phase.SetSelection(index); 
+			}
+
+			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
+		}
 
 		private void GetProjectList(){
 			//Handle Project Spinner
@@ -217,15 +300,18 @@ namespace LinkOM
 				});
 
 			string results= ConnectWebAPI.Request(url,objsearch);
+
 			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
 
 			projectList = new ProjectSpinnerAdapter (this,ProjectList.Items);
-			sp_Project = FindViewById<Spinner> (Resource.Id.sp_Project);
-			sp_Project.Adapter = projectList;
-			if(model.ProjectId.Value!=0)
-				sp_Project.SetSelection(projectList.getPositionById(model.ProjectId.Value)); 
 
-			sp_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
+
+			spinner_Project.Adapter = projectList;
+
+			if(TaskDetail.ProjectId.HasValue)
+				spinner_Project.SetSelection(projectList.getPositionById(TaskDetail.ProjectId.Value)); 
+
+			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
 		}
 
 		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
@@ -264,15 +350,20 @@ namespace LinkOM
 					}
 		}
 
+		private void Phase_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Spinner spinner = (Spinner)sender;
+			string PhaseName = spinner.GetItemAtPosition (e.Position).ToString();
+			if(PhaseName.Equals("Low")){
+				Selected_PhaseID=1;
+			}
+		}
+
 		private void project_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Selected_ProjectID = projectList.GetItemAtPosition (e.Position).Id;
 		}
 
-		public void btBackClick(object sender, EventArgs e)
-		{
-			OnBackPressed ();
-		}
 
 		public void btSaveClick(object sender, EventArgs e)
 		{
@@ -283,20 +374,20 @@ namespace LinkOM
 
 			var objItem = new
 			{
-				Id = model.Id,
-				Guid = model.Guid,
-				AssignedToId= model.AssignedToId,
+				Id = TaskDetail.Id,
+				Guid = TaskDetail.Guid,
+				AssignedToId= TaskDetail.AssignedToId,
 				AssignToName= String.Empty,
 				Title= editText_Title.Text,
 				ProjectId= Selected_ProjectID,
-				OwnerId= model.OwnerId,
-				StartDate= tv_EndDate.Text,
-				EndDate= String.Empty,
+				OwnerId= TaskDetail.OwnerId,
+				StartDate= editText_StartDate.Text,
+				EndDate= editText_EndDate.Text,
 				PriorityId= Selected_PriorityID,
 				TaskStatusId= Selected_StatusID,
 				AllocatedHours= editText_AllocatedHours.Text,
 				IsUserWatch = cb_WatchList.Checked,
-				UpdatedBy = model.CreatedBy,
+				UpdatedBy = TaskDetail.CreatedBy,
 			};
 
 			var objEditTask = (new
@@ -327,13 +418,25 @@ namespace LinkOM
 		// the event received when the user "sets" the date in the dialog
 		void OnStartDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			tv_StartDate.Text = e.Date.ToString ("d");
+			editText_StartDate.Text = e.Date.ToString ("d");
 		}
 
 		// the event received when the user "sets" the date in the dialog
 		void OnEndDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			tv_EndDate.Text = e.Date.ToString ("d");
+			editText_EndDate.Text = e.Date.ToString ("d");
+		}
+
+		// the event received when the user "sets" the date in the dialog
+		void OnActualStartDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
+		{
+			editText_ActualStartDate.Text = e.Date.ToString ("d");
+		}
+
+		// the event received when the user "sets" the date in the dialog
+		void OnActualEndDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
+		{
+			editText_ActualEndDate.Text = e.Date.ToString ("d");
 		}
 
 		protected override Dialog OnCreateDialog (int id)
@@ -343,6 +446,11 @@ namespace LinkOM
 				return new DatePickerDialog (this, OnStartDateSet, StartDate.Year, StartDate.Month - 1, StartDate.Day); 
 			case End_DATE_DIALOG_ID:
 				return new DatePickerDialog (this, OnEndDateSet, EndDate.Year, EndDate.Month - 1, EndDate.Day); 
+
+			case Actual_Start_DATE_DIALOG_ID:
+				return new DatePickerDialog (this, OnActualStartDateSet, ActualStartDate.Year, ActualStartDate.Month - 1, ActualStartDate.Day); 
+			case Actual_End_DATE_DIALOG_ID:
+				return new DatePickerDialog (this, OnActualEndDateSet, ActualEndDate.Year, ActualEndDate.Month - 1, ActualEndDate.Day); 
 			}
 			return null;
 		}
