@@ -124,11 +124,9 @@
     <Compile Include="Activity\Milestones\MilestonesActivity.cs" />
     <Compile Include="Helper\JavaHolder.cs" />
     <Compile Include="Helper\ObjectExtensions.cs" />
-    <Compile Include="Model\ReceiveModel\TicketList.cs" />
     <Compile Include="Model\ViewModel\TicketObject.cs" />
     <Compile Include="Activity\Ticket\TicketListActivity.cs" />
     <Compile Include="Adapter\TicketListAdapter.cs" />
-    <Compile Include="Model\ReceiveModel\IssuesList.cs" />
     <Compile Include="Model\ViewModel\IssuesObject.cs" />
     <Compile Include="Helper\ColorHelper.cs" />
     <Compile Include="Activity\Issues\IssuesListActivity.cs" />
@@ -144,6 +142,10 @@
     <Compile Include="Activity\Task\TaskDetailActivity.cs" />
     <Compile Include="Activity\Task\TaskEditActivity.cs" />
     <Compile Include="Activity\Task\TaskAddActivity.cs" />
+    <Compile Include="Activity\Ticket\TicketDetailActivity.cs" />
+    <Compile Include="Activity\Ticket\TicketEditActivity.cs" />
+    <Compile Include="Model\ReceiveModel\IssuesList.cs" />
+    <Compile Include="Model\ReceiveModel\TicketList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -383,6 +385,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\tab_unselected_pressed_customtheme.9.png" />
     <AndroidResource Include="Resources\values\styles_customtheme.xml" />
     <AndroidResource Include="Resources\values\Color.xml" />
+    <AndroidResource Include="Resources\layout\TicketDetailLayout.axml" />
+    <AndroidResource Include="Resources\layout\TicketEdit.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -53,4 +53,12 @@
   		<string name="issues_title">Issues</string>
   		<string name="issues_title_edit">Issues Edit</string>
   		<string name="issues_title_detail">Issues Detail</string>
+
+  		<string name="milestone_title">Milestone</string>
+  		<string name="milestone_title_edit">Milestone Edit</string>
+  		<string name="milestone_title_detail">Milestone Detail</string>
+
+  		<string name="document_title">Document</string>
+  		<string name="document_title_edit">Document Edit</string>
+  		<string name="document_title_detail">Document Detail</string>
 </resources>

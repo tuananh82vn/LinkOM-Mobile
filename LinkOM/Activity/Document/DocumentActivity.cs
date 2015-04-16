@@ -20,7 +20,7 @@ using Android.Support.V4.Widget;
 
 namespace LinkOM
 {
-	[Activity (Label = "Document")]				
+	[Activity (Label = "Document", Theme = "@style/Theme.Customtheme")]				
 	public class DocumentActivity : ListActivity
 	{
 		public bool loading;
@@ -33,12 +33,16 @@ namespace LinkOM
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
-
+			RequestWindowFeature (WindowFeatures.ActionBar);
 			SetContentView (Resource.Layout.Document);
+
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.document_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
 			// Create your application here
 
-			var BackButton = FindViewById(Resource.Id.BackButton);
-			BackButton.Click += btBackClick;
 
 			InitData ();
 

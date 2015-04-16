@@ -48,11 +48,6 @@ namespace LinkOM
 			ActionBar.SetHomeButtonEnabled(true);
 
 
-			// Create your application here
-
-			var BackButton = FindViewById(Resource.Id.BackButton);
-			BackButton.Click += btBackClick;
-
 
 			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
 			progressView.MinValue = 0;
@@ -119,15 +114,23 @@ namespace LinkOM
 
 			var objIssues = new
 			{
+				Id =string.Empty,
+				Code = string.Empty,
 				ProjectId = string.Empty,
-				IssuesStatusId = string.Empty,
-				DepartmentId = string.Empty,
 				Title = string.Empty,
+				ClientId = string.Empty,
+				MainStatusId = string.Empty,
 				PriorityId = string.Empty,
-				Label= string.Empty,
-				DueBefore = string.Empty,
-				AssignTo = string.Empty,
-				AssignByMe = string.Empty,
+				AssignedToId= string.Empty,
+				OwnerId = string.Empty,
+				DepartmentId = string.Empty,
+				IssueStatusId = string.Empty,
+				Label = string.Empty,
+				StartDateFrom= string.Empty,
+				StartDateTo= string.Empty,
+				EndDateFrom= string.Empty,
+				EndDateTo= string.Empty,
+				OverdueIssueFlag= string.Empty,
 			};
 
 			var objsearch = (new
@@ -179,9 +182,11 @@ namespace LinkOM
 						//Add button into View
 						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button);
 						//Get number of task
-						var NumberOfIssues = CheckIssues (statusList.Items [i].Name, issuesList.Items).ToString ();
-						RunOnUiThread (() => button.Text =  NumberOfIssues);
-						buttonList.Add (button);
+						if (issuesList != null) {
+							var NumberOfIssues = CheckIssues (statusList.Items [i].Name, issuesList.Items).ToString ();
+							RunOnUiThread (() => button.Text = NumberOfIssues);
+							buttonList.Add (button);
+						}
 					}
 				}
 			}
@@ -233,7 +238,7 @@ namespace LinkOM
 			View view = new View (this);
 			TableRow.LayoutParams layoutParams_view = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, dpToPx(1));
 			view.LayoutParameters = layoutParams_view;
-			view.SetBackgroundColor (Color.Black);
+			view.SetBackgroundColor (Color.Gray);
 
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
 			RunOnUiThread (() => LinearLayout_Inside.AddView (button));

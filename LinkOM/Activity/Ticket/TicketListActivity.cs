@@ -162,11 +162,9 @@ namespace LinkOM
 
 						ticketListView.Adapter = ticketList;
 
-						//ticketListView.ItemClick += listView_ItemClick;
+						ticketListView.ItemClick += listView_ItemClick;
 					} 
 				}
-
-				await Task.Delay (2000);
 
 				loading = false;
 
@@ -174,10 +172,6 @@ namespace LinkOM
 			}
 		}
 
-		public void btBackClick(object sender, EventArgs e)
-		{
-			OnBackPressed ();
-		}
 
 		public void btSearchClick()
 		{
@@ -231,20 +225,18 @@ namespace LinkOM
 			mSearch.Animate().AlphaBy(-1.0f).SetDuration(300).Start();
 		}
 
-//		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-//		{
-//
-//			TaskObject model = this.ticketList.GetItemAtPosition (e.Position);
-//
-//			var activity = new Intent (this, typeof(EditTaskActivity));
-//
-//			activity.PutExtra ("Task", Newtonsoft.Json.JsonConvert.SerializeObject(model));
-//
-//			StartActivity (activity);
-//
-//			this.Finish ();
-//
-//		}
+		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+
+			TicketObject model = this.ticketList.GetItemAtPosition (e.Position);
+
+			var activity = new Intent (this, typeof(TicketDetailActivity));
+
+			activity.PutExtra ("Ticket", Newtonsoft.Json.JsonConvert.SerializeObject(model));
+
+			StartActivity (activity);
+
+		}
 
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
 		{

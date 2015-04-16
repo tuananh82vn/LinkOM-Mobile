@@ -15,20 +15,23 @@ using MonoDroid.TimesSquare;
 
 namespace LinkOM
 {
-	[Activity (Label = "MilestonesActivity")]			
+	[Activity (Label = "MilestonesActivity", Theme = "@style/Theme.Customtheme")]					
 	public class MilestonesActivity : Activity
 	{
 //		CustomCalendar CalendarControl;
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
+			RequestWindowFeature (WindowFeatures.ActionBar);
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Milestones);
 
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.milestone_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
 
-			var BackButton = FindViewById(Resource.Id.BackButton);
-			BackButton.Click += btBackClick;
 
 			var nextYear = DateTime.Now.AddYears(1);
 

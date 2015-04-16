@@ -46,12 +46,6 @@ namespace LinkOM
 
 
 
-			var buttonBack = FindViewById(Resource.Id.BackButton);
-			buttonBack.Click += btBackClick;
-
-			var SearchButton = FindViewById(Resource.Id.SearchButton);
-			SearchButton.Click += btSearchClick;
-
 			StatusId= Intent.GetIntExtra ("IssuesStatusId",0);
 
 			InitData ();
