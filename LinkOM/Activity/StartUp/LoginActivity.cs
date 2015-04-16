@@ -191,7 +191,7 @@ namespace LinkOM
 			switch (item.ItemId)
 			{
 			case Resource.Id.menu_reset:
-				Toast.MakeText (this, "Menu Reset Clicked", ToastLength.Short).Show ();
+				Toast.MakeText (this, "Coming Soon", ToastLength.Short).Show ();
 				return true;
 			case Resource.Id.menu_server:
 				var activity = new Intent (this, typeof(CheckActivity));

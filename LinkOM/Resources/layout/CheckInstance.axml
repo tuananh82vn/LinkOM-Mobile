@@ -4,73 +4,79 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/Background2">
-    <LinearLayout
-        android:orientation="horizontal"
+    <ImageView
+        android:src="@drawable/LinkOM_Logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView1"
+        android:layout_marginLeft="0.0dp"
+        android:layout_marginRight="0.0dp"
+        android:layout_marginBottom="0.0dp" />
+    <TableRow
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="203.5dp"
-        android:id="@+id/linearLayout1">
-        <ImageView
-            android:src="@drawable/LinkOM_Logo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/imageView1"
-            android:layout_marginLeft="0.0dp"
-            android:layout_marginRight="0.0dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:id="@+id/latSection">
-        <TextView
-            android:text="Website:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="72.5dp"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:id="@+id/latLabel"
-            android:layout_marginLeft="0.0dp"
-            android:layout_marginRight="0.0dp"
-            android:textColor="#ffffffff" />
+        android:layout_marginBottom="0dp"
+        android:id="@+id/tableRow7">
+        <TableLayout
+            android:id="@+id/tableLayout5"
+            android:stretchColumns="*">
+            <TableRow
+                android:id="@+id/tableRow12"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_marginBottom="0dp">
+                <TextView
+                    android:text="Server URL"
+                    android:layout_column="0"
+                    android:id="@+id/textview"
+                    android:textSize="18dp"
+                    android:textColor="#ff00947A"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25.0dp"
+                    android:layout_marginRight="25.0dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="0dp"
+                    android:textStyle="normal"
+                    android:layout_marginBottom="0dp" />
+            </TableRow>
+        </TableLayout>
+    </TableRow>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view1"
+        android:background="#ff006848"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <EditText
+            android:layout_column="0"
             android:text="http://synotive.link-om.com"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:id="@+id/URLText"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginLeft="5dp"
-            android:textColor="#ffffffff" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginTop="28dp"
+            android:textColor="#ffffffff"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25.0dp"
+            android:layout_marginRight="25.0dp" />
+    </TableRow>
+    <Button
+        android:id="@+id/CheckButton"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Check"
+        android:textColor="#ffffffff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:id="@+id/getSection"
-        android:minWidth="25px"
-        android:minHeight="25px">
-        <Button
-            android:id="@+id/CheckButton"
-            android:layout_width="match_parent"
-            android:layout_height="62.2dp"
-            android:gravity="center"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Check"
-            android:layout_marginRight="0.0dp"
-            android:textColor="#ffffffff" />
-    </LinearLayout>
-    <ImageView
-        android:src="@drawable/Synquis_Logo"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:id="@+id/imageView2"
-        android:layout_marginTop="203.7dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginLeft="45dp"
-        android:layout_marginBottom="0.0dp" />
+        android:layout_marginLeft="25.0dp"
+        android:layout_marginRight="25.0dp" />
 </LinearLayout>

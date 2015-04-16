@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace LinkOM
 {
-	[Activity(Label = "Link-OM", Icon = "@drawable/icon", NoHistory = true, Theme = "@style/Theme.Customtheme")]
+	[Activity(Label = "Change Server", NoHistory = true, Theme = "@style/Theme.Customtheme")]
     public class CheckActivity : Activity
     {
 		public ProgressDialog progress;
@@ -24,8 +24,13 @@ namespace LinkOM
         {
             base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.CheckInstance);
+
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
 
 			URLText = FindViewById<EditText>(Resource.Id.URLText);
 			URLText.Text = Settings.InstanceURL;
@@ -50,6 +55,23 @@ namespace LinkOM
 				ThreadPool.QueueUserWorkItem (o => CheckServer ());
 			} 
         }
+
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				StartActivity (typeof(LoginActivity));
+				break;
+			default:
+				break;
+			}
+
+			return true;
+		}
+
 
 		public void CheckServer()
 		{
