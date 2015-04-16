@@ -3,19 +3,38 @@ using Android.Widget;
 using System.Collections.Generic;
 using Android.App;
 using Android.Views;
+using Java.Lang;
+using Object = Java.Lang.Object; 
+using System.Linq;
 
 namespace LinkOM
 {
-	public class ProjectListAdapter : BaseAdapter
+	public class ProjectListAdapter : BaseAdapter<ProjectObject>, IFilterable
 	{
-		List<Project> _ProjectList;
+
+		private List<ProjectObject> _originalData;
+		private List<ProjectObject> _ProjectList;
+
+		public Filter Filter { get; private set; }
 
 		Activity _activity;
 
-		public ProjectListAdapter (Activity activity, List<Project> data)
+		public ProjectListAdapter (Activity activity, List<ProjectObject> data)
 		{
 			_activity = activity;
 			_ProjectList = data;
+
+			Filter = new ProjectFilter(this);
+		}
+
+		public override ProjectObject this[int position]
+		{
+			get { return _ProjectList[position]; }
+		} 
+
+		public ProjectObject GetItemAtPosition(int position)
+		{
+			return _ProjectList[position];
 		}
 
 		public override int Count 
@@ -94,6 +113,56 @@ namespace LinkOM
 
 			return view;
 		}
+
+		private class ProjectFilter : Filter
+		{
+			private readonly ProjectListAdapter _adapter;
+			public ProjectFilter(ProjectListAdapter adapter)
+			{
+				_adapter = adapter;
+			}
+
+			protected override FilterResults PerformFiltering(ICharSequence constraint)
+			{
+				var returnObj = new FilterResults();
+
+				var results = new List<ProjectObject>();
+
+				if (_adapter._originalData == null)
+					_adapter._originalData = _adapter._ProjectList; 
+
+				if (constraint == null) return returnObj;
+
+				if (_adapter._originalData != null && _adapter._originalData.Any())
+				{
+					// Compare constraint to all names lowercased.
+					// It they are contained they are added to results.
+
+
+					results.AddRange(_adapter._originalData.Where(t => t.Name.ToLower().Contains(constraint.ToString().ToLower())));
+				}
+
+				// Nasty piece of .NET to Java wrapping, be careful with this!
+				returnObj.Values = FromArray(results.Select(r => r.ToJavaObject()).ToArray());
+				returnObj.Count = results.Count;
+
+				constraint.Dispose();
+
+				return returnObj;
+			}
+
+			protected override void PublishResults(ICharSequence constraint, FilterResults results)
+			{
+				using (var values = results.Values)
+					_adapter._ProjectList = values.ToArray<Object>()
+						.Select(r => r.ToNetObject<ProjectObject>()).ToList();
+				_adapter.NotifyDataSetChanged();
+
+				// Don't do this and see GREF counts rising
+				constraint.Dispose();
+				results.Dispose();
+			}
+		} 
 	}
 }
 

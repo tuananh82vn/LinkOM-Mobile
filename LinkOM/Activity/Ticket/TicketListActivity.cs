@@ -17,7 +17,7 @@ using Android.Text;
 
 namespace LinkOM
 {
-	[Activity (Label = "TicketList")]			
+	[Activity (Label = "TicketList", Theme = "@style/Theme.Customtheme")]				
 	public class TicketListActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public List<TicketObject> _TicketList;
@@ -35,7 +35,16 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.TicketListContainer);
+
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.ticket_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
+
 
 			ticketListView = FindViewById<ListView> (Resource.Id.TicketListView);
 
@@ -43,14 +52,6 @@ namespace LinkOM
 			mSearch.Alpha = 0;
 			mSearch.SetOnEditorActionListener (this);
 			mSearch.TextChanged += InputSearchOnTextChanged;
-
-
-
-			var buttonBack = FindViewById(Resource.Id.BackButton);
-			buttonBack.Click += btBackClick;
-
-			var SearchButton = FindViewById(Resource.Id.SearchButton);
-			SearchButton.Click += btSearchClick;
 
 			StatusId= Intent.GetIntExtra ("TicketStatusId",0);
 
@@ -62,6 +63,39 @@ namespace LinkOM
 
 			refresher.Refresh += HandleRefresh;
 		}
+
+		//Handle item on action bar clicked
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+			case Resource.Id.search:
+				btSearchClick ();
+				break;
+			default:
+				break;
+			}
+
+			return true;
+		}
+
+		//Init menu on action bar
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.SearchMenu, menu);
+
+			return true;
+		}
+
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
 		{
@@ -145,7 +179,7 @@ namespace LinkOM
 			OnBackPressed ();
 		}
 
-		public void btSearchClick(object sender, EventArgs e)
+		public void btSearchClick()
 		{
 			if (!mAnimatedDown)
 			{

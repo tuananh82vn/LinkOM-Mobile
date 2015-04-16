@@ -22,6 +22,7 @@ namespace LinkOM
 	{
 		public List<IssuesObject> _TaskList;
 		public TaskListAdapter taskList;
+
 		public int StatusId;
 		public SwipeRefreshLayout refresher;
 		public bool loading;
@@ -29,6 +30,7 @@ namespace LinkOM
 		private EditText mSearch;
 		private bool mAnimatedDown;
 		private bool mIsAnimating;
+
 		public ListView taskListView ;
 
 		protected override void OnCreate (Bundle bundle)
@@ -46,6 +48,7 @@ namespace LinkOM
 			ActionBar.SetHomeButtonEnabled(true);
 
 			taskListView = FindViewById<ListView> (Resource.Id.TaskListView);
+
 			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
 			mSearch.Alpha = 0;
 			mSearch.SetOnEditorActionListener (this);

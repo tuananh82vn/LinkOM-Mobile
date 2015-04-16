@@ -1,13 +1,9 @@
 ﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-
-using System.Threading;
-using System.Threading.Tasks;
 
 using Android.App;
 using Android.Content;
@@ -15,21 +11,28 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Android.Content.PM;
-
 using Android.Support.V4.Widget;
+using System.Threading.Tasks;
+using Android.Views.InputMethods;
+using Android.Text;
 
 namespace LinkOM
 {
 	[Activity (Label = "Project", Theme = "@style/Theme.Customtheme")]			
-	public class ProjectActivity : ListActivity
+	public class ProjectActivity : Activity, TextView.IOnEditorActionListener
 	{
+		public List<ProjectObject> _ProjectList;
+		public ProjectListAdapter projectList;
+
+		public int ProjectId;
+		public SwipeRefreshLayout refresher;
 		public bool loading;
 
-		public string TokenNumber;
-		public ProjectListAdapter projectList; 
+
+		private EditText mSearch;
+		private bool mAnimatedDown;
+		private bool mIsAnimating;
 		public ListView projectListView;
-		//public SwipeRefreshLayout refresher;
 	
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -47,31 +50,37 @@ namespace LinkOM
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
 
+			projectListView = FindViewById<ListView> (Resource.Id.ProjectListView);
+
+			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
+			mSearch.Alpha = 0;
+			mSearch.SetOnEditorActionListener (this);
+			mSearch.TextChanged += InputSearchOnTextChanged;
+
 			InitData ();
 
-//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-//
-//			refresher.SetColorScheme (Resource.Color.xam_dark_blue,Resource.Color.xam_purple,Resource.Color.xam_gray,Resource.Color.xam_green);
-//
-//			refresher.Refresh += HandleRefresh;
+			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+
+			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
+
+			refresher.Refresh += HandleRefresh;
 
 		}
 
-//		async void HandleRefresh (object sender, EventArgs e)
-//		{
-//			await InitData ();
-//			refresher.Refreshing = false;
-//		}
+		//Refesh data
+		async void HandleRefresh (object sender, EventArgs e)
+		{
+			await InitData ();
+			refresher.Refreshing = false;
+		}
 
+		//Loading data
 		public async Task InitData(){
-
-			Console.WriteLine ("Begin load data");
 
 			if (loading)
 				return;
 			loading = true;
 
-			TokenNumber = Settings.Token;
 			string url = Settings.InstanceURL;
 
 			url=url+"/api/ProjectList";
@@ -94,7 +103,7 @@ namespace LinkOM
 				{
 					objApiSearch = new
 					{
-						TokenNumber = TokenNumber,
+						TokenNumber = Settings.Token,
 						PageSize = 20,
 						PageNumber = 1,
 						Sort = objSort,
@@ -108,17 +117,14 @@ namespace LinkOM
 
 			projectList = new ProjectListAdapter (this,ProjectList.Items);
 
-			projectListView = FindViewById<ListView> (Android.Resource.Id.List);
-
 			projectListView.Adapter = projectList;
 
 			projectListView.ItemClick += listView_ItemClick;
 
-			RegisterForContextMenu(projectListView);
+//			RegisterForContextMenu(projectListView);
 
 			loading = false;
 
-			Console.WriteLine ("End load data");
 		}
 
 		//Handle item on action bar clicked
@@ -131,6 +137,9 @@ namespace LinkOM
 			case Android.Resource.Id.Home:
 				OnBackPressed ();
 				break;
+			case Resource.Id.search:
+				btSearchClick ();
+				break;
 			default:
 				break;
 			}
@@ -142,11 +151,14 @@ namespace LinkOM
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			//Get our item from the list adapter
-			var ProjectId = this.projectList.GetItemId(e.Position);
+			ProjectObject Project = this.projectList.GetItemAtPosition(e.Position);
 
 			Intent addAccountIntent = new Intent (this, typeof(ProjectDetailActivity));
+
 			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-			addAccountIntent.PutExtra ("ProjectId", ProjectId);
+
+			addAccountIntent.PutExtra ("Project", Newtonsoft.Json.JsonConvert.SerializeObject(Project));
+
 			StartActivity(addAccountIntent);
 
 		}
@@ -161,6 +173,76 @@ namespace LinkOM
 			inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
 
 			return true;
+		}
+
+		public void btSearchClick()
+		{
+			if (!mAnimatedDown)
+			{
+				//Listview is up
+				MyAnimation anim = new MyAnimation(projectListView, projectListView.Height - mSearch.Height);
+				anim.Duration = 500;
+				projectListView.StartAnimation(anim);
+				anim.AnimationStart += anim_AnimationStartDown;
+				anim.AnimationEnd += anim_AnimationEndDown;
+				refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+			}
+
+			else
+			{
+				//Listview is down
+				MyAnimation anim = new MyAnimation(projectListView, projectListView.Height + mSearch.Height);
+				anim.Duration = 500;
+				projectListView.StartAnimation(anim);
+				anim.AnimationStart += anim_AnimationStartUp;
+				anim.AnimationEnd += anim_AnimationEndUp;
+				refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+			}
+
+			mAnimatedDown = !mAnimatedDown;
+		}
+
+		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
+		{
+			projectList.Filter.InvokeFilter(mSearch.Text);
+		}
+
+		void anim_AnimationEndUp(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
+		{
+			mIsAnimating = false;
+			mSearch.ClearFocus();
+			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
+			inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
+		}
+
+		void anim_AnimationEndDown(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
+		{
+			mIsAnimating = false;
+		}
+
+		void anim_AnimationStartDown(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
+		{
+			mIsAnimating = true;
+			mSearch.Animate().AlphaBy(1.0f).SetDuration(1000).Start();
+		}
+
+		void anim_AnimationStartUp(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
+		{
+			mIsAnimating = true;
+			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
+		}
+
+		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
+		{
+			//go edit action will login
+			if (actionId == ImeAction.Search) {
+				if (!string.IsNullOrEmpty (mSearch.Text)) {
+					projectList.Filter.InvokeFilter(mSearch.Text);
+				} 
+				return true;
+				//next action will set focus to password edit text.
+			} 
+			return false;
 		}
 
 //		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)

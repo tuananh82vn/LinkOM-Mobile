@@ -35,7 +35,7 @@ namespace LinkOM
 		private EditText ActualEndDatePicker;
 
 		public long ProjectId;
-		public ProjectDetailJson ProjectDetail;
+		public ProjectObject ProjectDetail;
 		public InputMethodManager inputMethodManager;
 
 		public EditText AllocatedHours;
@@ -58,7 +58,7 @@ namespace LinkOM
 
 			InitControl ();
 
-			DisplayProject (ProjectDetail.Item);
+			DisplayProject (ProjectDetail);
 
 			if (StartDatePicker.Text != "")
 				StartDate = DateTime.Parse (StartDatePicker.Text);
@@ -182,17 +182,15 @@ namespace LinkOM
 
 		public void LoadProject(){
 
-			string TokenNumber = Settings.Token;
-
 			string results = Intent.GetStringExtra ("Project");
 
-			ProjectDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectDetailJson> (results);
+			ProjectDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectObject> (results);
 		}
 
-		public void DisplayProject(ProjectDetail obj){
+		public void DisplayProject(ProjectObject obj){
 
 			var ProjectName = FindViewById<EditText> (Resource.Id.editText_ProjectName);
-			ProjectName.Text = obj.ProjectName;
+			ProjectName.Text = obj.Name;
 
 			var RefCode = FindViewById<EditText> (Resource.Id.editText_RefCode);
 			RefCode.Text = obj.ReferenceCode;

@@ -25,7 +25,7 @@ using System.Timers;
 
 namespace LinkOM
 {
-	[Activity (Label = "Ticket")]				
+	[Activity (Label = "Ticket", Theme = "@style/Theme.Customtheme")]						
 	public class TicketActivity : Activity
 	{
 		public LinearLayout LinearLayout_Master;
@@ -39,11 +39,17 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.Ticket);
 			// Create your application here
 
-			var BackButton = FindViewById(Resource.Id.BackButton);
-			BackButton.Click += btBackClick;
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.ticket_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
+
 
 			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
 			progressView.MinValue = 0;
@@ -57,6 +63,35 @@ namespace LinkOM
 			ThreadPool.QueueUserWorkItem (o => InitData ());
 
 
+		}
+
+		//Handle item on action bar clicked
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+			default:
+				break;
+			}
+
+			return true;
+		}
+
+		//Init menu on action bar
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.AddMenu, menu);
+
+			return true;
 		}
 
 		void HandleElapsed (object sender, ElapsedEventArgs e)

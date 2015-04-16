@@ -18,7 +18,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public ProjectDetailJson ProjectDetail;
+		public ProjectObject ProjectDetail;
 		public string results;
 
 		protected override void OnCreate (Bundle bundle)
@@ -37,38 +37,16 @@ namespace LinkOM
 
 			LoadProject ();
 
-			DisplayProject (ProjectDetail.Item);
+			DisplayProject (ProjectDetail);
 
 		}
 
 
 		public void LoadProject(){
 			
-			string TokenNumber = Settings.Token;
+			results= Intent.GetStringExtra ("Project");
 
-			ProjectId = Intent.GetLongExtra ("ProjectId",0);
-
-			string url = Settings.InstanceURL;
-
-			url=url+"/api/ProjectDetailList";
-
-			var objProject = new
-			{
-				Id = ProjectId,
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber = TokenNumber,
-						Item = objProject
-					}
-				});
-
-			results= ConnectWebAPI.Request(url,objsearch);
-
-			ProjectDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectDetailJson> (results);
+			ProjectDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectObject> (results);
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -104,10 +82,10 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayProject(ProjectDetail obj){
+		public void DisplayProject(ProjectObject obj){
 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
-			ProjectName.Text = obj.ProjectName;
+			ProjectName.Text = obj.Name;
 
 			var Code = FindViewById<TextView> (Resource.Id.tv_Code);
 			Code.Text = obj.Code;

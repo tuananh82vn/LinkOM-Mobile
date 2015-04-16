@@ -5,24 +5,20 @@ using Android.Util;
 namespace LinkOM
 {
 	[Serializable]
-	public class Project
+	public class ProjectObject
 	{
 		[DisplayName("Id")]
 		public virtual Int32 Id  { get; set; }
 
 		public virtual string Guid { get; set; }
 
-		[DisplayName("Name")]
 		public virtual String Name  { get; set; }
-
-		[DisplayName("Client Name")]
 
 		public virtual String ClientName { get; set; }
 
 		public virtual string ClientGuid { get; set; }
 
 		[DisplayName("Department")]
-
 		public virtual String DepartmentName { get; set; }
 
 		[DisplayName("Department")]
@@ -70,13 +66,14 @@ namespace LinkOM
 		public virtual DateTime? StartDate  { get; set; }
 
 		[DisplayName("Start Date")]    			  
-		public virtual String StartDateString  { get; set; }
+		public virtual String StartDateString { get; set; }
 
 		public virtual DateTime? EndDate { get; set; }
 
 		[DisplayName("End Date")]
-		public virtual String EndDateString  { get; set; }
+		public virtual String EndDateString { get; set; }
 
+		public virtual int CountOverDueProjects { get; set; }
 
 		public virtual String OverdueFlagClass { get; set; }
 
@@ -87,7 +84,6 @@ namespace LinkOM
 		public virtual String ActualStartDateString { get; set; }
 
 		[DisplayName("Actual End Date")]
-
 		public virtual DateTime? ActualEndDate  { get; set; }
 
 		[DisplayName("Actual End Date")]
@@ -126,6 +122,24 @@ namespace LinkOM
 
 		public virtual Int32 ClientId { get; set; }
 
+//		public ICollection<Client> Client { get; set; }
+//
+//		public ICollection<Department> Department { get; set; }
+//
+//		public ICollection<Issue> Issue { get; set; }
+
+		// public ICollection<ProjectStatus> ProjectStatus { get; set; }
+
+//		public ICollection<Staff> Staff { get; set; }
+//
+//		public ICollection<Staff> Staff1 { get; set; }
+//
+//		public ICollection<Staff> Staff2 { get; set; }
+//
+//		public ICollection<ClientContact> ClientContact { get; set; }
+//
+//		public ICollection<Staff> Staff3 { get; set; }
+
 		[DisplayName("O/S Tickets")]
 		public virtual Int32 OutstandingTickets { get; set; }
 
@@ -138,11 +152,16 @@ namespace LinkOM
 		public virtual Int32 UserStaffId { get; set; }
 		public Int32 Staffcount { get; set; }
 
+
+		//created by sanjay patel on 30 12 2014
 		public virtual int? TotalRows { get; set; }
+
 		public virtual int? OpenTickets { get; set; }  
 		public virtual int? OpenTasks { get; set; }
 		public virtual int? OpenIssues { get; set; }
-		public virtual double? ActualHrs { get; set; }  
+		public virtual double? ActualHrs { get; set; }
+
+		public virtual String DepartmentColor { get; set; }
 
 	}
 }

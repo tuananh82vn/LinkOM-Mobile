@@ -74,8 +74,8 @@ namespace LinkOM
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.Ticket, parent, false);
 
-			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
-			TaskTitle.Text = _TicketList [position].Title;
+//			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
+//			TaskTitle.Text = _TicketList [position].Title;
 
 
 			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);

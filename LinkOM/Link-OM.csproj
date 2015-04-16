@@ -99,11 +99,9 @@
     <Compile Include="Adapter\ProjectListAdapter.cs" />
     <Compile Include="Model\SendModel\objSort.cs" />
     <Compile Include="Model\ReceiveModel\Login.cs" />
-    <Compile Include="Model\ViewModel\Project.cs" />
     <Compile Include="Model\ReceiveModel\Results.cs" />
     <Compile Include="Activity\Project\ProjectDetailActivity.cs" />
     <Compile Include="Model\ReceiveModel\ProjectDetail.cs" />
-    <Compile Include="Model\ViewModel\ProjectDetail.cs" />
     <Compile Include="Model\ViewModel\Milestone.cs" />
     <Compile Include="Model\ReceiveModel\ProjectList.cs" />
     <Compile Include="Model\ReceiveModel\MilestoneList.cs" />
@@ -144,6 +142,7 @@
     <Compile Include="Adapter\DocumentListAdapter.cs" />
     <Compile Include="Activity\Project\ProjectEditActivity.cs" />
     <Compile Include="UIControl\MyTextView.cs" />
+    <Compile Include="Model\ViewModel\ProjectObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

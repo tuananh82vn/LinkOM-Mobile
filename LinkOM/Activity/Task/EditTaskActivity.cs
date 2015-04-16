@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace LinkOM
 {
-	[Activity (Label = "EditTaskActivity")]			
+	[Activity (Label = "EditTaskActivity", Theme = "@style/Theme.Customtheme")]			
 	public class EditTaskActivity : Activity
 	{
 		const int Start_DATE_DIALOG_ID = 0;
@@ -52,12 +52,17 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.TaskEdit);
 
-			//Init UI
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.task_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
 
-			var  BackButton = FindViewById(Resource.Id.BackButton);
-			BackButton.Click += btBackClick;
+			//Init UI
 
 			Button bt_Save = FindViewById<Button>(Resource.Id.ok_button);
 			bt_Save.Click += btSaveClick;
@@ -117,6 +122,35 @@ namespace LinkOM
 			//GetStatusList ();
 
 			GetPriorityList ();
+		}
+
+		//Handle item on action bar clicked
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+			default:
+				break;
+			}
+
+			return true;
+		}
+
+		//Init menu on action bar
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.SaveMenu, menu);
+
+			return true;
 		}
 
 		private void GetPriorityList(){
