@@ -91,7 +91,6 @@
     <Compile Include="ConnectWebAPI.cs" />
     <Compile Include="Adapter\TaskListAdapter.cs" />
     <Compile Include="Helper\Settings.cs" />
-    <Compile Include="Activity\Task\OpenTaskActivity.cs" />
     <Compile Include="Activity\Task\TaskActivity.cs" />
     <Compile Include="Activity\Project\ProjectActivity.cs" />
     <Compile Include="Activity\StartUp\CheckActivity.cs" />
@@ -107,7 +106,6 @@
     <Compile Include="Model\ReceiveModel\MilestoneList.cs" />
     <Compile Include="Adapter\MilestoneListAdapter.cs" />
     <Compile Include="Activity\StartUp\SplashActivity.cs" />
-    <Compile Include="Activity\Task\AddTaskActivity.cs" />
     <Compile Include="Helper\BitmapHelper.cs" />
     <Compile Include="Adapter\ProjectSpinnerAdapter.cs" />
     <Compile Include="Activity\Task\TaskListActivity.cs" />
@@ -145,6 +143,7 @@
     <Compile Include="Activity\Project\ProjectAddActivity.cs" />
     <Compile Include="Activity\Task\TaskDetailActivity.cs" />
     <Compile Include="Activity\Task\TaskEditActivity.cs" />
+    <Compile Include="Activity\Task\TaskAddActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

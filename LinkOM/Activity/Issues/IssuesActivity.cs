@@ -23,7 +23,7 @@ using System.Timers;
 
 namespace LinkOM
 {
-	[Activity (Label = "Issues")]				
+	[Activity (Label = "Issues", Theme = "@style/Theme.Customtheme")]				
 	public class IssuesActivity : Activity
 	{
 		public LinearLayout LinearLayout_Master;
@@ -37,7 +37,17 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.Issues);
+
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.issues_title);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
+
+
 			// Create your application here
 
 			var BackButton = FindViewById(Resource.Id.BackButton);
@@ -56,6 +66,39 @@ namespace LinkOM
 			ThreadPool.QueueUserWorkItem (o => InitData ());
 
 
+		}
+
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+//			case Resource.Id.add:
+//				Intent Intent2 = new Intent (this, typeof(TaskAddActivity));
+//				Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+//				StartActivity(Intent2);
+//				break;
+			default:
+				break;
+			}
+
+			return true;
+		}
+
+		//Init menu on action bar
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.AddMenu, menu);
+
+			return true;
 		}
 
 		void HandleElapsed (object sender, ElapsedEventArgs e)

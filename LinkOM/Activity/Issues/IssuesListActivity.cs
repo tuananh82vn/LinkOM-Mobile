@@ -17,7 +17,7 @@ using Android.Text;
 
 namespace LinkOM
 {
-	[Activity (Label = "IssuesList")]			
+	[Activity (Label = "IssuesList", Theme = "@style/Theme.Customtheme")]			
 	public class IssuesListActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public List<IssuesObject> _IssuesList;

@@ -5345,14 +5345,14 @@ namespace LinkOM
 			// aapt resource value: 0x7f070002
 			public const int invalid_date = 2131165186;
 			
-			// aapt resource value: 0x7f07001f
-			public const int issues_title = 2131165215;
+			// aapt resource value: 0x7f070020
+			public const int issues_title = 2131165216;
+			
+			// aapt resource value: 0x7f070022
+			public const int issues_title_detail = 2131165218;
 			
 			// aapt resource value: 0x7f070021
-			public const int issues_title_detail = 2131165217;
-			
-			// aapt resource value: 0x7f070020
-			public const int issues_title_edit = 2131165216;
+			public const int issues_title_edit = 2131165217;
 			
 			// aapt resource value: 0x7f070000
 			public const int library_name = 2131165184;
@@ -5375,20 +5375,23 @@ namespace LinkOM
 			// aapt resource value: 0x7f070019
 			public const int task_title = 2131165209;
 			
+			// aapt resource value: 0x7f07001c
+			public const int task_title_add = 2131165212;
+			
 			// aapt resource value: 0x7f07001b
 			public const int task_title_detail = 2131165211;
 			
 			// aapt resource value: 0x7f07001a
 			public const int task_title_edit = 2131165210;
 			
-			// aapt resource value: 0x7f07001c
-			public const int ticket_title = 2131165212;
+			// aapt resource value: 0x7f07001d
+			public const int ticket_title = 2131165213;
+			
+			// aapt resource value: 0x7f07001f
+			public const int ticket_title_detail = 2131165215;
 			
 			// aapt resource value: 0x7f07001e
-			public const int ticket_title_detail = 2131165214;
-			
-			// aapt resource value: 0x7f07001d
-			public const int ticket_title_edit = 2131165213;
+			public const int ticket_title_edit = 2131165214;
 			
 			// aapt resource value: 0x7f070014
 			public const int widget_name = 2131165204;

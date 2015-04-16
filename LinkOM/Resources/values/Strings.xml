@@ -44,6 +44,7 @@
   		<string name="task_title">Task</string>
   		<string name="task_title_edit">Task Edit</string>
   		<string name="task_title_detail">Task Detail</string>
+  		<string name="task_title_add">Create Task</string>
 
   		<string name="ticket_title">Ticket</string>
   		<string name="ticket_title_edit">Ticket Edit</string>

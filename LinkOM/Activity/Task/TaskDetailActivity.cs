@@ -75,6 +75,7 @@ namespace LinkOM
 					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
 					StartActivity(Intent);
 					break;
+
 				default:
 					break;
 			}

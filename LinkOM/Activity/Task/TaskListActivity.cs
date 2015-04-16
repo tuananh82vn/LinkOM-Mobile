@@ -79,6 +79,11 @@ namespace LinkOM
 			case Resource.Id.search:
 				btSearchClick ();
 				break;
+			case Resource.Id.add:
+				Intent Intent2 = new Intent (this, typeof(TaskAddActivity));
+				Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+				StartActivity(Intent2);
+				break;
 			default:
 				break;
 			}
@@ -93,7 +98,7 @@ namespace LinkOM
 
 			MenuInflater inflater = this.MenuInflater;
 
-			inflater.Inflate (Resource.Menu.SearchMenu, menu);
+			inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
 
 			return true;
 		}

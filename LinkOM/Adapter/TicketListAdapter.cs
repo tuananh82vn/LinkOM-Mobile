@@ -78,8 +78,8 @@ namespace LinkOM
 //			TaskTitle.Text = _TicketList [position].Title;
 
 
-			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
-			TaskCode.Text = _TicketList [position].Code;
+//			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
+//			TaskCode.Text = _TicketList [position].Code;
 
 			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			ProjectName.Text = _TicketList [position].ProjectName;
