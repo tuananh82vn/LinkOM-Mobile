@@ -112,7 +112,6 @@
     <Compile Include="Adapter\ProjectSpinnerAdapter.cs" />
     <Compile Include="Activity\Task\TaskListActivity.cs" />
     <Compile Include="Helper\LoginService.cs" />
-    <Compile Include="Activity\Task\EditTaskActivity.cs" />
     <Compile Include="Model\ViewModel\Status.cs" />
     <Compile Include="Model\ReceiveModel\JsonData.cs" />
     <Compile Include="Model\ReceiveModel\StatusList.cs" />
@@ -143,6 +142,9 @@
     <Compile Include="Activity\Project\ProjectEditActivity.cs" />
     <Compile Include="UIControl\MyTextView.cs" />
     <Compile Include="Model\ViewModel\ProjectObject.cs" />
+    <Compile Include="Activity\Project\ProjectAddActivity.cs" />
+    <Compile Include="Activity\Task\TaskDetailActivity.cs" />
+    <Compile Include="Activity\Task\TaskEditActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

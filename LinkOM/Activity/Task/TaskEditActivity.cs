@@ -13,8 +13,8 @@ using Android.Widget;
 
 namespace LinkOM
 {
-	[Activity (Label = "EditTaskActivity", Theme = "@style/Theme.Customtheme")]			
-	public class EditTaskActivity : Activity
+	[Activity (Label = "TaskEditActivity", Theme = "@style/Theme.Customtheme")]			
+	public class TaskEditActivity : Activity
 	{
 		const int Start_DATE_DIALOG_ID = 0;
 		const int End_DATE_DIALOG_ID = 1;

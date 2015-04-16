@@ -984,5 +984,8 @@ Reference : http://www.computerhope.com/htmcolor.htm , http://www.color-hex.com/
 	<color name="transparent_white_percent_85">#D9ffffff</color>
 	<color name="transparent_white_percent_90">#E6ffffff</color>
 	<color name="transparent_white_percent_95">#F2ffffff</color>
+
+	<color name="Custom_Gray">#aeaeae</color>
+
  
 </resources>

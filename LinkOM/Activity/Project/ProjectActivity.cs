@@ -140,6 +140,14 @@ namespace LinkOM
 			case Resource.Id.search:
 				btSearchClick ();
 				break;
+			case Resource.Id.add:
+				Intent Intent = new Intent (this, typeof(ProjectAddActivity));
+
+				Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+
+				StartActivity(Intent);
+
+				break;
 			default:
 				break;
 			}

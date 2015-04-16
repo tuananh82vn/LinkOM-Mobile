@@ -18,6 +18,7 @@
 
 		<string name="project_title">Project</string>
   		<string name="project_edit_title">Project Edit</string>
+  		<string name="project_add_title">Create Project</string>
   		<string name="project_detail_title">Project Detail</string>
 
   		<string name="task_title">Task</string>

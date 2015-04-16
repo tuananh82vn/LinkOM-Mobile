@@ -230,17 +230,13 @@ namespace LinkOM
 
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-
 			TaskObject model = this.taskList.GetItemAtPosition (e.Position);
 
-			var activity = new Intent (this, typeof(EditTaskActivity));
+			var activity = new Intent (this, typeof(TaskDetailActivity));
 
 			activity.PutExtra ("Task", Newtonsoft.Json.JsonConvert.SerializeObject(model));
 
 			StartActivity (activity);
-
-			this.Finish ();
-
 		}
 
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)

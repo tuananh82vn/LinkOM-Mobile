@@ -231,7 +231,7 @@ namespace LinkOM
 			View view = new View (this);
 			TableRow.LayoutParams layoutParams_view = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, dpToPx(1));
 			view.LayoutParameters = layoutParams_view;
-			view.SetBackgroundColor (Color.Black);
+			view.SetBackgroundColor (Color.ParseColor("#AEAEAE"));
 
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
 			RunOnUiThread (() => LinearLayout_Inside.AddView (button));
