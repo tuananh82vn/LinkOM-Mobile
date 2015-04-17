@@ -169,7 +169,7 @@ namespace LinkOM
 			Settings.Token = obj.TokenNumber;
 			Settings.Username = obj.UserName;
 
-			var activity = new Intent (this, typeof(MainActivity));
+			var activity = new Intent (this, typeof(HomeActivity));
 			activity.PutExtra ("TokenNumber", obj.TokenNumber);
 			StartActivity (activity);
 			this.Finish();

@@ -1,134 +1,153 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+﻿using Android.App;
+using Android.Content.PM;
+using Android.Content.Res;
 using Android.OS;
-using Android.Runtime;
+using Android.Support.V4.App;
+using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
-using Newtonsoft.Json;
-using Android.Content.PM;
+using Android.Content;
+
 
 
 namespace LinkOM
 {
-	[Activity(Label = "Link-OM", Icon = "@drawable/Synotive")]		
-	public class HomeActivity : Activity
+	[Activity (Label = "Home", LaunchMode = LaunchMode.SingleTop, Theme = "@style/Theme.Customtheme")]	
+	public class HomeActivity : FragmentActivity
 	{
-		public string TokenNumber = "";
-		protected override void OnCreate (Bundle bundle)
+
+		private MyActionBarDrawerToggle drawerToggle;
+		private string drawerTitle;
+		private string title;
+
+		private DrawerLayout drawerLayout;
+		private ListView drawerListView;
+		private static readonly string[] Sections = new[] {
+			"Home", "Project", "Task"
+		};
+
+		protected override void OnCreate (Bundle savedInstanceState)
 		{
-			base.OnCreate (bundle);
+			base.OnCreate (savedInstanceState);
 
-			SetOrientaion ();
+			SetContentView (Resource.Layout.HomeLayout);
 
-			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Home);
+			this.title = this.drawerTitle = this.Title;
 
-			ImageButton bt_Task = FindViewById<ImageButton>(Resource.Id.bt_Task);
-			bt_Task.Click += btTaskClick;
+			this.drawerLayout = this.FindViewById<DrawerLayout> (Resource.Id.drawer_layout);
 
-			ImageButton bt_Project = FindViewById<ImageButton>(Resource.Id.bt_Project);
-			bt_Project.Click += btProjectClick;
+			this.drawerListView = this.FindViewById<ListView> (Resource.Id.left_drawer);
 
-			ImageButton bt_Ticket = FindViewById<ImageButton>(Resource.Id.bt_Ticket);
-			bt_Ticket.Click += bt_TicketClick;
 
-			ImageButton bt_Milestone = FindViewById<ImageButton>(Resource.Id.bt_Milestone);
-			bt_Milestone.Click += bt_MilestoneClick;
+			//Create Adapter for drawer List
+			this.drawerListView.Adapter = new ArrayAdapter<string> (this, Resource.Layout.NavigationMenu, Sections);
 
-			ImageButton bt_Issues = FindViewById<ImageButton>(Resource.Id.bt_Issues);
-			bt_Issues.Click += bt_IssuesClick;
+			//Set click handler when item is selected
+			this.drawerListView.ItemClick += (sender, args) => ListItemClicked (args.Position);
 
-			ImageButton bt_Document = FindViewById<ImageButton>(Resource.Id.bt_Document);
-			bt_Document.Click += bt_DocumentClick;
+			//Set Drawer Shadow
+			this.drawerLayout.SetDrawerShadow (Resource.Drawable.drawer_shadow_dark, (int)GravityFlags.Start);
 
-			TokenNumber = Intent.GetStringExtra ("TokenNumber") ?? "";
 
-		}
 
-		private void SetOrientaion(){
-			int minWidth= Settings.SmallestWidth;
-			if (minWidth > 360) {
-				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			//DrawerToggle is the animation that happens with the indicator next to the actionbar
+			this.drawerToggle = new MyActionBarDrawerToggle (this, this.drawerLayout,
+				Resource.Drawable.ic_drawer_light,
+				Resource.String.drawer_open,
+				Resource.String.drawer_close);
+
+			//Display the current fragments title and update the options menu
+			this.drawerToggle.DrawerClosed += (o, args) => {
+				this.ActionBar.Title = this.title;
+				this.InvalidateOptionsMenu ();
+			};
+
+			//Display the drawer title and update the options menu
+			this.drawerToggle.DrawerOpened += (o, args) => {
+				this.ActionBar.Title = this.drawerTitle;
+				this.InvalidateOptionsMenu ();
+			};
+
+			//Set the drawer lister to be the toggle.
+			this.drawerLayout.SetDrawerListener (this.drawerToggle);
+
+
+
+			//if first time you will want to go ahead and click first item.
+			if (savedInstanceState == null) {
+				ListItemClicked (0);
 			}
-			else if (minWidth <= 360) {
-				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			}
+
+
+			this.ActionBar.SetDisplayHomeAsUpEnabled (true);
+			this.ActionBar.SetHomeButtonEnabled (true);
 		}
 
-		public override bool OnCreateOptionsMenu(IMenu menu)
+		private void ListItemClicked (int position)
 		{
-			MenuInflater.Inflate(Resource.Menu.menu_home, menu);
-			return base.OnPrepareOptionsMenu(menu);
-		}
-
-		public void btTaskClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (this, typeof(TaskActivity));
-			StartActivity (activity);
-		}
-
-		public void btProjectClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (this, typeof(ProjectActivity));
-			StartActivity (activity);
-		}
-
-		public void bt_TicketClick(object sender, EventArgs e)
-		{
-			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
-		}
-
-		public void bt_MilestoneClick(object sender, EventArgs e)
-		{
-			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
-		}
-
-		public void bt_IssuesClick(object sender, EventArgs e)
-		{
-			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
-		}
-
-		public void bt_DocumentClick(object sender, EventArgs e)
-		{
-			Toast.MakeText (this, "Coming Soon...", ToastLength.Short).Show ();
-		}
-
-		public override bool OnOptionsItemSelected(IMenuItem item)
-		{
-			switch (item.ItemId)
-			{
-			case Resource.Id.menu_search:
-				Toast.MakeText (this, "Menu Search Clicked", ToastLength.Short).Show ();
-				return true;
-			case Resource.Id.menu_help:
-				Toast.MakeText (this, "Menu Help Clicked", ToastLength.Short).Show ();
-				return true;
-			case Resource.Id.menu_server:
-				var activity = new Intent (this, typeof(CheckActivity));
-				activity.PutExtra ("CheckAgain", true);
+			Android.Support.V4.App.Fragment fragment = null;
+			switch (position) {
+			case 0:
+				fragment = new HomeFragment ();
+				break;
+			case 1:
+				var activity = new Intent (this, typeof(ProjectActivity));
 				StartActivity (activity);
-				this.Finish ();
-				return true;
+				break;
+//			case 2:
+//				fragment = new ProfileFragment ();
+//				break;
 			}
-			return base.OnOptionsItemSelected(item);
+
+			if (fragment != null) {
+				SupportFragmentManager.BeginTransaction ()
+				.Replace (Resource.Id.content_frame, fragment)
+				.Commit ();
+			}
+
+			//this.drawerListView.SetItemChecked (position, true);
+			//ActionBar.Title = this.title = Sections [position];
+			this.drawerLayout.CloseDrawers();
+		}
+
+		public override bool OnPrepareOptionsMenu (IMenu menu)
+		{
+
+			var drawerOpen = this.drawerLayout.IsDrawerOpen((int)GravityFlags.Left);
+			//when open don't show anything
+			for (int i = 0; i < menu.Size (); i++)
+				menu.GetItem (i).SetVisible (!drawerOpen);
+
+
+			return base.OnPrepareOptionsMenu (menu);
+		}
+
+		protected override void OnPostCreate (Bundle savedInstanceState)
+		{
+			base.OnPostCreate (savedInstanceState);
+			this.drawerToggle.SyncState ();
+		}
+
+		public override void OnConfigurationChanged (Configuration newConfig)
+		{
+			base.OnConfigurationChanged (newConfig);
+			this.drawerToggle.OnConfigurationChanged (newConfig);
+		}
+
+		// Pass the event to ActionBarDrawerToggle, if it returns
+		// true, then it has handled the app icon touch event
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			if (this.drawerToggle.OnOptionsItemSelected (item))
+				return true;
+
+			return base.OnOptionsItemSelected (item);
 		}
 
 		public override void OnBackPressed() {
 			ShowAlert ();
 		}
 
-		private void finish(){
-			//SaveData();     
-			base.OnBackPressed();
-			this.Finish ();
-			Android.OS.Process.KillProcess (Android.OS.Process.MyPid ());
-		}
 		public void ShowAlert()
 		{
 			Android.App.AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -150,6 +169,26 @@ namespace LinkOM
 
 			alertDialog.Show();
 		}
+
+		private void finish(){
+			//SaveData();     
+			base.OnBackPressed();
+			this.Finish ();
+			Android.OS.Process.KillProcess (Android.OS.Process.MyPid ());
+		}
+
+		private void SetOrientaion(){
+			int minWidth= Settings.SmallestWidth;
+			if (minWidth > 360) {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
+			else if (minWidth <= 360) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			}
+		}
+
+
+
 	}
 }
 

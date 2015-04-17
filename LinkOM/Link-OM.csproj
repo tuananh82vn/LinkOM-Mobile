@@ -84,6 +84,9 @@
     <Reference Include="Xamarin.Controls.FlipNumbers.Android">
       <HintPath>..\Components\flipnumbers-1.1.0.1\lib\android\Xamarin.Controls.FlipNumbers.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.v13">
+      <HintPath>..\packages\Xamarin.Android.Support.v13.22.0.0.0\lib\MonoAndroid32\Xamarin.Android.Support.v13.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -113,7 +116,6 @@
     <Compile Include="Model\ViewModel\Status.cs" />
     <Compile Include="Model\ReceiveModel\JsonData.cs" />
     <Compile Include="Model\ReceiveModel\StatusList.cs" />
-    <Compile Include="Activity\StartUp\MainActivity.cs" />
     <Compile Include="Model\ReceiveModel\TaskList.cs" />
     <Compile Include="Model\ViewModel\TaskObject.cs" />
     <Compile Include="Activity\Ticket\TicketActivity.cs" />
@@ -150,6 +152,9 @@
     <Compile Include="Activity\Issues\IssuesDetailActivity.cs" />
     <Compile Include="Activity\Issues\IssuesEditActivity.cs" />
     <Compile Include="Activity\Issues\IssuesAddActivity.cs" />
+    <Compile Include="Activity\StartUp\HomeActivity.cs" />
+    <Compile Include="Helper\ActionBarDrawerEventArgs.cs" />
+    <Compile Include="Fragments\HomeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -393,6 +398,14 @@
     <AndroidResource Include="Resources\layout\TicketEdit.axml" />
     <AndroidResource Include="Resources\layout\IssuesDetailLayout.axml" />
     <AndroidResource Include="Resources\layout\IssuesEdit.axml" />
+    <AndroidResource Include="Resources\layout\HomeLayout.axml" />
+    <AndroidResource Include="Resources\layout\NavigationMenu.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\drawer_shadow_dark.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\drawer_shadow_light.9.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_drawer_dark.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_drawer_light.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_menu_refresh.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -461,6 +474,7 @@
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Fragments\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />
