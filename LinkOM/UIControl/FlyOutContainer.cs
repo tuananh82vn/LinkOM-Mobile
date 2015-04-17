@@ -94,17 +94,6 @@ namespace LinkOM
 			}
 		}
 
-		View MenuView {
-			get {
-				return FindViewById (Resource.Id.FlyOutMenu);
-			}
-		}
-
-		int MaxOffset {
-			get {
-				return MenuView.Width;
-			}
-		}
 
 		public bool Opened {
 			get {
@@ -128,64 +117,60 @@ namespace LinkOM
 		{
 			
 
-			long AnimationTime = Context.Resources.GetInteger (Android.Resource.Integer.ConfigLongAnimTime);
-			AnimationTime = 3000;
-
-			Console.WriteLine ("SetOpened Start : " + opened);
-
-			this.opened = opened;
-			if (!animated) {
-				
-				Console.WriteLine ("!animated");
-
-				SetNewOffset (opened ? MaxOffset : 0);
-			}
-			else {
-				
-				if (animator != null) {
-					animator.Cancel ();
-					animator = null;
-				}
-
-				Console.WriteLine ("MaxOffset : " + MaxOffset);
-
-				animator = ValueAnimator.OfInt (contentOffsetX, opened ? MaxOffset : 0);
-				animator.SetInterpolator (interpolator);
-				animator.SetDuration (AnimationTime);
-				animator.Update += (sender, e) => SetNewOffset ((int)e.Animation.AnimatedValue);
-				animator.AnimationEnd += (sender, e) => 
-				{ 
-					Console.WriteLine ("AnimationEnd");
-					animator.RemoveAllListeners (); 
-					animator = null; 
-				};
-				animator.Start ();
-			}
-
-			Console.WriteLine ("SetOpened End");
+//			long AnimationTime = Context.Resources.GetInteger (Android.Resource.Integer.ConfigLongAnimTime);
+//
+//
+//			this.opened = opened;
+//			if (!animated) {
+//				
+////
+////				SetNewOffset (opened ? MaxOffset : 0);
+//			}
+//			else {
+//				
+//				if (animator != null) {
+//					animator.Cancel ();
+//					animator = null;
+//				}
+//
+//
+//				animator = ValueAnimator.OfInt (contentOffsetX, opened ? MaxOffset : 0);
+//				animator.SetInterpolator (interpolator);
+//				animator.SetDuration (AnimationTime);
+//				animator.Update += (sender, e) => SetNewOffset ((int)e.Animation.AnimatedValue);
+//				animator.AnimationEnd += (sender, e) => 
+//				{ 
+//					Console.WriteLine ("AnimationEnd");
+//					animator.RemoveAllListeners (); 
+//					animator = null; 
+//				};
+//				animator.Start ();
+//			}
+//
+//			Console.WriteLine ("SetOpened End");
 		}
 
-		void SetNewOffset (int newOffset)
-		{
-			var oldOffset = contentOffsetX;
-			contentOffsetX = Math.Min (Math.Max (0, newOffset), MaxOffset);
-			ContentView.OffsetLeftAndRight (contentOffsetX - oldOffset);
-			if (opened && contentOffsetX == 0)
-				opened = false;
-			else if (!opened && contentOffsetX == MaxOffset)
-				opened = true;
-			UpdateParallax ();
-			Invalidate ();
-		}
+//		void SetNewOffset (int newOffset)
+//		{
+//			var oldOffset = contentOffsetX;
+//			contentOffsetX = Math.Min (Math.Max (0, newOffset), MaxOffset);
+//			ContentView.OffsetLeftAndRight (contentOffsetX - oldOffset);
+//			if (opened && contentOffsetX == 0)
+//				opened = false;
+//			else if (!opened && contentOffsetX == MaxOffset)
+//				opened = true;
+//			
+//			UpdateParallax ();
+//			Invalidate ();
+//		}
 
-		void UpdateParallax ()
-		{
-			var openness = ((float)(MaxOffset - contentOffsetX)) / MaxOffset;
-
-			int value = (int)(-openness * MaxOffset * ParallaxSpeedRatio) - MenuView.Left;
-
-			MenuView.OffsetLeftAndRight (value);
-		}
+//		void UpdateParallax ()
+//		{
+//			var openness = ((float)( contentOffsetX)) / MaxOffset;
+//
+//			int value = (int)(-openness *  ParallaxSpeedRatio) - MenuView.Left;
+//
+//		}
 
 		public override bool OnInterceptTouchEvent (MotionEvent ev)
 		{
@@ -196,43 +181,43 @@ namespace LinkOM
 			return CaptureMovementCheck (ev);
 		}
 
-		public override bool OnTouchEvent (MotionEvent e)
-		{
-			if (e.Action == MotionEventActions.Down) {
-				CaptureMovementCheck (e);
-				return true;
-			}
-
-			if (!isTracking && !CaptureMovementCheck (e))
-				return true;
-
-			if (e.Action != MotionEventActions.Move || MoveDirectionTest (e))
-				velocityTracker.AddMovement (e);
-
-			if (e.Action == MotionEventActions.Move) {
-				var x = e.HistorySize > 0 ? e.GetHistoricalX (0) : e.GetX ();
-				var traveledDistance = (int)Math.Round (Math.Abs (x - (startX)));
-				SetNewOffset (stateBeforeTracking ?
-					MaxOffset - Math.Min (MaxOffset, traveledDistance)
-					: Math.Max (0, traveledDistance));
-			} 
-			else if (e.Action == MotionEventActions.Up && stateBeforeTracking == opened) 
-			{
-				velocityTracker.ComputeCurrentVelocity (1000, maxFlingVelocity);
-				if (Math.Abs (velocityTracker.XVelocity) > minFlingVelocity)
-					SetOpened (!opened);
-				else if (!opened && contentOffsetX > MaxOffset / 2)
-					SetOpened (true);
-				else if (opened && contentOffsetX < MaxOffset / 2)
-					SetOpened (false);
-				else
-					SetOpened (opened);
-
-				preTracking = isTracking = false;
-			}
-
-			return true;
-		}
+//		public override bool OnTouchEvent (MotionEvent e)
+//		{
+//			if (e.Action == MotionEventActions.Down) {
+//				CaptureMovementCheck (e);
+//				return true;
+//			}
+//
+//			if (!isTracking && !CaptureMovementCheck (e))
+//				return true;
+//
+//			if (e.Action != MotionEventActions.Move || MoveDirectionTest (e))
+//				velocityTracker.AddMovement (e);
+//
+//			if (e.Action == MotionEventActions.Move) {
+//				var x = e.HistorySize > 0 ? e.GetHistoricalX (0) : e.GetX ();
+//				var traveledDistance = (int)Math.Round (Math.Abs (x - (startX)));
+//				SetNewOffset (stateBeforeTracking ?
+//					MaxOffset - Math.Min (MaxOffset, traveledDistance)
+//					: Math.Max (0, traveledDistance));
+//			} 
+//			else if (e.Action == MotionEventActions.Up && stateBeforeTracking == opened) 
+//			{
+//				velocityTracker.ComputeCurrentVelocity (1000, maxFlingVelocity);
+//				if (Math.Abs (velocityTracker.XVelocity) > minFlingVelocity)
+//					SetOpened (!opened);
+//				else if (!opened && contentOffsetX > MaxOffset / 2)
+//					SetOpened (true);
+//				else if (opened && contentOffsetX < MaxOffset / 2)
+//					SetOpened (false);
+//				else
+//					SetOpened (opened);
+//
+//				preTracking = isTracking = false;
+//			}
+//
+//			return true;
+//		}
 
 		bool CaptureMovementCheck (MotionEvent ev)
 		{

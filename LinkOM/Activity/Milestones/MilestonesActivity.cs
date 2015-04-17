@@ -84,6 +84,23 @@ namespace LinkOM
 
 		}
 
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+			
+			default:
+				break;
+			}
+
+			return true;
+		}
+
 		public void btBackClick(object sender, EventArgs e)
 		{
 			OnBackPressed ();

@@ -4,7 +4,5 @@
     android:layout_height="fill_parent"
     android:id="@+id/MainContainer">
     <include
-        layout="@layout/MenuLayout" />
-    <include
         layout="@layout/MainContentLayout" />
 </LinkOM.FlyOutContainer>

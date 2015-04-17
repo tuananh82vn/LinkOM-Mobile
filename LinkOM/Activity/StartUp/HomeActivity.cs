@@ -23,7 +23,7 @@ namespace LinkOM
 		private DrawerLayout drawerLayout;
 		private ListView drawerListView;
 		private static readonly string[] Sections = new[] {
-			"Home", "Project", "Task"
+			"Home", "Project", "Task", "Ticket", "Issues", "Milestones", "Document"
 		};
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -40,7 +40,7 @@ namespace LinkOM
 
 
 			//Create Adapter for drawer List
-			this.drawerListView.Adapter = new ArrayAdapter<string> (this, Resource.Layout.NavigationMenu, Sections);
+			this.drawerListView.Adapter = new MenuListAdapter(this);
 
 			//Set click handler when item is selected
 			this.drawerListView.ItemClick += (sender, args) => ListItemClicked (args.Position);
@@ -71,13 +71,11 @@ namespace LinkOM
 			//Set the drawer lister to be the toggle.
 			this.drawerLayout.SetDrawerListener (this.drawerToggle);
 
-
-
-			//if first time you will want to go ahead and click first item.
-			if (savedInstanceState == null) {
-				ListItemClicked (0);
-			}
-
+			Android.Support.V4.App.Fragment fragment = new HomeFragment ();
+			SupportFragmentManager.BeginTransaction ()
+				.Replace (Resource.Id.content_frame, fragment)
+				.Commit ();
+			
 
 			this.ActionBar.SetDisplayHomeAsUpEnabled (true);
 			this.ActionBar.SetHomeButtonEnabled (true);
@@ -85,24 +83,33 @@ namespace LinkOM
 
 		private void ListItemClicked (int position)
 		{
-			Android.Support.V4.App.Fragment fragment = null;
+			
+			Intent activity=null;
 			switch (position) {
 			case 0:
-				fragment = new HomeFragment ();
-				break;
-			case 1:
-				var activity = new Intent (this, typeof(ProjectActivity));
+				activity = new Intent (this, typeof(ProjectActivity));
 				StartActivity (activity);
 				break;
-//			case 2:
-//				fragment = new ProfileFragment ();
-//				break;
-			}
-
-			if (fragment != null) {
-				SupportFragmentManager.BeginTransaction ()
-				.Replace (Resource.Id.content_frame, fragment)
-				.Commit ();
+			case 1:
+				activity = new Intent (this, typeof(TaskActivity));
+				StartActivity (activity);
+				break;
+			case 2:
+				activity = new Intent (this, typeof(TicketActivity));
+				StartActivity (activity);
+				break;
+			case 3:
+				activity = new Intent (this, typeof(IssuesActivity));
+				StartActivity (activity);
+				break;
+			case 4:
+				activity = new Intent (this, typeof(MilestonesActivity));
+				StartActivity (activity);
+				break;
+			case 5:
+				activity = new Intent (this, typeof(DocumentActivity));
+				StartActivity (activity);
+				break;
 			}
 
 			//this.drawerListView.SetItemChecked (position, true);

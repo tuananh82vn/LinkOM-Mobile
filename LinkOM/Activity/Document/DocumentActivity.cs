@@ -60,6 +60,23 @@ namespace LinkOM
 			refresher.Refreshing = false;
 		}
 
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+			
+			default:
+				break;
+			}
+
+			return true;
+		}
+
 		public async Task InitData(){
 
 			if (loading)

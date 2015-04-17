@@ -27,7 +27,7 @@ namespace LinkOM
 			this.HasOptionsMenu = true;
 			var ignored = base.OnCreateView(inflater, container, savedInstanceState);
 
-			var view = inflater.Inflate(Resource.Layout.Main, null);
+			var view = inflater.Inflate(Resource.Layout.MainContentLayout, null);
 
 			ImageButton bt_Task = view.FindViewById<ImageButton>(Resource.Id.bt_Task);
 			bt_Task.Click += btTaskClick;
