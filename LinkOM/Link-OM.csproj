@@ -146,6 +146,10 @@
     <Compile Include="Activity\Ticket\TicketEditActivity.cs" />
     <Compile Include="Model\ReceiveModel\IssuesList.cs" />
     <Compile Include="Model\ReceiveModel\TicketList.cs" />
+    <Compile Include="Activity\Ticket\TicketAddActivity.cs" />
+    <Compile Include="Activity\Issues\IssuesDetailActivity.cs" />
+    <Compile Include="Activity\Issues\IssuesEditActivity.cs" />
+    <Compile Include="Activity\Issues\IssuesAddActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -387,6 +391,8 @@
     <AndroidResource Include="Resources\values\Color.xml" />
     <AndroidResource Include="Resources\layout\TicketDetailLayout.axml" />
     <AndroidResource Include="Resources\layout\TicketEdit.axml" />
+    <AndroidResource Include="Resources\layout\IssuesDetailLayout.axml" />
+    <AndroidResource Include="Resources\layout\IssuesEdit.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

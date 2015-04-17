@@ -74,8 +74,8 @@ namespace LinkOM
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.IssuesList, parent, false);
 
-//			var TaskTitle = view.FindViewById<TextView> (Resource.Id.tv_TaskName);
-//			TaskTitle.Text = _IssuesList [position].Title;
+			var Title = view.FindViewById<TextView> (Resource.Id.tv_IssuesName);
+			Title.Text = _IssuesList [position].Title;
 //
 //
 //			var TaskCode = view.FindViewById<TextView> (Resource.Id.tv_Code);
@@ -104,6 +104,14 @@ namespace LinkOM
 //
 //			var Status = view.FindViewById<TextView> (Resource.Id.tv_Status);
 //			Status.Text = _IssuesList [position].TicketStatusName;
+
+			var Priority = view.FindViewById<ImageView> (Resource.Id.image_Priority);
+			if(_IssuesList [position].PriorityName.Equals("High"))
+				Priority.SetImageResource(Resource.Drawable.hight_priority);
+			else if(_IssuesList [position].PriorityName.Equals("Medium"))
+				Priority.SetImageResource(Resource.Drawable.medium_priority);
+			else if(_IssuesList [position].PriorityName.Equals("Low"))
+				Priority.SetImageResource(Resource.Drawable.low_priority);
 
 			return view;
 		}

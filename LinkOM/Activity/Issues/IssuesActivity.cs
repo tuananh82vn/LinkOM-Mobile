@@ -72,11 +72,11 @@ namespace LinkOM
 			case Android.Resource.Id.Home:
 				OnBackPressed ();
 				break;
-//			case Resource.Id.add:
-//				Intent Intent2 = new Intent (this, typeof(TaskAddActivity));
-//				Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
-//				StartActivity(Intent2);
-//				break;
+			case Resource.Id.add:
+				Intent Intent2 = new Intent (this, typeof(IssuesAddActivity));
+				Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+				StartActivity(Intent2);
+				break;
 			default:
 				break;
 			}

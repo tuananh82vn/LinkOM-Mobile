@@ -60,42 +60,6 @@ namespace LinkOM
 			var Internal = view.FindViewById<CheckBox> (Resource.Id.cb_Internal);
 			Internal.Checked = _DocumentList [position].IsInternal;
 
-
-			var Description = view.FindViewById<TextView> (Resource.Id.tv_Description);
-			Description.Text = _DocumentList [position].Description;
-//
-//
-//			var OpenIssues = view.FindViewById<TextView> (Resource.Id.tv_OpenIssues);
-//			OpenIssues.Text = _DocumentList [position].OpenIssues.Value.ToString();
-//
-//			var DepartmentName = view.FindViewById<TextView> (Resource.Id.tv_DepartmentName);
-//			DepartmentName.Text = _DocumentList [position].DepartmentName;
-//
-//			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
-//			StartDate.Text = _DocumentList [position].StartDateString;
-//
-//			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
-//			EndDate.Text = _DocumentList [position].EndDateString;
-//
-//			var AcctualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
-//			if(_DocumentList [position].ActualHrs!=null)
-//				AcctualHours.Text = _DocumentList [position].ActualHrs.Value.ToString();
-//			else
-//				AcctualHours.Text = "0";
-//
-//			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
-//			if(_DocumentList [position].AllocatedHours!=null)
-//				AllocatedHours.Text = _DocumentList [position].AllocatedHours.Value.ToString();
-//			else
-//				AllocatedHours.Text = "0";
-//
-//			var ProjectStatus = view.FindViewById<ImageView> (Resource.Id.image_Status);
-//			if(_DocumentList [position].ProjectStatus.Equals("Open"))
-//				ProjectStatus.SetImageResource(Resource.Drawable.open);
-//				else
-//				ProjectStatus.SetImageResource(Resource.Drawable.close);
-
-
 			return view;
 		}
 	}

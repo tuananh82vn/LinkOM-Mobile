@@ -35,7 +35,17 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.ActionBar);
+
 			SetContentView (Resource.Layout.IssuesListContainer);
+
+			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+			ActionBar.SetTitle(Resource.String.issues_title_list);
+			ActionBar.SetDisplayShowTitleEnabled (true);
+			ActionBar.SetDisplayHomeAsUpEnabled(true);
+			ActionBar.SetHomeButtonEnabled(true);
+
+
 
 			issuesListView = FindViewById<ListView> (Resource.Id.IssuesListView);
 
@@ -55,6 +65,38 @@ namespace LinkOM
 			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
 
 			refresher.Refresh += HandleRefresh;
+		}
+
+		//Handle item on action bar clicked
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+			case Android.Resource.Id.Home:
+				OnBackPressed ();
+				break;
+			case Resource.Id.search:
+				btSearchClick ();
+				break;
+			default:
+				break;
+			}
+
+			return true;
+		}
+
+		//Init menu on action bar
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.SearchMenu, menu);
+
+			return true;
 		}
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
@@ -120,7 +162,7 @@ namespace LinkOM
 
 						issuesListView.Adapter = issuesList;
 
-						//issuesListView.ItemClick += listView_ItemClick;
+						issuesListView.ItemClick += listView_ItemClick;
 					} 
 				}
 
@@ -134,7 +176,7 @@ namespace LinkOM
 			OnBackPressed ();
 		}
 
-		public void btSearchClick(object sender, EventArgs e)
+		public void btSearchClick()
 		{
 			if (!mAnimatedDown)
 			{
@@ -197,6 +239,19 @@ namespace LinkOM
 				//next action will set focus to password edit text.
 			} 
 			return false;
+		}
+
+		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+
+			IssuesObject model = this.issuesList.GetItemAtPosition (e.Position);
+
+			var activity = new Intent (this, typeof(IssuesDetailActivity));
+
+			activity.PutExtra ("Issue", Newtonsoft.Json.JsonConvert.SerializeObject(model));
+
+			StartActivity (activity);
+
 		}
 	}
 }

@@ -51,6 +51,7 @@
   		<string name="ticket_title_detail">Ticket Detail</string>
 
   		<string name="issues_title">Issues</string>
+  		<string name="issues_title_list">Issues List</string>
   		<string name="issues_title_edit">Issues Edit</string>
   		<string name="issues_title_detail">Issues Detail</string>
 

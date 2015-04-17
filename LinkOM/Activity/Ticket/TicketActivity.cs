@@ -72,11 +72,18 @@ namespace LinkOM
 
 			switch (item.ItemId)
 			{
-			case Android.Resource.Id.Home:
-				OnBackPressed ();
-				break;
-			default:
-				break;
+				case Android.Resource.Id.Home:
+					OnBackPressed ();
+					break;
+
+				case Resource.Id.add:
+					Intent Intent = new Intent (this, typeof(TicketAddActivity));
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity(Intent);
+					break;
+
+				default:
+					break;
 			}
 
 			return true;

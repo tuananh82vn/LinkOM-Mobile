@@ -93,20 +93,4 @@
             p1:layout_marginLeft="5.0dp"
             p1:textColor="#ff000000" />
     </TableRow>
-    <TableRow
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/tableRow2"
-        p1:layout_marginBottom="5.0dp"
-        p1:minWidth="25px"
-        p1:minHeight="25px">
-        <TextView
-            p1:text="Description"
-            p1:textAppearance="?android:attr/textAppearanceSmall"
-            p1:layout_width="match_parent"
-            p1:layout_height="82.3dp"
-            p1:id="@+id/tv_Description"
-            p1:layout_marginLeft="5px"
-            p1:textColor="#ff000000" />
-    </TableRow>
 </LinearLayout>
