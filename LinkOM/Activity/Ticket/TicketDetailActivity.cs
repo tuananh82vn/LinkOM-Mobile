@@ -21,6 +21,9 @@ namespace LinkOM
 		public TicketObject TicketDetail;
 		public string results;
 
+		public TicketCommentListAdapter TicketCommentListAdapter;
+		public ListView ticketCommentListView ;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -39,6 +42,8 @@ namespace LinkOM
 
 			DisplayTicket (TicketDetail);
 
+			LoadTicketComment (TicketDetail.Id);
+
 		}
 
 
@@ -47,6 +52,52 @@ namespace LinkOM
 			results= Intent.GetStringExtra ("Ticket");
 
 			TicketDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketObject> (results);
+		}
+
+		public void LoadTicketComment(int TicketId){
+
+			string url = Settings.InstanceURL;
+
+			//Load data
+			string url_Task= url+"/api/TicketCommentList";
+
+
+			var objTask = new
+			{
+				TicketId = TicketId,
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						TokenNumber =Settings.Token,
+						Item = objTask
+					}
+				});
+
+			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
+
+			if (results_Task != null && results_Task != "") {
+
+				var ticketList = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketCommentList> (results_Task);
+
+				if (ticketList.Items != null) {
+
+					TicketCommentListAdapter = new TicketCommentListAdapter (this, ticketList.Items);
+
+					ticketCommentListView = FindViewById<ListView> (Resource.Id.TicketCommentListView);
+
+					ticketCommentListView.Adapter = TicketCommentListAdapter;
+
+					ticketCommentListView.DividerHeight = 0;
+
+					Utility.setListViewHeightBasedOnChildren (ticketCommentListView);
+
+					//ticketCommentListView.ItemClick += listView_ItemClick;
+				} 
+
+			}
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)

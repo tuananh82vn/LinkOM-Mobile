@@ -39,6 +39,8 @@ namespace LinkOM
 
 			DisplayTask (TaskDetail);
 
+			LoadTaskComment (TaskDetail.Id.Value);
+
 		}
 
 
@@ -60,6 +62,36 @@ namespace LinkOM
 			return true;
 		}
 
+		public void LoadTaskComment(int TaskId){
+			
+			string url = Settings.InstanceURL;
+
+			//Load data
+			string url_Task= url+"/api/TaskCommentList";
+
+
+			var objTask = new
+			{
+				TaskId = TaskId,
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						TokenNumber =Settings.Token,
+						Item = objTask
+					}
+				});
+
+			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
+
+			if (results_Task != null && results_Task != "") {
+
+				var taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskCommentList> (results_Task);
+
+			}
+		}
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			base.OnOptionsItemSelected (item);
