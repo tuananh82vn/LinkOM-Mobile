@@ -7,6 +7,7 @@ using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Widget;
 using Android.Content;
+using Android.Graphics.Drawables;
 
 
 
@@ -21,10 +22,8 @@ namespace LinkOM
 		private string title;
 
 		private DrawerLayout drawerLayout;
+
 		private ListView drawerListView;
-		private static readonly string[] Sections = new[] {
-			"Home", "Project", "Task", "Ticket", "Issues", "Milestones", "Document"
-		};
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -41,6 +40,8 @@ namespace LinkOM
 
 			//Create Adapter for drawer List
 			this.drawerListView.Adapter = new MenuListAdapter(this);
+			drawerListView.DividerHeight=0;
+
 
 			//Set click handler when item is selected
 			this.drawerListView.ItemClick += (sender, args) => ListItemClicked (args.Position);
@@ -86,27 +87,27 @@ namespace LinkOM
 			
 			Intent activity=null;
 			switch (position) {
-			case 0:
+			case 1:
 				activity = new Intent (this, typeof(ProjectActivity));
 				StartActivity (activity);
 				break;
-			case 1:
+			case 2:
 				activity = new Intent (this, typeof(TaskActivity));
 				StartActivity (activity);
 				break;
-			case 2:
+			case 3:
 				activity = new Intent (this, typeof(TicketActivity));
 				StartActivity (activity);
 				break;
-			case 3:
+			case 4:
 				activity = new Intent (this, typeof(IssuesActivity));
 				StartActivity (activity);
 				break;
-			case 4:
+			case 5:
 				activity = new Intent (this, typeof(MilestonesActivity));
 				StartActivity (activity);
 				break;
-			case 5:
+			case 6:
 				activity = new Intent (this, typeof(DocumentActivity));
 				StartActivity (activity);
 				break;

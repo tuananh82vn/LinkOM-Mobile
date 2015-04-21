@@ -29,10 +29,13 @@ namespace LinkOM
 		public bool loading;
 
 
-		private EditText mSearch;
+		public EditText mSearch;
 		private bool mAnimatedDown;
 		private bool mIsAnimating;
 		public ListView projectListView;
+
+		public InputMethodManager inputManager;
+
 	
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -55,15 +58,20 @@ namespace LinkOM
 			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
 			mSearch.Alpha = 0;
 			mSearch.SetOnEditorActionListener (this);
+			mSearch.Focusable = false;
+			mSearch.FocusableInTouchMode = false;
 			mSearch.TextChanged += InputSearchOnTextChanged;
 
 			InitData ();
 
-			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
 
-			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
+			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
 
-			refresher.Refresh += HandleRefresh;
+//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+//
+//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
+//
+//			refresher.Refresh += HandleRefresh;
 
 		}
 
@@ -162,9 +170,8 @@ namespace LinkOM
 			ProjectObject Project = this.projectList.GetItemAtPosition(e.Position);
 
 			Intent addAccountIntent = new Intent (this, typeof(ProjectDetailActivity));
-
-			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-
+//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+//
 			addAccountIntent.PutExtra ("Project", Newtonsoft.Json.JsonConvert.SerializeObject(Project));
 
 			StartActivity(addAccountIntent);
@@ -187,24 +194,38 @@ namespace LinkOM
 		{
 			if (!mAnimatedDown)
 			{
-				//Listview is up
+				Console.WriteLine ("DOWN");
+				mSearch.Focusable = true;
+				mSearch.FocusableInTouchMode= true;
+				mSearch.RequestFocus ();
 				MyAnimation anim = new MyAnimation(projectListView, projectListView.Height - mSearch.Height);
 				anim.Duration = 500;
 				projectListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartDown;
 				anim.AnimationEnd += anim_AnimationEndDown;
-				refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+				projectListView.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+
+
+				inputManager.ShowSoftInput(mSearch, ShowFlags.Implicit);
+
 			}
 
 			else
 			{
-				//Listview is down
+				Console.WriteLine ("UP");
+				mSearch.Focusable = false;
+				mSearch.FocusableInTouchMode= false;
+
 				MyAnimation anim = new MyAnimation(projectListView, projectListView.Height + mSearch.Height);
 				anim.Duration = 500;
 				projectListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartUp;
 				anim.AnimationEnd += anim_AnimationEndUp;
-				refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+				projectListView.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+
+				inputManager.HideSoftInputFromWindow(this.mSearch.WindowToken, 0);
+
+
 			}
 
 			mAnimatedDown = !mAnimatedDown;
@@ -219,8 +240,6 @@ namespace LinkOM
 		{
 			mIsAnimating = false;
 			mSearch.ClearFocus();
-			InputMethodManager inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
-			inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.NotAlways);
 		}
 
 		void anim_AnimationEndDown(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
