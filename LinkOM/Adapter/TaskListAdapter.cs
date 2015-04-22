@@ -114,8 +114,6 @@ namespace LinkOM
 				{
 					// Compare constraint to all names lowercased.
 					// It they are contained they are added to results.
-
-
 					results.AddRange(_adapter._originalData.Where(t => t.Title.ToLower().Contains(constraint.ToString().ToLower())));
 				}
 

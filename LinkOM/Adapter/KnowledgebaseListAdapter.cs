@@ -8,25 +8,25 @@ namespace LinkOM
 {
 	public class KnowledgebaseListAdapter : BaseAdapter
 	{
-		List<KnowledgebaseObject> _DocumentList;
+		List<KnowledgebaseObject> _KnowledgeList;
 
 		Activity _activity;
 
 		public KnowledgebaseListAdapter (Activity activity, List<KnowledgebaseObject> data)
 		{
 			_activity = activity;
-			_DocumentList = data;
+			_KnowledgeList = data;
 		}
 
 		public override int Count 
 		{
 			get 
 				{  
-					if (_DocumentList == null)
+					if (_KnowledgeList == null)
 					{
 						return 0;
 					}
-					return _DocumentList.Count; 
+					return _KnowledgeList.Count; 
 				}
 		}
 
@@ -37,28 +37,26 @@ namespace LinkOM
 		}
 
 		public override long GetItemId (int position) {
-			return long.Parse(_DocumentList [position].Id.ToString());
+			return long.Parse(_KnowledgeList [position].Id.ToString());
 		}
 
 		public string GetItemName (int position) {
-			return _DocumentList [position].Title;
+			return _KnowledgeList [position].Title;
 		}
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.DocumentList, parent, false);
+			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.KnowledgebaseList, parent, false);
 
-			var DocumentName = view.FindViewById<TextView> (Resource.Id.tv_DocumentName);
-			DocumentName.Text = _DocumentList [position].Title;
+			var KnowledgebaseName = view.FindViewById<TextView> (Resource.Id.KnowledgebaseName);
+			KnowledgebaseName.Text = _KnowledgeList [position].Title;
 
-//			var category = view.FindViewById<TextView> (Resource.Id.tv_category);
-//			category.Text = _DocumentList [position].DocumentCategoryName;
-//
-//			var project = view.FindViewById<TextView> (Resource.Id.tv_project);
-//			project.Text = _DocumentList [position].ProjectName;
+			var tv_publishdate = view.FindViewById<TextView> (Resource.Id.tv_publishdate);
+			tv_publishdate.Text = _KnowledgeList [position].PublishDateString;
 
-			var Internal = view.FindViewById<CheckBox> (Resource.Id.cb_Internal);
-			Internal.Checked = _DocumentList [position].IsInternal;
+			var tv_category = view.FindViewById<TextView> (Resource.Id.tv_category);
+			tv_category.Text = _KnowledgeList [position].KnowledgebaseCategoryName;
+
 
 			return view;
 		}

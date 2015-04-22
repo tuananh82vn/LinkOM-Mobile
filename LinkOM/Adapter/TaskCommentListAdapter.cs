@@ -50,13 +50,13 @@ namespace LinkOM
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
 			var Name = view.FindViewById<TextView> (Resource.Id.tv_Name);
-			Name.Text = _TaskCommentObject [position].Comment;
+			Name.Text = _TaskCommentObject [position].Comment.Trim();
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _TaskCommentObject [position].OwnerName;
+			CreatedPerson.Text = _TaskCommentObject [position].UserName.Trim();
 
 			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
-			CommentDate.Text = _TaskCommentObject [position].CreatedDate.Value.ToShortDateString();
+			CommentDate.Text = _TaskCommentObject [position].CreatedDate.Value.ToString("dd/MM/yyyy  HH:mm:ss");
 
 
 			return view;

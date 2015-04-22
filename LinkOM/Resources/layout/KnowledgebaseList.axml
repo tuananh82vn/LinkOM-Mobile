@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:minWidth="25px"
+    p1:minHeight="25px"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1"
+    p1:background="@drawable/list_selector">
+    <TableRow
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow1"
+        p1:layout_gravity="center_vertical">
+        <TextView
+            p1:text="Document Name"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:id="@+id/KnowledgebaseName"
+            p1:layout_height="match_parent"
+            p1:gravity="center_vertical"
+            p1:layout_width="match_parent"
+            p1:layout_marginLeft="5.0dp"
+            p1:textColor="#ff000000"
+            p1:textSize="20dp"
+            p1:layout_marginRight="5.0dp" />
+    </TableRow>
+    <TableRow
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow2">
+        <TextView
+            p1:text="Category"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:id="@+id/tv_category"
+            p1:layout_height="match_parent"
+            p1:gravity="center_vertical"
+            p1:layout_width="match_parent"
+            p1:layout_marginLeft="5.0dp"
+            p1:textColor="#ffaeaeae" />
+    </TableRow>
+    <TableRow
+        p1:layout_width="match_parent"
+        p1:layout_height="23.2dp"
+        p1:id="@+id/tableRow2">
+        <TextView
+            p1:text="Publish on:"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:id="@+id/tv"
+            p1:layout_height="match_parent"
+            p1:gravity="center_vertical"
+            p1:layout_width="wrap_content"
+            p1:layout_marginLeft="5.0dp"
+            p1:textColor="#ffaeaeae"
+            p1:layout_marginRight="5.0dp" />
+        <TextView
+            p1:text="01/01/1999"
+            p1:textAppearance="?android:attr/textAppearanceSmall"
+            p1:id="@+id/tv_publishdate"
+            p1:layout_height="match_parent"
+            p1:gravity="center_vertical"
+            p1:layout_width="wrap_content"
+            p1:layout_marginLeft="5.0dp"
+            p1:textColor="#ffaeaeae"
+            p1:layout_marginRight="5.0dp" />
+    </TableRow>
+</LinearLayout>

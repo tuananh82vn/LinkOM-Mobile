@@ -49,14 +49,16 @@ namespace LinkOM
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
-			var MilestoneName = view.FindViewById<TextView> (Resource.Id.tv_Name);
-			MilestoneName.Text = _TicketCommentObject [position].Comment;
+			var Name = view.FindViewById<TextView> (Resource.Id.tv_Name);
+			Name.Text = _TicketCommentObject [position].Comment.Trim();
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _TicketCommentObject [position].OwnerName;
+			CreatedPerson.Text = _TicketCommentObject [position].UserName.Trim();
 
 			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
-			CommentDate.Text = _TicketCommentObject [position].CreatedDate.Value.ToShortDateString();
+			CommentDate.Text = _TicketCommentObject [position].CreatedDate.Value.ToString("dd/MM/yyyy  HH:mm:ss");
+
+
 
 
 			return view;

@@ -425,6 +425,7 @@
     <AndroidResource Include="Resources\layout\Knowledgebase.axml" />
     <AndroidResource Include="Resources\drawable\list_selector.xml" />
     <AndroidResource Include="Resources\layout\DocumentDetailLayout.axml" />
+    <AndroidResource Include="Resources\layout\KnowledgebaseList.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
