@@ -87,6 +87,9 @@
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\Components\xamandroidsupportv4-18-21.0.3.0\lib\android\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
+    <Reference Include="NChart3D">
+      <HintPath>..\packages\NChart3D\NChart3D.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -170,6 +173,9 @@
     <Compile Include="Model\ViewModel\KnowledgebaseObject.cs" />
     <Compile Include="Model\ViewModel\MilestoneObject.cs" />
     <Compile Include="Activity\Document\DocumentDetailActivity.cs" />
+    <Compile Include="Activity\Document\DocumentEditActivity.cs" />
+    <Compile Include="Activity\Document\DocumentAddActivity.cs" />
+    <Compile Include="Activity\Dashboard\DashboardActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -426,6 +432,9 @@
     <AndroidResource Include="Resources\drawable\list_selector.xml" />
     <AndroidResource Include="Resources\layout\DocumentDetailLayout.axml" />
     <AndroidResource Include="Resources\layout\KnowledgebaseList.axml" />
+    <AndroidResource Include="Resources\layout\DocumentEdit.axml" />
+    <AndroidResource Include="Resources\drawable\home.png" />
+    <AndroidResource Include="Resources\layout\DashboardLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -497,8 +506,15 @@
     <Folder Include="Fragments\" />
     <Folder Include="Resources\layout-xlarge-land\" />
     <Folder Include="Activity\Knowledgebase\" />
+    <Folder Include="Activity\Dashboard\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\packages\Compass.FilePicker\Compass.FilePicker.csproj">
+      <Project>{605F69AA-93A8-4AEA-9BBD-BF3AE649506A}</Project>
+      <Name>Compass.FilePicker</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

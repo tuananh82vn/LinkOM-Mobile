@@ -87,31 +87,35 @@ namespace LinkOM
 			
 			Intent activity=null;
 			switch (position) {
-			case 1:
-				activity = new Intent (this, typeof(ProjectActivity));
+			case 0:
+				activity = new Intent (this, typeof(DashboardActivity));
 				StartActivity (activity);
 				break;
 			case 2:
-				activity = new Intent (this, typeof(TaskActivity));
+				activity = new Intent (this, typeof(ProjectActivity));
 				StartActivity (activity);
 				break;
 			case 3:
-				activity = new Intent (this, typeof(TicketActivity));
+				activity = new Intent (this, typeof(TaskActivity));
 				StartActivity (activity);
 				break;
 			case 4:
-				activity = new Intent (this, typeof(IssuesActivity));
+				activity = new Intent (this, typeof(TicketActivity));
 				StartActivity (activity);
 				break;
 			case 5:
-				activity = new Intent (this, typeof(MilestonesActivity));
+				activity = new Intent (this, typeof(IssuesActivity));
 				StartActivity (activity);
 				break;
 			case 6:
-				activity = new Intent (this, typeof(DocumentActivity));
+				activity = new Intent (this, typeof(MilestonesActivity));
 				StartActivity (activity);
 				break;
 			case 7:
+				activity = new Intent (this, typeof(DocumentActivity));
+				StartActivity (activity);
+				break;
+			case 8:
 				activity = new Intent (this, typeof(KnowledgebaseActivity));
 				StartActivity (activity);
 				break;

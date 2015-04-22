@@ -24,7 +24,7 @@ namespace LinkOM
 			this.context = context;
 
 			this.items = new List<MenuItem>() {
-				
+				new MenuItem() { Name = "Dashboard", Img = Resource.Drawable.home , 	Type="item"},
 				new MenuItem() { Name = "MENU", 	Img = Resource.Drawable.Projects , 	Type="divider"},
 				new MenuItem() { Name = "Project", 	Img = Resource.Drawable.Projects , 	Type="item" },
 				new MenuItem() { Name = "Task", 	Img = Resource.Drawable.Tasks, 		Type="item" },
