@@ -104,7 +104,6 @@
     <Compile Include="Model\ReceiveModel\Results.cs" />
     <Compile Include="Activity\Project\ProjectDetailActivity.cs" />
     <Compile Include="Model\ReceiveModel\ProjectDetail.cs" />
-    <Compile Include="Model\ViewModel\Milestone.cs" />
     <Compile Include="Model\ReceiveModel\ProjectList.cs" />
     <Compile Include="Model\ReceiveModel\MilestoneList.cs" />
     <Compile Include="Adapter\MilestoneListAdapter.cs" />
@@ -162,7 +161,15 @@
     <Compile Include="UIControl\Utility.cs" />
     <Compile Include="Adapter\TicketCommentListAdapter.cs" />
     <Compile Include="Adapter\IssuesCommentListAdapter.cs" />
-    <Compile Include="Model\ViewModel\IssuesCommentObject.cs" />
+    <Compile Include="Adapter\TaskCommentListAdapter.cs" />
+    <Compile Include="Model\ReceiveModel\IssueCommentList.cs" />
+    <Compile Include="Model\ViewModel\IssueCommentObject.cs" />
+    <Compile Include="Activity\Knowledgebase\KnowledgebaseActivity.cs" />
+    <Compile Include="Model\ReceiveModel\KnowledgebaseList.cs" />
+    <Compile Include="Adapter\KnowledgebaseListAdapter.cs" />
+    <Compile Include="Model\ViewModel\KnowledgebaseObject.cs" />
+    <Compile Include="Model\ViewModel\MilestoneObject.cs" />
+    <Compile Include="Activity\Document\DocumentDetailActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -414,6 +421,10 @@
     <AndroidResource Include="Resources\layout\CommentList.axml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\book.png" />
+    <AndroidResource Include="Resources\layout\Knowledgebase.axml" />
+    <AndroidResource Include="Resources\drawable\list_selector.xml" />
+    <AndroidResource Include="Resources\layout\DocumentDetailLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -484,6 +495,7 @@
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Fragments\" />
     <Folder Include="Resources\layout-xlarge-land\" />
+    <Folder Include="Activity\Knowledgebase\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />

@@ -21,6 +21,9 @@ namespace LinkOM
 		public TaskObject TaskDetail;
 		public string results;
 
+		public ListView taskCommentListView ;
+		public TaskCommentListAdapter taskCommentListAdapter;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -89,6 +92,17 @@ namespace LinkOM
 			if (results_Task != null && results_Task != "") {
 
 				var taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskCommentList> (results_Task);
+
+				taskCommentListAdapter = new TaskCommentListAdapter (this, taskList.Items);
+
+				taskCommentListView = FindViewById<ListView> (Resource.Id.TaskCommentListView);
+
+				taskCommentListView.Adapter = taskCommentListAdapter;
+
+				taskCommentListView.DividerHeight = 0;
+
+				Utility.setListViewHeightBasedOnChildren (taskCommentListView);
+
 
 			}
 		}

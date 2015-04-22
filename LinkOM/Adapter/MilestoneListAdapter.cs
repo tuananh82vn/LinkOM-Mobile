@@ -8,11 +8,11 @@ namespace LinkOM
 {
 	public class MilestoneListAdapter : BaseAdapter
 	{
-		List<Milestone> _Milestone;
+		List<MilestoneObject> _Milestone;
 
 		Activity _activity;
 
-		public MilestoneListAdapter (Activity activity, List<Milestone> data)
+		public MilestoneListAdapter (Activity activity, List<MilestoneObject> data)
 		{
 			_activity = activity;
 			_Milestone = data;

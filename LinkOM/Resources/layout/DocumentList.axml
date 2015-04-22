@@ -6,12 +6,12 @@
     p1:layout_width="match_parent"
     p1:layout_height="match_parent"
     p1:id="@+id/linearLayout1"
-    p1:background="#ffffffff">
+    p1:background="@drawable/list_selector">
     <TableRow
         p1:layout_width="match_parent"
-        p1:layout_height="35.2dp"
+        p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1"
-        p1:layout_marginBottom="5.0dp">
+        p1:layout_gravity="center_vertical">
         <TextView
             p1:text="Document Name"
             p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -21,14 +21,13 @@
             p1:layout_width="match_parent"
             p1:layout_marginLeft="5.0dp"
             p1:textColor="#ff000000"
-            p1:layout_marginTop="5dp"
-            p1:textSize="20dp" />
+            p1:textSize="20dp"
+            p1:layout_marginRight="5.0dp" />
     </TableRow>
     <TableRow
         p1:layout_width="match_parent"
-        p1:layout_height="23.2dp"
-        p1:id="@+id/tableRow2"
-        p1:layout_marginBottom="5.0dp">
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow2">
         <TextView
             p1:text="Project"
             p1:textAppearance="?android:attr/textAppearanceSmall"
@@ -37,60 +36,31 @@
             p1:gravity="center_vertical"
             p1:layout_width="match_parent"
             p1:layout_marginLeft="5.0dp"
-            p1:textColor="#ff000000" />
+            p1:textColor="#ffaeaeae" />
     </TableRow>
     <TableRow
         p1:layout_width="match_parent"
         p1:layout_height="23.2dp"
-        p1:id="@+id/tableRow2"
-        p1:layout_marginBottom="5.0dp">
+        p1:id="@+id/tableRow2">
         <TextView
-            p1:text="Label"
+            p1:text="Publish on:"
             p1:textAppearance="?android:attr/textAppearanceSmall"
-            p1:id="@+id/tv_label"
+            p1:id="@+id/tv"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
-            p1:layout_width="180.6dp"
+            p1:layout_width="wrap_content"
             p1:layout_marginLeft="5.0dp"
-            p1:textColor="#ff000000" />
-        <TableRow
-            p1:layout_width="match_parent"
-            p1:layout_height="23.2dp"
-            p1:id="@+id/tableRow2"
-            p1:layout_marginBottom="5.0dp">
-            <TextView
-                p1:text="Category"
-                p1:textAppearance="?android:attr/textAppearanceSmall"
-                p1:id="@+id/tv_category"
-                p1:layout_height="match_parent"
-                p1:gravity="center_vertical"
-                p1:layout_width="match_parent"
-                p1:layout_marginLeft="5.0dp"
-                p1:textColor="#ff000000" />
-        </TableRow>
-    </TableRow>
-    <TableRow
-        p1:layout_width="match_parent"
-        p1:layout_height="23.2dp"
-        p1:id="@+id/tableRow2"
-        p1:layout_marginBottom="5.0dp"
-        p1:minWidth="25px"
-        p1:minHeight="25px">
-        <CheckBox
-            p1:text="Internal"
-            p1:layout_width="184.6dp"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/cb_Internal"
-            p1:textColor="#ff000000"
-            p1:layout_marginLeft="5px" />
+            p1:textColor="#ffaeaeae"
+            p1:layout_marginRight="5.0dp" />
         <TextView
-            p1:text="Publish by"
+            p1:text="01/01/1999"
             p1:textAppearance="?android:attr/textAppearanceSmall"
-            p1:id="@+id/tv_Publish"
+            p1:id="@+id/tv_publishdate"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
-            p1:layout_width="match_parent"
+            p1:layout_width="wrap_content"
             p1:layout_marginLeft="5.0dp"
-            p1:textColor="#ff000000" />
+            p1:textColor="#ffaeaeae"
+            p1:layout_marginRight="5.0dp" />
     </TableRow>
 </LinearLayout>

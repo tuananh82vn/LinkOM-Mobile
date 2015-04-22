@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace LinkOM
 {
-	public class Milestone
+	public class MilestoneObject
 	{
 		public virtual Int32 Id  { get; set; }
 

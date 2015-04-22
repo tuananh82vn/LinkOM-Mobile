@@ -32,6 +32,7 @@ namespace LinkOM
 				new MenuItem() { Name = "Issue", 	Img = Resource.Drawable.Issues , 	Type="item"},
 				new MenuItem() { Name = "Milestones", Img = Resource.Drawable.Milestones, Type="item" },
 				new MenuItem() { Name = "Document", Img = Resource.Drawable.Documents, 	Type="item" },
+				new MenuItem() { Name = "Knowledgebase", Img = Resource.Drawable.book, 	Type="item" },
 				new MenuItem() { Name = "SETTING", 	Img = Resource.Drawable.Milestones, Type="divider" },
 				new MenuItem() { Name = "Profile", 	Img = Resource.Drawable.Tasks, 	Type="item" },
 				new MenuItem() { Name = "Watch List", 	Img = Resource.Drawable.Milestones, 	Type="item" },

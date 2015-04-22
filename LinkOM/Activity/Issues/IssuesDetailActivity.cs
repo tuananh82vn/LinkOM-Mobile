@@ -39,6 +39,8 @@ namespace LinkOM
 
 			DisplayIssues (IssuesDetail);
 
+			LoadIssueComment (IssuesDetail.Id);
+
 		}
 
 
@@ -47,6 +49,52 @@ namespace LinkOM
 			results= Intent.GetStringExtra ("Issue");
 
 			IssuesDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesObject> (results);
+		}
+
+		public void LoadIssueComment(int IssueId){
+
+			string url = Settings.InstanceURL;
+
+			//Load data
+			string url_Task= url+"/api/IssueCommentList";
+
+
+			var objTask = new
+			{
+				IssueId = IssueId,
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						TokenNumber =Settings.Token,
+						Item = objTask
+					}
+				});
+
+			string results_Issue= ConnectWebAPI.Request(url_Task,objsearch);
+
+			if (results_Issue != null && results_Issue != "") {
+
+				var issueList = Newtonsoft.Json.JsonConvert.DeserializeObject<IssueCommentList> (results_Issue);
+
+//				if (ticketList.Items != null) {
+//
+//					TicketCommentListAdapter = new TicketCommentListAdapter (this, ticketList.Items);
+//
+//					ticketCommentListView = FindViewById<ListView> (Resource.Id.TicketCommentListView);
+//
+//					ticketCommentListView.Adapter = TicketCommentListAdapter;
+//
+//					ticketCommentListView.DividerHeight = 0;
+//
+//					Utility.setListViewHeightBasedOnChildren (ticketCommentListView);
+//
+//					//ticketCommentListView.ItemClick += listView_ItemClick;
+//				} 
+
+			}
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)

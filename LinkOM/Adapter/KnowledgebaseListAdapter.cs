@@ -6,13 +6,13 @@ using Android.Views;
 
 namespace LinkOM
 {
-	public class DocumentListAdapter : BaseAdapter
+	public class KnowledgebaseListAdapter : BaseAdapter
 	{
-		List<DocumentObject> _DocumentList;
+		List<KnowledgebaseObject> _DocumentList;
 
 		Activity _activity;
 
-		public DocumentListAdapter (Activity activity, List<DocumentObject> data)
+		public KnowledgebaseListAdapter (Activity activity, List<KnowledgebaseObject> data)
 		{
 			_activity = activity;
 			_DocumentList = data;
@@ -40,11 +40,6 @@ namespace LinkOM
 			return long.Parse(_DocumentList [position].Id.ToString());
 		}
 
-		public DocumentObject GetItemAtPosition(int position)
-		{
-			return _DocumentList[position];
-		}
-
 		public string GetItemName (int position) {
 			return _DocumentList [position].Title;
 		}
@@ -56,11 +51,14 @@ namespace LinkOM
 			var DocumentName = view.FindViewById<TextView> (Resource.Id.tv_DocumentName);
 			DocumentName.Text = _DocumentList [position].Title;
 
-			var project = view.FindViewById<TextView> (Resource.Id.tv_project);
-			project.Text = _DocumentList [position].ProjectName;
+//			var category = view.FindViewById<TextView> (Resource.Id.tv_category);
+//			category.Text = _DocumentList [position].DocumentCategoryName;
+//
+//			var project = view.FindViewById<TextView> (Resource.Id.tv_project);
+//			project.Text = _DocumentList [position].ProjectName;
 
-			var publishdate = view.FindViewById<TextView> (Resource.Id.tv_publishdate);
-			publishdate.Text = _DocumentList [position].CreatedDateString;
+			var Internal = view.FindViewById<CheckBox> (Resource.Id.cb_Internal);
+			Internal.Checked = _DocumentList [position].IsInternal;
 
 			return view;
 		}

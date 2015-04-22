@@ -20,14 +20,14 @@ using Android.Support.V4.Widget;
 
 namespace LinkOM
 {
-	[Activity (Label = "Document", Theme = "@style/Theme.Customtheme")]				
-	public class DocumentActivity : ListActivity
+	[Activity (Label = "Knowledgebase", Theme = "@style/Theme.Customtheme")]				
+	public class KnowledgebaseActivity : ListActivity
 	{
 		public bool loading;
 
 		public string TokenNumber;
-		public DocumentListAdapter documentList; 
-		public ListView documentListView;
+		public KnowledgebaseListAdapter knowledgebaseList; 
+		public ListView knowledgebaseListView;
 		public SwipeRefreshLayout refresher;
 	
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -36,10 +36,10 @@ namespace LinkOM
 
 			RequestWindowFeature (WindowFeatures.ActionBar);
 
-			SetContentView (Resource.Layout.Document);
+			SetContentView (Resource.Layout.Knowledgebase);
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
-			ActionBar.SetTitle(Resource.String.document_title);
+			ActionBar.SetTitle(Resource.String.Knowledgebase_title);
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
@@ -48,24 +48,12 @@ namespace LinkOM
 
 			InitData ();
 
-			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+//
+//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
+//		
+//			refresher.Refresh += HandleRefresh;
 
-			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
-		
-			refresher.Refresh += HandleRefresh;
-
-		}
-
-		//Init menu on action bar
-		public override bool OnCreateOptionsMenu(IMenu menu)
-		{
-			base.OnCreateOptionsMenu (menu);
-
-			MenuInflater inflater = this.MenuInflater;
-
-			inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
-
-			return true;
 		}
 
 		async void HandleRefresh (object sender, EventArgs e)
@@ -100,22 +88,18 @@ namespace LinkOM
 			TokenNumber = Settings.Token;
 			string url = Settings.InstanceURL;
 
-			url=url+"/api/DocumentList";
+			url=url+"/api/KnowledgeBaseList";
 
 
-//			List<objSort> objSort = new List<objSort>{
-//				new objSort{ColumnName = "P.Name", Direction = "1"},
-//				new objSort{ColumnName = "C.Name", Direction = "2"}
-//			};
+			List<objSort> objSort = new List<objSort>{
+				new objSort{ColumnName = "K.Title", Direction = "1"},
+				new objSort{ColumnName = "P.ProjectId", Direction = "2"}
+			};
 
 			var objDocument = new
 			{
 				Title = string.Empty,
-				DocumentCategoryId = string.Empty,
-				ProjectId = string.Empty,
-				DepartmentId = string.Empty,
-				Label = string.Empty,
-
+				ArticleStatusId = string.Empty,
 			};
 
 			var objsearch = (new
@@ -125,21 +109,22 @@ namespace LinkOM
 						TokenNumber = TokenNumber,
 						PageSize = 20,
 						PageNumber = 1,
+						Sort = objSort,
 						Item = objDocument
 					}
 				});
 
 			string results=  ConnectWebAPI.Request(url,objsearch);
 
-			DocumentList DocumentList = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentList> (results);
+			KnowledgebaseList Knowledgebase = Newtonsoft.Json.JsonConvert.DeserializeObject<KnowledgebaseList> (results);
 
-			documentList = new DocumentListAdapter (this,DocumentList.Items);
+			knowledgebaseList = new KnowledgebaseListAdapter (this,Knowledgebase.Items);
 
-			documentListView = FindViewById<ListView> (Android.Resource.Id.List);
+			knowledgebaseListView = FindViewById<ListView> (Android.Resource.Id.List);
 
-			documentListView.Adapter = documentList;
+			knowledgebaseListView.Adapter = knowledgebaseList;
 
-			documentListView.ItemClick += listView_ItemClick;
+//			projectListView.ItemClick += listView_ItemClick;
 //
 //			RegisterForContextMenu(projectListView);
 //
@@ -155,22 +140,17 @@ namespace LinkOM
 		}
 
 
-		public void btBackClick(object sender, EventArgs e)
-		{
-			OnBackPressed ();
-		}
-
-		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-		{
-			DocumentObject model = this.documentList.GetItemAtPosition (e.Position);
-
-			var activity = new Intent (this, typeof(DocumentDetailActivity));
-
-			activity.PutExtra ("Document", Newtonsoft.Json.JsonConvert.SerializeObject(model));
-
-			StartActivity (activity);
-
-		}
+//		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+//		{
+//			//Get our item from the list adapter
+//			var DocumentId = this.projectList.GetItemId(e.Position);
+//
+//			var activity = new Intent (this, typeof(DocumentDetailActivity));
+//
+//			activity.PutExtra ("DocumentId", DocumentId);
+//
+//			StartActivity (activity);
+//		}
 
 //		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
 //		{

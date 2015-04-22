@@ -6,27 +6,27 @@ using Android.Views;
 
 namespace LinkOM
 {
-	public class TicketCommentListAdapter : BaseAdapter
+	public class TaskCommentListAdapter : BaseAdapter
 	{
-		List<TicketCommentObject> _TicketCommentObject;
+		List<TaskCommentObject> _TaskCommentObject;
 
 		Activity _activity;
 
-		public TicketCommentListAdapter (Activity activity, List<TicketCommentObject> data)
+		public TaskCommentListAdapter (Activity activity, List<TaskCommentObject> data)
 		{
 			_activity = activity;
-			_TicketCommentObject = data;
+			_TaskCommentObject = data;
 		}
 
 		public override int Count 
 		{
 			get 
 				{  
-					if (_TicketCommentObject == null)
+					if (_TaskCommentObject == null)
 					{
 						return 0;
 					}
-					return _TicketCommentObject.Count; 
+					return _TaskCommentObject.Count; 
 				}
 		}
 
@@ -36,9 +36,9 @@ namespace LinkOM
 			return null;
 		}
 
-		public TicketCommentObject GetItemAtPosition(int position)
+		public TaskCommentObject GetItemAtPosition(int position)
 		{
-			return _TicketCommentObject[position];
+			return _TaskCommentObject[position];
 		}
 
 		public override long GetItemId (int position) {
@@ -49,14 +49,14 @@ namespace LinkOM
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
-			var MilestoneName = view.FindViewById<TextView> (Resource.Id.tv_Name);
-			MilestoneName.Text = _TicketCommentObject [position].Comment;
+			var Name = view.FindViewById<TextView> (Resource.Id.tv_Name);
+			Name.Text = _TaskCommentObject [position].Comment;
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _TicketCommentObject [position].OwnerName;
+			CreatedPerson.Text = _TaskCommentObject [position].OwnerName;
 
 			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
-			CommentDate.Text = _TicketCommentObject [position].CreatedDate.Value.ToShortDateString();
+			CommentDate.Text = _TaskCommentObject [position].CreatedDate.Value.ToShortDateString();
 
 
 			return view;

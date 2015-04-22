@@ -16,7 +16,8 @@
         <ListView
             android:id="@+id/ProjectListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:listSelector="#00000000" />
     <!--        </LinkOM.ScrollChildSwipeRefreshLayout>-->
         <EditText
             android:id="@+id/etSearch"

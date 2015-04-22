@@ -63,6 +63,10 @@
   		<string name="document_title_edit">Document Edit</string>
   		<string name="document_title_detail">Document Detail</string>
 
+  		<string name="Knowledgebase_title">Knowledgebase</string>
+  		<string name="Knowledgebase_title_edit">Knowledgebase Edit</string>
+  		<string name="Knowledgebase_title_detail">Knowledgebase Detail</string>
+
   		<string name="drawer_open">Open</string>
   		<string name="drawer_close">Close</string>
   		<string name="menu_refresh">Refresh</string>

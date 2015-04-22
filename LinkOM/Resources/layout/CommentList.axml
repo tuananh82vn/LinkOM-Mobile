@@ -15,7 +15,7 @@
         <TextView
             p1:text="Comment Name"
             p1:textAppearance="?android:attr/textAppearanceSmall"
-            p1:id="@+id/tv_MilestoneName"
+            p1:id="@+id/tv_Name"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
             p1:layout_width="match_parent"

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace LinkOM
 {
-	public class DocumentList
+	public class KnowledgebaseList
 	{
-		public List<DocumentObject> Items { get; set; }
+		public List<KnowledgebaseObject> Items { get; set; }
 		public int PageNumber { get; set; }
 		public int TotalRecords { get; set; }
 		public bool Success { get; set; }
