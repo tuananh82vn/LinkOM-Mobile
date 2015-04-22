@@ -6,27 +6,27 @@ using Android.Views;
 
 namespace LinkOM
 {
-	public class TicketCommentListAdapter : BaseAdapter
+	public class IssuesCommentListAdapter : BaseAdapter
 	{
-		List<TicketCommentObject> _TicketCommentObject;
+		List<IssuesCommentObject> _IssuesCommentObject;
 
 		Activity _activity;
 
-		public TicketCommentListAdapter (Activity activity, List<TicketCommentObject> data)
+		public IssuesCommentListAdapter (Activity activity, List<IssuesCommentObject> data)
 		{
 			_activity = activity;
-			_TicketCommentObject = data;
+			_IssuesCommentObject = data;
 		}
 
 		public override int Count 
 		{
 			get 
 				{  
-					if (_TicketCommentObject == null)
+					if (_IssuesCommentObject == null)
 					{
 						return 0;
 					}
-					return _TicketCommentObject.Count; 
+					return _IssuesCommentObject.Count; 
 				}
 		}
 
@@ -36,9 +36,9 @@ namespace LinkOM
 			return null;
 		}
 
-		public TicketCommentObject GetItemAtPosition(int position)
+		public IssuesCommentObject GetItemAtPosition(int position)
 		{
-			return _TicketCommentObject[position];
+			return _IssuesCommentObject[position];
 		}
 
 		public override long GetItemId (int position) {
@@ -50,13 +50,13 @@ namespace LinkOM
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
 			var MilestoneName = view.FindViewById<TextView> (Resource.Id.tv_MilestoneName);
-			MilestoneName.Text = _TicketCommentObject [position].Comment;
+			MilestoneName.Text = _IssuesCommentObject [position].Comment;
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _TicketCommentObject [position].OwnerName;
+			CreatedPerson.Text = _IssuesCommentObject [position].OwnerName;
 
 			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
-			CommentDate.Text = _TicketCommentObject [position].CreatedDate.Value.ToShortDateString();
+			CommentDate.Text = _IssuesCommentObject [position].CreatedDate.Value.ToShortDateString();
 
 
 			return view;

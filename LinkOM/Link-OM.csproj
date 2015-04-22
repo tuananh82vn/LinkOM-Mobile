@@ -161,6 +161,8 @@
     <Compile Include="Model\ViewModel\TicketCommentObject.cs" />
     <Compile Include="UIControl\Utility.cs" />
     <Compile Include="Adapter\TicketCommentListAdapter.cs" />
+    <Compile Include="Adapter\IssuesCommentListAdapter.cs" />
+    <Compile Include="Model\ViewModel\IssuesCommentObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -409,7 +411,7 @@
     <AndroidResource Include="Resources\drawable-hdpi\ic_drawer_light.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\drawable-hdpi\ic_menu_refresh.png" />
-    <AndroidResource Include="Resources\layout\TicketCommentList.axml">
+    <AndroidResource Include="Resources\layout\CommentList.axml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
   </ItemGroup>
