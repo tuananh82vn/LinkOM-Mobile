@@ -155,7 +155,6 @@
     <Compile Include="Activity\Issues\IssuesAddActivity.cs" />
     <Compile Include="Activity\StartUp\HomeActivity.cs" />
     <Compile Include="Helper\ActionBarDrawerEventArgs.cs" />
-    <Compile Include="Fragments\HomeFragment.cs" />
     <Compile Include="Adapter\MenuListAdapter.cs" />
     <Compile Include="Model\ReceiveModel\TaskCommentList.cs" />
     <Compile Include="Model\ViewModel\TaskCommentObject.cs" />
@@ -180,6 +179,7 @@
     <Compile Include="Chart\ProjectTaskDataSource.cs" />
     <Compile Include="Chart\StreamingDataSource.cs" />
     <Compile Include="Activity\Notification\NotifyActivity.cs" />
+    <Compile Include="Activity\StartUp\HomeFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -504,14 +504,12 @@
     <Folder Include="Activity\Milestones\" />
     <Folder Include="Activity\Document\" />
     <Folder Include="UIControl\" />
-    <Folder Include="xml\" />
     <Folder Include="Assets\" />
     <Folder Include="Assets\Fonts\" />
     <Folder Include="Resources\drawable-hdpi\" />
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Fragments\" />
     <Folder Include="Resources\layout-xlarge-land\" />
     <Folder Include="Activity\Knowledgebase\" />
     <Folder Include="Activity\Dashboard\" />
