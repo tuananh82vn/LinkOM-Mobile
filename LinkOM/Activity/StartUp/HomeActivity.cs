@@ -119,6 +119,10 @@ namespace LinkOM
 				activity = new Intent (this, typeof(KnowledgebaseActivity));
 				StartActivity (activity);
 				break;
+			case 15:
+				activity = new Intent (this, typeof(NotifyActivity));
+				StartActivity (activity);
+				break;
 			}
 
 			//this.drawerListView.SetItemChecked (position, true);

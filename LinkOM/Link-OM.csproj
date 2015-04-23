@@ -179,6 +179,7 @@
     <Compile Include="Chart\TaskDataSource.cs" />
     <Compile Include="Chart\ProjectTaskDataSource.cs" />
     <Compile Include="Chart\StreamingDataSource.cs" />
+    <Compile Include="Activity\Notification\NotifyActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -240,7 +241,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\StatusRow.xml" />
     <AndroidResource Include="Resources\drawable\action_menu.png" />
-    <AndroidResource Include="Resources\drawable\icon1.png" />
     <AndroidResource Include="Resources\drawable\iconelse.png" />
     <AndroidResource Include="Resources\drawable\Documents.png" />
     <AndroidResource Include="Resources\drawable\Issues.png" />
@@ -438,6 +438,7 @@
     <AndroidResource Include="Resources\layout\DocumentEdit.axml" />
     <AndroidResource Include="Resources\drawable\home.png" />
     <AndroidResource Include="Resources\layout\DashboardLayout.axml" />
+    <AndroidResource Include="Resources\layout\Notify.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -515,6 +516,7 @@
     <Folder Include="Activity\Knowledgebase\" />
     <Folder Include="Activity\Dashboard\" />
     <Folder Include="Chart\" />
+    <Folder Include="Activity\Notification\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />
