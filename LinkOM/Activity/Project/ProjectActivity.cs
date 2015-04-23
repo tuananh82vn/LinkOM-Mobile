@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Android.Views.InputMethods;
 using Android.Text;
 
+
 namespace LinkOM
 {
 	[Activity (Label = "Project", Theme = "@style/Theme.Customtheme")]			
@@ -36,7 +37,7 @@ namespace LinkOM
 
 		public InputMethodManager inputManager;
 
-	
+
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -48,7 +49,6 @@ namespace LinkOM
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
 			ActionBar.SetTitle(Resource.String.project_title);
-			//ActionBar.SetSubtitle(Resource.String.actionbar_sub);
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);

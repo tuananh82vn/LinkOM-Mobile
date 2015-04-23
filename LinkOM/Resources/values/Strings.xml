@@ -67,6 +67,8 @@
   		<string name="Knowledgebase_title_edit">Knowledgebase Edit</string>
   		<string name="Knowledgebase_title_detail">Knowledgebase Detail</string>
 
+  		<string name="Dashboard_title">Dashboard</string>
+
   		<string name="drawer_open">Open</string>
   		<string name="drawer_close">Close</string>
   		<string name="menu_refresh">Refresh</string>

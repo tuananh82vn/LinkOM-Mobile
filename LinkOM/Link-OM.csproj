@@ -176,6 +176,9 @@
     <Compile Include="Activity\Document\DocumentEditActivity.cs" />
     <Compile Include="Activity\Document\DocumentAddActivity.cs" />
     <Compile Include="Activity\Dashboard\DashboardActivity.cs" />
+    <Compile Include="Chart\TaskDataSource.cs" />
+    <Compile Include="Chart\ProjectTaskDataSource.cs" />
+    <Compile Include="Chart\StreamingDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -475,6 +478,10 @@
       <Version>21.0.3.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="xamandroidsupportv7appcompat">
+      <Version>21.0.3.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
@@ -507,6 +514,7 @@
     <Folder Include="Resources\layout-xlarge-land\" />
     <Folder Include="Activity\Knowledgebase\" />
     <Folder Include="Activity\Dashboard\" />
+    <Folder Include="Chart\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />
