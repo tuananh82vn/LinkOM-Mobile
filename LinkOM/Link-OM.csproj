@@ -180,6 +180,9 @@
     <Compile Include="Chart\StreamingDataSource.cs" />
     <Compile Include="Activity\Notification\NotifyActivity.cs" />
     <Compile Include="Activity\StartUp\HomeFragment.cs" />
+    <Compile Include="UIControl\SlidingTabScrollView.cs" />
+    <Compile Include="UIControl\SlidingTabStrip.cs" />
+    <Compile Include="UIControl\SlidingTabsFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -263,7 +266,6 @@
     <AndroidResource Include="Resources\layout\Issues.axml" />
     <AndroidResource Include="Resources\drawable\Profile.png" />
     <AndroidResource Include="Resources\drawable\Server.png" />
-    <AndroidResource Include="Resources\layout\Milestones.axml" />
     <AndroidResource Include="Resources\drawable\edit_text_style.xml" />
     <AndroidResource Include="Resources\layout\TicketListContainer.axml" />
     <AndroidResource Include="Resources\layout\Task.axml" />
@@ -439,6 +441,10 @@
     <AndroidResource Include="Resources\drawable\home.png" />
     <AndroidResource Include="Resources\layout\DashboardLayout.axml" />
     <AndroidResource Include="Resources\layout\Notify.axml" />
+    <AndroidResource Include="Resources\layout\Milestones.axml" />
+    <AndroidResource Include="Resources\layout\fragment_sample.axml" />
+    <AndroidResource Include="Resources\layout\pager_item.axml" />
+    <AndroidResource Include="Resources\layout\SlidingTabLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

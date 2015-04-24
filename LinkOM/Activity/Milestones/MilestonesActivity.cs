@@ -31,57 +31,6 @@ namespace LinkOM
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
-
-
-			var nextYear = DateTime.Now.AddYears(1);
-
-			var calendar = FindViewById<CalendarPickerView>(Resource.Id.calendar_view);
-
-			List<DateTime> milestone = new List<DateTime> ();
-			DateTime nextday1 = DateTime.Now.AddDays(1);
-			DateTime nextday2 = DateTime.Now.AddDays(3);
-			DateTime nextday3 = DateTime.Now.AddDays(5);
-			milestone.Add (nextday1);
-			milestone.Add (nextday2);
-			milestone.Add (nextday3);
-
-			calendar.Init (DateTime.Now.AddYears (-1), DateTime.Now.AddYears (1))
-				.InMode (CalendarPickerView.SelectionMode.Single)
-				.WithHighlightedDates(milestone)
-				.WithSelectedDate (DateTime.Now);
-
-			//calendar.HighlightDates (milestone);
-
-
-
-			//calendar.HighlightDates (milestone);
-
-
-//			CalendarControl = FindViewById<CustomCalendar>(Resource.Id.CalendarControl);
-//			CalendarControl.NextButtonText= "Next";
-//			CalendarControl.PreviousButtonText= "Prev";
-
-			//CalendarControl.NextButtonVisibility= ViewStates.Invisible;
-			//CalendarControl.PreviousButtonStyleId = Resource.Drawable.default_dim_selector;
-
-			//CalendarControl.ShowOnlyCurrentMonth = true;
-//			CalendarControl.ShowFromDate = new DateTime();
-
-
-//			List<CustomCalendarData> customData = new List<CustomCalendarData>();
-//
-//			customData = new List<CustomCalendarData>
-//			{
-//				new CustomCalendarData(DateTime.Now.AddDays(2)),
-//				new CustomCalendarData(DateTime.Now.AddDays(4)),
-//				new CustomCalendarData(DateTime.Now.AddDays(-4))
-//			};
-//			CalendarControl.CustomDataAdapter = customData;
-//
-//
-//			CalendarControl.OnCalendarMonthChange += CalendarControl_CalendarMonthChange;
-//			CalendarControl.OnCalendarSelectedDate += CalendarControl_CalendarDateSelected;
-
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
@@ -106,22 +55,6 @@ namespace LinkOM
 			OnBackPressed ();
 		}
 
-//		private void CalendarControl_CalendarDateSelected(object sender, CalendarDateSelectionEventArgs e)
-//		{
-//			Toast.MakeText(this, e.SelectedDate.ToString(), ToastLength.Short).Show();
-//		}
-
-//		private void CalendarControl_CalendarMonthChange(object sender, CalendarNavigationEventArgs e)
-//		{
-//			if (e.MonthChange == CalendarHelper.MonthChangeOn.Next)
-//			{
-//
-//			}
-//			else if (e.MonthChange == CalendarHelper.MonthChangeOn.Previous)
-//			{
-//
-//			}
-//		}
 	}
 }
 

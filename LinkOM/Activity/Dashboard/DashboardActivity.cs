@@ -18,20 +18,20 @@ namespace LinkOM
 	public class DashboardActivity : Activity , INChartDelegate
 	{
 		NChartView mNChartView1;
-		NChartView mNChartView2;
-		NChartView mNChartView3;
+//		NChartView mNChartView2;
+//		NChartView mNChartView3;
 
 		Random random = new Random ();
 		TaskDataSource taskData;
-		ProjectTaskDataSource projectData;
-		StreamingDataSource streamData;
+//		ProjectTaskDataSource projectData;
+//		StreamingDataSource streamData;
 
-		NChartBrush[] brushes;
-		bool zoomed;
+//		NChartBrush[] brushes;
+//		bool zoomed;
 		NChartPoint prevSelectedPoint;
 
 
-		Timer timer;
+//		Timer timer;
 		object guard = new object ();
 
 		protected override void OnCreate (Bundle bundle)
@@ -41,7 +41,9 @@ namespace LinkOM
 			RequestWindowFeature (WindowFeatures.ActionBar);
 
 			// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.DashboardLayout);
+//			SetContentView (Resource.Layout.DashboardLayout);
+
+			SetContentView(Resource.Layout.SlidingTabLayout);
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
 			ActionBar.SetTitle(Resource.String.Dashboard_title);
@@ -49,15 +51,24 @@ namespace LinkOM
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
 
-			mNChartView1 = FindViewById<NChartView> (Resource.Id.surface1);
-			mNChartView2 = FindViewById<NChartView> (Resource.Id.surface2);
-			mNChartView3 = FindViewById<NChartView> (Resource.Id.surface3);
 
-			taskData = new TaskDataSource ();
-			projectData = new ProjectTaskDataSource ();
-			streamData = new StreamingDataSource ();
 
-			LoadViews ();
+
+			FragmentTransaction transaction = FragmentManager.BeginTransaction();
+			SlidingTabsFragment fragment = new SlidingTabsFragment();
+			transaction.Replace(Resource.Id.sample_content_fragment, fragment);
+			transaction.Commit();
+
+
+//			mNChartView1 = FindViewById<NChartView> (Resource.Id.surface);
+//			mNChartView2 = FindViewById<NChartView> (Resource.Id.surface2);
+//			mNChartView3 = FindViewById<NChartView> (Resource.Id.surface3);
+
+//			taskData = new TaskDataSource ();
+//			projectData = new ProjectTaskDataSource ();
+//			streamData = new StreamingDataSource ();
+
+//			LoadViews ();
 		}
 
 		//Handle item on action bar clicked
@@ -83,8 +94,8 @@ namespace LinkOM
 			// Paste your license key here.
 			mNChartView1.Chart.LicenseKey = "C9gNX+mbr1aYRzgfhMVjROf68nx/i4dAEE6Z4P+HQ2fawVTcplK6jwPBQvElxgyWpduQS0zXvvzFH8L+UxiG777loO1+2iiwdZP11Z0EY3lHNut77fVyU2a7c+Fm7F9AggQy9sgVd+dWXjwMk/sMVaEoKsxSvMHS/ilhBNaeIUslXp5ZZv/ujnbyMIHbHoKFRMtWGy9/K2+qAP3whFSVSq+0w7me9vGLIxa1x5y1TCtSR/tHlFW1X2SuA1mMACqkCNt2lVsB590WM59p3B683tyqaT4LsWZPSTmjr43e7TdP2pG4IEOVd7DWXV9LPYICNi/JR5CKECw6pYrrmIgfzfcJxDG06yTc0CS/IbuLNHD658wMRpeO4+rrS4zS1DdJ0QUXHHpV0hNW/P5QWLcyWjjsr6v8kr/vFRvUX7PSWtWjNA+qFg71wrqx5NAYRkhN/Jl10Qhp97XQZTwGsxFcYu8rsH8gvmpZcSIOpzlYBWFFaDg55NKbTgbgcnGpjpzR6i1S7OYhox159CoD6BBb/cEoORf1Pz3C5UdHl938B+3y+z4FvH+ol1FOoJp7oXEfCM1rlm96C51pl7W92a2qfBShRhZqOQLUfr1jya+g8AHUt9MfLEinhn0WikyPJGfdROFbhlZHzI2DdyyJfZ0+lGlvR2EeMBKyBcC9T4dKUUg=";
 			// And here.
-			mNChartView2.Chart.LicenseKey = "C9gNX+mbr1aYRzgfhMVjROf68nx/i4dAEE6Z4P+HQ2fawVTcplK6jwPBQvElxgyWpduQS0zXvvzFH8L+UxiG777loO1+2iiwdZP11Z0EY3lHNut77fVyU2a7c+Fm7F9AggQy9sgVd+dWXjwMk/sMVaEoKsxSvMHS/ilhBNaeIUslXp5ZZv/ujnbyMIHbHoKFRMtWGy9/K2+qAP3whFSVSq+0w7me9vGLIxa1x5y1TCtSR/tHlFW1X2SuA1mMACqkCNt2lVsB590WM59p3B683tyqaT4LsWZPSTmjr43e7TdP2pG4IEOVd7DWXV9LPYICNi/JR5CKECw6pYrrmIgfzfcJxDG06yTc0CS/IbuLNHD658wMRpeO4+rrS4zS1DdJ0QUXHHpV0hNW/P5QWLcyWjjsr6v8kr/vFRvUX7PSWtWjNA+qFg71wrqx5NAYRkhN/Jl10Qhp97XQZTwGsxFcYu8rsH8gvmpZcSIOpzlYBWFFaDg55NKbTgbgcnGpjpzR6i1S7OYhox159CoD6BBb/cEoORf1Pz3C5UdHl938B+3y+z4FvH+ol1FOoJp7oXEfCM1rlm96C51pl7W92a2qfBShRhZqOQLUfr1jya+g8AHUt9MfLEinhn0WikyPJGfdROFbhlZHzI2DdyyJfZ0+lGlvR2EeMBKyBcC9T4dKUUg=";
-			mNChartView3.Chart.LicenseKey = "C9gNX+mbr1aYRzgfhMVjROf68nx/i4dAEE6Z4P+HQ2fawVTcplK6jwPBQvElxgyWpduQS0zXvvzFH8L+UxiG777loO1+2iiwdZP11Z0EY3lHNut77fVyU2a7c+Fm7F9AggQy9sgVd+dWXjwMk/sMVaEoKsxSvMHS/ilhBNaeIUslXp5ZZv/ujnbyMIHbHoKFRMtWGy9/K2+qAP3whFSVSq+0w7me9vGLIxa1x5y1TCtSR/tHlFW1X2SuA1mMACqkCNt2lVsB590WM59p3B683tyqaT4LsWZPSTmjr43e7TdP2pG4IEOVd7DWXV9LPYICNi/JR5CKECw6pYrrmIgfzfcJxDG06yTc0CS/IbuLNHD658wMRpeO4+rrS4zS1DdJ0QUXHHpV0hNW/P5QWLcyWjjsr6v8kr/vFRvUX7PSWtWjNA+qFg71wrqx5NAYRkhN/Jl10Qhp97XQZTwGsxFcYu8rsH8gvmpZcSIOpzlYBWFFaDg55NKbTgbgcnGpjpzR6i1S7OYhox159CoD6BBb/cEoORf1Pz3C5UdHl938B+3y+z4FvH+ol1FOoJp7oXEfCM1rlm96C51pl7W92a2qfBShRhZqOQLUfr1jya+g8AHUt9MfLEinhn0WikyPJGfdROFbhlZHzI2DdyyJfZ0+lGlvR2EeMBKyBcC9T4dKUUg=";
+//			mNChartView2.Chart.LicenseKey = "C9gNX+mbr1aYRzgfhMVjROf68nx/i4dAEE6Z4P+HQ2fawVTcplK6jwPBQvElxgyWpduQS0zXvvzFH8L+UxiG777loO1+2iiwdZP11Z0EY3lHNut77fVyU2a7c+Fm7F9AggQy9sgVd+dWXjwMk/sMVaEoKsxSvMHS/ilhBNaeIUslXp5ZZv/ujnbyMIHbHoKFRMtWGy9/K2+qAP3whFSVSq+0w7me9vGLIxa1x5y1TCtSR/tHlFW1X2SuA1mMACqkCNt2lVsB590WM59p3B683tyqaT4LsWZPSTmjr43e7TdP2pG4IEOVd7DWXV9LPYICNi/JR5CKECw6pYrrmIgfzfcJxDG06yTc0CS/IbuLNHD658wMRpeO4+rrS4zS1DdJ0QUXHHpV0hNW/P5QWLcyWjjsr6v8kr/vFRvUX7PSWtWjNA+qFg71wrqx5NAYRkhN/Jl10Qhp97XQZTwGsxFcYu8rsH8gvmpZcSIOpzlYBWFFaDg55NKbTgbgcnGpjpzR6i1S7OYhox159CoD6BBb/cEoORf1Pz3C5UdHl938B+3y+z4FvH+ol1FOoJp7oXEfCM1rlm96C51pl7W92a2qfBShRhZqOQLUfr1jya+g8AHUt9MfLEinhn0WikyPJGfdROFbhlZHzI2DdyyJfZ0+lGlvR2EeMBKyBcC9T4dKUUg=";
+//			mNChartView3.Chart.LicenseKey = "C9gNX+mbr1aYRzgfhMVjROf68nx/i4dAEE6Z4P+HQ2fawVTcplK6jwPBQvElxgyWpduQS0zXvvzFH8L+UxiG777loO1+2iiwdZP11Z0EY3lHNut77fVyU2a7c+Fm7F9AggQy9sgVd+dWXjwMk/sMVaEoKsxSvMHS/ilhBNaeIUslXp5ZZv/ujnbyMIHbHoKFRMtWGy9/K2+qAP3whFSVSq+0w7me9vGLIxa1x5y1TCtSR/tHlFW1X2SuA1mMACqkCNt2lVsB590WM59p3B683tyqaT4LsWZPSTmjr43e7TdP2pG4IEOVd7DWXV9LPYICNi/JR5CKECw6pYrrmIgfzfcJxDG06yTc0CS/IbuLNHD658wMRpeO4+rrS4zS1DdJ0QUXHHpV0hNW/P5QWLcyWjjsr6v8kr/vFRvUX7PSWtWjNA+qFg71wrqx5NAYRkhN/Jl10Qhp97XQZTwGsxFcYu8rsH8gvmpZcSIOpzlYBWFFaDg55NKbTgbgcnGpjpzR6i1S7OYhox159CoD6BBb/cEoORf1Pz3C5UdHl938B+3y+z4FvH+ol1FOoJp7oXEfCM1rlm96C51pl7W92a2qfBShRhZqOQLUfr1jya+g8AHUt9MfLEinhn0WikyPJGfdROFbhlZHzI2DdyyJfZ0+lGlvR2EeMBKyBcC9T4dKUUg=";
 
 			//------------------------------------------------------------------------------------------------------------------------------
 
@@ -112,96 +123,96 @@ namespace LinkOM
 
 			//------------------------------------------------------------------------------------------------------------------------------
 
-			// Create brushes.
-			brushes = new NChartBrush[3];
-			brushes [0] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.38 * 255), (int)(0.8 * 255), (int)(0.91 * 255)));
-			brushes [1] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.8 * 255), (int)(0.86 * 255), (int)(0.22 * 255)));
-			brushes [2] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.9 * 255), (int)(0.29 * 255), (int)(0.51 * 255)));
-
-			// Switch on antialiasing.
-			mNChartView2.Chart.ShouldAntialias = true;
-			mNChartView2.Chart.CartesianSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
-			mNChartView2.Chart.PolarSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
-			mNChartView2.Chart.Caption.Text = "Project Tasks";
-			// Create series that will be displayed on the chart.
-			NChartPieSeries series = new NChartPieSeries ();
-			series.DataSource = projectData;
-			series.Tag = 0;
-			series.Brush = brushes [0];
-			mNChartView2.Chart.AddSeries (series);
-
-			NChartPieSeries series1 = new NChartPieSeries ();
-			series1.DataSource = projectData;
-			series1.Tag = 1;
-			series1.Brush = brushes [1];
-			mNChartView2.Chart.AddSeries (series1);
-
-			NChartPieSeries series2 = new NChartPieSeries ();
-			series2.DataSource = projectData;
-			series2.Tag = 2;
-			series2.Brush = brushes [2];
-			mNChartView2.Chart.AddSeries (series2);
-
-			NChartPieSeriesSettings settings = new NChartPieSeriesSettings ();
-			settings.HoleRatio = 0.0f;
-			mNChartView2.Chart.AddSeriesSettings (settings);
-
-			// Set delegate to the chart.
-			mNChartView2.Chart.Delegate = this;
-			// Update data in the chart.
-			mNChartView2.Chart.UpdateData ();
-
-			mNChartView2.Chart.MinZoom = 0.85f;
-			zoomed = false;
-
-			// Uncomment this line to get the animated transition.
-			mNChartView2.Chart.PlayTransition(1.0f, false);
+//			// Create brushes.
+//			brushes = new NChartBrush[3];
+//			brushes [0] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.38 * 255), (int)(0.8 * 255), (int)(0.91 * 255)));
+//			brushes [1] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.8 * 255), (int)(0.86 * 255), (int)(0.22 * 255)));
+//			brushes [2] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.9 * 255), (int)(0.29 * 255), (int)(0.51 * 255)));
+//
+//			// Switch on antialiasing.
+//			mNChartView2.Chart.ShouldAntialias = true;
+//			mNChartView2.Chart.CartesianSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
+//			mNChartView2.Chart.PolarSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
+//			mNChartView2.Chart.Caption.Text = "Project Tasks";
+//			// Create series that will be displayed on the chart.
+//			NChartPieSeries series = new NChartPieSeries ();
+//			series.DataSource = projectData;
+//			series.Tag = 0;
+//			series.Brush = brushes [0];
+//			mNChartView2.Chart.AddSeries (series);
+//
+//			NChartPieSeries series1 = new NChartPieSeries ();
+//			series1.DataSource = projectData;
+//			series1.Tag = 1;
+//			series1.Brush = brushes [1];
+//			mNChartView2.Chart.AddSeries (series1);
+//
+//			NChartPieSeries series2 = new NChartPieSeries ();
+//			series2.DataSource = projectData;
+//			series2.Tag = 2;
+//			series2.Brush = brushes [2];
+//			mNChartView2.Chart.AddSeries (series2);
+//
+//			NChartPieSeriesSettings settings = new NChartPieSeriesSettings ();
+//			settings.HoleRatio = 0.0f;
+//			mNChartView2.Chart.AddSeriesSettings (settings);
+//
+//			// Set delegate to the chart.
+//			mNChartView2.Chart.Delegate = this;
+//			// Update data in the chart.
+//			mNChartView2.Chart.UpdateData ();
+//
+//			mNChartView2.Chart.MinZoom = 0.85f;
+//			zoomed = false;
+//
+//			// Uncomment this line to get the animated transition.
+//			mNChartView2.Chart.PlayTransition(1.0f, false);
 
 			//------------------------------------------------------------------------------------------------------------------
 
-			// Margin to ensure some free space for the iOS status bar.
-			mNChartView3.Chart.CartesianSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
-
-			// Create column series with colors from the array and add them to the chart.
-			NChartColumnSeries seriesColumn1 = new NChartColumnSeries ();
-			// Set brush that will fill that series with color.
-			seriesColumn1.Brush = brushes[1];
-			// Set data source for the series.
-			seriesColumn1.DataSource = streamData;
-			// Add series to the chart.
-			mNChartView3.Chart.AddSeries (seriesColumn1);
-
-
-			mNChartView3.Chart.Legend.Visible = false;
-			mNChartView3.Chart.Caption.Text = "Data Real";
-			mNChartView3.Chart.DrawIn3D = true;
-			// Activate streaming mode.
-			mNChartView3.Chart.StreamingMode = true;
-
-			// Prevent minimum and maximum on the axes from "jumping" by activating incremental mode. So the minimum will remain
-			// the minimal value ever appeared in the data, and maximum will remain the maximal one.
-			mNChartView3.Chart.IncrementalMinMaxMode = true;
-
-			// Update data in the chart.
-			mNChartView3.Chart.UpdateData ();
-
-			TimerCallback timerCallback = new TimerCallback (Stream);
-			timer = new Timer (timerCallback, mNChartView3.Chart.Series () [mNChartView3.Chart.Series ().Length - 1], 100, 100);
+//			// Margin to ensure some free space for the iOS status bar.
+//			mNChartView3.Chart.CartesianSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
+//
+//			// Create column series with colors from the array and add them to the chart.
+//			NChartColumnSeries seriesColumn1 = new NChartColumnSeries ();
+//			// Set brush that will fill that series with color.
+//			seriesColumn1.Brush = brushes[1];
+//			// Set data source for the series.
+//			seriesColumn1.DataSource = streamData;
+//			// Add series to the chart.
+//			mNChartView3.Chart.AddSeries (seriesColumn1);
+//
+//
+//			mNChartView3.Chart.Legend.Visible = false;
+//			mNChartView3.Chart.Caption.Text = "Data Real";
+//			mNChartView3.Chart.DrawIn3D = true;
+//			// Activate streaming mode.
+//			mNChartView3.Chart.StreamingMode = true;
+//
+//			// Prevent minimum and maximum on the axes from "jumping" by activating incremental mode. So the minimum will remain
+//			// the minimal value ever appeared in the data, and maximum will remain the maximal one.
+//			mNChartView3.Chart.IncrementalMinMaxMode = true;
+//
+//			// Update data in the chart.
+//			mNChartView3.Chart.UpdateData ();
+//
+//			TimerCallback timerCallback = new TimerCallback (Stream);
+//			timer = new Timer (timerCallback, mNChartView3.Chart.Series () [mNChartView3.Chart.Series ().Length - 1], 100, 100);
 
 		}
 
 		protected override void OnResume ()
 		{
 			base.OnResume ();
-			mNChartView1.OnResume ();
-			mNChartView2.OnResume ();
+//			mNChartView1.OnResume ();
+//			mNChartView2.OnResume ();
 		}
 
 		protected override void OnPause ()
 		{
 			base.OnPause ();
-			mNChartView1.OnPause ();
-			mNChartView2.OnPause ();
+//			mNChartView1.OnPause ();
+//			mNChartView2.OnPause ();
 		}
 
 		NChartTooltip CreateTooltip ()
@@ -250,12 +261,12 @@ namespace LinkOM
 
 					prevSelectedPoint = null;
 
-					// Return to normal zoom.
-					if (zoomed) 
-					{
-						zoomed = false;
-						mNChartView2.Chart.ZoomTo (1.0f, 0.25f, 0.0f);
-					}
+//					// Return to normal zoom.
+//					if (zoomed) 
+//					{
+//						zoomed = false;
+//						mNChartView2.Chart.ZoomTo (1.0f, 0.25f, 0.0f);
+//					}
 				} 
 				else 
 				{
@@ -276,10 +287,10 @@ namespace LinkOM
 					}
 
 
-					if (!zoomed) {
-						zoomed = true;
-						mNChartView2.Chart.ZoomTo (0.85f, 0.25f, 0.0f);
-					}
+//					if (!zoomed) {
+//						zoomed = true;
+//						mNChartView2.Chart.ZoomTo (0.85f, 0.25f, 0.0f);
+//					}
 
 					// Set shift to highlight.
 					nChartPoint.HighlightShift = 0.2f;
@@ -298,39 +309,39 @@ namespace LinkOM
 
 				prevSelectedPoint = null;
 
-				// Return to normal zoom.
-				if (zoomed) {
-					zoomed = false;
-					mNChartView2.Chart.ZoomTo (1.0f, 0.25f, 0.0f);
-				}
+//				// Return to normal zoom.
+//				if (zoomed) {
+//					zoomed = false;
+//					mNChartView2.Chart.ZoomTo (1.0f, 0.25f, 0.0f);
+//				}
 			}
 		}
 
-		void Stream (object series)
-		{
-			lock (guard) {
-
-				// Begin the data changing session from-within separated thread.
-				// Ensure thread-safe changes in the chart by wrapping the updating routine with beginTransaction and
-				// endTransaction calls.
-				mNChartView3.Chart.BeginTransaction ();
-
-				// Update data in the points.
-				NChartPoint[] points = (series as NChartSeries).Points ();
-				foreach (NChartPoint point in points) {
-					double value = random.NextDouble ();
-					point.CurrentState.DoubleY = 30.0 * value;
-					int color = (int)(255.0 * value);
-					point.CurrentState.Brush = new NChartSolidColorBrush (Color.Argb (255, color, 200, 255 - color));
-				}
-
-				// Update data in the chart.
-				mNChartView3.Chart.StreamData ();
-
-				// End the data changing session from-within separate thread.
-				mNChartView3.Chart.EndTransaction ();
-			}
-		}
+//		void Stream (object series)
+//		{
+//			lock (guard) {
+//
+//				// Begin the data changing session from-within separated thread.
+//				// Ensure thread-safe changes in the chart by wrapping the updating routine with beginTransaction and
+//				// endTransaction calls.
+//				mNChartView3.Chart.BeginTransaction ();
+//
+//				// Update data in the points.
+//				NChartPoint[] points = (series as NChartSeries).Points ();
+//				foreach (NChartPoint point in points) {
+//					double value = random.NextDouble ();
+//					point.CurrentState.DoubleY = 30.0 * value;
+//					int color = (int)(255.0 * value);
+//					point.CurrentState.Brush = new NChartSolidColorBrush (Color.Argb (255, color, 200, 255 - color));
+//				}
+//
+//				// Update data in the chart.
+//				mNChartView3.Chart.StreamData ();
+//
+//				// End the data changing session from-within separate thread.
+//				mNChartView3.Chart.EndTransaction ();
+//			}
+//		}
 
 	}
 

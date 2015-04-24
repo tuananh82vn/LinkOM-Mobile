@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/FlyOutContent"
     android:background="#ffffffff">
-    <LinearLayout
+    <FrameLayout
         android:orientation="vertical"
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/linearLayout2">
-        <monodroid.timessquare.CalendarPickerView
-            android:id="@+id/calendar_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <!--        <LinkOM.ScrollChildSwipeRefreshLayout
+            android:id="@+id/refresher"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingBottom="16dp"
-            android:scrollbarStyle="outsideOverlay"
-            android:clipToPadding="false"
-            android:background="#FFFFFF" />
-    </LinearLayout>
-</LinearLayout>
+            android:layout_height="match_parent"
+            android:background="#ffffffff">-->
+        <ListView
+            android:id="@+id/MilestoneListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="#00000000" />
+    <!--        </LinkOM.ScrollChildSwipeRefreshLayout>-->
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@drawable/edit_text_style"
+            android:hint="Search"
+            android:textColor="#000"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
+    </FrameLayout>
+</RelativeLayout>
