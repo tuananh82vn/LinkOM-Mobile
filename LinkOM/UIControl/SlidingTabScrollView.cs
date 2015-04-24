@@ -150,7 +150,7 @@ namespace LinkOM
 			for (int i = 0; i < adapter.Count; i++)
 			{
 				TextView tabView = CreateDefaultTabView(Context);
-				tabView.Text = ((SlidingTabsFragment.SamplePagerAdapter)adapter).GetHeaderTitle(i);
+				tabView.Text = ((SamplePagerAdapter)adapter).GetHeaderTitle(i);
 				tabView.SetTextColor(Android.Graphics.Color.Black);
 				tabView.Tag = i;
 				tabView.Click += tabView_Click;

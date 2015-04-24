@@ -40,9 +40,6 @@ namespace LinkOM
 
 			RequestWindowFeature (WindowFeatures.ActionBar);
 
-			// Set our view from the "main" layout resource
-//			SetContentView (Resource.Layout.DashboardLayout);
-
 			SetContentView(Resource.Layout.SlidingTabLayout);
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
@@ -51,24 +48,11 @@ namespace LinkOM
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
 
-
-
-
 			FragmentTransaction transaction = FragmentManager.BeginTransaction();
 			SlidingTabsFragment fragment = new SlidingTabsFragment();
 			transaction.Replace(Resource.Id.sample_content_fragment, fragment);
 			transaction.Commit();
 
-
-//			mNChartView1 = FindViewById<NChartView> (Resource.Id.surface);
-//			mNChartView2 = FindViewById<NChartView> (Resource.Id.surface2);
-//			mNChartView3 = FindViewById<NChartView> (Resource.Id.surface3);
-
-//			taskData = new TaskDataSource ();
-//			projectData = new ProjectTaskDataSource ();
-//			streamData = new StreamingDataSource ();
-
-//			LoadViews ();
 		}
 
 		//Handle item on action bar clicked

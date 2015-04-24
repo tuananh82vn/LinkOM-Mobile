@@ -150,9 +150,7 @@ namespace LinkOM
 				break;
 			case Resource.Id.add:
 				Intent Intent = new Intent (this, typeof(ProjectAddActivity));
-
 				Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-
 				StartActivity(Intent);
 
 				break;
