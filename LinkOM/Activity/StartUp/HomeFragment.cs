@@ -78,7 +78,7 @@ namespace LinkOM
 
 		public void bt_MilestoneClick(object sender, EventArgs e)
 		{
-			var activity = new Intent (base.Activity, typeof(MilestonesActivity));
+			var activity = new Intent (base.Activity, typeof(MilestoneActivity));
 			StartActivity (activity);
 		}
 

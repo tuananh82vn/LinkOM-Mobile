@@ -18,55 +18,32 @@
             p1:id="@+id/tv_MilestoneName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
-            p1:layout_width="315.5dp"
+            p1:layout_width="match_parent"
             p1:layout_marginLeft="5.0dp"
-            p1:textColor="#ffaeaeae"
+            p1:textColor="#ff000000"
             p1:layout_marginTop="3.3dp" />
-        <ImageView
-            p1:src="@drawable/open"
-            p1:layout_column="1"
-            p1:id="@+id/image_Status"
-            p1:layout_marginRight="5dp"
-            p1:layout_marginTop="4.2dp" />
     </TableRow>
     <TableRow
-        p1:minWidth="25px"
-        p1:minHeight="25px"
+        p1:id="@+id/tableRow8"
         p1:layout_width="match_parent"
-        p1:layout_height="34.2dp"
-        p1:id="@+id/tableRow2">
-        <RelativeLayout
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:id="@+id/relativeLayout3"
-            p1:layout_height="match_parent">
-            <TableLayout
-                p1:layout_width="wrap_content"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/tableLayout2"
-                p1:stretchColumns="*">
-                <TableRow
-                    p1:id="@+id/tableRow8">
-                    <TextView
-                        p1:text="12/12/2012"
-                        p1:layout_column="0"
-                        p1:id="@+id/tv_StartDate"
-                        p1:textSize="10dp"
-                        p1:layout_marginLeft="5.0dp"
-                        p1:layout_width="wrap_content"
-                        p1:layout_height="22.0dp"
-                        p1:gravity="center_vertical"
-                        p1:textColor="#ffa0c673" />
-                    <TextView
-                        p1:text="Created Person"
-                        p1:layout_column="1"
-                        p1:id="@+id/tv_CreatedPerson"
-                        p1:textSize="10dp"
-                        p1:layout_height="match_parent"
-                        p1:layout_width="wrap_content"
-                        p1:gravity="center_vertical" />
-                </TableRow>
-            </TableLayout>
-        </RelativeLayout>
+        p1:layout_height="wrap_content">
+        <TextView
+            p1:text="12/12/2012"
+            p1:layout_column="0"
+            p1:id="@+id/tv_EndDate"
+            p1:textSize="10dp"
+            p1:layout_marginLeft="5.0dp"
+            p1:layout_width="267.8dp"
+            p1:layout_height="22.0dp"
+            p1:gravity="center_vertical"
+            p1:textColor="#ffa0c673" />
+        <TextView
+            p1:text="Created Person"
+            p1:layout_column="1"
+            p1:id="@+id/tv_CreatedPerson"
+            p1:textSize="10dp"
+            p1:layout_height="match_parent"
+            p1:layout_width="match_parent"
+            p1:gravity="center_vertical" />
     </TableRow>
 </LinearLayout>

@@ -20,7 +20,7 @@ using Android.Text;
 namespace LinkOM
 {
 	[Activity (Label = "Milestone", Theme = "@style/Theme.Customtheme")]			
-	public class MilestonesActivity : Activity, TextView.IOnEditorActionListener
+	public class MilestoneActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public List<MilestoneObject> _MilestoneList;
 		public MilestoneListAdapter milestoneList;
@@ -128,7 +128,7 @@ namespace LinkOM
 
 				milestoneListView.Adapter = milestoneList;
 
-//			milestoneListView.ItemClick += listView_ItemClick;
+				milestoneListView.ItemClick += listView_ItemClick;
 
 				loading = false;
 			}
@@ -161,20 +161,20 @@ namespace LinkOM
 			return true;
 		}
 
-//		//handle list item clicked
-//		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-//		{
-//			//Get our item from the list adapter
-//			MilestoneObject Milestone = this.milestoneList.GetItemAtPosition(e.Position);
-//
-//			Intent addAccountIntent = new Intent (this, typeof(MilestoneDetailActivity));
-//			//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-//
-//			addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject(Milestone));
-//
-//			StartActivity(addAccountIntent);
-//
-//		}
+		//handle list item clicked
+		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+			//Get our item from the list adapter
+			MilestoneObject Milestone = this.milestoneList.GetItemAtPosition(e.Position);
+
+			Intent addAccountIntent = new Intent (this, typeof(MilestoneDetailActivity));
+			//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+
+			addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject(Milestone));
+
+			StartActivity(addAccountIntent);
+
+		}
 
 		//Init menu on action bar
 		public override bool OnCreateOptionsMenu(IMenu menu)

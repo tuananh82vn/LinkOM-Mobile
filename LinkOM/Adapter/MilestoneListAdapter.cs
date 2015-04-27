@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace LinkOM
 {
-	public class MilestoneListAdapter : BaseAdapter
+	public class MilestoneListAdapter : BaseAdapter<MilestoneObject>, IFilterable
 	{
 		private List<MilestoneObject> _originalData;
 		private List<MilestoneObject> _MilestoneList;
@@ -23,6 +23,8 @@ namespace LinkOM
 		{
 			_activity = activity;
 			_MilestoneList = data;
+
+			Filter = new MilestoneFilter(this);
 		}
 
 		public override int Count 
@@ -36,6 +38,11 @@ namespace LinkOM
 				return _MilestoneList.Count; 
 				}
 		}
+
+		public override MilestoneObject this[int position]
+		{
+			get { return _MilestoneList[position]; }
+		} 
 
 		public override Java.Lang.Object GetItem (int position) {
 			// could wrap a Contact in a Java.Lang.Object
@@ -59,18 +66,13 @@ namespace LinkOM
 			var MilestoneName = view.FindViewById<TextView> (Resource.Id.tv_MilestoneName);
 			MilestoneName.Text = _MilestoneList [position].Title;
 
-			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
-			if(_MilestoneList [position].StartDate!=null)
-				StartDate.Text = _MilestoneList [position].StartDate.Value.ToShortDateString();
+			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
+			if(_MilestoneList [position].EndDateString!=null)
+				EndDate.Text = _MilestoneList [position].EndDateString;
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
 			CreatedPerson.Text = _MilestoneList [position].OwnerName;
 
-			var Status = view.FindViewById<ImageView> (Resource.Id.image_Status);
-			if(_MilestoneList [position].Status.Equals("Open"))
-				Status.SetImageResource(Resource.Drawable.open);
-			else
-				Status.SetImageResource(Resource.Drawable.close);
 
 			return view;
 		}

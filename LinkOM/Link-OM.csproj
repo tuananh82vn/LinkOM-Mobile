@@ -127,7 +127,6 @@
     <Compile Include="UIControl\SwipeRefreshLayout.cs" />
     <Compile Include="UIControl\MyAnimation.cs" />
     <Compile Include="Activity\Issues\IssuesActivity.cs" />
-    <Compile Include="Activity\Milestones\MilestonesActivity.cs" />
     <Compile Include="Helper\JavaHolder.cs" />
     <Compile Include="Helper\ObjectExtensions.cs" />
     <Compile Include="Model\ViewModel\TicketObject.cs" />
@@ -185,8 +184,9 @@
     <Compile Include="UIControl\SlidingTabScrollView.cs" />
     <Compile Include="UIControl\SlidingTabStrip.cs" />
     <Compile Include="UIControl\SlidingTabsFragment.cs" />
-    <Compile Include="Notification\GcmService.cs" />
     <Compile Include="Chart\TicketDataSource.cs" />
+    <Compile Include="Activity\Milestones\MilestonesDetailActivity.cs" />
+    <Compile Include="Activity\Milestones\MilestoneActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -449,6 +449,7 @@
     <AndroidResource Include="Resources\layout\fragment_sample.axml" />
     <AndroidResource Include="Resources\layout\pager_item.axml" />
     <AndroidResource Include="Resources\layout\SlidingTabLayout.axml" />
+    <AndroidResource Include="Resources\layout\MilestoneDetailLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

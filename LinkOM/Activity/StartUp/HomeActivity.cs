@@ -108,7 +108,7 @@ namespace LinkOM
 				StartActivity (activity);
 				break;
 			case 6:
-				activity = new Intent (this, typeof(MilestonesActivity));
+				activity = new Intent (this, typeof(MilestoneActivity));
 				StartActivity (activity);
 				break;
 			case 7:
