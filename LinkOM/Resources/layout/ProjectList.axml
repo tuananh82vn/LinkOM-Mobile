@@ -35,17 +35,21 @@
             p1:id="@+id/tv_ClientName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
-            p1:layout_width="315.5dp"
+            p1:layout_width="270.6dp"
             p1:layout_marginLeft="5.0dp"
             p1:textColor="#ffaeaeae"
             p1:layout_marginTop="5dp"
             p1:layout_marginRight="5dp" />
-        <ImageView
-            p1:src="@drawable/open"
+        <TextView
             p1:layout_column="1"
-            p1:id="@+id/image_Status"
-            p1:layout_marginRight="5dp"
+            p1:id="@+id/tv_Status"
+            p1:layout_height="match_parent"
+            p1:gravity="center_vertical"
+            p1:layout_marginLeft="5.0dp"
+            p1:textColor="#ffaeaeae"
             p1:layout_marginTop="5dp"
+            p1:layout_marginRight="5dp"
+            p1:text="Status"
             p1:layout_width="match_parent" />
     </TableRow>
 </LinearLayout>

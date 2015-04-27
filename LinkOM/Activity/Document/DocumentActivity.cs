@@ -17,18 +17,30 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.Support.V4.Widget;
+using Android.Views.InputMethods;
+using Android.Text;
 
 namespace LinkOM
 {
 	[Activity (Label = "Document", Theme = "@style/Theme.Customtheme")]				
-	public class DocumentActivity : ListActivity
+	public class DocumentActivity : Activity, TextView.IOnEditorActionListener
 	{
+		public List<DocumentObject> _DocumentList;
+		public DocumentListAdapter documentList; 
+
 		public bool loading;
 
 		public string TokenNumber;
-		public DocumentListAdapter documentList; 
+
 		public ListView documentListView;
 		public SwipeRefreshLayout refresher;
+
+		public EditText mSearch;
+		private bool mAnimatedDown;
+		private bool mIsAnimating;
+
+		public InputMethodManager inputManager;
+
 	
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -45,15 +57,66 @@ namespace LinkOM
 			ActionBar.SetHomeButtonEnabled(true);
 			// Create your application here
 
+			mSearch = FindViewById<EditText>(Resource.Id.etSearch);
+			mSearch.Alpha = 0;
+			mSearch.SetOnEditorActionListener (this);
+			mSearch.Focusable = false;
+			mSearch.FocusableInTouchMode = false;
+			mSearch.TextChanged += InputSearchOnTextChanged;
+
 
 			InitData ();
 
-			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
 
-			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
-		
-			refresher.Refresh += HandleRefresh;
 
+//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+//
+//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
+//		
+//			refresher.Refresh += HandleRefresh;
+
+		}
+
+		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
+		{
+			documentList.Filter.InvokeFilter(mSearch.Text);
+		}
+
+		void anim_AnimationEndUp(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
+		{
+			mIsAnimating = false;
+			mSearch.ClearFocus();
+		}
+
+		void anim_AnimationEndDown(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
+		{
+			mIsAnimating = false;
+		}
+
+		void anim_AnimationStartDown(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
+		{
+			mIsAnimating = true;
+			mSearch.Animate().AlphaBy(1.0f).SetDuration(1000).Start();
+		}
+
+		void anim_AnimationStartUp(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
+		{
+			mIsAnimating = true;
+			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
+		}
+
+		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
+		{
+			//go edit action will login
+			if (actionId == ImeAction.Search) {
+				if (!string.IsNullOrEmpty (mSearch.Text)) {
+					documentList.Filter.InvokeFilter(mSearch.Text);
+				} 
+				return true;
+				//next action will set focus to password edit text.
+			} 
+			return false;
 		}
 
 		//Init menu on action bar
@@ -68,11 +131,11 @@ namespace LinkOM
 			return true;
 		}
 
-		async void HandleRefresh (object sender, EventArgs e)
-		{
-			await InitData ();
-			refresher.Refreshing = false;
-		}
+//		async void HandleRefresh (object sender, EventArgs e)
+//		{
+//			await InitData ();
+//			refresher.Refreshing = false;
+//		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
@@ -82,6 +145,9 @@ namespace LinkOM
 			{
 			case Android.Resource.Id.Home:
 				OnBackPressed ();
+				break;
+			case Resource.Id.search:
+				btSearchClick ();
 				break;
 			case Resource.Id.add:
 				Intent Intent2 = new Intent (this, typeof(DocumentAddActivity));
@@ -139,7 +205,7 @@ namespace LinkOM
 
 			documentList = new DocumentListAdapter (this,DocumentList.Items);
 
-			documentListView = FindViewById<ListView> (Android.Resource.Id.List);
+			documentListView = FindViewById<ListView> (Resource.Id.DocumentListView);
 
 			documentListView.Adapter = documentList;
 
@@ -162,6 +228,45 @@ namespace LinkOM
 		public void btBackClick(object sender, EventArgs e)
 		{
 			OnBackPressed ();
+		}
+
+		public void btSearchClick()
+		{
+			if (!mAnimatedDown)
+			{
+				mSearch.Focusable = true;
+				mSearch.FocusableInTouchMode= true;
+				mSearch.RequestFocus ();
+				MyAnimation anim = new MyAnimation(documentListView, documentListView.Height - mSearch.Height);
+				anim.Duration = 500;
+				documentListView.StartAnimation(anim);
+				anim.AnimationStart += anim_AnimationStartDown;
+				anim.AnimationEnd += anim_AnimationEndDown;
+				documentListView.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+
+
+				inputManager.ShowSoftInput(mSearch, ShowFlags.Implicit);
+
+			}
+
+			else
+			{
+				mSearch.Focusable = false;
+				mSearch.FocusableInTouchMode= false;
+
+				MyAnimation anim = new MyAnimation(documentListView, documentListView.Height + mSearch.Height);
+				anim.Duration = 500;
+				documentListView.StartAnimation(anim);
+				anim.AnimationStart += anim_AnimationStartUp;
+				anim.AnimationEnd += anim_AnimationEndUp;
+				documentListView.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+
+				inputManager.HideSoftInputFromWindow(this.mSearch.WindowToken, 0);
+
+
+			}
+
+			mAnimatedDown = !mAnimatedDown;
 		}
 
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)

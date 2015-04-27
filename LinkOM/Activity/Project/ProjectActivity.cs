@@ -121,17 +121,20 @@ namespace LinkOM
 
 			string results=  ConnectWebAPI.Request(url,objsearch);
 
-			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
+			if (results != null) {
 
-			projectList = new ProjectListAdapter (this,ProjectList.Items);
+				ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
 
-			projectListView.Adapter = projectList;
+				projectList = new ProjectListAdapter (this, ProjectList.Items);
 
-			projectListView.ItemClick += listView_ItemClick;
+				projectListView.Adapter = projectList;
+
+				projectListView.ItemClick += listView_ItemClick;
 
 //			RegisterForContextMenu(projectListView);
 
-			loading = false;
+				loading = false;
+			}
 
 		}
 

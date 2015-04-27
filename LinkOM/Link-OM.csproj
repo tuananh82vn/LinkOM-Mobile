@@ -90,6 +90,9 @@
     <Reference Include="NChart3D">
       <HintPath>..\packages\NChart3D\NChart3D.dll</HintPath>
     </Reference>
+    <Reference Include="GCM.Client">
+      <HintPath>..\Components\GCMClient-1.0\lib\android\GCM.Client.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -177,12 +180,13 @@
     <Compile Include="Activity\Dashboard\DashboardActivity.cs" />
     <Compile Include="Chart\TaskDataSource.cs" />
     <Compile Include="Chart\ProjectTaskDataSource.cs" />
-    <Compile Include="Chart\StreamingDataSource.cs" />
     <Compile Include="Activity\Notification\NotifyActivity.cs" />
     <Compile Include="Activity\StartUp\HomeFragment.cs" />
     <Compile Include="UIControl\SlidingTabScrollView.cs" />
     <Compile Include="UIControl\SlidingTabStrip.cs" />
     <Compile Include="UIControl\SlidingTabsFragment.cs" />
+    <Compile Include="Notification\GcmService.cs" />
+    <Compile Include="Chart\TicketDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -489,6 +493,10 @@
       <Version>21.0.3.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="GCMClient">
+      <Version>1.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
@@ -521,6 +529,7 @@
     <Folder Include="Activity\Dashboard\" />
     <Folder Include="Chart\" />
     <Folder Include="Activity\Notification\" />
+    <Folder Include="Notification\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />

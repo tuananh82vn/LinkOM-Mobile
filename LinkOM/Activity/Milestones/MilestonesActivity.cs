@@ -89,8 +89,8 @@ namespace LinkOM
 
 
 			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "M.Title", Direction = "1"},
-				new objSort{ColumnName = "P.Name", Direction = "2"}
+				new objSort{ColumnName = "T.Title", Direction = "1"},
+				new objSort{ColumnName = "T.ProjectName", Direction = "2"}
 			};
 
 			var objMilestone = new

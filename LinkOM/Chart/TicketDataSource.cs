@@ -15,19 +15,19 @@ using System.Collections.Generic;
 
 namespace LinkOM
 {
-	public class TaskDataSource : Activity, INChartSeriesDataSource , INChartValueAxisDataSource, INChartDelegate
+	public class TicketDataSource : Activity, INChartSeriesDataSource , INChartValueAxisDataSource, INChartDelegate
 	{
 		Random random = new Random ();
 
 		NChartPoint prevSelectedPoint;
 
-		public TaskList taskList;
+		public TicketList taskList;
 
-		public string[] TaskStatusName;
+		public string[] TicketStatusName;
 
 		public StatusList statusList;
 
-		public TaskDataSource(){
+		public TicketDataSource(){
 			InitData ();
 		}
 
@@ -36,27 +36,20 @@ namespace LinkOM
 			string url = Settings.InstanceURL;
 
 			//Load data
-			string url_Task= url+"/api/TaskList";
+			string url_Ticket= url+"/api/TicketList";
 
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
-				new objSort{ColumnName = "T.EndDate", Direction = "2"}
-			};
-
-
-			var objTask = new
+			var objTicket = new
 			{
-				Title = string.Empty,
-				AssignedToId = Settings.UserId,
-				ClientId = string.Empty,
-				TaskStatusId = string.Empty,
-				PriorityId = string.Empty,
-				DueBeforeDate = string.Empty,
-				DepartmentId = string.Empty,
 				ProjectId = string.Empty,
-				AssignByMe = true,
-				Filter = string.Empty,
-				Label = string.Empty,
+				AssignedToId = Settings.UserId,
+				TicketStatusId = string.Empty,
+				DepartmentId = string.Empty,
+				Title = string.Empty,
+				PriorityId = string.Empty,
+				Label= string.Empty,
+				DueBefore = string.Empty,
+				AssignTo = string.Empty,
+				AssignByMe = string.Empty,
 			};
 
 			var objsearch = (new
@@ -67,47 +60,47 @@ namespace LinkOM
 						TokenNumber =Settings.Token,
 						PageSize = 100,
 						PageNumber = 1,
-						Sort = objSort,
-						Item = objTask
+						SortMember ="",
+						SortDirection = "",
+						MainStatusId=1,
+						Item = objTicket
 					}
 				});
 
-			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
+			string results_Ticket= ConnectWebAPI.Request(url_Ticket,objsearch);
 
-			if (results_Task != null && results_Task != "") {
+			if (results_Ticket != null && results_Ticket != "") {
 
-				taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results_Task);
+				taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results_Ticket);
 
 			}
 
 
-			string url_TaskStatusList= url+"/api/TaskStatusList";
+			string url_TicketStatusList= url+"/api/TicketStatusList";
 
-			string results_TaskList= ConnectWebAPI.Request(url_TaskStatusList,"");
+			string results_TicketkList= ConnectWebAPI.Request(url_TicketStatusList,"");
 
-			if (results_TaskList != null && results_TaskList != "") {
+			if (results_TicketkList != null && results_TicketkList != "") {
 
-				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TaskList);
+				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TicketkList);
 
 				statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
 
 				if (statusList.Items.Count > 0) {
 
-					TaskStatusName = new string[statusList.Items.Count];
+					TicketStatusName = new string[statusList.Items.Count];
 
 					for (int i = 0; i < statusList.Items.Count; i++) {
-						TaskStatusName[i]=statusList.Items [i].Name;
-						//Get number of task
-						var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList.Items).ToString ();
+						TicketStatusName[i]=statusList.Items [i].Name;
 					}
 				}
 			}
 		}
 
-		private int CheckTask(string status, List<TaskObject>  list_Task){
+		private int CheckTicket(string status, List<TicketObject>  list_Task){
 			int count = 0;
 			foreach (var task in list_Task) {
-				if (task.StatusName == status)
+				if (task.TicketStatusName == status)
 					count++;
 			}
 			return count;
@@ -115,7 +108,7 @@ namespace LinkOM
 
 		public string Name (NChartSeries series)
 		{
-			return "Task";
+			return "Ticket";
 		}
 
 
@@ -123,14 +116,14 @@ namespace LinkOM
 			if (nChartValueAxis.Kind == NChartValueAxisKind.X)
 				return "";
 			else if (nChartValueAxis.Kind == NChartValueAxisKind.Y)
-				return "Status";
+				return "Status Ticket";
 			return null;
 		}
 
 		public string[] Ticks (NChartValueAxis nChartValueAxis)
 		{
 			if (nChartValueAxis.Kind == NChartValueAxisKind.Y)
-				return TaskStatusName;
+				return TicketStatusName;
 			
 			return null;
 		}
@@ -141,14 +134,10 @@ namespace LinkOM
 
 			for (int i = 0; i < statusList.Items.Count; i++) {
 				//Get number of task
-				var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList.Items);
+				var NumberOfTask = CheckTicket (statusList.Items [i].Name, taskList.Items);
 
 				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (NumberOfTask, i), series);
 			}
-
-
-//			for (int i = 0; i <= 4; ++i)
-//				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (random.Next (30) + 1, i), series);
 
 			return result;
 		}

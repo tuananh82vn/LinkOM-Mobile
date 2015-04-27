@@ -3,12 +3,18 @@ using Android.Widget;
 using System.Collections.Generic;
 using Android.App;
 using Android.Views;
+using Java.Lang;
+using Object = Java.Lang.Object; 
+using System.Linq;
 
 namespace LinkOM
 {
-	public class DocumentListAdapter : BaseAdapter
+	public class DocumentListAdapter : BaseAdapter<DocumentObject>, IFilterable
 	{
+		private List<DocumentObject> _originalData;
 		List<DocumentObject> _DocumentList;
+
+		public Filter Filter { get; private set; }
 
 		Activity _activity;
 
@@ -16,7 +22,15 @@ namespace LinkOM
 		{
 			_activity = activity;
 			_DocumentList = data;
+
+			Filter = new DocumentFilter(this);
 		}
+
+
+		public override DocumentObject this[int position]
+		{
+			get { return _DocumentList[position]; }
+		} 
 
 		public override int Count 
 		{
@@ -64,6 +78,56 @@ namespace LinkOM
 
 			return view;
 		}
+
+		private class DocumentFilter : Filter
+		{
+			private readonly DocumentListAdapter _adapter;
+			public DocumentFilter(DocumentListAdapter adapter)
+			{
+				_adapter = adapter;
+			}
+
+			protected override FilterResults PerformFiltering(ICharSequence constraint)
+			{
+				var returnObj = new FilterResults();
+
+				var results = new List<DocumentObject>();
+
+				if (_adapter._originalData == null)
+					_adapter._originalData = _adapter._DocumentList; 
+
+				if (constraint == null) return returnObj;
+
+				if (_adapter._originalData != null && _adapter._originalData.Any())
+				{
+					// Compare constraint to all names lowercased.
+					// It they are contained they are added to results.
+
+
+					results.AddRange(_adapter._originalData.Where(t => t.Title.ToLower().Contains(constraint.ToString().ToLower())));
+				}
+
+				// Nasty piece of .NET to Java wrapping, be careful with this!
+				returnObj.Values = FromArray(results.Select(r => r.ToJavaObject()).ToArray());
+				returnObj.Count = results.Count;
+
+				constraint.Dispose();
+
+				return returnObj;
+			}
+
+			protected override void PublishResults(ICharSequence constraint, FilterResults results)
+			{
+				using (var values = results.Values)
+					_adapter._DocumentList = values.ToArray<Object>()
+						.Select(r => r.ToNetObject<DocumentObject>()).ToList();
+				_adapter.NotifyDataSetChanged();
+
+				// Don't do this and see GREF counts rising
+				constraint.Dispose();
+				results.Dispose();
+			}
+		} 
 	}
 }
 

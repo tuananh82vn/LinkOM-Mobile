@@ -36,9 +36,8 @@ namespace LinkOM
 		public override void OnViewCreated(View view, Bundle savedInstanceState)
 		{
 			mSlidingTabScrollView = view.FindViewById<SlidingTabScrollView>(Resource.Id.sliding_tabs);
+
 			mViewPager = view.FindViewById<ViewPager>(Resource.Id.viewpager);
-
-
 
 			mViewPager.Adapter = new SamplePagerAdapter();
 
@@ -48,15 +47,11 @@ namespace LinkOM
 		public override void OnResume ()
 		{
 			base.OnResume ();
-			//mNChartView1.OnResume ();
-			//			mNChartView2.OnResume ();
 		}
 
 		public override void OnPause ()
 		{
 			base.OnPause ();
-			//mNChartView1.OnPause ();
-			//			mNChartView2.OnPause ();
 		}
 
 
@@ -65,6 +60,9 @@ namespace LinkOM
 	public class SamplePagerAdapter : PagerAdapter , INChartDelegate
 	{
 		public TaskDataSource taskData;
+
+		public TicketDataSource ticketData;
+
 		public ProjectTaskDataSource projectData;
 
 		public NChartView mNChartView1;
@@ -83,8 +81,12 @@ namespace LinkOM
 			items.Add("Ticket");
 			items.Add("Project-Task");
 			items.Add("Project-Ticket");
+
+
 			taskData = new TaskDataSource ();
+			ticketData = new TicketDataSource ();
 			projectData = new ProjectTaskDataSource ();
+
 		}
 
 		public override int Count
@@ -106,10 +108,6 @@ namespace LinkOM
 
 			LoadViews (position);
 
-			//				TextView txtTitle = view.FindViewById<TextView>(Resource.Id.item_title);
-			//				int pos = position + 1;
-			//				txtTitle.Text = pos.ToString();
-
 			return view;
 		}
 
@@ -129,76 +127,119 @@ namespace LinkOM
 			mNChartView1.Chart.LicenseKey = "C9gNX+mbr1aYRzgfhMVjROf68nx/i4dAEE6Z4P+HQ2fawVTcplK6jwPBQvElxgyWpduQS0zXvvzFH8L+UxiG777loO1+2iiwdZP11Z0EY3lHNut77fVyU2a7c+Fm7F9AggQy9sgVd+dWXjwMk/sMVaEoKsxSvMHS/ilhBNaeIUslXp5ZZv/ujnbyMIHbHoKFRMtWGy9/K2+qAP3whFSVSq+0w7me9vGLIxa1x5y1TCtSR/tHlFW1X2SuA1mMACqkCNt2lVsB590WM59p3B683tyqaT4LsWZPSTmjr43e7TdP2pG4IEOVd7DWXV9LPYICNi/JR5CKECw6pYrrmIgfzfcJxDG06yTc0CS/IbuLNHD658wMRpeO4+rrS4zS1DdJ0QUXHHpV0hNW/P5QWLcyWjjsr6v8kr/vFRvUX7PSWtWjNA+qFg71wrqx5NAYRkhN/Jl10Qhp97XQZTwGsxFcYu8rsH8gvmpZcSIOpzlYBWFFaDg55NKbTgbgcnGpjpzR6i1S7OYhox159CoD6BBb/cEoORf1Pz3C5UdHl938B+3y+z4FvH+ol1FOoJp7oXEfCM1rlm96C51pl7W92a2qfBShRhZqOQLUfr1jya+g8AHUt9MfLEinhn0WikyPJGfdROFbhlZHzI2DdyyJfZ0+lGlvR2EeMBKyBcC9T4dKUUg=";
 			zoomed = false;
 
+			if (position == 0 || position == 1) {
+					// Create column series for Task
+					NChartBarSeries seriesBar1 = new NChartBarSeries ();
+					seriesBar1.Brush = new NChartSolidColorBrush (Color.Argb (255, 0, 192, 96));
+
+					
+					
+
+					mNChartView1.Chart.RemoveAllSeries ();
+
+					if (position == 0) {
+						seriesBar1.DataSource = taskData;
+						seriesBar1.Tag = 0;
+
+						mNChartView1.Chart.CartesianSystem.XAxis.DataSource = taskData;
+						mNChartView1.Chart.CartesianSystem.YAxis.DataSource = taskData;
+						mNChartView1.Chart.Delegate = taskData;
+					}
+					else
+					if (position == 1) {
+						seriesBar1.DataSource = ticketData;
+						seriesBar1.Tag = 1;
+						mNChartView1.Chart.CartesianSystem.XAxis.DataSource = ticketData;
+						mNChartView1.Chart.CartesianSystem.YAxis.DataSource = ticketData;
+						mNChartView1.Chart.Delegate = ticketData;
+					}
+				
+					mNChartView1.Chart.AddSeries (seriesBar1);
+
+					mNChartView1.Chart.ShouldAntialias = true;
+					mNChartView1.Chart.CartesianSystem.XAxis.LineVisible = false;
+					mNChartView1.Chart.CartesianSystem.XAlongY.Visible = false;
+
+					mNChartView1.Chart.CartesianSystem.BorderVisible = false;
+					mNChartView1.Chart.CartesianSystem.YAlongX.Color = Color.WhiteSmoke;
+
+					mNChartView1.Chart.Legend.Visible = false;
+					mNChartView1.Chart.CartesianSystem.XAxis.MinTickSpacing = 0.0f;
+
+					mNChartView1.Chart.CartesianSystem.XAxis.HasOffset = false;
+					mNChartView1.Chart.CartesianSystem.YAxis.HasOffset = true;
+
+					mNChartView1.Chart.UpdateData ();
+					mNChartView1.Chart.PlayTransition (1, false);
+			}
+			else
+
 			if (position == 2 || position == 3) {
 
-							// Create brushes.
-							brushes = new NChartBrush[3];
-							brushes [0] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.38 * 255), (int)(0.8 * 255), (int)(0.91 * 255)));
-							brushes [1] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.8 * 255), (int)(0.86 * 255), (int)(0.22 * 255)));
-							brushes [2] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.9 * 255), (int)(0.29 * 255), (int)(0.51 * 255)));
-				
-							// Switch on antialiasing.
-							mNChartView1.Chart.ShouldAntialias = true;
+				// Create brushes.
+				brushes = new NChartBrush[5];
+				brushes [0] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.38 * 255), (int)(0.8 * 255), (int)(0.91 * 255)));
+				brushes [1] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.8 * 255), (int)(0.86 * 255), (int)(0.22 * 255)));
+				brushes [2] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.9 * 255), (int)(0.29 * 255), (int)(0.51 * 255)));
+				brushes [3] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.9 * 255), (int)(0.7 * 255), (int)(0.8 * 255)));
+				brushes [4] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.3 * 255), (int)(0.8 * 255), (int)(0.4 * 255)));
+
+				// Switch on antialiasing.
+				mNChartView1.Chart.ShouldAntialias = true;
+				mNChartView1.Chart.RemoveAllSeries ();
 				mNChartView1.Chart.CartesianSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
 				mNChartView1.Chart.PolarSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
-				mNChartView1.Chart.Caption.Text = "Project Tasks";
-							// Create series that will be displayed on the chart.
-							NChartPieSeries series = new NChartPieSeries ();
-							series.DataSource = projectData;
-							series.Tag = 0;
-							series.Brush = brushes [0];
+				mNChartView1.Chart.CartesianSystem.XAlongY.Color = Color.White;
+				mNChartView1.Chart.CartesianSystem.YAlongX.Color = Color.Gray;
+
+//				mNChartView1.Chart.Caption.Text = "Project Tasks";
+				// Create series that will be displayed on the chart.
+				NChartPieSeries series = new NChartPieSeries ();
+				series.DataSource = projectData;
+				series.Tag = 0;
+				series.Brush = brushes [0];
 				mNChartView1.Chart.AddSeries (series);
 				
-							NChartPieSeries series1 = new NChartPieSeries ();
-							series1.DataSource = projectData;
-							series1.Tag = 1;
-							series1.Brush = brushes [1];
+				NChartPieSeries series1 = new NChartPieSeries ();
+				series1.DataSource = projectData;
+				series1.Tag = 1;
+				series1.Brush = brushes [1];
 				mNChartView1.Chart.AddSeries (series1);
 				
-							NChartPieSeries series2 = new NChartPieSeries ();
-							series2.DataSource = projectData;
-							series2.Tag = 2;
-							series2.Brush = brushes [2];
+				NChartPieSeries series2 = new NChartPieSeries ();
+				series2.DataSource = projectData;
+				series2.Tag = 2;
+				series2.Brush = brushes [2];
 				mNChartView1.Chart.AddSeries (series2);
+
+				NChartPieSeries series3 = new NChartPieSeries ();
+				series3.DataSource = projectData;
+				series3.Tag = 3;
+				series3.Brush = brushes [3];
+				mNChartView1.Chart.AddSeries (series3);
+
+				NChartPieSeries series4 = new NChartPieSeries ();
+				series4.DataSource = projectData;
+				series4.Tag = 3;
+				series4.Brush = brushes [4];
+				mNChartView1.Chart.AddSeries (series4);
 				
-							NChartPieSeriesSettings settings = new NChartPieSeriesSettings ();
-							settings.HoleRatio = 0.0f;
+				NChartPieSeriesSettings settings = new NChartPieSeriesSettings ();
+				settings.HoleRatio = 0.0f;
 				mNChartView1.Chart.AddSeriesSettings (settings);
 				
-							// Set delegate to the chart.
+				// Set delegate to the chart.
 				mNChartView1.Chart.Delegate = this;
-							// Update data in the chart.
+				// Update data in the chart.
 				mNChartView1.Chart.UpdateData ();
 				
 				mNChartView1.Chart.MinZoom = 0.85f;
-							zoomed = false;
+				zoomed = false;
 				
-							// Uncomment this line to get the animated transition.
+				// Uncomment this line to get the animated transition.
 				mNChartView1.Chart.PlayTransition(1.0f, false);
 				
-			} else {
-				// Create column series for Task
-				NChartBarSeries seriesBar = new NChartBarSeries ();
-				seriesBar.Brush = new NChartSolidColorBrush (Color.Argb (255, 0, 192, 96));
-				seriesBar.DataSource = taskData;
-				seriesBar.Tag = 1;
-
-				mNChartView1.Chart.ShouldAntialias = true;
-				mNChartView1.Chart.AddSeries (seriesBar);
-
-				mNChartView1.Chart.Legend.Visible = false;
-
-				mNChartView1.Chart.CartesianSystem.XAxis.DataSource = taskData;
-				mNChartView1.Chart.CartesianSystem.YAxis.DataSource = taskData;
-				mNChartView1.Chart.Delegate = taskData;
-
-				mNChartView1.Chart.CartesianSystem.XAxis.HasOffset = false;
-				mNChartView1.Chart.CartesianSystem.YAxis.HasOffset = true;
-				mNChartView1.Chart.Caption.Text = "Task";
-
-				mNChartView1.Chart.UpdateData ();
-				mNChartView1.Chart.PlayTransition (2, false);
-			}
+			} 
 		}
 
 		public void TimeIndexChanged (NChart nChart, double v)
@@ -248,12 +289,12 @@ namespace LinkOM
 
 					prevSelectedPoint = null;
 
-										// Return to normal zoom.
-										if (zoomed) 
-										{
-											zoomed = false;
-											mNChartView1.Chart.ZoomTo (1.0f, 0.25f, 0.0f);
-										}
+					// Return to normal zoom.
+					if (zoomed) 
+					{
+						zoomed = false;
+						mNChartView1.Chart.ZoomTo (1.0f, 0.25f, 0.0f);
+					}
 				} 
 				else 
 				{

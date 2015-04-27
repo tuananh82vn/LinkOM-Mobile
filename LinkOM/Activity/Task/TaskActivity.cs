@@ -117,7 +117,7 @@ namespace LinkOM
 			var objTask = new
 			{
 				Title = string.Empty,
-				AssignedToId = string.Empty,
+				AssignedToId = Settings.UserId,
 				ClientId = string.Empty,
 				TaskStatusId = string.Empty,
 				PriorityId = string.Empty,

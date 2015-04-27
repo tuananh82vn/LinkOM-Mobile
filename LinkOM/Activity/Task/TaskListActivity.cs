@@ -129,7 +129,7 @@ namespace LinkOM
 				var objTask = new
 				{
 					Title = "",
-					AssignedToId = string.Empty,
+					AssignedToId = Settings.UserId,
 					ClientId = string.Empty,
 					TaskStatusId = StatusId,
 					PriorityId = string.Empty,
@@ -141,6 +141,10 @@ namespace LinkOM
 					Label = string.Empty,
 				};
 
+				List<objSort> objSort = new List<objSort>{
+					new objSort{ColumnName = "T.Code", Direction = "2"},
+				};
+
 				var objsearch = (new
 					{
 						objApiSearch = new
@@ -149,8 +153,7 @@ namespace LinkOM
 							TokenNumber = Settings.Token,
 							PageSize = 100,
 							PageNumber = 1,
-							SortMember = string.Empty,
-							SortDirection = string.Empty,
+							Sort = objSort,
 							Item = objTask
 						}
 					});

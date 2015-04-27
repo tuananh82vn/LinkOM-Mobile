@@ -38,7 +38,11 @@ namespace LinkOM
 			} else if (series.Tag == 1) {
 				return string.Format ("Close");
 			} else if (series.Tag == 2) {
-				return string.Format ("Waiting");
+				return string.Format ("Wait");
+			} else if (series.Tag == 3) {
+				return string.Format ("Hold");
+			} else if (series.Tag == 4) {
+				return string.Format ("Progress");
 			} else
 				return "";
 		}

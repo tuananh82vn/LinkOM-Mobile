@@ -104,12 +104,8 @@ namespace LinkOM
 //			else
 //				AllocatedHours.Text = "0";
 
-			var ProjectStatus = view.FindViewById<ImageView> (Resource.Id.image_Status);
-			if(_ProjectList [position].ProjectStatus.Equals("Open"))
-				ProjectStatus.SetImageResource(Resource.Drawable.open);
-				else
-				ProjectStatus.SetImageResource(Resource.Drawable.close);
-
+			var ProjectStatus = view.FindViewById<TextView> (Resource.Id.tv_Status);
+			ProjectStatus.Text = _ProjectList [position].ProjectStatus;
 
 			return view;
 		}

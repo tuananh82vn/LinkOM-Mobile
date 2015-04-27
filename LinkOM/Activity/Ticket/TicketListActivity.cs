@@ -125,6 +125,7 @@ namespace LinkOM
 				var objTicket = new
 				{
 					ProjectId = string.Empty,
+					AssignedToId = Settings.UserId,
 					TicketStatusId = StatusId,
 					DepartmentId = string.Empty,
 					Title = string.Empty,
