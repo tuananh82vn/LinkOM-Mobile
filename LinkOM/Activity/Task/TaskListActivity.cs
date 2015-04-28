@@ -244,7 +244,11 @@ namespace LinkOM
 
 			activity.PutExtra ("Task", Newtonsoft.Json.JsonConvert.SerializeObject(model));
 
-			StartActivity (activity);
+			//StartActivity (activity);
+
+			ActivityOptions opts = ActivityOptions.MakeCustomAnimation (this, Resource.Animation.fade, Resource.Animation.hold);
+
+			StartActivity (activity, opts.ToBundle ());
 		}
 
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)

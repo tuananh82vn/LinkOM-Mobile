@@ -27,6 +27,7 @@ namespace LinkOM
 
 		public EditText username;
 		public EditText password;
+		public CheckBox cb_rememberMe;
 
 		public ProgressDialog progress;
 
@@ -47,10 +48,23 @@ namespace LinkOM
 
 			username = FindViewById<EditText>(Resource.Id.tv_username);
 			username.SetOnEditorActionListener (this);
+
 			username.RequestFocus ();
 
 			password = FindViewById<EditText>(Resource.Id.tv_password);
 			password.SetOnEditorActionListener (this);
+
+			cb_rememberMe  = FindViewById<CheckBox>(Resource.Id.cb_rememberMe);
+
+			var RemmemberMe = Settings.RememberMe;
+
+			if (RemmemberMe) {
+				cb_rememberMe.Checked = true;
+				username.Text = Settings.Username;
+				password.Text = Settings.Password;
+			}
+
+
 
 //			progress = new ProgressDialog (this);
 //			progress.Indeterminate = true;
@@ -168,9 +182,24 @@ namespace LinkOM
 			Settings.UserId = obj.UserId;
 			Settings.Token = obj.TokenNumber;
 			Settings.Username = obj.UserName;
+			if (cb_rememberMe.Checked) {
+				Settings.RememberMe = true;
+				Settings.Password = password.Text;
+			} else {
+				Settings.RememberMe = false;
+				Settings.Password = "";
+			}
 
-			var activity = new Intent (this, typeof(HomeActivity));
-			StartActivity (activity);
+//			ActivityOptions opts = ActivityOptions.MakeCustomAnimation (this, Resource.Animation.fade, Resource.Animation.hold);
+			
+//			var activity = new Intent (this, typeof(HomeActivity));
+//			StartActivity (activity);
+
+			StartActivity (new Intent (this, typeof (HomeActivity)));
+
+
+			OverridePendingTransition (Resource.Animation.zoom_enter, Resource.Animation.zoom_exit);
+
 			this.Finish();
 		}
 

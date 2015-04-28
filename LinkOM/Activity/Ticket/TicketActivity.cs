@@ -182,8 +182,10 @@ namespace LinkOM
 						//Add button into View
 						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button);
 						//Get number of task
-						var NumberOfTicket = CheckTicket (statusList.Items [i].Name, ticketList.Items).ToString ();
-						RunOnUiThread (() => button.Text =  NumberOfTicket);
+						if (ticketList.Items != null) {
+							var NumberOfTicket = CheckTicket (statusList.Items [i].Name, ticketList.Items).ToString ();
+							RunOnUiThread (() => button.Text = NumberOfTicket);
+						}
 						buttonList.Add (button);
 					}
 				}

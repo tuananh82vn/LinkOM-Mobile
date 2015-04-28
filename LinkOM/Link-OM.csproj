@@ -56,12 +56,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Refractored.Xam.Settings.Abstractions">
-      <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Refractored.Xam.Settings">
-      <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android.Export" />
     <Reference Include="com.alliance.calendar">
       <HintPath>..\Components\alliance-calendar-component-1.0\lib\android\com.alliance.calendar.dll</HintPath>
@@ -92,6 +86,12 @@
     </Reference>
     <Reference Include="GCM.Client">
       <HintPath>..\Components\GCMClient-1.0\lib\android\GCM.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings.Abstractions">
+      <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.Xam.Settings">
+      <HintPath>..\packages\Xam.Plugins.Settings.1.5.0\lib\MonoAndroid10\Refractored.Xam.Settings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -178,7 +178,6 @@
     <Compile Include="Activity\Dashboard\DashboardActivity.cs" />
     <Compile Include="Chart\TaskDataSource.cs" />
     <Compile Include="Chart\ProjectTaskDataSource.cs" />
-    <Compile Include="Activity\Notification\NotifyActivity.cs" />
     <Compile Include="Activity\StartUp\HomeFragment.cs" />
     <Compile Include="UIControl\SlidingTabScrollView.cs" />
     <Compile Include="UIControl\SlidingTabStrip.cs" />
@@ -461,6 +460,34 @@
     <AndroidResource Include="Resources\layout\MilestoneEdit.axml" />
     <AndroidResource Include="Resources\drawable\alert.png" />
     <AndroidResource Include="Resources\layout\AlertConfiguration.axml" />
+    <AndroidResource Include="Resources\anim\animator.xml" />
+    <AndroidResource Include="Resources\anim\animator_set.xml" />
+    <AndroidResource Include="Resources\anim\color_animator.xml" />
+    <AndroidResource Include="Resources\anim\cycle_7.xml" />
+    <AndroidResource Include="Resources\anim\fade.xml" />
+    <AndroidResource Include="Resources\anim\hold.xml" />
+    <AndroidResource Include="Resources\anim\hyperspace_in.xml" />
+    <AndroidResource Include="Resources\anim\hyperspace_out.xml" />
+    <AndroidResource Include="Resources\anim\layout_animation_row_left_slide.xml" />
+    <AndroidResource Include="Resources\anim\layout_animation_row_right_slide.xml" />
+    <AndroidResource Include="Resources\anim\layout_animation_table.xml" />
+    <AndroidResource Include="Resources\anim\layout_bottom_to_top_slide.xml" />
+    <AndroidResource Include="Resources\anim\layout_grid_fade.xml" />
+    <AndroidResource Include="Resources\anim\layout_grid_inverse_fade.xml" />
+    <AndroidResource Include="Resources\anim\layout_random_fade.xml" />
+    <AndroidResource Include="Resources\anim\layout_wave_scale.xml" />
+    <AndroidResource Include="Resources\anim\object_animator.xml" />
+    <AndroidResource Include="Resources\anim\push_left_in.xml" />
+    <AndroidResource Include="Resources\anim\push_left_out.xml" />
+    <AndroidResource Include="Resources\anim\push_up_in.xml" />
+    <AndroidResource Include="Resources\anim\push_up_out.xml" />
+    <AndroidResource Include="Resources\anim\shake.xml" />
+    <AndroidResource Include="Resources\anim\slide_left.xml" />
+    <AndroidResource Include="Resources\anim\slide_right.xml" />
+    <AndroidResource Include="Resources\anim\slide_top_to_bottom.xml" />
+    <AndroidResource Include="Resources\anim\wave_scale.xml" />
+    <AndroidResource Include="Resources\anim\zoom_enter.xml" />
+    <AndroidResource Include="Resources\anim\zoom_exit.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -477,10 +504,6 @@
   </Target>
   -->
   <ItemGroup>
-    <XamarinComponentReference Include="SettingsPlugin">
-      <Version>1.5.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="json.net">
       <Version>6.0.8.1</Version>
       <Visible>False</Visible>
@@ -507,6 +530,10 @@
     </XamarinComponentReference>
     <XamarinComponentReference Include="GCMClient">
       <Version>1.0</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="SettingsPlugin">
+      <Version>1.5.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
@@ -542,6 +569,7 @@
     <Folder Include="Chart\" />
     <Folder Include="Activity\Notification\" />
     <Folder Include="Notification\" />
+    <Folder Include="Resources\anim\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />

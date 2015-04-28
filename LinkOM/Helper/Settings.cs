@@ -22,6 +22,12 @@ namespace LinkOM
 		private const string UserNameKey = "UserNameKey";
 		private static readonly string UserNameKey_Default = string.Empty;
 
+		private const string PasswordKey = "PasswordKey";
+		private static readonly string PasswordKey_Default = string.Empty;
+
+		private const string RememberMeKey = "RememberMeKey";
+		private static readonly bool RememberMeKey_Default = false;
+
 		private static ISettings AppSettings
 		{
 			get
@@ -59,6 +65,20 @@ namespace LinkOM
 			get { return AppSettings.GetValueOrDefault(UserNameKey, UserNameKey_Default); }
 			set { AppSettings.AddOrUpdateValue(UserNameKey, value); }
 		}
+
+		public static string Password
+		{
+			get { return AppSettings.GetValueOrDefault(PasswordKey, PasswordKey_Default); }
+			set { AppSettings.AddOrUpdateValue(PasswordKey, value); }
+		}
+
+		public static bool RememberMe
+		{
+			get { return AppSettings.GetValueOrDefault(RememberMeKey, RememberMeKey_Default); }
+			set { AppSettings.AddOrUpdateValue(RememberMeKey, value); }
+		}
+
+
 	}
 }
 
