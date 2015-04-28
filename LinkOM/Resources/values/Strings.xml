@@ -69,6 +69,8 @@
 
   		<string name="Dashboard_title">Dashboard</string>
 
+  		<string name="Alert_title">Notify Settings</string>
+
   		<string name="drawer_open">Open</string>
   		<string name="drawer_close">Close</string>
   		<string name="menu_refresh">Refresh</string>

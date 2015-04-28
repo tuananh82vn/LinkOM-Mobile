@@ -35,28 +35,34 @@ namespace LinkOM
 
 		protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (bundle);
 
-			RequestWindowFeature (WindowFeatures.ActionBar);
+				base.OnCreate (bundle);
 
-			SetContentView (Resource.Layout.Task);
-			// Create your application here
+				RequestWindowFeature (WindowFeatures.ActionBar);
 
-			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
-			ActionBar.SetTitle(Resource.String.task_title);
-			ActionBar.SetDisplayShowTitleEnabled (true);
-			ActionBar.SetDisplayHomeAsUpEnabled(true);
-			ActionBar.SetHomeButtonEnabled(true);
 
-			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
-			progressView.MinValue = 0;
-			progressView.MaxValue = 100;
+				SetContentView (Resource.Layout.Task);
 
-			_timer = new System.Timers.Timer(10);
-			_timer.Elapsed += HandleElapsed;
-			_timer.Start();
+				
+				// Create your application here
 
-			ThreadPool.QueueUserWorkItem (o => InitData ());
+				ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+				ActionBar.SetTitle (Resource.String.task_title);
+				ActionBar.SetDisplayShowTitleEnabled (true);
+				ActionBar.SetDisplayHomeAsUpEnabled (true);
+				ActionBar.SetHomeButtonEnabled (true);
+
+				progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
+				progressView.MinValue = 0;
+				progressView.MaxValue = 100;
+
+				_timer = new System.Timers.Timer (10);
+				_timer.Elapsed += HandleElapsed;
+				_timer.Start ();
+
+				ThreadPool.QueueUserWorkItem (o => InitData ());
+
+				
 		}
 
 		//Handle item on action bar clicked

@@ -133,7 +133,6 @@
     <Compile Include="Activity\Ticket\TicketListActivity.cs" />
     <Compile Include="Adapter\TicketListAdapter.cs" />
     <Compile Include="Model\ViewModel\IssuesObject.cs" />
-    <Compile Include="Helper\ColorHelper.cs" />
     <Compile Include="Activity\Issues\IssuesListActivity.cs" />
     <Compile Include="Adapter\IssuesListAdapter.cs" />
     <Compile Include="Activity\Document\DocumentActivity.cs" />
@@ -185,8 +184,17 @@
     <Compile Include="UIControl\SlidingTabStrip.cs" />
     <Compile Include="UIControl\SlidingTabsFragment.cs" />
     <Compile Include="Chart\TicketDataSource.cs" />
-    <Compile Include="Activity\Milestones\MilestonesDetailActivity.cs" />
     <Compile Include="Activity\Milestones\MilestoneActivity.cs" />
+    <Compile Include="Activity\Milestones\MilestoneDetailActivity.cs" />
+    <Compile Include="Activity\Milestones\MilestoneEditActivity.cs" />
+    <Compile Include="Activity\Notification\AlertConfigurationActivity.cs" />
+    <Compile Include="Notification\GcmBroadcastReceiver.cs" />
+    <Compile Include="Notification\GcmService.cs" />
+    <Compile Include="Notification\MyGCMBroadcastReceiver.cs" />
+    <Compile Include="Notification\MyIntentService.cs" />
+    <Compile Include="Helper\CheckLoginHelper.cs" />
+    <Compile Include="Helper\ColorHelper.cs" />
+    <Compile Include="Model\ReceiveModel\TaskDetailJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -450,6 +458,9 @@
     <AndroidResource Include="Resources\layout\pager_item.axml" />
     <AndroidResource Include="Resources\layout\SlidingTabLayout.axml" />
     <AndroidResource Include="Resources\layout\MilestoneDetailLayout.axml" />
+    <AndroidResource Include="Resources\layout\MilestoneEdit.axml" />
+    <AndroidResource Include="Resources\drawable\alert.png" />
+    <AndroidResource Include="Resources\layout\AlertConfiguration.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

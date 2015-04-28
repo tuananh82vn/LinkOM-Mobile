@@ -119,6 +119,10 @@ namespace LinkOM
 				activity = new Intent (this, typeof(KnowledgebaseActivity));
 				StartActivity (activity);
 				break;
+			case 12:
+				activity = new Intent (this, typeof(AlertConfigurationActivity));
+				StartActivity (activity);
+				break;
 			case 15:
 				activity = new Intent (this, typeof(NotifyActivity));
 				StartActivity (activity);
@@ -178,6 +182,7 @@ namespace LinkOM
 			//YES
 			alertDialog.SetButton("Yes", (s, ev) =>
 				{
+					Settings.Token = "";
 					finish();
 				});
 

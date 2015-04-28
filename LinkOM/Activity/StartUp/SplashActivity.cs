@@ -12,6 +12,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.Threading.Tasks;
+using Gcm.Client;
 
 
 namespace LinkOM
@@ -48,6 +49,15 @@ namespace LinkOM
 					Settings.SmallestWidth = int.Parse(Math.Min(widthDp, heightDp).ToString());
 
 				}
+
+				GcmClient.CheckDevice(this);
+				GcmClient.CheckManifest(this);
+				string regId = GcmClient.GetRegistrationId(this);
+				Console.WriteLine("Registration id:"+regId);
+				if(regId.Trim().Equals("")){
+					GcmClient.Register (this, GcmBroadcastReceiver.SENDER_IDS);
+				}
+
 
 				Thread.Sleep (500);
 				return true;

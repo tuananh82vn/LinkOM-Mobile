@@ -69,12 +69,12 @@ namespace LinkOM
 				case Android.Resource.Id.Home:
 					OnBackPressed ();
 					break;
-//				case Resource.Id.edit:
-//					Intent Intent = new Intent (this, typeof(MilestoneEditActivity));
-//					Intent.PutExtra ("Milestone", results);
-//					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-//					StartActivity(Intent);
-//					break;
+				case Resource.Id.edit:
+					Intent Intent = new Intent (this, typeof(MilestoneEditActivity));
+					Intent.PutExtra ("Milestone", results);
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity(Intent);
+					break;
 				default:
 					break;
 			}

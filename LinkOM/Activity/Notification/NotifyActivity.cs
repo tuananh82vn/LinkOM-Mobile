@@ -9,6 +9,7 @@ using Android.Widget;
 using Java.Lang;
 
 using String = System.String;
+using Gcm.Client;
 
 namespace LinkOM
 {
@@ -34,6 +35,8 @@ namespace LinkOM
 
 		private void ButtonOnClick(object sender, EventArgs eventArgs)
 		{
+			GcmClient.UnRegister(this);
+
 			// These are the values that we want to pass to the next activity
 			Bundle valuesForActivity = new Bundle();
 			valuesForActivity.PutInt("count", _count);
