@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/FlyOutContent"
+    android:background="#ffffffff">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout1">
+        <TableLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:id="@+id/tableLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_marginTop="95dp">
+                <ImageButton
+                    android:id="@+id/bt_Project"
+                    android:layout_column="0"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:layout_marginLeft="40.0dp"
+                    android:layout_marginRight="5.0dp"
+                    android:layout_marginTop="10.0dp"
+                    android:background="@drawable/Project_button" />
+                <ImageButton
+                    android:id="@+id/bt_Task"
+                    android:layout_column="1"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:background="@drawable/Task_button"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40.0dp"
+                    android:layout_marginTop="10.0dp" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow2">
+                <ImageButton
+                    android:id="@+id/bt_Ticket"
+                    android:layout_column="0"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:background="@drawable/Ticket_button"
+                    android:layout_marginLeft="40.0dp"
+                    android:layout_marginRight="5.0dp"
+                    android:layout_marginTop="20dp" />
+                <ImageButton
+                    android:id="@+id/bt_Issues"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:background="@drawable/Issues_button"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40.0dp"
+                    android:layout_marginTop="20dp" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow3">
+                <ImageButton
+                    android:id="@+id/bt_Milestone"
+                    android:layout_column="0"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:background="@drawable/Milestone_button"
+                    android:layout_marginLeft="40.0dp"
+                    android:layout_marginRight="5.0dp"
+                    android:layout_marginTop="20dp" />
+                <ImageButton
+                    android:id="@+id/bt_Document"
+                    android:layout_width="149dp"
+                    android:layout_height="149dp"
+                    android:background="@drawable/Document_button"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40.0dp"
+                    android:layout_marginTop="20dp" />
+            </TableRow>
+        </TableLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="400.9dp"
+            android:layout_height="fill_parent"
+            android:id="@+id/FlyOutContent"
+            android:background="#ffffffff"
+            android:layout_marginTop="95dp">
+            <TextView
+                android:text="Pending Milestones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:textStyle="normal"
+                android:textSize="30dp"
+                android:layout_marginTop="10dp" />
+            <ListView
+                android:id="@+id/MilestoneListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:listSelector="#00000000" />
+        </LinearLayout>
+        <FrameLayout
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/frameLayout1"
+            android:layout_marginTop="95dp"
+            android:layout_marginLeft="5dp">
+            <TableLayout
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/tableLayout2">
+                <TableRow
+                    android:id="@+id/tableRow1">
+                    <TextView
+                        android:layout_column="0"
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content" />
+                    <TextView
+                        android:text="Overdue"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_column="1"
+                        android:id="@+id/textView12"
+                        android:layout_height="40dp"
+                        android:layout_width="80dp"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="Open"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_column="2"
+                        android:id="@+id/textView13"
+                        android:layout_height="match_parent"
+                        android:layout_width="80dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="Closed"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_column="3"
+                        android:id="@+id/textView14"
+                        android:layout_height="match_parent"
+                        android:layout_width="80dp"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="Other"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_column="4"
+                        android:id="@+id/textView14"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="80dp" />
+                    <TextView
+                        android:text="Total"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:id="@+id/textView14"
+                        android:layout_height="match_parent"
+                        android:layout_width="80dp"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tableRow2">
+                    <TextView
+                        android:text="Milestones"
+                        android:layout_column="0"
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:textSize="15dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff00ccff" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="1"
+                        android:id="@+id/tv_MileStone_OverDue"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="2"
+                        android:id="@+id/tv_MileStone_Open"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="3"
+                        android:id="@+id/tv_MileStone_Closed"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="4"
+                        android:id="@+id/tv_MileStone_Other"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="5"
+                        android:id="@+id/tv_MileStone_Total"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tableRow3">
+                    <TextView
+                        android:text="Tickets"
+                        android:layout_column="0"
+                        android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:textSize="15dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#ffff001d" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="1"
+                        android:id="@+id/tv_Ticket_OverDue"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="2"
+                        android:id="@+id/tv_Ticket_Open"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="3"
+                        android:id="@+id/tv_Ticket_Closed"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="4"
+                        android:id="@+id/tv_Ticket_Other"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="5"
+                        android:id="@+id/tv_Ticket_Total"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tableRow4">
+                    <TextView
+                        android:text="Tasks"
+                        android:layout_column="0"
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:textSize="15dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#ffe800ff" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="1"
+                        android:id="@+id/tv_Task_OverDue"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="2"
+                        android:id="@+id/tv_Task_Open"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="3"
+                        android:id="@+id/tv_Task_Closed"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="4"
+                        android:id="@+id/tv_Task_Other"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="5"
+                        android:id="@+id/tv_Task_Total"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tableRow5">
+                    <TextView
+                        android:text="Issues"
+                        android:layout_column="0"
+                        android:id="@+id/textView18"
+                        android:layout_height="40dp"
+                        android:textSize="15dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff0016ff"
+                        android:layout_width="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="1"
+                        android:id="@+id/tv_Issues_OverDue"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="match_parent" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="2"
+                        android:id="@+id/tv_Issues_Open"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="3"
+                        android:id="@+id/tv_Issues_Closed"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="4"
+                        android:id="@+id/tv_Issues_Other"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="5"
+                        android:id="@+id/tv_Issues_Other"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:layout_width="wrap_content" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/tableRow6">
+                    <TextView
+                        android:text="All"
+                        android:layout_column="0"
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:textSize="15dp"
+                        android:gravity="center_vertical"
+                        android:textColor="#ff000000" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="1"
+                        android:id="@+id/tv_All_OverDue"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="2"
+                        android:id="@+id/tv_All_Open"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="3"
+                        android:id="@+id/tv_All_Closed"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="4"
+                        android:id="@+id/tv_All_Other"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:text="0"
+                        android:layout_column="5"
+                        android:id="@+id/tv_All_Total"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="15dp" />
+                </TableRow>
+            </TableLayout>
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -9,11 +9,14 @@ using Android.Widget;
 //using NavDrawer.Activities;
 //using NavDrawer.Adapters;
 //using NavDrawer.Models;
+using System.Threading.Tasks;
 
 namespace LinkOM
 {
 	public class HomeFragment : Fragment
 	{
+		public ListView milestoneListView;
+		public MilestoneListAdapter milestoneList;
 
 		public HomeFragment()
 		{
@@ -47,16 +50,111 @@ namespace LinkOM
 			ImageButton bt_Document = view.FindViewById<ImageButton>(Resource.Id.bt_Document);
 			bt_Document.Click += bt_DocumentClick;
 
-
+			if(Settings.Orientation.Equals("Landscape")){
+				milestoneListView = view.FindViewById<ListView> (Resource.Id.MilestoneListView);
+				InitDataMilestone ();
+				InitDataDashboard ();
+			}
 
 			return view;
 		}
 
 
-//		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-//		{
-//			inflater.Inflate(Resource.Menu.FullMenu, menu);
-//		}
+		//Loading data
+		public void InitDataMilestone(){
+
+			string url = Settings.InstanceURL;
+
+			url=url+"/api/MilestoneList";
+
+
+			List<objSort> objSort = new List<objSort>{
+				new objSort{ColumnName = "T.Title", Direction = "1"},
+				new objSort{ColumnName = "T.ProjectName", Direction = "2"}
+			};
+
+			var objMilestone = new
+			{
+				ProjectId = string.Empty,
+				StatusId = string.Empty,
+				DepartmentId = string.Empty,
+				Title = string.Empty,
+				PriorityId= string.Empty,
+				Label= string.Empty,
+				DueBefore= string.Empty,
+				AssignTo= string.Empty,
+				AssignByMe= string.Empty,
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						TokenNumber = Settings.Token,
+						PageSize = 100,
+						PageNumber = 1,
+						Sort = objSort,
+						Item = objMilestone
+					}
+				});
+
+			string results=  ConnectWebAPI.Request(url,objsearch);
+
+			if (results != null) {
+
+				MilestoneListJson MilestoneList = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (results);
+
+				milestoneList = new MilestoneListAdapter (this.Activity, MilestoneList.Items);
+
+				milestoneListView.Adapter = milestoneList;
+
+				milestoneListView.ItemClick += listView_ItemClick;
+
+			}
+
+		}
+
+		//Loading data
+		public void InitDataDashboard(){
+
+			string url = Settings.InstanceURL;
+
+			url=url+"/api/DashboardList";
+
+
+			var objsearch = (new
+			{
+				objApiSearch = new
+				{
+					TokenNumber = Settings.Token,
+					Item = string.Empty
+				}
+			});
+
+			string results=  ConnectWebAPI.Request(url,objsearch);
+
+			if (results != null) {
+
+				MilestoneListJson MilestoneList = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (results);
+
+			}
+
+		}
+
+		//handle list item clicked
+		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+//			//Get our item from the list adapter
+//			MilestoneObject Milestone = this.milestoneList.GetItemAtPosition(e.Position);
+//
+//			Intent addAccountIntent = new Intent (this, typeof(MilestoneDetailActivity));
+//			//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+//
+//			addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject(Milestone));
+//
+//			StartActivity(addAccountIntent);
+
+		}
 
 		public void btTaskClick(object sender, EventArgs e)
 		{

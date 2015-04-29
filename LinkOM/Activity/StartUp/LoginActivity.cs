@@ -38,8 +38,6 @@ namespace LinkOM
 		{
 			base.OnCreate (bundle);
 
-			//SetOrientaion ();
-
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
 
@@ -114,17 +112,6 @@ namespace LinkOM
 //				_timer.Stop();
 //
 //			}
-		}
-
-		private void SetOrientaion(){
-			int minWidth= Settings.SmallestWidth;
-			if (minWidth > 360) {
-				RequestedOrientation = ScreenOrientation.SensorLandscape;
-
-			}
-			else if (minWidth <= 360) {
-				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			}
 		}
 
 		private int ConvertPixelsToDp(float pixelValue)

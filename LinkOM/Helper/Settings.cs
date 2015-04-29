@@ -28,6 +28,9 @@ namespace LinkOM
 		private const string RememberMeKey = "RememberMeKey";
 		private static readonly bool RememberMeKey_Default = false;
 
+		private const string OrientationKey = "OrientationKey";
+		private static readonly string OrientationKey_Default = string.Empty;
+
 		private static ISettings AppSettings
 		{
 			get
@@ -76,6 +79,12 @@ namespace LinkOM
 		{
 			get { return AppSettings.GetValueOrDefault(RememberMeKey, RememberMeKey_Default); }
 			set { AppSettings.AddOrUpdateValue(RememberMeKey, value); }
+		}
+
+		public static string Orientation
+		{
+			get { return AppSettings.GetValueOrDefault(OrientationKey, OrientationKey_Default); }
+			set { AppSettings.AddOrUpdateValue(OrientationKey, value); }
 		}
 
 

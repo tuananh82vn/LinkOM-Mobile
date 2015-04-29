@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using System.Threading.Tasks;
 using Gcm.Client;
+using Android.Content.PM;
 
 
 namespace LinkOM
@@ -32,12 +33,10 @@ namespace LinkOM
 			// Simulate a long loading process on app startup.
 			 	Task<bool>.Run (() => {
 
-				int smallestWidth = Settings.SmallestWidth;
 
-
-				if(smallestWidth==0) {
 
 				var metrics = Resources.DisplayMetrics;
+
 				var widthPixels = metrics.WidthPixels;
 				var heightPixels = metrics.HeightPixels;
 
@@ -46,9 +45,20 @@ namespace LinkOM
 				float widthDp = widthPixels / scaleFactor;
 				float heightDp = heightPixels / scaleFactor;
 
-					Settings.SmallestWidth = int.Parse(Math.Min(widthDp, heightDp).ToString());
+				Settings.SmallestWidth = int.Parse(Math.Min(widthDp, heightDp).ToString());
 
+				int minWidth= Settings.SmallestWidth;
+
+				if (minWidth > 360) {
+					RequestedOrientation = ScreenOrientation.SensorLandscape;
+					Settings.Orientation ="Landscape";
 				}
+				else if (minWidth <= 360) {
+					RequestedOrientation = ScreenOrientation.SensorPortrait;
+					Settings.Orientation ="Portrait";
+				}
+
+
 
 				GcmClient.CheckDevice(this);
 				GcmClient.CheckManifest(this);
@@ -59,11 +69,12 @@ namespace LinkOM
 				}
 
 
-				Thread.Sleep (500);
-				return true;
+				Thread.Sleep (1000);
+				StartActivity(typeof(LoginActivity));
+				this.Finish();
 			}); 
-			StartActivity(typeof(LoginActivity));
-			this.Finish();
+
+
 		}
 	}
 }

@@ -201,6 +201,7 @@
     <Compile Include="Helper\CheckLoginHelper.cs" />
     <Compile Include="Helper\ColorHelper.cs" />
     <Compile Include="Model\ReceiveModel\TaskDetailJson.cs" />
+    <Compile Include="Helper\ScreenHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -258,7 +259,6 @@
     <AndroidResource Include="Resources\layout\SpinnerItemText.axml" />
     <AndroidResource Include="Resources\drawable\Projects.png" />
     <AndroidResource Include="Resources\drawable\RoundButton.xml" />
-    <AndroidResource Include="Resources\drawable-land\Background.jpg" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\layout\StatusRow.xml" />
     <AndroidResource Include="Resources\drawable\action_menu.png" />
@@ -497,6 +497,10 @@
     <AndroidResource Include="Resources\anim\zoom_exit.xml" />
     <AndroidResource Include="Resources\anim\slide_in_top.xml" />
     <AndroidResource Include="Resources\anim\slide_out_bottom.xml" />
+    <AndroidResource Include="Resources\drawable-land\Background.jpg" />
+    <AndroidResource Include="Resources\drawable-land\Background3.png" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\Login.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\MainContentLayout.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -572,13 +576,13 @@
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\layout-xlarge-land\" />
     <Folder Include="Activity\Knowledgebase\" />
     <Folder Include="Activity\Dashboard\" />
     <Folder Include="Chart\" />
     <Folder Include="Activity\Notification\" />
     <Folder Include="Notification\" />
     <Folder Include="Resources\anim\" />
+    <Folder Include="Resources\layout-sw720dp-land\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />
