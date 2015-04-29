@@ -190,16 +190,9 @@ namespace LinkOM
 				Settings.Password = "";
 			}
 
-//			ActivityOptions opts = ActivityOptions.MakeCustomAnimation (this, Resource.Animation.fade, Resource.Animation.hold);
-			
-//			var activity = new Intent (this, typeof(HomeActivity));
-//			StartActivity (activity);
 
 			StartActivity (new Intent (this, typeof (HomeActivity)));
-
-
-			OverridePendingTransition (Resource.Animation.zoom_enter, Resource.Animation.zoom_exit);
-
+			this.OverridePendingTransition(Resource.Animation.slide_in_top, Resource.Animation.slide_out_bottom);
 			this.Finish();
 		}
 
