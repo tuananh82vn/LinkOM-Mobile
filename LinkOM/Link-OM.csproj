@@ -202,6 +202,9 @@
     <Compile Include="Helper\ColorHelper.cs" />
     <Compile Include="Model\ReceiveModel\TaskDetailJson.cs" />
     <Compile Include="Helper\ScreenHelper.cs" />
+    <Compile Include="Model\ViewModel\DashboardObject.cs" />
+    <Compile Include="Model\ReceiveModel\ApiResultList.cs" />
+    <Compile Include="Model\ReceiveModel\ApiResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -501,6 +504,9 @@
     <AndroidResource Include="Resources\drawable-land\Background3.png" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Login.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\MainContentLayout.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\MilestoneList.axml" />
+    <AndroidResource Include="Resources\layout\SuperAwesomeMain.axml" />
+    <AndroidResource Include="Resources\layout\SuperAwesomeRow.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -66,12 +66,15 @@ namespace LinkOM
 			var MilestoneName = view.FindViewById<TextView> (Resource.Id.tv_MilestoneName);
 			MilestoneName.Text = _MilestoneList [position].Title;
 
+			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			ProjectName.Text = _MilestoneList [position].ProjectName;
+
 			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
 			if(_MilestoneList [position].EndDateString!=null)
 				EndDate.Text = _MilestoneList [position].EndDateString;
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _MilestoneList [position].OwnerName;
+			CreatedPerson.Text = _MilestoneList [position].AssignedTo;
 
 
 			return view;

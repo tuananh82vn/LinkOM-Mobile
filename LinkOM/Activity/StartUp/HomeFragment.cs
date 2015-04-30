@@ -5,10 +5,8 @@ using Android.Content;
 using Android.Support.V4.App;
 using Android.Views;
 using Android.Widget;
-
-//using NavDrawer.Activities;
-//using NavDrawer.Adapters;
-//using NavDrawer.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace LinkOM
@@ -53,7 +51,7 @@ namespace LinkOM
 			if(Settings.Orientation.Equals("Landscape")){
 				milestoneListView = view.FindViewById<ListView> (Resource.Id.MilestoneListView);
 				InitDataMilestone ();
-				InitDataDashboard ();
+				InitDataDashboard (view);
 			}
 
 			return view;
@@ -115,7 +113,7 @@ namespace LinkOM
 		}
 
 		//Loading data
-		public void InitDataDashboard(){
+		public void InitDataDashboard(View view){
 
 			string url = Settings.InstanceURL;
 
@@ -135,8 +133,107 @@ namespace LinkOM
 
 			if (results != null) {
 
-				MilestoneListJson MilestoneList = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (results);
+				ApiResultList<IEnumerable<DashboardObject>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<DashboardObject>>> (results);
+				if (objResult.Success) {
+					
+					DashboardObject temp =  Newtonsoft.Json.JsonConvert.DeserializeObject<DashboardObject> (objResult.Items.FirstOrDefault().ToString());
 
+					//-------------------------------------------------------------------------------------------------//
+					TextView tv_MileStone_OverDue = view.FindViewById<TextView>(Resource.Id.tv_MileStone_OverDue);
+					tv_MileStone_OverDue.Text = temp.MilestoneOverdueCount.ToString ();
+
+					TextView tv_MileStone_Open = view.FindViewById<TextView>(Resource.Id.tv_MileStone_Open);
+					tv_MileStone_Open.Text = temp.MilestoneOpenCount.ToString ();
+
+					TextView tv_MileStone_Closed = view.FindViewById<TextView>(Resource.Id.tv_MileStone_Closed);
+					tv_MileStone_Closed.Text = temp.MilestoneClosedCount.ToString ();
+
+					TextView tv_MileStone_Other = view.FindViewById<TextView>(Resource.Id.tv_MileStone_Other);
+					tv_MileStone_Other.Text = temp.MilestoneOtherCount.ToString ();
+
+					TextView tv_MileStone_Total = view.FindViewById<TextView>(Resource.Id.tv_MileStone_Total);
+					var MileStone_Total = temp.MilestoneOverdueCount.Value + temp.MilestoneOpenCount.Value + temp.MilestoneClosedCount.Value + temp.MilestoneOtherCount.Value;
+
+					tv_MileStone_Total.Text = MileStone_Total.ToString ();
+					//-------------------------------------------------------------------------------------------------//
+					TextView tv_Ticket_OverDue = view.FindViewById<TextView>(Resource.Id.tv_Ticket_OverDue);
+					tv_Ticket_OverDue.Text = temp.TicketOverdueCount.ToString ();
+
+					TextView tv_Ticket_Open = view.FindViewById<TextView>(Resource.Id.tv_Ticket_Open);
+					tv_Ticket_Open.Text = temp.TicketOpenCount.ToString ();
+
+					TextView tv_Ticket_Closed = view.FindViewById<TextView>(Resource.Id.tv_Ticket_Closed);
+					tv_Ticket_Closed.Text = temp.TicketClosedCount.ToString ();
+
+					TextView tv_Ticket_Other = view.FindViewById<TextView>(Resource.Id.tv_Ticket_Other);
+					tv_Ticket_Other.Text = temp.TicketOtherCount.ToString ();
+
+					TextView tv_Ticket_Total = view.FindViewById<TextView>(Resource.Id.tv_Ticket_Total);
+					var Ticket_Total = temp.TicketOverdueCount.Value + temp.TicketOpenCount.Value + temp.TicketClosedCount.Value + temp.TicketOtherCount.Value;
+
+					tv_Ticket_Total.Text = Ticket_Total.ToString ();
+					//-------------------------------------------------------------------------------------------------//
+					TextView tv_Task_OverDue = view.FindViewById<TextView>(Resource.Id.tv_Task_OverDue);
+					tv_Task_OverDue.Text = temp.TaskOverdueCount.ToString ();
+
+					TextView tv_Task_Open = view.FindViewById<TextView>(Resource.Id.tv_Task_Open);
+					tv_Task_Open.Text = temp.TaskOpenCount.ToString ();
+
+					TextView tv_Task_Closed = view.FindViewById<TextView>(Resource.Id.tv_Task_Closed);
+					tv_Task_Closed.Text = temp.TaskClosedCount.ToString ();
+
+					TextView tv_Task_Other = view.FindViewById<TextView>(Resource.Id.tv_Task_Other);
+					tv_Task_Other.Text = temp.TaskOtherCount.ToString ();
+
+					TextView tv_Task_Total = view.FindViewById<TextView>(Resource.Id.tv_Task_Total);
+					var Task_Total = temp.TaskOverdueCount.Value + temp.TaskOpenCount.Value + temp.TaskClosedCount.Value + temp.TaskOtherCount.Value;
+
+					tv_Task_Total.Text = Task_Total.ToString ();
+					//-------------------------------------------------------------------------------------------------//
+
+					TextView tv_Issues_OverDue = view.FindViewById<TextView>(Resource.Id.tv_Issues_OverDue);
+					tv_Issues_OverDue.Text = temp.IssueOverdueCount.ToString ();
+
+					TextView tv_Issues_Open = view.FindViewById<TextView>(Resource.Id.tv_Issues_Open);
+					tv_Issues_Open.Text = temp.IssueOpenCount.ToString ();
+
+					TextView tv_Issues_Closed = view.FindViewById<TextView>(Resource.Id.tv_Issues_Closed);
+					tv_Issues_Closed.Text = temp.IssueClosedCount.ToString ();
+
+					TextView tv_Issues_Other = view.FindViewById<TextView>(Resource.Id.tv_Issues_Other);
+					tv_Issues_Other.Text = temp.IssueOtherCount.ToString ();
+
+					TextView tv_Issues_Total = view.FindViewById<TextView>(Resource.Id.tv_Issues_Total);
+					var Issues_Total = temp.IssueOverdueCount.Value + temp.IssueOpenCount.Value + temp.IssueClosedCount.Value + temp.IssueOtherCount.Value;
+
+					tv_Issues_Total.Text = Issues_Total.ToString ();
+					//-------------------------------------------------------------------------------------------------//
+
+					TextView tv_All_OverDue = view.FindViewById<TextView>(Resource.Id.tv_All_OverDue);
+					var All_OverDue = temp.MilestoneOverdueCount.Value + temp.TicketOverdueCount.Value + temp.TaskOverdueCount.Value + temp.IssueOverdueCount.Value;
+
+					tv_All_OverDue.Text = All_OverDue.ToString ();
+
+					TextView tv_All_Open = view.FindViewById<TextView>(Resource.Id.tv_All_Open);
+					var All_Open = temp.MilestoneOpenCount.Value + temp.TicketOpenCount.Value + temp.TaskOpenCount.Value + temp.IssueOpenCount.Value;
+
+					tv_All_Open.Text = All_Open.ToString ();
+
+					TextView tv_All_Closed = view.FindViewById<TextView>(Resource.Id.tv_All_Closed);
+					var All_Closed = temp.MilestoneClosedCount.Value + temp.TicketClosedCount.Value + temp.TaskClosedCount.Value + temp.IssueClosedCount.Value;
+
+					tv_All_Closed.Text = All_Closed.ToString ();
+
+					TextView tv_All_Other = view.FindViewById<TextView>(Resource.Id.tv_All_Other);
+					var All_Other = temp.MilestoneOtherCount.Value + temp.TicketOtherCount.Value + temp.TaskOtherCount.Value + temp.IssueOtherCount.Value;
+
+					tv_All_Other.Text = All_Other.ToString ();
+
+					TextView tv_All_Total = view.FindViewById<TextView>(Resource.Id.tv_All_Total);
+					var All_Total = MileStone_Total + Ticket_Total + Task_Total + Issues_Total;
+
+					tv_All_Total.Text = All_Total.ToString ();
+				}
 			}
 
 		}
@@ -144,15 +241,15 @@ namespace LinkOM
 		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-//			//Get our item from the list adapter
-//			MilestoneObject Milestone = this.milestoneList.GetItemAtPosition(e.Position);
-//
-//			Intent addAccountIntent = new Intent (this, typeof(MilestoneDetailActivity));
-//			//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-//
-//			addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject(Milestone));
-//
-//			StartActivity(addAccountIntent);
+			//Get our item from the list adapter
+			MilestoneObject Milestone = this.milestoneList.GetItemAtPosition(e.Position);
+
+			Intent addAccountIntent = new Intent (this.Activity, typeof(MilestoneDetailActivity));
+			//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+
+			addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject(Milestone));
+
+			StartActivity(addAccountIntent);
 
 		}
 
@@ -164,7 +261,7 @@ namespace LinkOM
 
 		public void btProjectClick(object sender, EventArgs e)
 		{
-			var activity = new Intent (base.Activity, typeof(ProjectActivity));
+			var activity = new Intent (base.Activity, typeof(ProjectActivity2));
 			StartActivity (activity);
 		}
 
