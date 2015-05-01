@@ -37,6 +37,9 @@ namespace LinkOM
 
 		public InputMethodManager inputManager;
 
+		public MenuInflater inflater;
+
+		public ProjectObject ProjectSelected;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -66,12 +69,6 @@ namespace LinkOM
 
 
 			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
-
-//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-//
-//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
-//
-//			refresher.Refresh += HandleRefresh;
 
 		}
 
@@ -131,8 +128,6 @@ namespace LinkOM
 
 				projectListView.ItemClick += listView_ItemClick;
 
-//			RegisterForContextMenu(projectListView);
-
 				loading = false;
 			}
 
@@ -155,7 +150,17 @@ namespace LinkOM
 				Intent Intent = new Intent (this, typeof(ProjectAddActivity));
 				Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
 				StartActivity(Intent);
+				break;
+			case Resource.Id.edit:
+				if (ProjectSelected != null) {
+					Intent Intent2 = new Intent (this, typeof(ProjectEditActivity));
+					Intent2.PutExtra ("Project", Newtonsoft.Json.JsonConvert.SerializeObject (ProjectSelected));
+					Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity (Intent2);
 
+				} else {
+					Toast.MakeText (this, "No project selected.", ToastLength.Short).Show ();
+				}
 				break;
 			default:
 				break;
@@ -167,15 +172,19 @@ namespace LinkOM
 		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			//Get our item from the list adapter
-			ProjectObject Project = this.projectList.GetItemAtPosition(e.Position);
+			ProjectSelected = this.projectList.GetItemAtPosition (e.Position);
 
-			Intent addAccountIntent = new Intent (this, typeof(ProjectDetailActivity));
-//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-//
-			addAccountIntent.PutExtra ("Project", Newtonsoft.Json.JsonConvert.SerializeObject(Project));
+			if (Settings.Orientation.Equals ("Portrait")) {
+				
+				Intent addAccountIntent = new Intent (this, typeof(ProjectDetailActivity));
+				addAccountIntent.PutExtra ("Project", Newtonsoft.Json.JsonConvert.SerializeObject (ProjectSelected));
+				StartActivity (addAccountIntent);
 
-			StartActivity(addAccountIntent);
+			} 
+			else {
+
+				DisplayProject (ProjectSelected);
+			}
 
 		}
 
@@ -184,9 +193,13 @@ namespace LinkOM
 		{
 			base.OnCreateOptionsMenu (menu);
 
-			MenuInflater inflater = this.MenuInflater;
+			inflater = this.MenuInflater;
 
-			inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
+			if (Settings.Orientation.Equals ("Portrait")) {
+				inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
+			}
+			else
+				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
 
 			return true;
 		}
@@ -205,7 +218,6 @@ namespace LinkOM
 				anim.AnimationStart += anim_AnimationStartDown;
 				anim.AnimationEnd += anim_AnimationEndDown;
 				projectListView.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
-
 
 				inputManager.ShowSoftInput(mSearch, ShowFlags.Implicit);
 
@@ -273,38 +285,67 @@ namespace LinkOM
 			return false;
 		}
 
-//		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
-//		{
-//			if (v.Id == Android.Resource.Id.List)
-//			{
-//				var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-//				menu.SetHeaderTitle(projectList.GetItemName(info.Position));
-//				var menuItems = Resources.GetStringArray(Resource.Array.menu);
-//				for (var i = 0; i < menuItems.Length; i++)
-//					menu.Add(Menu.None, i, i, menuItems[i]);
-//			}
-//		}
+		public void DisplayProject(ProjectObject obj){
 
-//		public override bool OnContextItemSelected(IMenuItem item)
-//		{
-//			var info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
-//			var menuItemIndex = item.ItemId;
-//			var menuItems = Resources.GetStringArray(Resource.Array.menu);
-//			var menuItemName = menuItems[menuItemIndex];
-//
-//			var ProjectName = projectList.GetItemName(info.Position);
-//			int ProjectId = int.Parse(projectList.GetItemId(info.Position).ToString());
-//
-//			if (menuItemName.Equals ("Add Task")) {
-//				var activity = new Intent (this, typeof(AddTaskActivity));
-//				activity.PutExtra ("ProjectId", ProjectId);
-//				StartActivity (activity);
-//			}
-//			else
-//				Toast.MakeText(this, string.Format("Selected {0} for item {1}", menuItemName, ProjectName), ToastLength.Short).Show();
-//
-//			return true;
-//		}
+			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
+			ProjectName.Text = obj.Name;
+
+			var Code = FindViewById<TextView> (Resource.Id.tv_Code);
+			Code.Text = obj.Code;
+
+			var RefCode = FindViewById<TextView> (Resource.Id.tv_RefCode);
+			RefCode.Text = obj.ReferenceCode;
+
+			var ProjectPhase = FindViewById<TextView> (Resource.Id.tv_Phase);
+			ProjectPhase.Text = obj.ProjectPhase;
+
+			var ProjectStatus = FindViewById<TextView> (Resource.Id.tv_ProjectStatus);
+			ProjectStatus.Text = obj.ProjectStatus;
+
+			var AllocatedHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
+			if (obj.AllocatedHours != null)
+				AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
+
+			var StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
+			if(obj.StartDate!=null)
+				StartDate.Text = obj.StartDate.Value.ToShortDateString();
+
+			var EndDate = FindViewById<TextView> (Resource.Id.tv_EndDate);
+			if(obj.EndDate!=null)
+				EndDate.Text = obj.EndDate.Value.ToShortDateString();
+
+			var ActualStartDate = FindViewById<TextView> (Resource.Id.tv_ActualStartDate);
+			if(obj.ActualStartDate!=null)
+				ActualStartDate.Text = obj.ActualStartDate.Value.ToShortDateString();
+
+			var ActualEndDate = FindViewById<TextView> (Resource.Id.tv_ActualEndDate);
+			if(obj.ActualEndDate!=null)
+				ActualEndDate.Text = obj.ActualEndDate.Value.ToShortDateString();
+
+			var ClientName = FindViewById<TextView> (Resource.Id.tv_Client);
+			ClientName.Text = obj.ClientName;
+
+			var DeliveryManager = FindViewById<TextView> (Resource.Id.tv_DeliveryManager);
+			DeliveryManager.Text = obj.DeliveryManagerName;
+
+			var ProjectManager = FindViewById<TextView> (Resource.Id.tv_ProjectManager);
+			ProjectManager.Text = obj.ProjectManagerName;
+
+			var ProjectCoordinator = FindViewById<TextView> (Resource.Id.tv_ProjectCoordinator);
+			ProjectCoordinator.Text = obj.ProjectCoordinatorName;
+
+			var Notes = FindViewById<TextView> (Resource.Id.tv_Notes);
+			if(obj.Notes!=null)
+				Notes.Text = obj.Notes;
+
+			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
+			if(obj.Description!=null)
+				Description.Text = obj.Description;
+
+			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
+			DepartmentName.Text = obj.DepartmentName;
+
+		}
 	}
 }
 

@@ -84,7 +84,7 @@ namespace LinkOM
 			SetContentView (Resource.Layout.TaskEdit);
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
-			ActionBar.SetTitle(Resource.String.task_title);
+			ActionBar.SetTitle(Resource.String.task_title_edit);
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);

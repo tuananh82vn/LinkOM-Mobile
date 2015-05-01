@@ -130,7 +130,6 @@
     <Compile Include="Model\ReceiveModel\StatusList.cs" />
     <Compile Include="Model\ReceiveModel\TaskList.cs" />
     <Compile Include="Model\ViewModel\TaskObject.cs" />
-    <Compile Include="Activity\Ticket\TicketActivity.cs" />
     <Compile Include="UIControl\SwipeRefreshLayout.cs" />
     <Compile Include="UIControl\MyAnimation.cs" />
     <Compile Include="Activity\Issues\IssuesActivity.cs" />
@@ -205,6 +204,8 @@
     <Compile Include="Model\ViewModel\DashboardObject.cs" />
     <Compile Include="Model\ReceiveModel\ApiResultList.cs" />
     <Compile Include="Model\ReceiveModel\ApiResult.cs" />
+    <Compile Include="Activity\Ticket\TicketActivity_backup.cs" />
+    <Compile Include="Activity\Ticket\TicketActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -282,7 +283,6 @@
     <AndroidResource Include="Resources\values\Theme.xml" />
     <AndroidResource Include="Resources\layout\Ticket.axml" />
     <AndroidResource Include="Resources\layout\TaskEdit.axml" />
-    <AndroidResource Include="Resources\layout\TaskAdd.axml" />
     <AndroidResource Include="Resources\layout\TaskListContainer.axml" />
     <AndroidResource Include="Resources\layout\Issues.axml" />
     <AndroidResource Include="Resources\drawable\Profile.png" />
@@ -507,6 +507,13 @@
     <AndroidResource Include="Resources\layout-sw720dp-land\MilestoneList.axml" />
     <AndroidResource Include="Resources\layout\SuperAwesomeMain.axml" />
     <AndroidResource Include="Resources\layout\SuperAwesomeRow.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\Project.axml" />
+    <AndroidResource Include="Resources\menu\AddEditSearchMenu.xml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\ProjectEdit.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\Task.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\TaskEdit.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\Ticket.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\TicketEdit.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

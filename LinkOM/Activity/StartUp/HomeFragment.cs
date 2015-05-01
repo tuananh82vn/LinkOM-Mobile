@@ -261,7 +261,7 @@ namespace LinkOM
 
 		public void btProjectClick(object sender, EventArgs e)
 		{
-			var activity = new Intent (base.Activity, typeof(ProjectActivity2));
+			var activity = new Intent (base.Activity, typeof(ProjectActivity));
 			StartActivity (activity);
 		}
 
