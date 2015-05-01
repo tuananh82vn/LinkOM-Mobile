@@ -84,7 +84,7 @@ namespace LinkOM
 			SetContentView (Resource.Layout.IssuesEdit);
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
-			ActionBar.SetTitle(Resource.String.ticket_title_edit);
+			ActionBar.SetTitle(Resource.String.issues_title_add);
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);

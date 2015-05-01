@@ -49,23 +49,29 @@
   		<string name="ticket_title">Ticket</string>
   		<string name="ticket_title_edit">Ticket Edit</string>
   		<string name="ticket_title_detail">Ticket Detail</string>
+  		<string name="ticket_title_add">Create Ticket</string>
 
   		<string name="issues_title">Issues</string>
   		<string name="issues_title_list">Issues List</string>
   		<string name="issues_title_edit">Issues Edit</string>
   		<string name="issues_title_detail">Issues Detail</string>
+  		<string name="issues_title_add">Create Issue</string>
+
 
   		<string name="milestone_title">Milestone</string>
   		<string name="milestone_title_edit">Milestone Edit</string>
   		<string name="milestone_title_detail">Milestone Detail</string>
+  		<string name="milestone_title_add">Create Milestone</string>
 
   		<string name="document_title">Document</string>
   		<string name="document_title_edit">Document Edit</string>
   		<string name="document_title_detail">Document Detail</string>
+  		<string name="document_title_add">Create Document</string>
 
   		<string name="Knowledgebase_title">Knowledgebase</string>
   		<string name="Knowledgebase_title_edit">Knowledgebase Edit</string>
   		<string name="Knowledgebase_title_detail">Knowledgebase Detail</string>
+  		<string name="Knowledgebase_title_add">Create Knowledgebase</string>
 
   		<string name="Dashboard_title">Dashboard</string>
 

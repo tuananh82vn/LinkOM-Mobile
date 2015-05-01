@@ -20,65 +20,118 @@ using Android.Util;
 
 using RadialProgress;
 using System.Timers;
+using Android.Views.InputMethods;
+using Android.Text;
 
 namespace LinkOM
 {
-	[Activity (Label = "Issues", Theme = "@style/Theme.Customtheme")]				
-	public class IssuesActivity : Activity
+	[Activity (Label = "Issues", Theme = "@style/Theme.Customtheme")]					
+	public class IssuesActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public LinearLayout LinearLayout_Master;
-		//		public ProgressDialog progress;
+//		public ProgressDialog progress;
 		public List<Button> buttonList;
 		public IssuesList issuesList;
+		public IssuesListAdapter issuesListAdapter;
+
+		public ListView issuesListView ;
+
 		public RadialProgressView progressView;
 		private System.Timers.Timer _timer;
 
+		public EditText mSearch;
+		private bool mAnimatedDown;
+		private bool mIsAnimating;
+
+		public InputMethodManager inputManager;
+
+		public IssuesObject IssuesSelected;
+
+		public FrameLayout frame_IssuesDetail;
+
 		protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (bundle);
 
-			RequestWindowFeature (WindowFeatures.ActionBar);
+				base.OnCreate (bundle);
 
-			SetContentView (Resource.Layout.Issues);
-
-			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
-			ActionBar.SetTitle(Resource.String.issues_title);
-			ActionBar.SetDisplayShowTitleEnabled (true);
-			ActionBar.SetDisplayHomeAsUpEnabled(true);
-			ActionBar.SetHomeButtonEnabled(true);
+				RequestWindowFeature (WindowFeatures.ActionBar);
 
 
+				SetContentView (Resource.Layout.Issues);
 
-			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
-			progressView.MinValue = 0;
-			progressView.MaxValue = 100;
+				
+				// Create your application here
+
+				ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
+				ActionBar.SetTitle (Resource.String.issues_title);
+				ActionBar.SetDisplayShowTitleEnabled (true);
+				ActionBar.SetDisplayHomeAsUpEnabled (true);
+				ActionBar.SetHomeButtonEnabled (true);
+
+				if(!Settings.Orientation.Equals("Portrait")){
+					mSearch = FindViewById<EditText>(Resource.Id.etSearch);
+					mSearch.Alpha = 0;
+					mSearch.SetOnEditorActionListener (this);
+					mSearch.Focusable = false;
+					mSearch.FocusableInTouchMode = false;
+					mSearch.TextChanged += InputSearchOnTextChanged;
+					inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
+					frame_IssuesDetail  = FindViewById<FrameLayout> (Resource.Id.frame_taskdetail);
+					frame_IssuesDetail.Visibility = ViewStates.Invisible;
+
+				}
+
+				progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
+				progressView.MinValue = 0;
+				progressView.MaxValue = 100;
 
 
-			_timer = new System.Timers.Timer(10);
-			_timer.Elapsed += HandleElapsed;
-			_timer.Start();
+				_timer = new System.Timers.Timer (10);
+				_timer.Elapsed += HandleElapsed;
+				_timer.Start ();
 
-			ThreadPool.QueueUserWorkItem (o => InitData ());
+				ThreadPool.QueueUserWorkItem (o => GetIssuesStatus ());
 
-
+				
 		}
 
+		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
+		{
+			issuesListAdapter.Filter.InvokeFilter(mSearch.Text);
+		}
+
+		//Handle item on action bar clicked
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			base.OnOptionsItemSelected (item);
 
 			switch (item.ItemId)
 			{
-			case Android.Resource.Id.Home:
-				OnBackPressed ();
-				break;
-			case Resource.Id.add:
-				Intent Intent2 = new Intent (this, typeof(IssuesAddActivity));
-				Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
-				StartActivity(Intent2);
-				break;
-			default:
-				break;
+				case Android.Resource.Id.Home:
+					OnBackPressed ();
+					break;
+				case Resource.Id.add:
+					Intent Intent2 = new Intent (this, typeof(IssuesAddActivity));
+					Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity(Intent2);
+					break;
+
+				case Resource.Id.edit:
+					if (IssuesSelected != null) {
+						Intent Intent = new Intent (this, typeof(IssuesEditActivity));
+						Intent.PutExtra ("Issues", Newtonsoft.Json.JsonConvert.SerializeObject (IssuesSelected));
+						Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+						StartActivity (Intent);
+					}
+					else
+						Toast.MakeText (this, "No Issues Selected.", ToastLength.Short).Show ();
+					break;
+
+				case Resource.Id.search:
+					btSearchClick ();
+					break;
+				default:
+					break;
 			}
 
 			return true;
@@ -91,8 +144,11 @@ namespace LinkOM
 
 			MenuInflater inflater = this.MenuInflater;
 
-			inflater.Inflate (Resource.Menu.AddMenu, menu);
-
+			if (Settings.Orientation.Equals ("Portrait")) {
+				inflater.Inflate (Resource.Menu.AddMenu, menu);
+			}
+			else
+				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
 			return true;
 		}
 
@@ -104,7 +160,7 @@ namespace LinkOM
 			}
 		}
 
-		public void InitData ()
+		public void GetIssuesStatus ()
 		{
 			string url = Settings.InstanceURL;
 
@@ -147,6 +203,7 @@ namespace LinkOM
 						Item = objIssues
 					}
 				});
+			
 
 			string results_Issues= ConnectWebAPI.Request(url_Issues,objsearch);
 
@@ -159,7 +216,6 @@ namespace LinkOM
 
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
-
 
 
 			string url_IssuesStatusList= url+"/api/IssueStatusList";
@@ -176,20 +232,25 @@ namespace LinkOM
 
 					buttonList = new List<Button> (statusList.Items.Count);
 
+
 					for (int i = 0; i < statusList.Items.Count; i++) {
 						//Init button
 						Button button = new Button (this);
-						//Add button into View
-						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button);
+
 						//Get number of task
-						if (issuesList != null) {
-							var NumberOfIssues = CheckIssues (statusList.Items [i].Name, issuesList.Items).ToString ();
-							RunOnUiThread (() => button.Text = NumberOfIssues);
-							buttonList.Add (button);
-						}
+						int NumberOfIssues = CheckIssues (statusList.Items [i].Name, issuesList.Items);
+
+						//Add button into View
+						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button, NumberOfIssues);
+
+						RunOnUiThread (() => button.Text =  NumberOfIssues.ToString());
+
+						buttonList.Add (button);
 					}
 				}
 			}
+
+
 
 			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
 		}
@@ -204,10 +265,10 @@ namespace LinkOM
 			return count;
 		}
 
-		private void AddRow(int id,string Title, Color color, Button button){
+		private void AddRow(int id,string Title, Color color, Button button, int NumberOfIssues){
 
 			TableRow tableRow = new TableRow (this);
-			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(70));
+			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(80));
 			layoutParams_TableRow.TopMargin = dpToPx(1);
 			layoutParams_TableRow.BottomMargin = dpToPx(1);
 			tableRow .LayoutParameters = layoutParams_TableRow;
@@ -223,12 +284,20 @@ namespace LinkOM
 			textView.LayoutParameters = layoutParams_textView;
 			textView.Gravity = GravityFlags.CenterVertical;
 			textView.TextSize = 20;
-			textView.Text = Title;
 
-			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, TableRow.LayoutParams.MatchParent);
+			if(Settings.Orientation.Equals("Portrait"))
+				textView.Text = Title;
+			else
+				textView.Text = Title +" (" +NumberOfIssues.ToString()+")";
+			
+			textView.Click += HandleMyButton;
+			textView.Tag = id;
+
+			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
 			button.LayoutParameters = layoutParams_button;
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
 			button.Text="0";
+			button.Gravity = GravityFlags.CenterVertical;
 			button.SetTextColor (Color.Black);
 			button.SetBackgroundColor (color);
 			button.Tag = id;
@@ -238,10 +307,13 @@ namespace LinkOM
 			View view = new View (this);
 			TableRow.LayoutParams layoutParams_view = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, dpToPx(1));
 			view.LayoutParameters = layoutParams_view;
-			view.SetBackgroundColor (Color.Gray);
+			view.SetBackgroundColor (Color.ParseColor("#AEAEAE"));
 
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
-			RunOnUiThread (() => LinearLayout_Inside.AddView (button));
+
+			if(Settings.Orientation.Equals("Portrait"))
+				RunOnUiThread (() => LinearLayout_Inside.AddView (button));
+
 			RunOnUiThread (() => tableRow.AddView (LinearLayout_Inside));
 			RunOnUiThread (() => LinearLayout_Master.AddView (tableRow));
 			RunOnUiThread (() => LinearLayout_Master.AddView (view));
@@ -262,13 +334,226 @@ namespace LinkOM
 
 		private void HandleMyButton(object sender, EventArgs e)
 		{
-			Button myNewButton = (Button)sender;
-			int whichOne = (int)myNewButton.Tag;
-			// do stuff
+			int whichOne = 0;
+			if (Settings.Orientation.Equals ("Portrait")) {
+				Button myObject1 = (Button)sender;
+				whichOne = (int)myObject1.Tag;
 
-			var activity = new Intent (this, typeof(IssuesListActivity));
-			activity.PutExtra ("IssuesStatusId", whichOne);
-			StartActivity (activity);
+				var activity = new Intent (this, typeof(IssuesListActivity));
+				activity.PutExtra ("IssuesStatusId", whichOne);
+				StartActivity (activity);
+			}
+			else{
+					issuesListView = FindViewById<ListView> (Resource.Id.IssuesListView);
+					TextView myObject2 = (TextView)sender;
+					whichOne = (int)myObject2.Tag;
+					GetIssuesDetailList (whichOne);
+			}
+		}
+
+
+		private void GetIssuesDetailList(int StatusId){
+
+			if (StatusId != 0) {
+
+				string url = Settings.InstanceURL;
+
+				url=url+"/api/IssueList";
+
+				var objTicket = new
+				{
+					ProjectId = string.Empty,
+					IssueStatusId = StatusId,
+					DepartmentId = string.Empty,
+					Title = string.Empty,
+					PriorityId = string.Empty,
+					Label= string.Empty,
+					DueBefore = string.Empty,
+					AssignTo = string.Empty,
+					AssignByMe = string.Empty,
+				};
+
+				var objsearch = (new
+					{
+						objApiSearch = new
+						{
+							UserId = Settings.UserId,
+							TokenNumber =Settings.Token,
+							PageSize = 100,
+							PageNumber = 1,
+							SortMember ="",
+							SortDirection = "",
+							MainStatusId=1,
+							Item = objTicket
+						}
+					});
+
+				string results = ConnectWebAPI.Request (url, objsearch);
+
+				if (results != null && results != "") {
+
+					IssuesList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
+
+					if (obj.Items != null) {
+
+						issuesListAdapter = new IssuesListAdapter (this, obj.Items);
+
+						issuesListView.Adapter = issuesListAdapter;
+
+						issuesListView.ItemClick += listView_ItemClick;
+
+
+					} else {
+						issuesListView.Adapter = null;
+						Toast.MakeText (this, "No Issues Available.", ToastLength.Short).Show ();
+
+					}
+
+					frame_IssuesDetail.Visibility = ViewStates.Invisible;
+				}
+			}
+
+		}
+
+		//handle list item clicked
+		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+			IssuesSelected = this.issuesListAdapter.GetItemAtPosition (e.Position);
+			frame_IssuesDetail.Visibility = ViewStates.Visible;
+			DisplayIssues (IssuesSelected);
+		}
+
+		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
+		{
+			//go edit action will login
+			if (actionId == ImeAction.Search) {
+				if (!string.IsNullOrEmpty (mSearch.Text)) {
+					issuesListAdapter.Filter.InvokeFilter(mSearch.Text);
+				} 
+				return true;
+				//next action will set focus to password edit text.
+			} 
+			return false;
+		}
+
+		public void btSearchClick()
+		{
+			if (issuesListAdapter != null) {
+				if (!mAnimatedDown) {
+					mSearch.Focusable = true;
+					mSearch.FocusableInTouchMode = true;
+					mSearch.RequestFocus ();
+					MyAnimation anim = new MyAnimation (issuesListView, issuesListView.Height - mSearch.Height);
+					anim.Duration = 500;
+					issuesListView.StartAnimation (anim);
+					anim.AnimationStart += anim_AnimationStartDown;
+					anim.AnimationEnd += anim_AnimationEndDown;
+					issuesListView.Animate ().TranslationYBy (mSearch.Height).SetDuration (500).Start ();
+
+					inputManager.ShowSoftInput (mSearch, ShowFlags.Implicit);
+
+				} else {
+
+					mSearch.Focusable = false;
+					mSearch.FocusableInTouchMode = false;
+
+					MyAnimation anim = new MyAnimation (issuesListView, issuesListView.Height + mSearch.Height);
+					anim.Duration = 500;
+					issuesListView.StartAnimation (anim);
+					anim.AnimationStart += anim_AnimationStartUp;
+					anim.AnimationEnd += anim_AnimationEndUp;
+					issuesListView.Animate ().TranslationYBy (-mSearch.Height).SetDuration (500).Start ();
+
+					inputManager.HideSoftInputFromWindow (this.mSearch.WindowToken, 0);
+
+
+				}
+
+				mAnimatedDown = !mAnimatedDown;
+			}
+		}
+
+		void anim_AnimationEndUp(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
+		{
+			mIsAnimating = false;
+			mSearch.ClearFocus();
+		}
+
+		void anim_AnimationEndDown(object sender, Android.Views.Animations.Animation.AnimationEndEventArgs e)
+		{
+			mIsAnimating = false;
+		}
+
+		void anim_AnimationStartDown(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
+		{
+			mIsAnimating = true;
+			mSearch.Animate().AlphaBy(1.0f).SetDuration(1000).Start();
+		}
+
+		void anim_AnimationStartUp(object sender, Android.Views.Animations.Animation.AnimationStartEventArgs e)
+		{
+			mIsAnimating = true;
+			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
+		}
+
+		public void DisplayIssues(IssuesObject obj)
+		{
+
+			var IssuesName = FindViewById<TextView> (Resource.Id.tv_IssuesDetailName);
+			IssuesName.Text = obj.Title;
+
+			var Status = FindViewById<TextView> (Resource.Id.tv_DetailStatus);
+			Status.Text = obj.StatusName;
+
+			var Priority = FindViewById<TextView> (Resource.Id.tv_Priority);
+			Priority.Text = obj.PriorityName;
+
+			//			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
+			//			Internal.Checked = obj.IsInternal;
+
+			//			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
+			//			Management.Checked = obj.IsManagement;
+
+
+			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
+			ProjectName.Text = obj.ProjectName;
+
+			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
+			tv_AssignedTo.Text = obj.AssignedToName;
+
+
+			//			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
+			//			Label.Text = obj.Label;
+			//
+			//			var Type = FindViewById<TextView> (Resource.Id.tv_Type);
+			//			Type.Text = obj.IssuesTypeName;
+			//
+			//			var Receive  = FindViewById<TextView> (Resource.Id.tv_Receive);
+			//			Receive.Text = obj.IssuesReceivedMethodName;
+
+
+			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
+			AlloHours.Text = obj.AllocatedHours.ToString();
+
+			//			var ActualHours  = FindViewById<TextView> (Resource.Id.tv_ActualHours);
+			//			ActualHours.Text = obj.ActualHours.ToString();
+
+			//			var StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
+			//			if(obj.StartDate!=null)
+			//				StartDate.Text = obj.StartDateString;
+			//
+			//			var EndDate = FindViewById<TextView> (Resource.Id.tv_EndDate);
+			//			if(obj.EndDate!=null)
+			//				EndDate.Text = obj.EndDateString;
+
+
+			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
+			if(obj.Description!=null)
+				Description.Text = obj.Description;
+
+			//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
+			//			DepartmentName.Text = obj.DepartmentName;
+
 		}
 	}
 }

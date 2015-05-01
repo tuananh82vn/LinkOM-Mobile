@@ -132,7 +132,6 @@
     <Compile Include="Model\ViewModel\TaskObject.cs" />
     <Compile Include="UIControl\SwipeRefreshLayout.cs" />
     <Compile Include="UIControl\MyAnimation.cs" />
-    <Compile Include="Activity\Issues\IssuesActivity.cs" />
     <Compile Include="Helper\JavaHolder.cs" />
     <Compile Include="Helper\ObjectExtensions.cs" />
     <Compile Include="Model\ViewModel\TicketObject.cs" />
@@ -206,6 +205,8 @@
     <Compile Include="Model\ReceiveModel\ApiResult.cs" />
     <Compile Include="Activity\Ticket\TicketActivity_backup.cs" />
     <Compile Include="Activity\Ticket\TicketActivity.cs" />
+    <Compile Include="Activity\Issues\IssuesActivityBackup.cs" />
+    <Compile Include="Activity\Issues\IssuesActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -514,6 +515,8 @@
     <AndroidResource Include="Resources\layout-sw720dp-land\TaskEdit.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Ticket.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\TicketEdit.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\Issues.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\IssuesEdit.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
