@@ -263,7 +263,7 @@ namespace LinkOM
 		private void AddRow(int id,string Title, Color color, Button button, int NumberOfTask){
 
 			TableRow tableRow = new TableRow (this);
-			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(80));
+			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(70));
 			layoutParams_TableRow.TopMargin = dpToPx(1);
 			layoutParams_TableRow.BottomMargin = dpToPx(1);
 			tableRow .LayoutParameters = layoutParams_TableRow;
@@ -292,7 +292,7 @@ namespace LinkOM
 			button.LayoutParameters = layoutParams_button;
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
 			button.Text="0";
-			button.Gravity = GravityFlags.CenterVertical;
+			button.Gravity = GravityFlags.Center;
 			button.SetTextColor (Color.Black);
 			button.SetBackgroundColor (color);
 			button.Tag = id;

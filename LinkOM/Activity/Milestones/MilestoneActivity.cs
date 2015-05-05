@@ -36,7 +36,9 @@ namespace LinkOM
 		public ListView milestoneListView;
 
 		public InputMethodManager inputManager;
-
+		public FrameLayout frameLayout1;
+		public MilestoneObject MilestoneSelected;
+		public string results;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -67,6 +69,27 @@ namespace LinkOM
 
 			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
 
+			if (!Settings.Orientation.Equals ("Portrait")) {
+				
+				frameLayout1  = FindViewById<FrameLayout> (Resource.Id.frameLayout1);
+
+				LoadMilestone ();
+				if (MilestoneSelected != null) {
+					DisplayMilestone (MilestoneSelected);
+					frameLayout1.Visibility = ViewStates.Visible;
+				}
+				else
+					frameLayout1.Visibility = ViewStates.Invisible;
+			}
+
+		}
+
+		public void LoadMilestone(){
+
+			results= Intent.GetStringExtra ("Milestone");
+
+			if(results!=null)
+				MilestoneSelected = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneObject> (results);
 		}
 
 		//Refesh data
@@ -164,15 +187,48 @@ namespace LinkOM
 		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			//Get our item from the list adapter
-			MilestoneObject Milestone = this.milestoneList.GetItemAtPosition(e.Position);
+			MilestoneSelected = this.milestoneList.GetItemAtPosition (e.Position);
 
-			Intent addAccountIntent = new Intent (this, typeof(MilestoneDetailActivity));
-			//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			if (Settings.Orientation.Equals ("Portrait")) {
+				//Get our item from the list adapter
 
-			addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject(Milestone));
+				Intent addAccountIntent = new Intent (this, typeof(MilestoneDetailActivity));
 
-			StartActivity(addAccountIntent);
+				addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject (MilestoneSelected));
+
+				StartActivity (addAccountIntent);
+			}
+			else {
+
+				DisplayMilestone (MilestoneSelected);
+			}
+
+		}
+
+		public void DisplayMilestone(MilestoneObject obj){
+			frameLayout1.Visibility = ViewStates.Visible;
+			var MilestoneName = FindViewById<TextView> (Resource.Id.tv_MilestoneDetailName);
+			MilestoneName.Text = obj.Title;
+
+
+			var MilestoneStatus = FindViewById<TextView> (Resource.Id.tv_Status);
+			MilestoneStatus.Text = obj.Status;
+
+			var DueDate = FindViewById<TextView> (Resource.Id.tv_DueDate);
+			if(obj.EndDateString!=null)
+				DueDate.Text = obj.EndDateString;
+
+			var ExpectedEndDate = FindViewById<TextView> (Resource.Id.tv_CompletedDate);
+			if(obj.ActualEndDateString!=null)
+				ExpectedEndDate.Text = obj.ActualEndDateString;
+
+
+			//			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
+			//			if(obj.Description!=null)
+			//				Description.Text = obj.Description;
+
+			//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
+			//			DepartmentName.Text = obj.DepartmentName;
 
 		}
 

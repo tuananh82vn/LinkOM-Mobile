@@ -244,7 +244,7 @@ namespace LinkOM
 			//Get our item from the list adapter
 			MilestoneObject Milestone = this.milestoneList.GetItemAtPosition(e.Position);
 
-			Intent addAccountIntent = new Intent (this.Activity, typeof(MilestoneDetailActivity));
+			Intent addAccountIntent = new Intent (this.Activity, typeof(MilestoneActivity));
 			//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);
 
 			addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject(Milestone));

@@ -44,6 +44,7 @@
     <DebugType>full</DebugType>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AndroidLinkSkip>System.Core</AndroidLinkSkip>
+    <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -517,6 +518,9 @@
     <AndroidResource Include="Resources\layout-sw720dp-land\TicketEdit.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Issues.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\IssuesEdit.axml" />
+    <AndroidResource Include="Resources\layout\SplashLayout.axml" />
+    <AndroidResource Include="Resources\anim\rotate_center.xml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\Milestones.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

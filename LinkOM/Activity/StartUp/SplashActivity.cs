@@ -14,17 +14,28 @@ using Android.Widget;
 using System.Threading.Tasks;
 using Gcm.Client;
 using Android.Content.PM;
+using Android.Views.Animations;
 
 
 namespace LinkOM
 {
 
-	[Activity(Theme = "@style/Theme.Splash", MainLauncher = true, NoHistory = true)]
+	[Activity(Theme = "@style/Theme.Customtheme", MainLauncher = true, NoHistory = true)]
 	public class SplashActivity : Activity
 	{
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+			// Set our view from the "main" layout resource
+			SetContentView (Resource.Layout.SplashLayout);
+
+			var image = FindViewById<ImageView>(Resource.Id.floating_image);
+
+			var rotateAboutCenterAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.rotate_center);
+
+			image.StartAnimation(rotateAboutCenterAnimation);
+
 			Init ();
 		}
 
@@ -69,7 +80,7 @@ namespace LinkOM
 				}
 
 
-				Thread.Sleep (1000);
+				Thread.Sleep (2000);
 				StartActivity(typeof(LoginActivity));
 				this.Finish();
 			}); 

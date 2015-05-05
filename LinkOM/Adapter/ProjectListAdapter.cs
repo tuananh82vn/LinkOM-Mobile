@@ -6,6 +6,8 @@ using Android.Views;
 using Java.Lang;
 using Object = Java.Lang.Object; 
 using System.Linq;
+using Android.Content;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -17,14 +19,18 @@ namespace LinkOM
 
 		public Filter Filter { get; private set; }
 
+		private int [] mAlternatingColors;
+
 		Activity _activity;
 
 		public ProjectListAdapter (Activity activity, List<ProjectObject> data)
 		{
+
 			_activity = activity;
 			_ProjectList = data;
-
 			Filter = new ProjectFilter(this);
+
+			mAlternatingColors = new int[] { 0xF2F2F2, 0xC3C3C3 };
 		}
 
 		public override ProjectObject this[int position]
@@ -67,47 +73,40 @@ namespace LinkOM
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.ProjectList, parent, false);
 
+//			view.SetBackgroundColor(GetColorFromInteger(mAlternatingColors[position % mAlternatingColors.Length]));
+
 			var ProjectName = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			ProjectName.Text = _ProjectList [position].Name;
 
 			var ClientName = view.FindViewById<TextView> (Resource.Id.tv_ClientName);
 			ClientName.Text = _ProjectList [position].ClientName;
 
-//			var OpenTickets = view.FindViewById<TextView> (Resource.Id.tv_OpenTickets);
-//			OpenTickets.Text = _ProjectList [position].OpenTickets.Value.ToString();
-//
-//			var OpenTasks = view.FindViewById<TextView> (Resource.Id.tv_OpenTasks);
-//			OpenTasks.Text = _ProjectList [position].OpenTasks.Value.ToString();
-//
-//
-//			var OpenIssues = view.FindViewById<TextView> (Resource.Id.tv_OpenIssues);
-//			OpenIssues.Text = _ProjectList [position].OpenIssues.Value.ToString();
-//
-//			var DepartmentName = view.FindViewById<TextView> (Resource.Id.tv_DepartmentName);
-//			DepartmentName.Text = _ProjectList [position].DepartmentName;
-//
-//			var StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
-//			StartDate.Text = _ProjectList [position].StartDateString;
-//
-//			var EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
-//			EndDate.Text = _ProjectList [position].EndDateString;
-//
-//			var AcctualHours = view.FindViewById<TextView> (Resource.Id.tv_ActualHours);
-//			if(_ProjectList [position].ActualHrs!=null)
-//				AcctualHours.Text = _ProjectList [position].ActualHrs.Value.ToString();
-//			else
-//				AcctualHours.Text = "0";
-//
-//			var AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
-//			if(_ProjectList [position].AllocatedHours!=null)
-//				AllocatedHours.Text = _ProjectList [position].AllocatedHours.Value.ToString();
-//			else
-//				AllocatedHours.Text = "0";
-
 			var ProjectStatus = view.FindViewById<TextView> (Resource.Id.tv_Status);
 			ProjectStatus.Text = _ProjectList [position].ProjectStatus;
 
+//			if ((position % 2) == 1)
+//			{
+//				ProjectName.SetTextColor(Color.White);
+//				ClientName.SetTextColor(Color.White);
+//				ProjectStatus.SetTextColor(Color.Black);
+//			}
+//
+//			else
+//			{
+//				//White background, set text black
+//				ProjectName.SetTextColor(Color.Black);
+//				ClientName.SetTextColor(Color.Black);
+//				ProjectStatus.SetTextColor(Color.Black);
+//			}
+
+
+
 			return view;
+		}
+
+		private Color GetColorFromInteger(int color)
+		{
+			return Color.Rgb(Color.GetRedComponent(color), Color.GetGreenComponent(color), Color.GetBlueComponent(color));
 		}
 
 		private class ProjectFilter : Filter
