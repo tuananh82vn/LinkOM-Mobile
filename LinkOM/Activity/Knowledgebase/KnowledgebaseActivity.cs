@@ -54,6 +54,13 @@ namespace LinkOM
 //		
 //			refresher.Refresh += HandleRefresh;
 
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
+
 		}
 
 		async void HandleRefresh (object sender, EventArgs e)

@@ -15,6 +15,7 @@ using Android.Support.V4.Widget;
 using System.Threading.Tasks;
 using Android.Views.InputMethods;
 using Android.Text;
+using Android.Content.PM;
 
 
 namespace LinkOM
@@ -69,8 +70,11 @@ namespace LinkOM
 
 			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
 
-			if (!Settings.Orientation.Equals ("Portrait")) {
-				
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+
 				frameLayout1  = FindViewById<FrameLayout> (Resource.Id.frameLayout1);
 
 				LoadMilestone ();
@@ -80,6 +84,8 @@ namespace LinkOM
 				}
 				else
 					frameLayout1.Visibility = ViewStates.Invisible;
+				
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
 		}

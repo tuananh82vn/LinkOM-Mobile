@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Compass.FilePicker;
+using Android.Content.PM;
 
 namespace LinkOM
 {
@@ -86,6 +87,13 @@ namespace LinkOM
 				filePickerFragment.Cancel += sender => filePickerFragment.Dismiss();
 				filePickerFragment.Show(FragmentManager, "FilePicker");
 			};
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 		}
 
 		public void LoadDocument(){
@@ -261,14 +269,17 @@ namespace LinkOM
 
 			string results= ConnectWebAPI.Request(url,objsearch);
 
-			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
+			if (results != null) {
 
-			projectList = new ProjectSpinnerAdapter (this,ProjectList.Items);
+				ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
+
+				projectList = new ProjectSpinnerAdapter (this, ProjectList.Items);
 
 
-			spinner_Project.Adapter = projectList;
+				spinner_Project.Adapter = projectList;
 
-			spinner_Project.SetSelection(projectList.getPositionById(DocumentDetail.ProjectId)); 
+				spinner_Project.SetSelection (projectList.getPositionById (DocumentDetail.ProjectId)); 
+			}
 
 			//spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
 		}

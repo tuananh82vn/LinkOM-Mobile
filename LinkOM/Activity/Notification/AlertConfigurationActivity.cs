@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Content.PM;
 
 namespace LinkOM
 {
@@ -30,6 +31,13 @@ namespace LinkOM
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 		}
 
 		//Handle item on action bar clicked

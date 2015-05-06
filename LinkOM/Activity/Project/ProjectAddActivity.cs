@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Views.InputMethods;
+using Android.Content.PM;
 
 namespace LinkOM
 {
@@ -77,6 +78,13 @@ namespace LinkOM
 				ActualEndDate = DateTime.Today;
 
 			Window.SetSoftInputMode(SoftInput.StateAlwaysHidden);
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 
 		}
 

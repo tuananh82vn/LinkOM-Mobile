@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Content.PM;
 
 namespace LinkOM
 {
@@ -43,6 +44,13 @@ namespace LinkOM
 			DisplayDocument (DocumentDetail);
 
 			//LoadDocumentComment (DocumentDetail.Id);
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 
 		}
 

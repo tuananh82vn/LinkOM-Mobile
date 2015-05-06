@@ -67,7 +67,12 @@ namespace LinkOM
 				ActionBar.SetDisplayHomeAsUpEnabled (true);
 				ActionBar.SetHomeButtonEnabled (true);
 
-				if(!Settings.Orientation.Equals("Portrait")){
+
+				//Lock Orientation
+				if (Settings.Orientation.Equals ("Portrait")) {
+					RequestedOrientation = ScreenOrientation.SensorPortrait;
+				} else {
+
 					mSearch = FindViewById<EditText>(Resource.Id.etSearch);
 					mSearch.Alpha = 0;
 					mSearch.SetOnEditorActionListener (this);
@@ -78,6 +83,7 @@ namespace LinkOM
 					frame_TaskDetail  = FindViewById<FrameLayout> (Resource.Id.frame_taskdetail);
 					frame_TaskDetail.Visibility = ViewStates.Invisible;
 
+					RequestedOrientation = ScreenOrientation.SensorLandscape;
 				}
 
 				progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);

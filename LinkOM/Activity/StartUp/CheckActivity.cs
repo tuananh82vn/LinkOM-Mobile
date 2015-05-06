@@ -11,6 +11,7 @@ using System.Json;
 using System.Threading.Tasks;
 using System.Text;
 using System.Threading;
+using Android.Content.PM;
 
 namespace LinkOM
 {
@@ -54,6 +55,13 @@ namespace LinkOM
 				progress.Show();
 				ThreadPool.QueueUserWorkItem (o => CheckServer ());
 			} 
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
         }
 
 		public override bool OnOptionsItemSelected (IMenuItem item)

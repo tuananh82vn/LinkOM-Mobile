@@ -85,6 +85,12 @@ namespace LinkOM
 			_countSeconds = 0;
 
 
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 
 		}
 

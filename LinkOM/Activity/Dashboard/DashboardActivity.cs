@@ -12,6 +12,7 @@ using Java.Lang;
 using NChart3D_Android;
 using System.Threading;
 using System.Collections.Generic;
+using Android.Content.PM;
 
 namespace LinkOM
 {
@@ -37,6 +38,13 @@ namespace LinkOM
 			SlidingTabsFragment fragment = new SlidingTabsFragment();
 			transaction.Replace(Resource.Id.sample_content_fragment, fragment);
 			transaction.Commit();
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 
 		}
 

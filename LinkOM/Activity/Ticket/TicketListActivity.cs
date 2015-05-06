@@ -14,6 +14,7 @@ using Android.Support.V4.Widget;
 using System.Threading.Tasks;
 using Android.Views.InputMethods;
 using Android.Text;
+using Android.Content.PM;
 
 namespace LinkOM
 {
@@ -62,6 +63,13 @@ namespace LinkOM
 			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
 
 			refresher.Refresh += HandleRefresh;
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 		}
 
 		//Handle item on action bar clicked

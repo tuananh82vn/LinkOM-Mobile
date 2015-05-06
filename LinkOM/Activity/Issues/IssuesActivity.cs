@@ -86,13 +86,20 @@ namespace LinkOM
 				progressView.MaxValue = 100;
 
 
+
+
+				//Lock Orientation
+				if (Settings.Orientation.Equals ("Portrait")) {
+					RequestedOrientation = ScreenOrientation.SensorPortrait;
+				} else {
+					RequestedOrientation = ScreenOrientation.SensorLandscape;
+				}
+
 				_timer = new System.Timers.Timer (10);
 				_timer.Elapsed += HandleElapsed;
 				_timer.Start ();
 
 				ThreadPool.QueueUserWorkItem (o => GetIssuesStatus ());
-
-				
 		}
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)

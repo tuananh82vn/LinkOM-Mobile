@@ -80,6 +80,13 @@ namespace LinkOM
 
 			this.ActionBar.SetDisplayHomeAsUpEnabled (true);
 			this.ActionBar.SetHomeButtonEnabled (true);
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 		}
 
 		private void ListItemClicked (int position)

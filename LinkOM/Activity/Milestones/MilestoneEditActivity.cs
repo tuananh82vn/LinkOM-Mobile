@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Compass.FilePicker;
+using Android.Content.PM;
 
 namespace LinkOM
 {
@@ -86,6 +87,13 @@ namespace LinkOM
 //				filePickerFragment.Cancel += sender => filePickerFragment.Dismiss();
 //				filePickerFragment.Show(FragmentManager, "FilePicker");
 //			};
+
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 		}
 
 		public void LoadMilestone(){

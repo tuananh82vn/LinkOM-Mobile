@@ -40,7 +40,9 @@ namespace LinkOM
 		private bool mIsAnimating;
 
 		public InputMethodManager inputManager;
+		public FrameLayout frame_Detail;
 
+		public DocumentObject documentSelected;
 	
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -69,12 +71,14 @@ namespace LinkOM
 
 			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
 
-
-//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-//
-//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
-//		
-//			refresher.Refresh += HandleRefresh;
+			//Lock Orientation
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				frame_Detail  = FindViewById<FrameLayout> (Resource.Id.frameDetail);
+				frame_Detail.Visibility = ViewStates.Invisible;
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 
 		}
 
@@ -126,16 +130,14 @@ namespace LinkOM
 
 			MenuInflater inflater = this.MenuInflater;
 
-			inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
+			if (Settings.Orientation.Equals ("Portrait")) {
+				inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
+			}
+			else
+				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
 
 			return true;
 		}
-
-//		async void HandleRefresh (object sender, EventArgs e)
-//		{
-//			await InitData ();
-//			refresher.Refreshing = false;
-//		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
@@ -153,6 +155,19 @@ namespace LinkOM
 				Intent Intent2 = new Intent (this, typeof(DocumentAddActivity));
 				Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
 				StartActivity(Intent2);
+				break;
+			case Resource.Id.edit:
+				if (documentSelected != null) {
+					Intent Intent3 = new Intent (this, typeof(DocumentEditActivity));
+					Intent3.PutExtra ("Document", Newtonsoft.Json.JsonConvert.SerializeObject (documentSelected));
+					Intent3.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity (Intent3);
+
+				} 
+				else 
+				{
+					Toast.MakeText (this, "No project selected.", ToastLength.Short).Show ();
+				}
 				break;
 			default:
 				break;
@@ -172,11 +187,6 @@ namespace LinkOM
 
 			url=url+"/api/DocumentList";
 
-
-//			List<objSort> objSort = new List<objSort>{
-//				new objSort{ColumnName = "P.Name", Direction = "1"},
-//				new objSort{ColumnName = "C.Name", Direction = "2"}
-//			};
 
 			var objDocument = new
 			{
@@ -210,12 +220,8 @@ namespace LinkOM
 			documentListView.Adapter = documentList;
 
 			documentListView.ItemClick += listView_ItemClick;
-//
-//			RegisterForContextMenu(projectListView);
-//
+
 			loading = false;
-//
-//			Console.WriteLine ("End load data");
 		}
 
 		private void finish(){
@@ -271,48 +277,58 @@ namespace LinkOM
 
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			DocumentObject model = this.documentList.GetItemAtPosition (e.Position);
+			documentSelected = this.documentList.GetItemAtPosition (e.Position);
 
-			var activity = new Intent (this, typeof(DocumentDetailActivity));
+			if (Settings.Orientation.Equals ("Portrait")) {
 
-			activity.PutExtra ("Document", Newtonsoft.Json.JsonConvert.SerializeObject(model));
+				var activity = new Intent (this, typeof(DocumentDetailActivity));
 
-			StartActivity (activity);
+				activity.PutExtra ("Document", Newtonsoft.Json.JsonConvert.SerializeObject(documentSelected));
+
+				StartActivity (activity);
+			}
+			else 
+			{
+				frame_Detail.Visibility = ViewStates.Visible;
+				DisplayDocument (documentSelected);
+			}
+
 
 		}
 
-//		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
-//		{
-//			if (v.Id == Android.Resource.Id.List)
-//			{
-//				var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-//				menu.SetHeaderTitle(projectList.GetItemName(info.Position));
-//				var menuItems = Resources.GetStringArray(Resource.Array.menu);
-//				for (var i = 0; i < menuItems.Length; i++)
-//					menu.Add(Menu.None, i, i, menuItems[i]);
-//			}
-//		}
+		public void DisplayDocument(DocumentObject obj){
 
-//		public override bool OnContextItemSelected(IMenuItem item)
-//		{
-//			var info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
-//			var menuItemIndex = item.ItemId;
-//			var menuItems = Resources.GetStringArray(Resource.Array.menu);
-//			var menuItemName = menuItems[menuItemIndex];
-//
-//			var DocumentName = projectList.GetItemName(info.Position);
-//			int DocumentId = int.Parse(projectList.GetItemId(info.Position).ToString());
-//
-//			if (menuItemName.Equals ("Add Task")) {
-//				var activity = new Intent (this, typeof(AddTaskActivity));
-//				activity.PutExtra ("DocumentId", DocumentId);
-//				StartActivity (activity);
-//			}
-//			else
-//				Toast.MakeText(this, string.Format("Selected {0} for item {1}", menuItemName, DocumentName), ToastLength.Short).Show();
-//
-//			return true;
-//		}
+			var DocumentName = FindViewById<TextView> (Resource.Id.tv_DocumentDetailName);
+			DocumentName.Text = obj.Title;
+
+			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
+			Internal.Checked = obj.IsInternal;
+
+			var Email = FindViewById<CheckBox> (Resource.Id.cb_Email);
+			Email.Checked = obj.IsSendEmailToClient;
+
+
+			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			ProjectName.Text = obj.ProjectName;
+
+			var Category = FindViewById<TextView> (Resource.Id.tv_Category);
+			Category.Text = obj.DocumentCategoryName;
+
+
+			//			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
+			//			Label.Text = obj.Label;
+			//
+
+			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
+			if(obj.Description!=null)
+				Description.Text = obj.Description;
+
+			//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
+			//			DepartmentName.Text = obj.DepartmentName;
+
+		}
+
+
 	}
 }
 

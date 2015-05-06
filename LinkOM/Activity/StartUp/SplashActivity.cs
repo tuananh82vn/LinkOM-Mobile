@@ -30,6 +30,38 @@ namespace LinkOM
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.SplashLayout);
 
+			var metrics = Resources.DisplayMetrics;
+
+			var widthPixels = metrics.WidthPixels;
+			var heightPixels = metrics.HeightPixels;
+
+			float scaleFactor = metrics.Density;
+
+			float widthDp = widthPixels / scaleFactor;
+			float heightDp = heightPixels / scaleFactor;
+
+			Settings.SmallestWidth = int.Parse(Math.Min(widthDp, heightDp).ToString());
+
+			int minWidth= Settings.SmallestWidth;
+
+			if (minWidth > 360) {
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+				Settings.Orientation ="Landscape";
+			}
+			else if (minWidth <= 360) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+				Settings.Orientation ="Portrait";
+			}
+
+			//Register for push notification
+			GcmClient.CheckDevice(this);
+			GcmClient.CheckManifest(this);
+			string regId = GcmClient.GetRegistrationId(this);
+			Console.WriteLine("Registration id:"+regId);
+			if(regId.Trim().Equals("")){
+				GcmClient.Register (this, GcmBroadcastReceiver.SENDER_IDS);
+			}
+
 			var image = FindViewById<ImageView>(Resource.Id.floating_image);
 
 			var rotateAboutCenterAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.rotate_center);
@@ -41,51 +73,12 @@ namespace LinkOM
 
 		private void Init()
 		{
-			// Simulate a long loading process on app startup.
+				// Simulate a long loading process on app startup.
 			 	Task<bool>.Run (() => {
-
-
-
-				var metrics = Resources.DisplayMetrics;
-
-				var widthPixels = metrics.WidthPixels;
-				var heightPixels = metrics.HeightPixels;
-
-				float scaleFactor = metrics.Density;
-
-				float widthDp = widthPixels / scaleFactor;
-				float heightDp = heightPixels / scaleFactor;
-
-				Settings.SmallestWidth = int.Parse(Math.Min(widthDp, heightDp).ToString());
-
-				int minWidth= Settings.SmallestWidth;
-
-				if (minWidth > 360) {
-					RequestedOrientation = ScreenOrientation.SensorLandscape;
-					Settings.Orientation ="Landscape";
-				}
-				else if (minWidth <= 360) {
-					RequestedOrientation = ScreenOrientation.SensorPortrait;
-					Settings.Orientation ="Portrait";
-				}
-
-
-
-				GcmClient.CheckDevice(this);
-				GcmClient.CheckManifest(this);
-				string regId = GcmClient.GetRegistrationId(this);
-				Console.WriteLine("Registration id:"+regId);
-				if(regId.Trim().Equals("")){
-					GcmClient.Register (this, GcmBroadcastReceiver.SENDER_IDS);
-				}
-
-
 				Thread.Sleep (2000);
 				StartActivity(typeof(LoginActivity));
 				this.Finish();
 			}); 
-
-
 		}
 	}
 }

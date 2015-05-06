@@ -15,6 +15,7 @@ using Android.Support.V4.Widget;
 using System.Threading.Tasks;
 using Android.Views.InputMethods;
 using Android.Text;
+using Android.Content.PM;
 
 
 namespace LinkOM
@@ -40,6 +41,7 @@ namespace LinkOM
 		public MenuInflater inflater;
 
 		public ProjectObject ProjectSelected;
+		public FrameLayout frame_Detail;
 
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -69,6 +71,15 @@ namespace LinkOM
 
 
 			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
+
+
+			if (Settings.Orientation.Equals ("Portrait")) {
+				RequestedOrientation = ScreenOrientation.SensorPortrait;
+			} else {
+				frame_Detail  = FindViewById<FrameLayout> (Resource.Id.frameDetail);
+				frame_Detail.Visibility = ViewStates.Invisible;
+				RequestedOrientation = ScreenOrientation.SensorLandscape;
+			}
 
 		}
 
@@ -158,7 +169,9 @@ namespace LinkOM
 					Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
 					StartActivity (Intent2);
 
-				} else {
+				} 
+				else 
+				{
 					Toast.MakeText (this, "No project selected.", ToastLength.Short).Show ();
 				}
 				break;
@@ -182,7 +195,7 @@ namespace LinkOM
 
 			} 
 			else {
-
+				frame_Detail.Visibility = ViewStates.Visible;
 				DisplayProject (ProjectSelected);
 			}
 
