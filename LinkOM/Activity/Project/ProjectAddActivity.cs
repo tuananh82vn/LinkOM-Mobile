@@ -36,7 +36,7 @@ namespace LinkOM
 		private EditText ActualEndDatePicker;
 
 		public long ProjectId;
-		public ProjectObject ProjectDetail;
+		public ProjectDetailList ProjectDetail;
 		public InputMethodManager inputMethodManager;
 
 		public EditText AllocatedHours;

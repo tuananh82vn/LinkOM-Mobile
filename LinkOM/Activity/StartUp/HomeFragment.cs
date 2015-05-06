@@ -61,54 +61,12 @@ namespace LinkOM
 		//Loading data
 		public void InitDataMilestone(){
 
-			string url = Settings.InstanceURL;
+	
+			milestoneList = new MilestoneListAdapter (this.Activity, MilestonesHelper.GetAllMilestonesList());
 
-			url=url+"/api/MilestoneList";
+			milestoneListView.Adapter = milestoneList;
 
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.Title", Direction = "1"},
-				new objSort{ColumnName = "T.ProjectName", Direction = "2"}
-			};
-
-			var objMilestone = new
-			{
-				ProjectId = string.Empty,
-				StatusId = string.Empty,
-				DepartmentId = string.Empty,
-				Title = string.Empty,
-				PriorityId= string.Empty,
-				Label= string.Empty,
-				DueBefore= string.Empty,
-				AssignTo= string.Empty,
-				AssignByMe= string.Empty,
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber = Settings.Token,
-						PageSize = 100,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objMilestone
-					}
-				});
-
-			string results=  ConnectWebAPI.Request(url,objsearch);
-
-			if (results != null) {
-
-				MilestoneListJson MilestoneList = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (results);
-
-				milestoneList = new MilestoneListAdapter (this.Activity, MilestoneList.Items);
-
-				milestoneListView.Adapter = milestoneList;
-
-				milestoneListView.ItemClick += listView_ItemClick;
-
-			}
+			milestoneListView.ItemClick += listView_ItemClick;
 
 		}
 
@@ -242,7 +200,7 @@ namespace LinkOM
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			//Get our item from the list adapter
-			MilestoneObject Milestone = this.milestoneList.GetItemAtPosition(e.Position);
+			MilestonesList Milestone = this.milestoneList.GetItemAtPosition(e.Position);
 
 			Intent addAccountIntent = new Intent (this.Activity, typeof(MilestoneActivity));
 			//			addAccountIntent.SetFlags (ActivityFlags.ClearWhenTaskReset);

@@ -13,11 +13,10 @@
         android:id="@+id/linearLayout1">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="108.7dp"
+            android:layout_height="39.9dp"
             android:id="@+id/imageView1"
-            android:layout_marginLeft="0.0dp"
-            android:layout_marginRight="0.0dp"
-            android:layout_margin="5dp" />
+            android:layout_margin="30dp"
+            android:layout_gravity="center" />
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"

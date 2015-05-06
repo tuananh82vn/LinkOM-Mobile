@@ -9,17 +9,17 @@ using System.Linq;
 
 namespace LinkOM
 {
-	public class MilestoneListAdapter : BaseAdapter<MilestoneObject>, IFilterable
+	public class MilestoneListAdapter : BaseAdapter<MilestonesList>, IFilterable
 	{
-		private List<MilestoneObject> _originalData;
-		private List<MilestoneObject> _MilestoneList;
+		private List<MilestonesList> _originalData;
+		private List<MilestonesList> _MilestoneList;
 
 		public Filter Filter { get; private set; }
 
 		Activity _activity;
 
 
-		public MilestoneListAdapter (Activity activity, List<MilestoneObject> data)
+		public MilestoneListAdapter (Activity activity, List<MilestonesList> data)
 		{
 			_activity = activity;
 			_MilestoneList = data;
@@ -39,7 +39,7 @@ namespace LinkOM
 				}
 		}
 
-		public override MilestoneObject this[int position]
+		public override MilestonesList this[int position]
 		{
 			get { return _MilestoneList[position]; }
 		} 
@@ -54,7 +54,7 @@ namespace LinkOM
 			return long.Parse(_MilestoneList [position].Id.ToString());
 		}
 
-		public MilestoneObject GetItemAtPosition(int position)
+		public MilestonesList GetItemAtPosition(int position)
 		{
 			return _MilestoneList[position];
 		}
@@ -92,7 +92,7 @@ namespace LinkOM
 			{
 				var returnObj = new FilterResults();
 
-				var results = new List<MilestoneObject>();
+				var results = new List<MilestonesList>();
 
 				if (_adapter._originalData == null)
 					_adapter._originalData = _adapter._MilestoneList; 
@@ -121,7 +121,7 @@ namespace LinkOM
 			{
 				using (var values = results.Values)
 					_adapter._MilestoneList = values.ToArray<Object>()
-						.Select(r => r.ToNetObject<MilestoneObject>()).ToList();
+						.Select(r => r.ToNetObject<MilestonesList>()).ToList();
 				_adapter.NotifyDataSetChanged();
 
 				// Don't do this and see GREF counts rising

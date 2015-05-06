@@ -10,7 +10,14 @@
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:id="@+id/linearLayout1" />
+        android:id="@+id/linearLayout1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="39.9dp"
+            android:id="@+id/imageView1"
+            android:layout_margin="30dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
@@ -86,8 +93,8 @@
             min_value="0"
             max_value="100"
             value="0"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_gravity="center" />
     </LinearLayout>
 </LinearLayout>

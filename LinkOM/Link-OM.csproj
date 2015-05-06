@@ -117,9 +117,6 @@
     <Compile Include="Model\ReceiveModel\Login.cs" />
     <Compile Include="Model\ReceiveModel\Results.cs" />
     <Compile Include="Activity\Project\ProjectDetailActivity.cs" />
-    <Compile Include="Model\ReceiveModel\ProjectDetail.cs" />
-    <Compile Include="Model\ReceiveModel\ProjectList.cs" />
-    <Compile Include="Model\ReceiveModel\MilestoneList.cs" />
     <Compile Include="Adapter\MilestoneListAdapter.cs" />
     <Compile Include="Activity\StartUp\SplashActivity.cs" />
     <Compile Include="Helper\BitmapHelper.cs" />
@@ -147,7 +144,6 @@
     <Compile Include="Adapter\DocumentListAdapter.cs" />
     <Compile Include="Activity\Project\ProjectEditActivity.cs" />
     <Compile Include="UIControl\MyTextView.cs" />
-    <Compile Include="Model\ViewModel\ProjectObject.cs" />
     <Compile Include="Activity\Project\ProjectAddActivity.cs" />
     <Compile Include="Activity\Task\TaskDetailActivity.cs" />
     <Compile Include="Activity\Task\TaskEditActivity.cs" />
@@ -177,7 +173,6 @@
     <Compile Include="Model\ReceiveModel\KnowledgebaseList.cs" />
     <Compile Include="Adapter\KnowledgebaseListAdapter.cs" />
     <Compile Include="Model\ViewModel\KnowledgebaseObject.cs" />
-    <Compile Include="Model\ViewModel\MilestoneObject.cs" />
     <Compile Include="Activity\Document\DocumentDetailActivity.cs" />
     <Compile Include="Activity\Document\DocumentEditActivity.cs" />
     <Compile Include="Activity\Document\DocumentAddActivity.cs" />
@@ -202,10 +197,17 @@
     <Compile Include="Model\ReceiveModel\TaskDetailJson.cs" />
     <Compile Include="Helper\ScreenHelper.cs" />
     <Compile Include="Model\ViewModel\DashboardObject.cs" />
-    <Compile Include="Model\ReceiveModel\ApiResultList.cs" />
     <Compile Include="Model\ReceiveModel\ApiResult.cs" />
     <Compile Include="Activity\Ticket\TicketActivity.cs" />
     <Compile Include="Activity\Issues\IssuesActivity.cs" />
+    <Compile Include="Model\ReceiveModel\ApiResultList.cs" />
+    <Compile Include="Model\ReceiveModel\ApiResultSingle.cs" />
+    <Compile Include="Model\ViewModel\ProjectList.cs" />
+    <Compile Include="Model\ViewModel\ProjectDetailList.cs" />
+    <Compile Include="ObjectHelper\ProjectHelper.cs" />
+    <Compile Include="ObjectHelper\MilestonesHelper.cs" />
+    <Compile Include="Model\ViewModel\MilestonesList.cs" />
+    <Compile Include="Model\ViewModel\MilestonesDetailList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -603,6 +605,7 @@
     <Folder Include="Notification\" />
     <Folder Include="Resources\anim\" />
     <Folder Include="Resources\layout-sw720dp-land\" />
+    <Folder Include="ObjectHelper\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />

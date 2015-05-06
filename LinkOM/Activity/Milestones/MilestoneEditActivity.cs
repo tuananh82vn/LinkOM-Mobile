@@ -20,7 +20,7 @@ namespace LinkOM
 	{
 		public string results;
 
-		public MilestoneObject MilestoneDetail;
+		public MilestonesList MilestoneDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 
@@ -62,7 +62,7 @@ namespace LinkOM
 
 			InitControl ();
 
-			GetProjectList ();
+//			GetProjectList ();
 
 //			GetStatusList ();
 //
@@ -100,7 +100,7 @@ namespace LinkOM
 
 			results= Intent.GetStringExtra ("Milestone");
 
-			MilestoneDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneObject> (results);
+			MilestoneDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesList> (results);
 		}
 
 		public void InitControl(){
@@ -149,7 +149,7 @@ namespace LinkOM
 			}
 		}
 
-		public void DisplayMilestone(MilestoneObject obj){
+		public void DisplayMilestone(MilestonesList obj){
 
 			editText_Title.Text = obj.Title;
 
@@ -234,52 +234,52 @@ namespace LinkOM
 //			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
 //		}
 
-		private void GetProjectList(){
-			//Handle Project Spinner
-			string TokenNumber = Settings.Token;
-			string url = Settings.InstanceURL;
-
-			url=url+"/api/ProjectList";
-
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "P.Name", Direction = "1"},
-				new objSort{ColumnName = "C.Name", Direction = "2"}
-			};
-
-			var objProject = new
-			{
-				Name = string.Empty,
-				ClientName = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectStatusId = string.Empty,
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber = TokenNumber,
-						PageSize = 20,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objProject
-					}
-				});
-
-			string results= ConnectWebAPI.Request(url,objsearch);
-
-			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
-
-			projectList = new ProjectSpinnerAdapter (this,ProjectList.Items);
-
-
-			spinner_Project.Adapter = projectList;
-
-			spinner_Project.SetSelection(projectList.getPositionById(MilestoneDetail.ProjectId)); 
-
-			//spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
-		}
+//		private void GetProjectList(){
+//			//Handle Project Spinner
+//			string TokenNumber = Settings.Token;
+//			string url = Settings.InstanceURL;
+//
+//			url=url+"/api/ProjectList";
+//
+//
+//			List<objSort> objSort = new List<objSort>{
+//				new objSort{ColumnName = "P.Name", Direction = "1"},
+//				new objSort{ColumnName = "C.Name", Direction = "2"}
+//			};
+//
+//			var objProject = new
+//			{
+//				Name = string.Empty,
+//				ClientName = string.Empty,
+//				DepartmentId = string.Empty,
+//				ProjectStatusId = string.Empty,
+//			};
+//
+//			var objsearch = (new
+//				{
+//					objApiSearch = new
+//					{
+//						TokenNumber = TokenNumber,
+//						PageSize = 20,
+//						PageNumber = 1,
+//						Sort = objSort,
+//						Item = objProject
+//					}
+//				});
+//
+//			string results= ConnectWebAPI.Request(url,objsearch);
+//
+//			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
+//
+//			projectList = new ProjectSpinnerAdapter (this,ProjectList.Items);
+//
+//
+//			spinner_Project.Adapter = projectList;
+//
+//			spinner_Project.SetSelection(projectList.getPositionById(MilestoneDetail.ProjectId)); 
+//
+//			//spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
+//		}
 
 //		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 //		{

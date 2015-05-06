@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public ProjectObject ProjectDetail;
+		public ProjectDetailList ProjectDetail;
 		public string results;
 
 		protected override void OnCreate (Bundle bundle)
@@ -54,7 +54,7 @@ namespace LinkOM
 			
 			results= Intent.GetStringExtra ("Project");
 
-			ProjectDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectObject> (results);
+			ProjectDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectDetailList> (results);
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -90,19 +90,19 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayProject(ProjectObject obj){
+		public void DisplayProject(ProjectDetailList obj){
 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
-			ProjectName.Text = obj.Name;
+			ProjectName.Text = obj.ProjectName;
 
 			var Code = FindViewById<TextView> (Resource.Id.tv_Code);
-			Code.Text = obj.Code;
+			Code.Text = obj.ProjectCode;
 
 			var RefCode = FindViewById<TextView> (Resource.Id.tv_RefCode);
 			RefCode.Text = obj.ReferenceCode;
 
-			var ProjectPhase = FindViewById<TextView> (Resource.Id.tv_Phase);
-			ProjectPhase.Text = obj.ProjectPhase;
+//			var ProjectPhase = FindViewById<TextView> (Resource.Id.tv_Phase);
+//			ProjectPhase.Text = obj.ProjectPhase;
 
 			var ProjectStatus = FindViewById<TextView> (Resource.Id.tv_Status);
 			ProjectStatus.Text = obj.ProjectStatus;
@@ -152,53 +152,7 @@ namespace LinkOM
 
 		}
 
-		public void LoadMileStone(){
-			//			// Load Milestone and display 
-			//
-			//			url = Settings.InstanceURL;
-			//
-			//			url=url+"/api/MilestoneList";
-			//
-			//			List<objSort> objSort = new List<objSort>{
-			//				new objSort{ColumnName = "P.StartDate", Direction = "1"},
-			//				new objSort{ColumnName = "C.Name", Direction = "2"}
-			//			};
-			//
-			//			var objMilestone = new
-			//			{
-			//				Title = string.Empty,
-			//				ProjectId = ProjectId,
-			//				StatusId = string.Empty,
-			//				PriorityId = string.Empty,
-			//				DepartmentId = string.Empty,
-			//				ClientId = string.Empty,
-			//			};
-			//
-			//			var objsearch2 = (new
-			//			{
-			//				objApiSearch = new
-			//				{
-			//					TokenNumber = TokenNumber,
-			//					PageSize = 20,
-			//					PageNumber = 1,
-			//					Sort = objSort,
-			//					Item = objMilestone
-			//				}
-			//			});
-			//
-			//			string temp = ConnectWebAPI.Request(url,objsearch2);
-
-			//			if (temp != null) {
-			//
-			//				MilestoneListJson Milestone = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (temp);
-			//
-			//				MilestoneListAdapter MilestoneList = new MilestoneListAdapter (this, Milestone.Items);
-			//
-			//				var milestoneListView = FindViewById<ListView> (Resource.Id.list_Milestone);
-			//
-			//				milestoneListView.Adapter = MilestoneList;
-			//			}
-		}
+	
 	}
 }
 

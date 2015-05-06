@@ -10,17 +10,17 @@ namespace LinkOM
 	public class ProjectSpinnerAdapter : BaseAdapter, ISpinnerAdapter
 	{
 		private readonly Activity _context;
-		private List<ProjectObject> _ProjectList;
+		private List<ProjectList> _ProjectList;
 
 		private readonly IList<View> _views = new List<View>();
 
-		public ProjectSpinnerAdapter(Activity context, List<ProjectObject> data)
+		public ProjectSpinnerAdapter(Activity context, List<ProjectList> data)
 		{
 			_context = context;
 			_ProjectList = data;
 		}
 
-		public ProjectObject GetItemAtPosition(int position)
+		public ProjectList GetItemAtPosition(int position)
 		{
 			return _ProjectList.ElementAt(position);
 		}
@@ -56,7 +56,7 @@ namespace LinkOM
 
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
-			ProjectObject item = _ProjectList.ElementAt(position);
+			ProjectList item = _ProjectList.ElementAt(position);
 
 			var view = convertView ?? _context.LayoutInflater.Inflate (Resource.Layout.SpinnerItemDropdown, parent, false);
 

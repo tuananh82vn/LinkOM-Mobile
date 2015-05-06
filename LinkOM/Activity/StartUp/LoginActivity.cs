@@ -15,6 +15,7 @@ using Android.Views.InputMethods;
 using Android.Content.PM;
 
 using RadialProgress;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -40,6 +41,11 @@ namespace LinkOM
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
+
+			ImageView imageView1 = FindViewById<ImageView>(Resource.Id.imageView1);
+			var imageBitmap = GetImageBitmapFromUrl(Settings.InstanceURL+"/FileReference/GetLogoImage");
+			imageView1.SetImageBitmap(imageBitmap);
+
 
 			Button button = FindViewById<Button>(Resource.Id.btLogin);
 			button.Click += btloginClick;  
@@ -94,6 +100,22 @@ namespace LinkOM
 
 		}
 
+
+		private Bitmap GetImageBitmapFromUrl(string url)
+		{
+			Bitmap imageBitmap = null;
+
+			using (var webClient = new WebClient())
+			{
+				var imageBytes = webClient.DownloadData(url);
+				if (imageBytes != null && imageBytes.Length > 0)
+				{
+					imageBitmap = BitmapFactory.DecodeByteArray(imageBytes, 0, imageBytes.Length);
+				}
+			}
+
+			return imageBitmap;
+		}
 
 		private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
 		{

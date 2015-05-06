@@ -11,11 +11,11 @@ using Android.Graphics;
 
 namespace LinkOM
 {
-	public class ProjectListAdapter : BaseAdapter<ProjectObject>, IFilterable
+	public class ProjectListAdapter : BaseAdapter<ProjectList>, IFilterable
 	{
 
-		private List<ProjectObject> _originalData;
-		private List<ProjectObject> _ProjectList;
+		private List<ProjectList> _originalData;
+		private List<ProjectList> _ProjectList;
 
 		public Filter Filter { get; private set; }
 
@@ -23,7 +23,7 @@ namespace LinkOM
 
 		Activity _activity;
 
-		public ProjectListAdapter (Activity activity, List<ProjectObject> data)
+		public ProjectListAdapter (Activity activity, List<ProjectList> data)
 		{
 
 			_activity = activity;
@@ -33,12 +33,12 @@ namespace LinkOM
 			mAlternatingColors = new int[] { 0xF2F2F2, 0xC3C3C3 };
 		}
 
-		public override ProjectObject this[int position]
+		public override ProjectList this[int position]
 		{
 			get { return _ProjectList[position]; }
 		} 
 
-		public ProjectObject GetItemAtPosition(int position)
+		public ProjectList GetItemAtPosition(int position)
 		{
 			return _ProjectList[position];
 		}
@@ -121,7 +121,7 @@ namespace LinkOM
 			{
 				var returnObj = new FilterResults();
 
-				var results = new List<ProjectObject>();
+				var results = new List<ProjectList>();
 
 				if (_adapter._originalData == null)
 					_adapter._originalData = _adapter._ProjectList; 
@@ -150,7 +150,7 @@ namespace LinkOM
 			{
 				using (var values = results.Values)
 					_adapter._ProjectList = values.ToArray<Object>()
-						.Select(r => r.ToNetObject<ProjectObject>()).ToList();
+						.Select(r => r.ToNetObject<ProjectList>()).ToList();
 				_adapter.NotifyDataSetChanged();
 
 				// Don't do this and see GREF counts rising

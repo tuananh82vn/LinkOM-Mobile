@@ -62,7 +62,7 @@ namespace LinkOM
 
 			InitControl ();
 
-			GetProjectList ();
+//			GetProjectList ();
 
 //			GetStatusList ();
 //
@@ -234,55 +234,55 @@ namespace LinkOM
 //			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
 //		}
 
-		private void GetProjectList(){
-			//Handle Project Spinner
-			string TokenNumber = Settings.Token;
-			string url = Settings.InstanceURL;
-
-			url=url+"/api/ProjectList";
-
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "P.Name", Direction = "1"},
-				new objSort{ColumnName = "C.Name", Direction = "2"}
-			};
-
-			var objProject = new
-			{
-				Name = string.Empty,
-				ClientName = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectStatusId = string.Empty,
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber = TokenNumber,
-						PageSize = 20,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objProject
-					}
-				});
-
-			string results= ConnectWebAPI.Request(url,objsearch);
-
-			if (results != null) {
-
-				ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
-
-				projectList = new ProjectSpinnerAdapter (this, ProjectList.Items);
-
-
-				spinner_Project.Adapter = projectList;
-
-				spinner_Project.SetSelection (projectList.getPositionById (DocumentDetail.ProjectId)); 
-			}
-
-			//spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
-		}
+//		private void GetProjectList(){
+//			//Handle Project Spinner
+//			string TokenNumber = Settings.Token;
+//			string url = Settings.InstanceURL;
+//
+//			url=url+"/api/ProjectList";
+//
+//
+//			List<objSort> objSort = new List<objSort>{
+//				new objSort{ColumnName = "P.Name", Direction = "1"},
+//				new objSort{ColumnName = "C.Name", Direction = "2"}
+//			};
+//
+//			var objProject = new
+//			{
+//				Name = string.Empty,
+//				ClientName = string.Empty,
+//				DepartmentId = string.Empty,
+//				ProjectStatusId = string.Empty,
+//			};
+//
+//			var objsearch = (new
+//				{
+//					objApiSearch = new
+//					{
+//						TokenNumber = TokenNumber,
+//						PageSize = 20,
+//						PageNumber = 1,
+//						Sort = objSort,
+//						Item = objProject
+//					}
+//				});
+//
+//			string results= ConnectWebAPI.Request(url,objsearch);
+//
+//			if (results != null) {
+//
+//				ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
+//
+//				projectList = new ProjectSpinnerAdapter (this, ProjectList.Items);
+//
+//
+//				spinner_Project.Adapter = projectList;
+//
+//				spinner_Project.SetSelection (projectList.getPositionById (DocumentDetail.ProjectId)); 
+//			}
+//
+//			//spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
+//		}
 
 //		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 //		{

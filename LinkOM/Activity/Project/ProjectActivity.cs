@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Android.Views.InputMethods;
 using Android.Text;
 using Android.Content.PM;
+using System.Collections;
 
 
 namespace LinkOM
@@ -23,7 +24,7 @@ namespace LinkOM
 	[Activity (Label = "Project", Theme = "@style/Theme.Customtheme")]			
 	public class ProjectActivity : Activity, TextView.IOnEditorActionListener
 	{
-		public List<ProjectObject> _ProjectList;
+		public List<ProjectList> _ProjectList;
 		public ProjectListAdapter projectList;
 
 		public int ProjectId;
@@ -40,7 +41,7 @@ namespace LinkOM
 
 		public MenuInflater inflater;
 
-		public ProjectObject ProjectSelected;
+		public ProjectList ProjectSelected;
 		public FrameLayout frame_Detail;
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -83,64 +84,24 @@ namespace LinkOM
 
 		}
 
-		//Refesh data
-		async void HandleRefresh (object sender, EventArgs e)
-		{
-			await InitData ();
-			refresher.Refreshing = false;
-		}
+//		//Refesh data
+//		async void HandleRefresh (object sender, EventArgs e)
+//		{
+//			await InitData ();
+//			refresher.Refreshing = false;
+//		}
 
 		//Loading data
-		public async Task InitData(){
-
-			if (loading)
-				return;
-			loading = true;
-
-			string url = Settings.InstanceURL;
-
-			url=url+"/api/ProjectList";
+		public void InitData(){
 
 
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "P.Name", Direction = "1"},
-				new objSort{ColumnName = "C.Name", Direction = "2"}
-			};
+			projectList = new ProjectListAdapter (this, ProjectHelper.GetProjectList());
 
-			var objProject = new
-			{
-				Name = string.Empty,
-				ClientName = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectStatusId = string.Empty,
-			};
+			projectListView.Adapter = projectList;
 
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber = Settings.Token,
-						PageSize = 20,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objProject
-					}
-				});
+			projectListView.ItemClick += listView_ItemClick;
 
-			string results=  ConnectWebAPI.Request(url,objsearch);
-
-			if (results != null) {
-
-				ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
-
-				projectList = new ProjectListAdapter (this, ProjectList.Items);
-
-				projectListView.Adapter = projectList;
-
-				projectListView.ItemClick += listView_ItemClick;
-
-				loading = false;
-			}
+			loading = false;
 
 		}
 
@@ -194,12 +155,14 @@ namespace LinkOM
 				StartActivity (addAccountIntent);
 
 			} 
-			else {
+			else 
+			{
 				frame_Detail.Visibility = ViewStates.Visible;
-				DisplayProject (ProjectSelected);
+				DisplayProject (ProjectHelper.GetProjectDetailById(ProjectSelected.Id.Value));
 			}
 
 		}
+
 
 		//Init menu on action bar
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -298,38 +261,41 @@ namespace LinkOM
 			return false;
 		}
 
-		public void DisplayProject(ProjectObject obj){
+		public void DisplayProject(ProjectDetailList obj){
 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
-			ProjectName.Text = obj.Name;
+			ProjectName.Text = obj.ProjectName;
 
-			var Code = FindViewById<TextView> (Resource.Id.tv_Code);
-			Code.Text = obj.Code;
+			var Code = FindViewById<TextView> (Resource.Id.tv_CodeDetail);
+			Code.Text = obj.ProjectCode;
 
-			var RefCode = FindViewById<TextView> (Resource.Id.tv_RefCode);
+			var RefCode = FindViewById<TextView> (Resource.Id.tv_RefDetailCode);
 			RefCode.Text = obj.ReferenceCode;
-
-			var ProjectPhase = FindViewById<TextView> (Resource.Id.tv_Phase);
-			ProjectPhase.Text = obj.ProjectPhase;
 
 			var ProjectStatus = FindViewById<TextView> (Resource.Id.tv_ProjectStatus);
 			ProjectStatus.Text = obj.ProjectStatus;
 
-			var AllocatedHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
+			var AllocatedHours = FindViewById<TextView> (Resource.Id.tv_AlloHoursDetail);
 			if (obj.AllocatedHours != null)
 				AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
-
+			else
+				AllocatedHours.Text = "";
 			var StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
 			if(obj.StartDate!=null)
 				StartDate.Text = obj.StartDate.Value.ToShortDateString();
-
+			else
+				StartDate.Text = "";
 			var EndDate = FindViewById<TextView> (Resource.Id.tv_EndDate);
 			if(obj.EndDate!=null)
 				EndDate.Text = obj.EndDate.Value.ToShortDateString();
-
+			else
+				EndDate.Text = "";
+			
 			var ActualStartDate = FindViewById<TextView> (Resource.Id.tv_ActualStartDate);
-			if(obj.ActualStartDate!=null)
-				ActualStartDate.Text = obj.ActualStartDate.Value.ToShortDateString();
+			if (obj.ActualStartDate != null)
+				ActualStartDate.Text = obj.ActualStartDate.Value.ToShortDateString ();
+			else
+				ActualStartDate.Text = "";
 
 			var ActualEndDate = FindViewById<TextView> (Resource.Id.tv_ActualEndDate);
 			if(obj.ActualEndDate!=null)
@@ -348,16 +314,30 @@ namespace LinkOM
 			ProjectCoordinator.Text = obj.ProjectCoordinatorName;
 
 			var Notes = FindViewById<TextView> (Resource.Id.tv_Notes);
-			if(obj.Notes!=null)
+			if (obj.Notes != null)
 				Notes.Text = obj.Notes;
+			else
+				Notes.Text = "";
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
 			if(obj.Description!=null)
 				Description.Text = obj.Description;
+			else
+				Description.Text = "";
 
 			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			DepartmentName.Text = obj.DepartmentName;
 
+
+			var milestoneListView = FindViewById<ListView> (Resource.Id.MilestonesListView);
+
+			var milestoneListAdapter = new MilestoneListAdapter (this, MilestonesHelper.GetMilestonesListByProjectId(obj.ProjectId.Value));
+
+			milestoneListView.Adapter = milestoneListAdapter;
+
+			milestoneListView.DividerHeight = 0;
+
+			Utility.setListViewHeightBasedOnChildren (milestoneListView);
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace LinkOM
 		private EditText ActualEndDatePicker;
 
 		public long ProjectId;
-		public ProjectObject ProjectDetail;
+		public ProjectDetailList ProjectDetail;
 		public InputMethodManager inputMethodManager;
 
 		public EditText AllocatedHours;
@@ -192,13 +192,13 @@ namespace LinkOM
 
 			string results = Intent.GetStringExtra ("Project");
 
-			ProjectDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectObject> (results);
+			ProjectDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectDetailList> (results);
 		}
 
-		public void DisplayProject(ProjectObject obj){
+		public void DisplayProject(ProjectDetailList obj){
 
 			var ProjectName = FindViewById<EditText> (Resource.Id.editText_ProjectName);
-			ProjectName.Text = obj.Name;
+			ProjectName.Text = obj.ProjectName;
 
 			var RefCode = FindViewById<EditText> (Resource.Id.editText_RefCode);
 			RefCode.Text = obj.ReferenceCode;
