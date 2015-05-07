@@ -161,8 +161,6 @@
     <Compile Include="Adapter\TicketCommentListAdapter.cs" />
     <Compile Include="Adapter\IssuesCommentListAdapter.cs" />
     <Compile Include="Adapter\TaskCommentListAdapter.cs" />
-    <Compile Include="Model\ReceiveModel\IssueCommentList.cs" />
-    <Compile Include="Model\ViewModel\IssueCommentObject.cs" />
     <Compile Include="Activity\Knowledgebase\KnowledgebaseActivity.cs" />
     <Compile Include="Model\ReceiveModel\KnowledgebaseList.cs" />
     <Compile Include="Adapter\KnowledgebaseListAdapter.cs" />
@@ -216,6 +214,7 @@
     <Compile Include="ObjectHelper\IssuesHelper.cs" />
     <Compile Include="Model\ViewModel\IssuesList.cs" />
     <Compile Include="Model\FilterModel\IssuesFilter.cs" />
+    <Compile Include="Model\ViewModel\IssuesCommentList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

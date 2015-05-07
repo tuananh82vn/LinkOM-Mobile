@@ -301,7 +301,7 @@ namespace LinkOM
 			button.LayoutParameters = layoutParams_button;
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
 			button.Text="0";
-			button.Gravity = GravityFlags.CenterVertical;
+			button.Gravity = GravityFlags.Center;
 			button.SetTextColor (Color.Black);
 			button.SetBackgroundColor (color);
 			button.Tag = id;

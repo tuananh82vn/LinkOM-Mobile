@@ -5,7 +5,7 @@ using Java.Interop;
 namespace LinkOM
 {
 	[Serializable]
-	public class IssueCommentObject
+	public class IssuesCommentList
 	{
 		public int Id { get; set; }
 

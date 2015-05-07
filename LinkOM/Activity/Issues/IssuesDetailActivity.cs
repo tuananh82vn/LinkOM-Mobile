@@ -43,9 +43,12 @@ namespace LinkOM
 			LoadIssueComment (IssuesDetail.Id);
 
 			//Lock Orientation
-			if (Settings.Orientation.Equals ("Portrait")) {
+			if (Settings.Orientation.Equals ("Portrait")) 
+			{
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			} else {
+			} 
+			else 
+			{
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
@@ -61,48 +64,21 @@ namespace LinkOM
 
 		public void LoadIssueComment(int IssueId){
 
-			string url = Settings.InstanceURL;
 
-			//Load data
-			string url_Task= url+"/api/IssueCommentList";
+			var issueList = IssuesHelper.GetIssuesCommentList (IssueId);
 
+			var issuesCommentListAdapter = new IssuesCommentListAdapter (this, issueList);
 
-			var objTask = new
-			{
-				IssueId = IssueId,
-			};
+			var issuesCommentListView = FindViewById<ListView> (Resource.Id.IssuesCommentListView);
 
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber =Settings.Token,
-						Item = objTask
-					}
-				});
+			issuesCommentListView.Adapter = issuesCommentListAdapter;
 
-			string results_Issue= ConnectWebAPI.Request(url_Task,objsearch);
+			issuesCommentListView.DividerHeight = 0;
 
-			if (results_Issue != null && results_Issue != "") {
+			Utility.setListViewHeightBasedOnChildren (issuesCommentListView);
 
-				var issueList = Newtonsoft.Json.JsonConvert.DeserializeObject<IssueCommentList> (results_Issue);
+			//ticketCommentListView.ItemClick += listView_ItemClick;
 
-//				if (ticketList.Items != null) {
-//
-//					TicketCommentListAdapter = new TicketCommentListAdapter (this, ticketList.Items);
-//
-//					ticketCommentListView = FindViewById<ListView> (Resource.Id.TicketCommentListView);
-//
-//					ticketCommentListView.Adapter = TicketCommentListAdapter;
-//
-//					ticketCommentListView.DividerHeight = 0;
-//
-//					Utility.setListViewHeightBasedOnChildren (ticketCommentListView);
-//
-//					//ticketCommentListView.ItemClick += listView_ItemClick;
-//				} 
-
-			}
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)

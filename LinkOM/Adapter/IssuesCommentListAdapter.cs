@@ -8,11 +8,11 @@ namespace LinkOM
 {
 	public class IssuesCommentListAdapter : BaseAdapter
 	{
-		List<IssueCommentObject> _IssuesCommentObject;
+		List<IssuesCommentList> _IssuesCommentObject;
 
 		Activity _activity;
 
-		public IssuesCommentListAdapter (Activity activity, List<IssueCommentObject> data)
+		public IssuesCommentListAdapter (Activity activity, List<IssuesCommentList> data)
 		{
 			_activity = activity;
 			_IssuesCommentObject = data;
@@ -36,7 +36,7 @@ namespace LinkOM
 			return null;
 		}
 
-		public IssueCommentObject GetItemAtPosition(int position)
+		public IssuesCommentList GetItemAtPosition(int position)
 		{
 			return _IssuesCommentObject[position];
 		}
