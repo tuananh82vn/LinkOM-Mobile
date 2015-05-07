@@ -69,9 +69,12 @@ namespace LinkOM
 
 
 				//Lock Orientation
-				if (Settings.Orientation.Equals ("Portrait")) {
+				if (Settings.Orientation.Equals ("Portrait")) 
+				{
 					RequestedOrientation = ScreenOrientation.SensorPortrait;
-				} else {
+				} 
+				else 
+				{
 
 					mSearch = FindViewById<EditText>(Resource.Id.etSearch);
 					mSearch.Alpha = 0;
@@ -173,31 +176,25 @@ namespace LinkOM
 			string url_Task= url+"/api/TaskList";
 
 			List<objSort> objSort = new List<objSort>{
+				new objSort{ColumnName = "T.AssignedToMeOrder", Direction = "1"},
+				new objSort{ColumnName = "T.PriorityId", Direction = "2"},
+				new objSort{ColumnName = "T.EndDate", Direction = "1"},
 				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
-				new objSort{ColumnName = "T.EndDate", Direction = "2"}
 			};
 
 
 			var objTask = new
 			{
 				Title = string.Empty,
+				MainStatusId = string.Empty,
 				AssignedToId = Settings.UserId,
-				ClientId = string.Empty,
-				TaskStatusId = string.Empty,
-				PriorityId = string.Empty,
-				DueBeforeDate = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectId = string.Empty,
-				AssignByMe = true,
-				Filter = string.Empty,
-				Label = string.Empty,
+
 			};
 
 			var objsearch = (new
 				{
 					objApiSearch = new
 					{
-						UserId = Settings.UserId,
 						TokenNumber =Settings.Token,
 						PageSize = 100,
 						PageNumber = 1,

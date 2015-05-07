@@ -41,6 +41,8 @@ namespace LinkOM
 
 		public EditText AllocatedHours;
 
+		public Spinner spinner_Phase ;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -61,25 +63,7 @@ namespace LinkOM
 
 			DisplayProject (ProjectDetail);
 
-			if (StartDatePicker.Text != "")
-				StartDate = DateTime.Parse (StartDatePicker.Text);
-			else
-				StartDate = DateTime.Today;
-
-			if (EndDatePicker.Text != "")
-				EndDate = DateTime.Parse (EndDatePicker.Text);
-			else
-				EndDate = DateTime.Today;
-
-			if (ActualStartDatePicker.Text != "")
-				ActualStartDate = DateTime.Parse (ActualStartDatePicker.Text);
-			else
-				ActualStartDate = DateTime.Today;
-
-			if (ActualEndDatePicker.Text != "")
-				ActualEndDate = DateTime.Parse (ActualEndDatePicker.Text);
-			else
-				ActualEndDate = DateTime.Today;
+			GetPhaseList ();
 
 			Window.SetSoftInputMode(SoftInput.StateAlwaysHidden);
 
@@ -109,6 +93,21 @@ namespace LinkOM
 			ActualEndDatePicker = FindViewById<EditText> (Resource.Id.editText_ActualEndDate);
 			ActualEndDatePicker.InputType =0;
 			ActualEndDatePicker.Click += delegate { ShowDialog (Actual_End_DATE_DIALOG_ID); };
+
+			spinner_Phase = FindViewById<Spinner> (Resource.Id.spinner_Phase);
+		}
+
+		public void GetPhaseList (){
+			
+			ProjectPhaseSpinnerAdapter PhaseSpinnerAdapter = new ProjectPhaseSpinnerAdapter (this, PhaseHelper.GetProjectPhaseByProject (ProjectDetail.ProjectId.Value));
+			spinner_Phase.Adapter = PhaseSpinnerAdapter;
+
+//			if(TaskDetail.ProjectPhaseName!=""){
+//				int index = PhaseAdapter.GetPosition (TaskDetail.ProjectPhaseName);
+//				spinner_Phase.SetSelection(index); 
+//			}
+
+//			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -204,13 +203,7 @@ namespace LinkOM
 			RefCode.Text = obj.ReferenceCode;
 
 //			var Active = FindViewById<CheckBox> (Resource.Id.checkBox_Active);
-//			Active.Checked = obj.Active;
-
-//			var ProjectPhase = FindViewById<TextView> (Resource.Id.tv_Phase);
-//			ProjectPhase.Text = obj.ProjectPhase;
-//
-//			var ProjectStatus = FindViewById<TextView> (Resource.Id.tv_Status);
-//			ProjectStatus.Text = obj.ProjectStatus;
+//			Active.Checked = obj.;
 
 			AllocatedHours = FindViewById<EditText> (Resource.Id.editText_AllocatedHours);
 			AllocatedHours.SetOnEditorActionListener (this);
@@ -223,25 +216,13 @@ namespace LinkOM
 			if(obj.EndDate!=null)
 				EndDatePicker.Text = obj.EndDate.Value.ToShortDateString();
 
-//			var ActualStartDate = FindViewById<TextView> (Resource.Id.tv_ActualStartDate);
-//			if(obj.ActualStartDate!=null)
-//				ActualStartDate.Text = obj.ActualStartDate.Value.ToShortDateString();
-//
-//			var ActualEndDate = FindViewById<TextView> (Resource.Id.tv_ActualEndDate);
-//			if(obj.ActualEndDate!=null)
-//				ActualEndDate.Text = obj.ActualEndDate.Value.ToShortDateString();
+			var ActualStartDate_EditText = FindViewById<EditText> (Resource.Id.editText_ActualStartDate);
+			if(obj.ActualStartDate!=null)
+				ActualStartDate_EditText.Text = obj.ActualStartDate.Value.ToShortDateString();
 
-//			var ClientName = FindViewById<TextView> (Resource.Id.tv_Client);
-//			ClientName.Text = obj.ClientName;
-//
-//			var DeliveryManager = FindViewById<TextView> (Resource.Id.tv_DeliveryManager);
-//			DeliveryManager.Text = obj.DeliveryManagerName;
-
-//			var ProjectManager = FindViewById<TextView> (Resource.Id.tv_ProjectManager);
-//			ProjectManager.Text = obj.ProjectManagerName;
-//
-//			var ProjectCoordinator = FindViewById<TextView> (Resource.Id.tv_ProjectCoordinator);
-//			ProjectCoordinator.Text = obj.ProjectCoordinatorName;
+			var ActualEndDate_EditText = FindViewById<EditText> (Resource.Id.editText_ActualEndDate);
+			if(obj.ActualEndDate!=null)
+				ActualEndDate_EditText.Text = obj.ActualEndDate.Value.ToShortDateString();
 
 			var Notes = FindViewById<EditText> (Resource.Id.editText_Notes);
 			if(obj.Notes!=null)
@@ -251,8 +232,27 @@ namespace LinkOM
 			if(obj.Description!=null)
 				Description.Text = obj.Description;
 
-//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
-//			DepartmentName.Text = obj.DepartmentName;
+
+			if (StartDatePicker.Text != "")
+				StartDate = DateTime.Parse (StartDatePicker.Text);
+			else
+				StartDate = DateTime.Today;
+
+			if (EndDatePicker.Text != "")
+				EndDate = DateTime.Parse (EndDatePicker.Text);
+			else
+				EndDate = DateTime.Today;
+
+			if (ActualStartDatePicker.Text != "")
+				ActualStartDate = DateTime.Parse (ActualStartDatePicker.Text);
+			else
+				ActualStartDate = DateTime.Today;
+
+			if (ActualEndDatePicker.Text != "")
+				ActualEndDate = DateTime.Parse (ActualEndDatePicker.Text);
+			else
+				ActualEndDate = DateTime.Today;
+			
 
 		}
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)

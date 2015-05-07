@@ -141,7 +141,6 @@
     <Compile Include="Activity\Document\DocumentActivity.cs" />
     <Compile Include="Model\ReceiveModel\DocumentList.cs" />
     <Compile Include="Model\ViewModel\Documents.cs" />
-    <Compile Include="Adapter\DocumentListAdapter.cs" />
     <Compile Include="Activity\Project\ProjectEditActivity.cs" />
     <Compile Include="UIControl\MyTextView.cs" />
     <Compile Include="Activity\Project\ProjectAddActivity.cs" />
@@ -208,6 +207,12 @@
     <Compile Include="ObjectHelper\MilestonesHelper.cs" />
     <Compile Include="Model\ViewModel\MilestonesList.cs" />
     <Compile Include="Model\ViewModel\MilestonesDetailList.cs" />
+    <Compile Include="ObjectHelper\PhaseHelper.cs" />
+    <Compile Include="Model\ViewModel\ProjectPhaseList.cs" />
+    <Compile Include="Adapter\DocumentListAdapter.cs" />
+    <Compile Include="Adapter\ProjectPhaseSpinnerAdapter.cs" />
+    <Compile Include="ObjectHelper\LabelHelper.cs" />
+    <Compile Include="Model\ViewModel\ProjectLabelList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

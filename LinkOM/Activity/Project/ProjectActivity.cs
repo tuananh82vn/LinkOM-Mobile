@@ -41,7 +41,7 @@ namespace LinkOM
 
 		public MenuInflater inflater;
 
-		public ProjectList ProjectSelected;
+		public ProjectDetailList ProjectSelected;
 		public FrameLayout frame_Detail;
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -146,7 +146,7 @@ namespace LinkOM
 		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			ProjectSelected = this.projectList.GetItemAtPosition (e.Position);
+			ProjectSelected = ProjectHelper.GetProjectDetailById(this.projectList.GetItemAtPosition (e.Position).Id.Value);
 
 			if (Settings.Orientation.Equals ("Portrait")) {
 				
@@ -158,7 +158,7 @@ namespace LinkOM
 			else 
 			{
 				frame_Detail.Visibility = ViewStates.Visible;
-				DisplayProject (ProjectHelper.GetProjectDetailById(ProjectSelected.Id.Value));
+				DisplayProject (ProjectSelected);
 			}
 
 		}
