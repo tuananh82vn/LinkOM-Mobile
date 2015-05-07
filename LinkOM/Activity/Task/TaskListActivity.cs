@@ -21,7 +21,7 @@ namespace LinkOM
 	[Activity (Label = "TaskList", Theme = "@style/Theme.Customtheme")]			
 	public class TaskListActivity : Activity, TextView.IOnEditorActionListener
 	{
-		public List<IssuesObject> _TaskList;
+		public List<IssuesList> _TaskList;
 		public TaskListAdapter taskList;
 
 		public int StatusId;

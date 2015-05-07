@@ -9,16 +9,16 @@ using System.Linq;
 
 namespace LinkOM
 {
-	public class DocumentListAdapter : BaseAdapter<DocumentObject>, IFilterable
+	public class DocumentListAdapter : BaseAdapter<DocumentList>, IFilterable
 	{
-		private List<DocumentObject> _originalData;
-		List<DocumentObject> _DocumentList;
+		private List<DocumentList> _originalData;
+		List<DocumentList> _DocumentList;
 
 		public Filter Filter { get; private set; }
 
 		Activity _activity;
 
-		public DocumentListAdapter (Activity activity, List<DocumentObject> data)
+		public DocumentListAdapter (Activity activity, List<DocumentList> data)
 		{
 			_activity = activity;
 			_DocumentList = data;
@@ -27,7 +27,7 @@ namespace LinkOM
 		}
 
 
-		public override DocumentObject this[int position]
+		public override DocumentList this[int position]
 		{
 			get { return _DocumentList[position]; }
 		} 
@@ -54,7 +54,7 @@ namespace LinkOM
 			return long.Parse(_DocumentList [position].Id.ToString());
 		}
 
-		public DocumentObject GetItemAtPosition(int position)
+		public DocumentList GetItemAtPosition(int position)
 		{
 			return _DocumentList[position];
 		}
@@ -91,7 +91,7 @@ namespace LinkOM
 			{
 				var returnObj = new FilterResults();
 
-				var results = new List<DocumentObject>();
+				var results = new List<DocumentList>();
 
 				if (_adapter._originalData == null)
 					_adapter._originalData = _adapter._DocumentList; 
@@ -120,7 +120,7 @@ namespace LinkOM
 			{
 				using (var values = results.Values)
 					_adapter._DocumentList = values.ToArray<Object>()
-						.Select(r => r.ToNetObject<DocumentObject>()).ToList();
+						.Select(r => r.ToNetObject<DocumentList>()).ToList();
 				_adapter.NotifyDataSetChanged();
 
 				// Don't do this and see GREF counts rising

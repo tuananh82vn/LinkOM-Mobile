@@ -57,55 +57,32 @@ namespace LinkOM
 		}
 
 
-		public void LoadTask(){
+		public void LoadTask()
+		{
 
 			var TaskId = Intent.GetIntExtra ("TaskId", 0);
 
-			if (TaskId == 0) {
+			if (TaskId == 0) 
+			{
 			
 				results = Intent.GetStringExtra ("Task");
 
 				TaskDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskObject> (results);
-			} else {
+			} 
+			else 
+			{
 				TaskDetail = LoadTaskDetail (TaskId);
 			}
 		}
 
 		public TaskObject LoadTaskDetail(int taskid){
 
-			if (CheckLoginHelper.CheckLogin ()) {
-				string url = Settings.InstanceURL;
-
-				//Load data
-				string url_Task = url + "/api/TaskDetailList";
-
-
-				var objTask = new
-				{
-					Id = taskid
-				};
-
-				var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber = Settings.Token,
-						Item = objTask
-					}
-				});
-
-				string results_Task = ConnectWebAPI.Request (url_Task, objsearch);
-
-				if (results_Task != null && results_Task != "") {
-
-					TaskDetailJson taskDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskDetailJson> (results_Task);
-					if (taskDetail.Success) {
-						return taskDetail.Item;
-					} else
-						return null;
-				} else
-					return null;
-			} else {
+			if (CheckLoginHelper.CheckLogin ()) 
+			{
+				return TaskHelper.GetTaskDetail (taskid);
+			} 
+			else 
+			{
 				var activity = new Intent (this, typeof(LoginActivity));
 				activity.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
 				StartActivity (activity);
@@ -127,45 +104,17 @@ namespace LinkOM
 
 		public void LoadTaskComment(int TaskId){
 			
-			string url = Settings.InstanceURL;
+			taskCommentListAdapter = new TaskCommentListAdapter (this, TaskHelper.GetTaskCommentList(TaskId));
 
-			//Load data
-			string url_Task= url+"/api/TaskCommentList";
+			taskCommentListView = FindViewById<ListView> (Resource.Id.TaskCommentListView);
 
+			taskCommentListView.Adapter = taskCommentListAdapter;
 
-			var objTask = new
-			{
-				TaskId = TaskId,
-			};
+			taskCommentListView.DividerHeight = 0;
 
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber =Settings.Token,
-						Item = objTask
-					}
-				});
-
-			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
-
-			if (results_Task != null && results_Task != "") {
-
-				var taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskCommentList> (results_Task);
-
-				taskCommentListAdapter = new TaskCommentListAdapter (this, taskList.Items);
-
-				taskCommentListView = FindViewById<ListView> (Resource.Id.TaskCommentListView);
-
-				taskCommentListView.Adapter = taskCommentListAdapter;
-
-				taskCommentListView.DividerHeight = 0;
-
-				Utility.setListViewHeightBasedOnChildren (taskCommentListView);
-
-
-			}
+			Utility.setListViewHeightBasedOnChildren (taskCommentListView);
 		}
+
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{
 			base.OnOptionsItemSelected (item);

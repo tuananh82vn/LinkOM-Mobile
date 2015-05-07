@@ -2,7 +2,7 @@
 
 namespace LinkOM
 {
-	public class IssuesObject
+	public class IssuesList
 	{
 		public virtual Int32 Id { get; set; }
 

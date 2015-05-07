@@ -65,7 +65,7 @@ namespace LinkOM
 				return null;
 		}
 
-		public static List<MilestonesList> GetAllMilestonesList()
+		public static List<MilestonesList> GetAllMilestonesList(MilestoneFilter objMilestone)
 		{
 
 			var url = Settings.InstanceURL;
@@ -74,23 +74,9 @@ namespace LinkOM
 
 
 			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.Title", Direction = "1"},
-				new objSort{ColumnName = "T.ProjectName", Direction = "2"}
+				new objSort{ColumnName = "T.EndDate", Direction = "1"}
 			};
 
-
-			var objMilestone = new
-			{
-				ProjectId = string.Empty,
-				StatusId = string.Empty,
-				DepartmentId = string.Empty,
-				Title = string.Empty,
-				PriorityId = string.Empty,
-				Label = string.Empty,
-				DueBefore = string.Empty,
-				AssignTo = string.Empty,
-				AssignByMe = string.Empty,
-			};
 
 			var objsearch = (new
 				{

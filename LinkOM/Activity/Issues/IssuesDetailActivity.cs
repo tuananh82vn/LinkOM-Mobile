@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public IssuesObject IssuesDetail;
+		public IssuesList IssuesDetail;
 		public string results;
 
 		protected override void OnCreate (Bundle bundle)
@@ -56,7 +56,7 @@ namespace LinkOM
 			
 			results= Intent.GetStringExtra ("Issue");
 
-			IssuesDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesObject> (results);
+			IssuesDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
 		}
 
 		public void LoadIssueComment(int IssueId){
@@ -139,7 +139,7 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayIssues(IssuesObject obj){
+		public void DisplayIssues(IssuesList obj){
 
 			var IssuesName = FindViewById<TextView> (Resource.Id.tv_IssuesName);
 			IssuesName.Text = obj.Title;

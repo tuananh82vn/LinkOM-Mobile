@@ -61,8 +61,11 @@ namespace LinkOM
 		//Loading data
 		public void InitDataMilestone(){
 
+			var objMilestone = new MilestoneFilter ();
+			//Get only Status Open
+			objMilestone.StatusId = 1;
 	
-			milestoneList = new MilestoneListAdapter (this.Activity, MilestonesHelper.GetAllMilestonesList());
+			milestoneList = new MilestoneListAdapter (this.Activity, MilestonesHelper.GetAllMilestonesList(objMilestone));
 
 			milestoneListView.Adapter = milestoneList;
 

@@ -2,7 +2,7 @@
 
 namespace LinkOM
 {
-	public class DocumentObject
+	public class DocumentList
 	{
 		public virtual Int32 Id { get; set; }
 

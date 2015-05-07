@@ -135,12 +135,9 @@
     <Compile Include="Model\ViewModel\TicketObject.cs" />
     <Compile Include="Activity\Ticket\TicketListActivity.cs" />
     <Compile Include="Adapter\TicketListAdapter.cs" />
-    <Compile Include="Model\ViewModel\IssuesObject.cs" />
     <Compile Include="Activity\Issues\IssuesListActivity.cs" />
     <Compile Include="Adapter\IssuesListAdapter.cs" />
     <Compile Include="Activity\Document\DocumentActivity.cs" />
-    <Compile Include="Model\ReceiveModel\DocumentList.cs" />
-    <Compile Include="Model\ViewModel\Documents.cs" />
     <Compile Include="Activity\Project\ProjectEditActivity.cs" />
     <Compile Include="UIControl\MyTextView.cs" />
     <Compile Include="Activity\Project\ProjectAddActivity.cs" />
@@ -149,7 +146,6 @@
     <Compile Include="Activity\Task\TaskAddActivity.cs" />
     <Compile Include="Activity\Ticket\TicketDetailActivity.cs" />
     <Compile Include="Activity\Ticket\TicketEditActivity.cs" />
-    <Compile Include="Model\ReceiveModel\IssuesList.cs" />
     <Compile Include="Model\ReceiveModel\TicketList.cs" />
     <Compile Include="Activity\Ticket\TicketAddActivity.cs" />
     <Compile Include="Activity\Issues\IssuesDetailActivity.cs" />
@@ -158,7 +154,6 @@
     <Compile Include="Activity\StartUp\HomeActivity.cs" />
     <Compile Include="Helper\ActionBarDrawerEventArgs.cs" />
     <Compile Include="Adapter\MenuListAdapter.cs" />
-    <Compile Include="Model\ReceiveModel\TaskCommentList.cs" />
     <Compile Include="Model\ViewModel\TaskCommentObject.cs" />
     <Compile Include="Model\ReceiveModel\TicketCommentList.cs" />
     <Compile Include="Model\ViewModel\TicketCommentObject.cs" />
@@ -213,6 +208,14 @@
     <Compile Include="Adapter\ProjectPhaseSpinnerAdapter.cs" />
     <Compile Include="ObjectHelper\LabelHelper.cs" />
     <Compile Include="Model\ViewModel\ProjectLabelList.cs" />
+    <Compile Include="ObjectHelper\TaskHelper.cs" />
+    <Compile Include="ObjectHelper\DocumentHelper.cs" />
+    <Compile Include="Model\ViewModel\DocumentList.cs" />
+    <Compile Include="Model\FilterModel\MilestoneFilter.cs" />
+    <Compile Include="Model\FilterModel\DocumentFilter.cs" />
+    <Compile Include="ObjectHelper\IssuesHelper.cs" />
+    <Compile Include="Model\ViewModel\IssuesList.cs" />
+    <Compile Include="Model\FilterModel\IssuesFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -611,6 +614,7 @@
     <Folder Include="Resources\anim\" />
     <Folder Include="Resources\layout-sw720dp-land\" />
     <Folder Include="ObjectHelper\" />
+    <Folder Include="Model\FilterModel\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />

@@ -9,16 +9,16 @@ using System.Linq;
 
 namespace LinkOM
 {
-	public class IssuesListAdapter : BaseAdapter<IssuesObject>, IFilterable
+	public class IssuesListAdapter : BaseAdapter<IssuesList>, IFilterable
 	{
-		private List<IssuesObject> _originalData;
-		private List<IssuesObject> _IssuesList;
+		private List<IssuesList> _originalData;
+		private List<IssuesList> _IssuesList;
 
 		Activity _activity;
 
 		public Filter Filter { get; private set; }
 
-		public IssuesListAdapter (Activity activity, List<IssuesObject> data)
+		public IssuesListAdapter (Activity activity, List<IssuesList> data)
 		{
 			_activity = activity;
 			_IssuesList = data;
@@ -26,7 +26,7 @@ namespace LinkOM
 			Filter = new IssuesFilter(this);
 		}
 
-		public override IssuesObject this[int position]
+		public override IssuesList this[int position]
 		{
 			get { return _IssuesList[position]; }
 		} 
@@ -49,7 +49,7 @@ namespace LinkOM
 			return null;
 		}
 
-		public IssuesObject GetItemAtPosition(int position)
+		public IssuesList GetItemAtPosition(int position)
 		{
 			return _IssuesList[position];
 		}
@@ -128,7 +128,7 @@ namespace LinkOM
 			{
 				var returnObj = new FilterResults();
 
-				var results = new List<IssuesObject>();
+				var results = new List<IssuesList>();
 
 				if (_adapter._originalData == null)
 					_adapter._originalData = _adapter._IssuesList; 
@@ -157,7 +157,7 @@ namespace LinkOM
 			{
 				using (var values = results.Values)
 					_adapter._IssuesList = values.ToArray<Object>()
-						.Select(r => r.ToNetObject<IssuesObject>()).ToList();
+						.Select(r => r.ToNetObject<IssuesList>()).ToList();
 				_adapter.NotifyDataSetChanged();
 
 				// Don't do this and see GREF counts rising

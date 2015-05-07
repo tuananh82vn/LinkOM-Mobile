@@ -21,7 +21,7 @@ namespace LinkOM
 	[Activity (Label = "IssuesList", Theme = "@style/Theme.Customtheme")]			
 	public class IssuesListActivity : Activity, TextView.IOnEditorActionListener
 	{
-		public List<IssuesObject> _IssuesList;
+		public List<IssuesList> _IssuesList;
 		public IssuesListAdapter issuesList;
 		public int StatusId;
 		public SwipeRefreshLayout refresher;
@@ -126,53 +126,15 @@ namespace LinkOM
 					return;
 				loading = true;
 
-				string url = Settings.InstanceURL;
+				IssuesFilter objFilter = new IssuesFilter ();
+				objFilter.IssueStatusId = StatusId;
 
-				url=url+"/api/IssueList";
+				issuesList = new IssuesListAdapter (this, IssuesHelper.GetIssuesList(objFilter));
 
-				var objTicket = new
-				{
-					ProjectId = string.Empty,
-					IssueStatusId = StatusId,
-					DepartmentId = string.Empty,
-					Title = string.Empty,
-					PriorityId = string.Empty,
-					Label= string.Empty,
-					DueBefore = string.Empty,
-					AssignTo = string.Empty,
-					AssignByMe = string.Empty,
-				};
+				issuesListView.Adapter = issuesList;
 
-				var objsearch = (new
-					{
-						objApiSearch = new
-						{
-							UserId = Settings.UserId,
-							TokenNumber =Settings.Token,
-							PageSize = 100,
-							PageNumber = 1,
-							SortMember ="",
-							SortDirection = "",
-							MainStatusId=1,
-							Item = objTicket
-						}
-					});
-				
-				string results = ConnectWebAPI.Request (url, objsearch);
+				issuesListView.ItemClick += listView_ItemClick;
 
-				if (results != null && results != "") {
-
-					IssuesList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
-
-					if (obj.Items != null) {
-
-						issuesList = new IssuesListAdapter (this, obj.Items);
-
-						issuesListView.Adapter = issuesList;
-
-						issuesListView.ItemClick += listView_ItemClick;
-					} 
-				}
 
 				loading = false;
 
@@ -252,7 +214,7 @@ namespace LinkOM
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 
-			IssuesObject model = this.issuesList.GetItemAtPosition (e.Position);
+			IssuesList model = this.issuesList.GetItemAtPosition (e.Position);
 
 			var activity = new Intent (this, typeof(IssuesDetailActivity));
 

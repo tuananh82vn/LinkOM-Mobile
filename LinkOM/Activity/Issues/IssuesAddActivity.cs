@@ -25,7 +25,7 @@ namespace LinkOM
 		const int Actual_End_DATE_DIALOG_ID = 3;
 
 
-		public IssuesObject IssuesDetail;
+		public IssuesList IssuesDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 		public ArrayAdapter PriorityAdapter;

@@ -66,7 +66,7 @@ namespace LinkOM
 			mSearch.FocusableInTouchMode = false;
 			mSearch.TextChanged += InputSearchOnTextChanged;
 
-		//	InitData ();
+			InitData ();
 
 
 			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
@@ -99,71 +99,17 @@ namespace LinkOM
 				MilestoneSelected = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesList> (results);
 		}
 
-//		//Refesh data
-//		async void HandleRefresh (object sender, EventArgs e)
-//		{
-//			await InitData ();
-//			refresher.Refreshing = false;
-//		}
+		//Loading data
+		public void InitData(){
 
-//		//Loading data
-//		public async Task InitData(){
-//
-//			if (loading)
-//				return;
-//			loading = true;
-//
-//			string url = Settings.InstanceURL;
-//
-//			url=url+"/api/MilestoneList";
-//
-//
-//			List<objSort> objSort = new List<objSort>{
-//				new objSort{ColumnName = "T.Title", Direction = "1"},
-//				new objSort{ColumnName = "T.ProjectName", Direction = "2"}
-//			};
-//
-//			var objMilestone = new
-//			{
-//				ProjectId = string.Empty,
-//				StatusId = string.Empty,
-//				DepartmentId = string.Empty,
-//				Title = string.Empty,
-//				PriorityId= string.Empty,
-//				Label= string.Empty,
-//				DueBefore= string.Empty,
-//				AssignTo= string.Empty,
-//				AssignByMe= string.Empty,
-//			};
-//
-//			var objsearch = (new
-//				{
-//					objApiSearch = new
-//					{
-//						TokenNumber = Settings.Token,
-//						PageSize = 100,
-//						PageNumber = 1,
-//						Sort = objSort,
-//						Item = objMilestone
-//					}
-//				});
-//
-//			string results=  ConnectWebAPI.Request(url,objsearch);
-//
-//			if (results != null) {
-//
-//				MilestoneListJson MilestoneList = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestoneListJson> (results);
-//
-//				milestoneList = new MilestoneListAdapter (this, MilestoneList.Items);
-//
-//				milestoneListView.Adapter = milestoneList;
-//
-//				milestoneListView.ItemClick += listView_ItemClick;
-//
-//				loading = false;
-//			}
-//
-//		}
+			var objMilestone = new MilestoneFilter ();
+
+			milestoneList = new MilestoneListAdapter (this, MilestonesHelper.GetAllMilestonesList(objMilestone));
+
+			milestoneListView.Adapter = milestoneList;
+
+			milestoneListView.ItemClick += listView_ItemClick;
+		}
 
 		//Handle item on action bar clicked
 		public override bool OnOptionsItemSelected (IMenuItem item)
@@ -177,12 +123,6 @@ namespace LinkOM
 				break;
 			case Resource.Id.search:
 				btSearchClick ();
-				break;
-//			case Resource.Id.add:
-//				Intent Intent = new Intent (this, typeof(MilestoneAddActivity));
-//				Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-//				StartActivity(Intent);
-
 				break;
 			default:
 				break;

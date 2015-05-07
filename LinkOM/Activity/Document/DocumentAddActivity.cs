@@ -20,7 +20,7 @@ namespace LinkOM
 	{
 		public string results;
 
-		public DocumentObject DocumentDetail;
+		public DocumentList DocumentDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 
@@ -100,7 +100,7 @@ namespace LinkOM
 
 			results= Intent.GetStringExtra ("Document");
 
-			DocumentDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentObject> (results);
+			DocumentDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentList> (results);
 		}
 
 		public void InitControl(){
@@ -149,7 +149,7 @@ namespace LinkOM
 			}
 		}
 
-		public void DisplayDocument(DocumentObject obj){
+		public void DisplayDocument(DocumentList obj){
 
 			editText_Title.Text = obj.Title;
 

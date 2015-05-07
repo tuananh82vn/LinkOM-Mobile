@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public DocumentObject DocumentDetail;
+		public DocumentList DocumentDetail;
 		public string results;
 
 	//	public DocumentCommentListAdapter DocumentCommentListAdapter;
@@ -59,7 +59,7 @@ namespace LinkOM
 			
 			results= Intent.GetStringExtra ("Document");
 
-			DocumentDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentObject> (results);
+			DocumentDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentList> (results);
 		}
 
 //		public void LoadDocumentComment(int DocumentId){
@@ -142,7 +142,7 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayDocument(DocumentObject obj){
+		public void DisplayDocument(DocumentList obj){
 
 			var DocumentName = FindViewById<TextView> (Resource.Id.tv_DocumentName);
 			DocumentName.Text = obj.Title;

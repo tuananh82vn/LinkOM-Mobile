@@ -25,7 +25,7 @@ namespace LinkOM
 	[Activity (Label = "Document", Theme = "@style/Theme.Customtheme")]				
 	public class DocumentActivity : Activity, TextView.IOnEditorActionListener
 	{
-		public List<DocumentObject> _DocumentList;
+		public List<DocumentList> _DocumentList;
 		public DocumentListAdapter documentList; 
 
 		public bool loading;
@@ -42,7 +42,7 @@ namespace LinkOM
 		public InputMethodManager inputManager;
 		public FrameLayout frame_Detail;
 
-		public DocumentObject documentSelected;
+		public DocumentList documentSelected;
 	
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -176,44 +176,17 @@ namespace LinkOM
 			return true;
 		}
 
-		public async Task InitData(){
+		public async Task InitData()
+		{
 
 			if (loading)
 				return;
 			loading = true;
 
-			TokenNumber = Settings.Token;
-			string url = Settings.InstanceURL;
+		
+			var objectFilter = new DocumentFilter ();
 
-			url=url+"/api/DocumentList";
-
-
-			var objDocument = new
-			{
-				Title = string.Empty,
-				DocumentCategoryId = string.Empty,
-				ProjectId = string.Empty,
-				DepartmentId = string.Empty,
-				Label = string.Empty,
-
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber = TokenNumber,
-						PageSize = 20,
-						PageNumber = 1,
-						Item = objDocument
-					}
-				});
-
-			string results=  ConnectWebAPI.Request(url,objsearch);
-
-			DocumentList DocumentList = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentList> (results);
-
-			documentList = new DocumentListAdapter (this,DocumentList.Items);
+			documentList = new DocumentListAdapter (this,DocumentHelper.GetDocumentList(objectFilter));
 
 			documentListView = FindViewById<ListView> (Resource.Id.DocumentListView);
 
@@ -296,7 +269,7 @@ namespace LinkOM
 
 		}
 
-		public void DisplayDocument(DocumentObject obj){
+		public void DisplayDocument(DocumentList obj){
 
 			var DocumentName = FindViewById<TextView> (Resource.Id.tv_DocumentDetailName);
 			DocumentName.Text = obj.Title;

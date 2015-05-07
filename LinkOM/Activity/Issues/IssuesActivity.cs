@@ -31,7 +31,7 @@ namespace LinkOM
 		public LinearLayout LinearLayout_Master;
 //		public ProgressDialog progress;
 		public List<Button> buttonList;
-		public IssuesList issuesList;
+		public List<IssuesList> issuesList;
 		public IssuesListAdapter issuesListAdapter;
 
 		public ListView issuesListView ;
@@ -45,7 +45,7 @@ namespace LinkOM
 
 		public InputMethodManager inputManager;
 
-		public IssuesObject IssuesSelected;
+		public IssuesList IssuesSelected;
 
 		public FrameLayout frame_IssuesDetail;
 
@@ -68,7 +68,8 @@ namespace LinkOM
 				ActionBar.SetDisplayHomeAsUpEnabled (true);
 				ActionBar.SetHomeButtonEnabled (true);
 
-				if(!Settings.Orientation.Equals("Portrait")){
+				if(!Settings.Orientation.Equals("Portrait"))
+				{
 					mSearch = FindViewById<EditText>(Resource.Id.etSearch);
 					mSearch.Alpha = 0;
 					mSearch.SetOnEditorActionListener (this);
@@ -169,61 +170,16 @@ namespace LinkOM
 
 		public void GetIssuesStatus ()
 		{
-			string url = Settings.InstanceURL;
-
-			//Load data
-			string url_Issues= url+"/api/IssueList";
-
-
-			var objIssues = new
-			{
-				Id =string.Empty,
-				Code = string.Empty,
-				ProjectId = string.Empty,
-				Title = string.Empty,
-				ClientId = string.Empty,
-				MainStatusId = string.Empty,
-				PriorityId = string.Empty,
-				AssignedToId= string.Empty,
-				OwnerId = string.Empty,
-				DepartmentId = string.Empty,
-				IssueStatusId = string.Empty,
-				Label = string.Empty,
-				StartDateFrom= string.Empty,
-				StartDateTo= string.Empty,
-				EndDateFrom= string.Empty,
-				EndDateTo= string.Empty,
-				OverdueIssueFlag= string.Empty,
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						UserId = Settings.UserId,
-						TokenNumber =Settings.Token,
-						PageSize = 100,
-						PageNumber = 1,
-						SortMember ="",
-						SortDirection = "",
-						MainStatusId=1,
-						Item = objIssues
-					}
-				});
 			
+			IssuesFilter objFilter = new IssuesFilter ();
 
-			string results_Issues= ConnectWebAPI.Request(url_Issues,objsearch);
-
-			if (results_Issues != null && results_Issues != "") {
-
-				issuesList = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results_Issues);
-
-			}
+			issuesList = IssuesHelper.GetIssuesList (objFilter);
 
 
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
 
+			string url = Settings.InstanceURL;
 
 			string url_IssuesStatusList= url+"/api/IssueStatusList";
 
@@ -245,7 +201,7 @@ namespace LinkOM
 						Button button = new Button (this);
 
 						//Get number of task
-						int NumberOfIssues = CheckIssues (statusList.Items [i].Name, issuesList.Items);
+						int NumberOfIssues = CheckIssues (statusList.Items [i].Name, issuesList);
 
 						//Add button into View
 						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button, NumberOfIssues);
@@ -263,7 +219,7 @@ namespace LinkOM
 		}
 
 
-		private int CheckIssues(string status, List<IssuesObject>  list_Issues){
+		private int CheckIssues(string status, List<IssuesList>  list_Issues){
 			int count = 0;
 			foreach (var task in list_Issues) {
 				if (task.StatusName == status)
@@ -275,7 +231,7 @@ namespace LinkOM
 		private void AddRow(int id,string Title, Color color, Button button, int NumberOfIssues){
 
 			TableRow tableRow = new TableRow (this);
-			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(80));
+			TableRow.LayoutParams layoutParams_TableRow = new TableRow.LayoutParams(TableRow.LayoutParams.MatchParent,dpToPx(70));
 			layoutParams_TableRow.TopMargin = dpToPx(1);
 			layoutParams_TableRow.BottomMargin = dpToPx(1);
 			tableRow .LayoutParameters = layoutParams_TableRow;
@@ -292,11 +248,12 @@ namespace LinkOM
 			textView.Gravity = GravityFlags.CenterVertical;
 			textView.TextSize = 20;
 
-			if(Settings.Orientation.Equals("Portrait"))
+			if (Settings.Orientation.Equals ("Portrait"))
 				textView.Text = Title;
-			else
-				textView.Text = Title +" (" +NumberOfIssues.ToString()+")";
-			
+			else {
+				textView.Text = Title + " (" + NumberOfIssues.ToString () + ")";
+			}
+
 			textView.Click += HandleMyButton;
 			textView.Tag = id;
 
@@ -350,67 +307,35 @@ namespace LinkOM
 				activity.PutExtra ("IssuesStatusId", whichOne);
 				StartActivity (activity);
 			}
-			else{
+			else
+			{
 					issuesListView = FindViewById<ListView> (Resource.Id.IssuesListView);
 					TextView myObject2 = (TextView)sender;
 					whichOne = (int)myObject2.Tag;
-					GetIssuesDetailList (whichOne);
+					GetIssuesListByStatusId (whichOne);
 			}
 		}
 
 
-		private void GetIssuesDetailList(int StatusId){
+		private void GetIssuesListByStatusId(int StatusId){
 
 			if (StatusId != 0) {
 
-				string url = Settings.InstanceURL;
+				IssuesFilter objFilter = new IssuesFilter ();
+				objFilter.IssueStatusId = StatusId;
 
-				url=url+"/api/IssueList";
+				var objReturn = IssuesHelper.GetIssuesList (objFilter);
 
-				var objTicket = new
-				{
-					ProjectId = string.Empty,
-					IssueStatusId = StatusId,
-					DepartmentId = string.Empty,
-					Title = string.Empty,
-					PriorityId = string.Empty,
-					Label= string.Empty,
-					DueBefore = string.Empty,
-					AssignTo = string.Empty,
-					AssignByMe = string.Empty,
-				};
+					if (objReturn != null && objReturn.Count>0) {
 
-				var objsearch = (new
-					{
-						objApiSearch = new
-						{
-							UserId = Settings.UserId,
-							TokenNumber =Settings.Token,
-							PageSize = 100,
-							PageNumber = 1,
-							SortMember ="",
-							SortDirection = "",
-							MainStatusId=1,
-							Item = objTicket
-						}
-					});
-
-				string results = ConnectWebAPI.Request (url, objsearch);
-
-				if (results != null && results != "") {
-
-					IssuesList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
-
-					if (obj.Items != null) {
-
-						issuesListAdapter = new IssuesListAdapter (this, obj.Items);
+						issuesListAdapter = new IssuesListAdapter (this, objReturn);
 
 						issuesListView.Adapter = issuesListAdapter;
 
 						issuesListView.ItemClick += listView_ItemClick;
-
-
-					} else {
+					} 
+					else 
+					{
 						issuesListView.Adapter = null;
 						Toast.MakeText (this, "No Issues Available.", ToastLength.Short).Show ();
 
@@ -418,8 +343,6 @@ namespace LinkOM
 
 					frame_IssuesDetail.Visibility = ViewStates.Invisible;
 				}
-			}
-
 		}
 
 		//handle list item clicked
@@ -503,7 +426,7 @@ namespace LinkOM
 			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
 		}
 
-		public void DisplayIssues(IssuesObject obj)
+		public void DisplayIssues(IssuesList obj)
 		{
 
 			var IssuesName = FindViewById<TextView> (Resource.Id.tv_IssuesDetailName);

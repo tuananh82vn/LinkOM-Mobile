@@ -31,7 +31,7 @@ namespace LinkOM
 		public LinearLayout LinearLayout_Master;
 //		public ProgressDialog progress;
 		public List<Button> buttonList;
-		public TaskList taskList;
+		public List<TaskObject> taskList;
 		public TaskListAdapter taskListAdapter;
 
 		public ListView taskListView ;
@@ -170,51 +170,12 @@ namespace LinkOM
 
 		public void GetTaskStatus ()
 		{
-			string url = Settings.InstanceURL;
-
-			//Load data
-			string url_Task= url+"/api/TaskList";
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.AssignedToMeOrder", Direction = "1"},
-				new objSort{ColumnName = "T.PriorityId", Direction = "2"},
-				new objSort{ColumnName = "T.EndDate", Direction = "1"},
-				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
-			};
-
-
-			var objTask = new
-			{
-				Title = string.Empty,
-				MainStatusId = string.Empty,
-				AssignedToId = Settings.UserId,
-
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber =Settings.Token,
-						PageSize = 100,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objTask
-					}
-				});
-
-			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
-
-			if (results_Task != null && results_Task != "") {
-
-				taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results_Task);
-
-			}
-
+			taskList = TaskHelper.GetTaskList ();
 
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
 
+			string url = Settings.InstanceURL;
 
 			string url_TaskStatusList= url+"/api/TaskStatusList";
 
@@ -236,7 +197,7 @@ namespace LinkOM
 						Button button = new Button (this);
 
 						//Get number of task
-						int NumberOfTask = CheckTask (statusList.Items [i].Name, taskList.Items);
+						int NumberOfTask = CheckTask (statusList.Items [i].Name, taskList);
 
 						//Add button into View
 						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button, NumberOfTask);
