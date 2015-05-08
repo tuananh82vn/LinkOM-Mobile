@@ -25,7 +25,7 @@ namespace LinkOM
 		const int Actual_End_DATE_DIALOG_ID = 3;
 
 
-		public TicketObject TicketDetail;
+		public TicketList TicketDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 		public ArrayAdapter PriorityAdapter;
@@ -120,7 +120,7 @@ namespace LinkOM
 
 			results= Intent.GetStringExtra ("Ticket");
 
-			TicketDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketObject> (results);
+			TicketDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
 		}
 
 		public void InitControl(){
@@ -168,7 +168,7 @@ namespace LinkOM
 
 
 
-		public void DisplayTicket(TicketObject obj){
+		public void DisplayTicket(TicketList obj){
 
 			editText_Title.Text = obj.Title;
 

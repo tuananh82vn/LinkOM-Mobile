@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public TaskObject TaskDetail;
+		public TaskDetailList TaskDetail;
 		public string results;
 
 		public ListView taskCommentListView ;
@@ -45,7 +45,7 @@ namespace LinkOM
 			DisplayTask (TaskDetail);
 
 			if(TaskDetail!=null)
-			LoadTaskComment (TaskDetail.Id.Value);
+			LoadTaskComment (TaskDetail.Id);
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -62,20 +62,13 @@ namespace LinkOM
 
 			var TaskId = Intent.GetIntExtra ("TaskId", 0);
 
-			if (TaskId == 0) 
-			{
-			
-				results = Intent.GetStringExtra ("Task");
-
-				TaskDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskObject> (results);
-			} 
-			else 
+			if (TaskId != 0) 
 			{
 				TaskDetail = LoadTaskDetail (TaskId);
 			}
 		}
 
-		public TaskObject LoadTaskDetail(int taskid){
+		public TaskDetailList LoadTaskDetail(int taskid){
 
 			if (CheckLoginHelper.CheckLogin ()) 
 			{
@@ -138,7 +131,7 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayTask(TaskObject obj){
+		public void DisplayTask(TaskDetailList obj){
 
 			var TaskName = FindViewById<TextView> (Resource.Id.tv_TaskName);
 			TaskName.Text = obj.Title;
@@ -147,13 +140,13 @@ namespace LinkOM
 			Code.Text = obj.Code;
 
 			var Status = FindViewById<TextView> (Resource.Id.tv_Status);
-			Status.Text = obj.TaskStatus;
+			Status.Text = obj.StatusName;
 
 			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-			Internal.Checked = obj.IsInternal.Value;
+			Internal.Checked = obj.IsInternal;
 
 			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-			Management.Checked = obj.IsManagerial.Value;
+			Management.Checked = obj.IsManagerial;
 
 //			var Completed = FindViewById<TextView> (Resource.Id.tv_Completed);
 //			Completed.Text = obj.Completed;
@@ -174,7 +167,11 @@ namespace LinkOM
 
 
 			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
-			AlloHours.Text = obj.AllocatedHours;
+			if (obj.AllocatedHours.HasValue) {
+				AlloHours.Text = obj.AllocatedHours.Value.ToString ();
+			}
+			else
+				AlloHours.Text="0";
 
 //			var SpentHours = FindViewById<TextView> (Resource.Id.tv_SpentHours);
 //			SpentHours.Text = obj.SpentHours;

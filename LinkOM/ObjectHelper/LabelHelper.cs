@@ -35,11 +35,15 @@ namespace LinkOM
 
 				List<ProjectLabelList> returnObject = new List<ProjectLabelList> ();
 
-				foreach (object Item in objResult.Items) {
-					ProjectLabelList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectLabelList> (Item.ToString ());
-					returnObject.Add (temp);
+				if (objResult.Items != null) {
+					foreach (object Item in objResult.Items) {
+						ProjectLabelList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectLabelList> (Item.ToString ());
+						returnObject.Add (temp);
+					}
 				}
-
+				else
+					return null;
+				
 				return returnObject;
 			} else
 				return null;

@@ -31,11 +31,14 @@ namespace LinkOM
 				ApiResultList<IEnumerable<DocumentList>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<DocumentList>>> (results);
 
 				List<DocumentList> returnObject = new List<DocumentList> ();
-
-				foreach (object Item in objResult.Items) {
-					DocumentList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentList> (Item.ToString ());
-					returnObject.Add (temp);
+				if (objResult.Items != null) {
+					foreach (object Item in objResult.Items) {
+						DocumentList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentList> (Item.ToString ());
+						returnObject.Add (temp);
+					}
 				}
+				else
+					return null;
 
 				return returnObject;
 			} 

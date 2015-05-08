@@ -2,7 +2,7 @@
 
 namespace LinkOM
 {
-	public class TicketObject
+	public class TicketList
 	{
 
 		public virtual Int32 Id { get; set; }

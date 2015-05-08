@@ -130,57 +130,17 @@ namespace LinkOM
 					return;
 				loading = true;
 				
-				string url = Settings.InstanceURL;
+				TaskFilter objFilter = new TaskFilter ();
+				objFilter.AssignedToId = Settings.UserId;
+				objFilter.MainStatusId = StatusId;
+				objFilter.TaskStatusId = StatusId.ToString ();
+					
+				taskList = new TaskListAdapter (this, TaskHelper.GetTaskList(objFilter));
 
-				url=url+"/api/TaskList";
+				taskListView.Adapter = taskList;
 
-				var objTask = new
-				{
-					Title = "",
-					AssignedToId = Settings.UserId,
-					ClientId = string.Empty,
-					TaskStatusId = StatusId,
-					PriorityId = string.Empty,
-					DueBeforeDate = string.Empty,
-					DepartmentId = string.Empty,
-					ProjectId = string.Empty,
-					AssignByMe = string.Empty,
-					Filter = string.Empty,
-					Label = string.Empty,
-				};
+				taskListView.ItemClick += listView_ItemClick;
 
-				List<objSort> objSort = new List<objSort>{
-					new objSort{ColumnName = "T.Code", Direction = "2"},
-				};
-
-				var objsearch = (new
-					{
-						objApiSearch = new
-						{
-							UserId = Settings.UserId,
-							TokenNumber = Settings.Token,
-							PageSize = 100,
-							PageNumber = 1,
-							Sort = objSort,
-							Item = objTask
-						}
-					});
-
-				string results = ConnectWebAPI.Request (url, objsearch);
-
-				if (results != null && results != "") {
-
-					TaskList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results);
-
-					if (obj.Items != null) {
-
-						taskList = new TaskListAdapter (this, obj.Items);
-
-						taskListView.Adapter = taskList;
-
-						taskListView.ItemClick += listView_ItemClick;
-					} 
-				}
 
 				loading = false;
 
@@ -246,13 +206,11 @@ namespace LinkOM
 
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			TaskObject model = this.taskList.GetItemAtPosition (e.Position);
+			TaskList model = this.taskList.GetItemAtPosition (e.Position);
 
 			var activity = new Intent (this, typeof(TaskDetailActivity));
 
-			activity.PutExtra ("Task", Newtonsoft.Json.JsonConvert.SerializeObject(model));
-
-			//StartActivity (activity);
+			activity.PutExtra ("TaskId", model.Id);
 
 			ActivityOptions opts = ActivityOptions.MakeCustomAnimation (this, Resource.Animation.fade, Resource.Animation.hold);
 

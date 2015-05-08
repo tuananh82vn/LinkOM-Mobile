@@ -73,11 +73,14 @@ namespace LinkOM
 				ApiResultList<IEnumerable<IssuesCommentList>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<IssuesCommentList>>> (results_Issue);
 
 				List<IssuesCommentList> returnObject = new List<IssuesCommentList> ();
-
-				foreach (object Item in objResult.Items) {
-					IssuesCommentList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesCommentList> (Item.ToString ());
-					returnObject.Add (temp);
+				if (objResult.Items != null) {
+					foreach (object Item in objResult.Items) {
+						IssuesCommentList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesCommentList> (Item.ToString ());
+						returnObject.Add (temp);
+					}
 				}
+				else
+					return null;
 
 				return returnObject;
 			} 

@@ -48,10 +48,14 @@ namespace LinkOM
 
 				List<ProjectList> returnObject = new List<ProjectList> ();
 
-				foreach (object Item in objResult.Items) {
-					ProjectList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectList> (Item.ToString ());
-					returnObject.Add (temp);
+				if (objResult.Items != null) {
+					foreach (object Item in objResult.Items) {
+						ProjectList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectList> (Item.ToString ());
+						returnObject.Add (temp);
+					}
 				}
+				else
+					return null;
 
 				return returnObject;
 			} else

@@ -21,7 +21,7 @@ namespace LinkOM
 
 		NChartPoint prevSelectedPoint;
 
-		public TaskList taskList;
+		public List<TaskList> taskList;
 
 		public string[] TaskStatusName;
 
@@ -33,78 +33,28 @@ namespace LinkOM
 
 		public void InitData (){
 			
-			string url = Settings.InstanceURL;
-
-			//Load data
-			string url_Task= url+"/api/TaskList";
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
-				new objSort{ColumnName = "T.EndDate", Direction = "2"}
-			};
+			TaskFilter objFilter = new TaskFilter ();
+			objFilter.AssignedToId = Settings.UserId;
+				
+			taskList = TaskHelper.GetTaskList (objFilter);
 
 
-			var objTask = new
-			{
-				Title = string.Empty,
-				AssignedToId = Settings.UserId,
-				ClientId = string.Empty,
-				TaskStatusId = string.Empty,
-				PriorityId = string.Empty,
-				DueBeforeDate = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectId = string.Empty,
-				AssignByMe = true,
-				Filter = string.Empty,
-				Label = string.Empty,
-			};
+			var statusList = TaskHelper.GetTaskStatus ();
 
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						UserId = Settings.UserId,
-						TokenNumber =Settings.Token,
-						PageSize = 100,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objTask
-					}
-				});
+			if (statusList.Count > 0) {
 
-			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
+				TaskStatusName = new string[statusList.Count];
 
-			if (results_Task != null && results_Task != "") {
-
-				taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results_Task);
-
-			}
-
-
-			string url_TaskStatusList= url+"/api/TaskStatusList";
-
-			string results_TaskList= ConnectWebAPI.Request(url_TaskStatusList,"");
-
-			if (results_TaskList != null && results_TaskList != "") {
-
-				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TaskList);
-
-				statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
-
-				if (statusList.Items.Count > 0) {
-
-					TaskStatusName = new string[statusList.Items.Count];
-
-					for (int i = 0; i < statusList.Items.Count; i++) {
-						TaskStatusName[i]=statusList.Items [i].Name;
-						//Get number of task
-						var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList.Items).ToString ();
-					}
+				for (int i = 0; i < statusList.Count; i++) {
+					TaskStatusName[i]=statusList [i].Name;
+					//Get number of task
+					var NumberOfTask = CheckTask (statusList [i].Name, taskList).ToString ();
 				}
 			}
+
 		}
 
-		private int CheckTask(string status, List<TaskObject>  list_Task){
+		private int CheckTask(string status, List<TaskList>  list_Task){
 			int count = 0;
 			foreach (var task in list_Task) {
 				if (task.StatusName == status)
@@ -141,7 +91,7 @@ namespace LinkOM
 
 			for (int i = 0; i < statusList.Items.Count; i++) {
 				//Get number of task
-				var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList.Items);
+				var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList);
 
 				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (NumberOfTask, i), series);
 			}

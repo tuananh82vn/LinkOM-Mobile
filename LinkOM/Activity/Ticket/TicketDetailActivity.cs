@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public TicketObject TicketDetail;
+		public TicketList TicketDetail;
 		public string results;
 
 		public TicketCommentListAdapter TicketCommentListAdapter;
@@ -59,7 +59,7 @@ namespace LinkOM
 			
 			results= Intent.GetStringExtra ("Ticket");
 
-			TicketDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketObject> (results);
+			TicketDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
 		}
 
 		public void LoadTicketComment(int TicketId){
@@ -142,7 +142,7 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayTicket(TicketObject obj){
+		public void DisplayTicket(TicketList obj){
 
 			var TicketName = FindViewById<TextView> (Resource.Id.tv_TicketName);
 			TicketName.Text = obj.Title;

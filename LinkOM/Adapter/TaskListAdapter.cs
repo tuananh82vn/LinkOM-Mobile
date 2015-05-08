@@ -9,16 +9,16 @@ using System.Linq;
 
 namespace LinkOM
 {
-	public class TaskListAdapter : BaseAdapter<TaskObject>, IFilterable
+	public class TaskListAdapter : BaseAdapter<TaskList>, IFilterable
 	{
-		private List<TaskObject> _originalData;
-		private List<TaskObject> _TaskList;
+		private List<TaskList> _originalData;
+		private List<TaskList> _TaskList;
 
 		Activity _activity;
 
 		public Filter Filter { get; private set; }
 
-		public TaskListAdapter (Activity activity, List<TaskObject> data)
+		public TaskListAdapter (Activity activity, List<TaskList> data)
 		{
 			_activity = activity;
 			_TaskList = data;
@@ -26,7 +26,7 @@ namespace LinkOM
 			Filter = new TaskFilter(this);
 		}
 
-		public override TaskObject this[int position]
+		public override TaskList this[int position]
 		{
 			get { return _TaskList[position]; }
 		} 
@@ -49,7 +49,7 @@ namespace LinkOM
 			return null;
 		}
 
-		public TaskObject GetItemAtPosition(int position)
+		public TaskList GetItemAtPosition(int position)
 		{
 			return _TaskList[position];
 		}
@@ -63,7 +63,7 @@ namespace LinkOM
 
 
 		public override long GetItemId (int position) {
-			return long.Parse(_TaskList [position].Id.Value.ToString());
+			return long.Parse(_TaskList [position].Id.ToString());
 		}
 
 		public string GetItemName (int position) {
@@ -103,7 +103,7 @@ namespace LinkOM
 			{
 				var returnObj = new FilterResults();
 
-				var results = new List<TaskObject>();
+				var results = new List<TaskList>();
 
 				if (_adapter._originalData == null)
 					_adapter._originalData = _adapter._TaskList; 
@@ -130,7 +130,7 @@ namespace LinkOM
 			{
 				using (var values = results.Values)
 					_adapter._TaskList = values.ToArray<Object>()
-						.Select(r => r.ToNetObject<TaskObject>()).ToList();
+						.Select(r => r.ToNetObject<TaskList>()).ToList();
 				_adapter.NotifyDataSetChanged();
 
 				// Don't do this and see GREF counts rising

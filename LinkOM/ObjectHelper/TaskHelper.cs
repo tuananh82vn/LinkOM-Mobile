@@ -5,7 +5,7 @@ namespace LinkOM
 {
 	public static class TaskHelper
 	{
-		public static List<TaskObject> GetTaskList(){
+		public static List<TaskList> GetTaskList(TaskFilter objTask){
 
 			string url = Settings.InstanceURL;
 
@@ -19,14 +19,6 @@ namespace LinkOM
 				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
 			};
 
-
-			var objTask = new
-			{
-				Title = string.Empty,
-				MainStatusId = string.Empty,
-				AssignedToId = Settings.UserId,
-
-			};
 
 			var objsearch = (new
 				{
@@ -44,8 +36,16 @@ namespace LinkOM
 
 			if (results_Task != null && results_Task != "") {
 
-				var taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results_Task);
-				return taskList.Items;
+				ApiResultList<IEnumerable<TaskList>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<TaskList>>> (results_Task);
+
+				List<TaskList> returnObject = new List<TaskList> ();
+
+				foreach (object Item in objResult.Items) {
+					TaskList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (Item.ToString ());
+					returnObject.Add (temp);
+				}
+
+				return returnObject;
 			} else
 				return null;
 			
@@ -81,10 +81,14 @@ namespace LinkOM
 
 				List<TaskCommentObject> returnObject = new List<TaskCommentObject> ();
 
-				foreach (object Item in objResult.Items) {
-					TaskCommentObject temp = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskCommentObject> (Item.ToString ());
-					returnObject.Add (temp);
+				if (objResult.Items != null) {
+					foreach (object Item in objResult.Items) {
+						TaskCommentObject temp = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskCommentObject> (Item.ToString ());
+						returnObject.Add (temp);
+					}
 				}
+				else
+					return null;
 
 				return returnObject;
 			} else
@@ -92,7 +96,7 @@ namespace LinkOM
 			
 		}
 
-		public static TaskObject GetTaskDetail(int TaskId){
+		public static TaskDetailList GetTaskDetail(int TaskId){
 			string url = Settings.InstanceURL;
 
 			//Load data
@@ -117,14 +121,55 @@ namespace LinkOM
 
 			if (results_Task != null && results_Task != "") {
 
-				TaskDetailJson taskDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskDetailJson> (results_Task);
-				if (taskDetail.Success) {
-					return taskDetail.Item;
+				ApiResultDetail<TaskDetailList> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultDetail<TaskDetailList>> (results_Task);
+				if (objResult.Success) {
+
+					TaskDetailList returnObject = (TaskDetailList)objResult.Item;
+					return returnObject;
+				}
+				else
+					return null;
+
+			} else
+				return null;
+		}
+
+		public static List<Status> GetTaskStatus(){
+
+			string url = Settings.InstanceURL;
+
+			string url_TaskStatusList= url+"/api/TaskStatusList";
+
+			string results_TaskList= ConnectWebAPI.Request(url_TaskStatusList,"");
+
+			if (results_TaskList != null && results_TaskList != "") {
+
+				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TaskList);
+
+				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
+
+				if (data.Data != null) {
+
+					ApiResultList<IEnumerable<Status>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<Status>>> (data.Data);
+
+					List<Status> returnObject = new List<Status> ();
+
+					if (objResult.Items != null) {
+						foreach (object Item in objResult.Items) {
+							Status temp = Newtonsoft.Json.JsonConvert.DeserializeObject<Status> (Item.ToString ());
+							returnObject.Add (temp);
+						}
+					}
+					else
+						return null;
+
+					return returnObject;
 				} else
 					return null;
 			} else
 				return null;
 		}
+
 
 	}
 }

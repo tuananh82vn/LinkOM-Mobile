@@ -21,7 +21,7 @@ namespace LinkOM
 	[Activity (Label = "TicketList", Theme = "@style/Theme.Customtheme")]				
 	public class TicketListActivity : Activity, TextView.IOnEditorActionListener
 	{
-		public List<TicketObject> _TicketList;
+		public List<TicketList> _TicketList;
 		public TicketListAdapter ticketList;
 		public int StatusId;
 		public SwipeRefreshLayout refresher;
@@ -120,64 +120,23 @@ namespace LinkOM
 
 			if (StatusId != 0) {
 
-				Console.WriteLine ("Begin load data");
-
 				if (loading)
 					return;
 				loading = true;
 
-				string url = Settings.InstanceURL;
+				TicketFilter objFilter = new TicketFilter ();
+				objFilter.AssignedToId = Settings.UserId;
+				objFilter.TicketStatusId = StatusId;
 
-				url=url+"/api/TicketList";
+				ticketList = new TicketListAdapter (this, TicketHelper.GetTicketList(objFilter));
 
-				var objTicket = new
-				{
-					ProjectId = string.Empty,
-					AssignedToId = Settings.UserId,
-					TicketStatusId = StatusId,
-					DepartmentId = string.Empty,
-					Title = string.Empty,
-					PriorityId = string.Empty,
-					Label= string.Empty,
-					DueBefore = string.Empty,
-					AssignTo = string.Empty,
-					AssignByMe = string.Empty,
-				};
+				ticketListView.Adapter = ticketList;
 
-				var objsearch = (new
-					{
-						objApiSearch = new
-						{
-							UserId = Settings.UserId,
-							TokenNumber =Settings.Token,
-							PageSize = 100,
-							PageNumber = 1,
-							SortMember ="",
-							SortDirection = "",
-							MainStatusId=1,
-							Item = objTicket
-						}
-					});
-				
-				string results = ConnectWebAPI.Request (url, objsearch);
+				ticketListView.ItemClick += listView_ItemClick;
 
-				if (results != null && results != "") {
-
-					TicketList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
-
-					if (obj.Items != null) {
-
-						ticketList = new TicketListAdapter (this, obj.Items);
-
-						ticketListView.Adapter = ticketList;
-
-						ticketListView.ItemClick += listView_ItemClick;
-					} 
-				}
 
 				loading = false;
 
-				Console.WriteLine ("End load data");
 			}
 		}
 
@@ -237,7 +196,7 @@ namespace LinkOM
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 
-			TicketObject model = this.ticketList.GetItemAtPosition (e.Position);
+			TicketList model = this.ticketList.GetItemAtPosition (e.Position);
 
 			var activity = new Intent (this, typeof(TicketDetailActivity));
 

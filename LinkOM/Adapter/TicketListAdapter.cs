@@ -9,16 +9,16 @@ using System.Linq;
 
 namespace LinkOM
 {
-	public class TicketListAdapter : BaseAdapter<TicketObject>, IFilterable
+	public class TicketListAdapter : BaseAdapter<TicketList>, IFilterable
 	{
-		private List<TicketObject> _originalData;
-		private List<TicketObject> _TicketList;
+		private List<TicketList> _originalData;
+		private List<TicketList> _TicketList;
 
 		Activity _activity;
 
 		public Filter Filter { get; private set; }
 
-		public TicketListAdapter (Activity activity, List<TicketObject> data)
+		public TicketListAdapter (Activity activity, List<TicketList> data)
 		{
 			_activity = activity;
 			_TicketList = data;
@@ -26,7 +26,7 @@ namespace LinkOM
 			Filter = new TicketFilter(this);
 		}
 
-		public override TicketObject this[int position]
+		public override TicketList this[int position]
 		{
 			get { return _TicketList[position]; }
 		} 
@@ -49,7 +49,7 @@ namespace LinkOM
 			return null;
 		}
 
-		public TicketObject GetItemAtPosition(int position)
+		public TicketList GetItemAtPosition(int position)
 		{
 			return _TicketList[position];
 		}
@@ -103,7 +103,7 @@ namespace LinkOM
 			{
 				var returnObj = new FilterResults();
 
-				var results = new List<TicketObject>();
+				var results = new List<TicketList>();
 
 				if (_adapter._originalData == null)
 					_adapter._originalData = _adapter._TicketList; 
@@ -132,7 +132,7 @@ namespace LinkOM
 			{
 				using (var values = results.Values)
 					_adapter._TicketList = values.ToArray<Object>()
-						.Select(r => r.ToNetObject<TicketObject>()).ToList();
+						.Select(r => r.ToNetObject<TicketList>()).ToList();
 				_adapter.NotifyDataSetChanged();
 
 				// Don't do this and see GREF counts rising

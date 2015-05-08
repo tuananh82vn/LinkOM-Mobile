@@ -21,7 +21,7 @@ namespace LinkOM
 
 		NChartPoint prevSelectedPoint;
 
-		public TicketList taskList;
+		public List<TicketList> taskList;
 
 		public string[] TicketStatusName;
 
@@ -32,49 +32,15 @@ namespace LinkOM
 		}
 
 		public void InitData (){
-			
+
+
+			TicketFilter objFilter = new TicketFilter ();
+			objFilter.AssignedToId = Settings.UserId;
+
+
+			taskList = TicketHelper.GetTicketList (objFilter);
+
 			string url = Settings.InstanceURL;
-
-			//Load data
-			string url_Ticket= url+"/api/TicketList";
-
-			var objTicket = new
-			{
-				ProjectId = string.Empty,
-				AssignedToId = Settings.UserId,
-				TicketStatusId = string.Empty,
-				DepartmentId = string.Empty,
-				Title = string.Empty,
-				PriorityId = string.Empty,
-				Label= string.Empty,
-				DueBefore = string.Empty,
-				AssignTo = string.Empty,
-				AssignByMe = string.Empty,
-			};
-
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						UserId = Settings.UserId,
-						TokenNumber =Settings.Token,
-						PageSize = 100,
-						PageNumber = 1,
-						SortMember ="",
-						SortDirection = "",
-						MainStatusId=1,
-						Item = objTicket
-					}
-				});
-
-			string results_Ticket= ConnectWebAPI.Request(url_Ticket,objsearch);
-
-			if (results_Ticket != null && results_Ticket != "") {
-
-				taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results_Ticket);
-
-			}
-
 
 			string url_TicketStatusList= url+"/api/TicketStatusList";
 
@@ -97,7 +63,7 @@ namespace LinkOM
 			}
 		}
 
-		private int CheckTicket(string status, List<TicketObject>  list_Task){
+		private int CheckTicket(string status, List<TicketList>  list_Task){
 			int count = 0;
 			foreach (var task in list_Task) {
 				if (task.TicketStatusName == status)
@@ -134,7 +100,7 @@ namespace LinkOM
 
 			for (int i = 0; i < statusList.Items.Count; i++) {
 				//Get number of task
-				var NumberOfTask = CheckTicket (statusList.Items [i].Name, taskList.Items);
+				var NumberOfTask = CheckTicket (statusList.Items [i].Name, taskList);
 
 				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (NumberOfTask, i), series);
 			}

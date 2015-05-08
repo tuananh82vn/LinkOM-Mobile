@@ -25,7 +25,7 @@ namespace LinkOM
 		const int Actual_End_DATE_DIALOG_ID = 3;
 
 
-		public TaskObject TaskDetail;
+		public TaskDetailList TaskDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 		public ArrayAdapter PriorityAdapter;
@@ -159,19 +159,19 @@ namespace LinkOM
 
 
 
-		public void DisplayTask(TaskObject obj){
+		public void DisplayTask(TaskDetailList obj){
 
 			editText_Title.Text = obj.Title;
 
-			if(obj.IsInternal.HasValue)
-				cb_Internal.Checked = obj.IsInternal.Value;
+			if(obj.IsInternal)
+				cb_Internal.Checked = obj.IsInternal;
 
 
 			if(obj.IsAddToMyWatch.HasValue)
 				cb_WatchList.Checked = obj.IsAddToMyWatch.Value;
 
-			if(obj.IsManagerial.HasValue)
-				cb_Management.Checked = obj.IsManagerial.Value;
+			if(obj.IsManagerial)
+				cb_Management.Checked = obj.IsManagerial;
 
 
 			editText_StartDate.Text = obj.StartDateString;
@@ -182,7 +182,7 @@ namespace LinkOM
 
 			editText_ActualEndDate.Text = obj.ActualEndDateString;
 
-			editText_AllocatedHours.Text = obj.AllocatedHours;
+			editText_AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
 
 			editText_Description.Text = obj.Description;
 
@@ -371,7 +371,7 @@ namespace LinkOM
 				TaskStatusId= Selected_StatusID,
 				AllocatedHours= editText_AllocatedHours.Text,
 				IsUserWatch = cb_WatchList.Checked,
-				UpdatedBy = TaskDetail.CreatedBy,
+//				UpdatedBy = TaskDetail.CreatedBy,
 			};
 
 			var objEditTask = (new

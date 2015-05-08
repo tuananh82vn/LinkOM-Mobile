@@ -35,10 +35,14 @@ namespace LinkOM
 
 				List<ProjectPhaseList> returnObject = new List<ProjectPhaseList> ();
 
-				foreach (object Item in objResult.Items) {
-					ProjectPhaseList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectPhaseList> (Item.ToString ());
-					returnObject.Add (temp);
+				if (objResult.Items != null) {
+					foreach (object Item in objResult.Items) {
+						ProjectPhaseList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectPhaseList> (Item.ToString ());
+						returnObject.Add (temp);
+					}
 				}
+				else
+					return null;
 
 				return returnObject;
 			} else

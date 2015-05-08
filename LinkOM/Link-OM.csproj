@@ -126,13 +126,10 @@
     <Compile Include="Model\ViewModel\Status.cs" />
     <Compile Include="Model\ReceiveModel\JsonData.cs" />
     <Compile Include="Model\ReceiveModel\StatusList.cs" />
-    <Compile Include="Model\ReceiveModel\TaskList.cs" />
-    <Compile Include="Model\ViewModel\TaskObject.cs" />
     <Compile Include="UIControl\SwipeRefreshLayout.cs" />
     <Compile Include="UIControl\MyAnimation.cs" />
     <Compile Include="Helper\JavaHolder.cs" />
     <Compile Include="Helper\ObjectExtensions.cs" />
-    <Compile Include="Model\ViewModel\TicketObject.cs" />
     <Compile Include="Activity\Ticket\TicketListActivity.cs" />
     <Compile Include="Adapter\TicketListAdapter.cs" />
     <Compile Include="Activity\Issues\IssuesListActivity.cs" />
@@ -146,7 +143,6 @@
     <Compile Include="Activity\Task\TaskAddActivity.cs" />
     <Compile Include="Activity\Ticket\TicketDetailActivity.cs" />
     <Compile Include="Activity\Ticket\TicketEditActivity.cs" />
-    <Compile Include="Model\ReceiveModel\TicketList.cs" />
     <Compile Include="Activity\Ticket\TicketAddActivity.cs" />
     <Compile Include="Activity\Issues\IssuesDetailActivity.cs" />
     <Compile Include="Activity\Issues\IssuesEditActivity.cs" />
@@ -186,7 +182,6 @@
     <Compile Include="Notification\MyIntentService.cs" />
     <Compile Include="Helper\CheckLoginHelper.cs" />
     <Compile Include="Helper\ColorHelper.cs" />
-    <Compile Include="Model\ReceiveModel\TaskDetailJson.cs" />
     <Compile Include="Helper\ScreenHelper.cs" />
     <Compile Include="Model\ViewModel\DashboardObject.cs" />
     <Compile Include="Model\ReceiveModel\ApiResult.cs" />
@@ -215,6 +210,13 @@
     <Compile Include="Model\ViewModel\IssuesList.cs" />
     <Compile Include="Model\FilterModel\IssuesFilter.cs" />
     <Compile Include="Model\ViewModel\IssuesCommentList.cs" />
+    <Compile Include="Model\FilterModel\TaskFilter.cs" />
+    <Compile Include="Model\ViewModel\TaskDetailList.cs" />
+    <Compile Include="Model\ViewModel\TaskList.cs" />
+    <Compile Include="Model\ReceiveModel\ApiResultDetail.cs" />
+    <Compile Include="ObjectHelper\TicketHelper.cs" />
+    <Compile Include="Model\FilterModel\TicketFilter.cs" />
+    <Compile Include="Model\ViewModel\TicketList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -31,7 +31,7 @@ namespace LinkOM
 		public LinearLayout LinearLayout_Master;
 //		public ProgressDialog progress;
 		public List<Button> buttonList;
-		public TicketList taskList;
+		public List<TicketList> taskList;
 		public TicketListAdapter taskListAdapter;
 
 		public ListView taskListView ;
@@ -45,7 +45,7 @@ namespace LinkOM
 
 		public InputMethodManager inputManager;
 
-		public TicketObject TicketSelected;
+		public TicketList TicketSelected;
 		public FrameLayout frame_TicketDetail;
 
 		protected override void OnCreate (Bundle bundle)
@@ -170,57 +170,17 @@ namespace LinkOM
 
 		public void GetTicketStatus ()
 		{
-			string url = Settings.InstanceURL;
-
-			//Load data
-			string url_Ticket= url+"/api/TicketList";
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
-				new objSort{ColumnName = "T.EndDate", Direction = "2"}
-			};
+			TicketFilter objFilter = new TicketFilter ();
+			objFilter.AssignedToId = Settings.UserId;
 
 
-			var objTicket = new
-			{
-				Title = string.Empty,
-				AssignedToId = Settings.UserId,
-				ClientId = string.Empty,
-				TicketStatusId = string.Empty,
-				PriorityId = string.Empty,
-				DueBeforeDate = string.Empty,
-				DepartmentId = string.Empty,
-				ProjectId = string.Empty,
-				AssignByMe = true,
-				Filter = string.Empty,
-				Label = string.Empty,
-			};
 
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						UserId = Settings.UserId,
-						TokenNumber =Settings.Token,
-						PageSize = 100,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objTicket
-					}
-				});
-
-			string results_Ticket= ConnectWebAPI.Request(url_Ticket,objsearch);
-
-			if (results_Ticket != null && results_Ticket != "") {
-
-				taskList = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results_Ticket);
-
-			}
-
+			taskList = TicketHelper.GetTicketList (objFilter);
 
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
 
+			string url = Settings.InstanceURL;
 
 			string url_TicketStatusList= url+"/api/TicketStatusList";
 
@@ -242,7 +202,7 @@ namespace LinkOM
 						Button button = new Button (this);
 
 						//Get number of task
-						int NumberOfTicket = CheckTicket (statusList.Items [i].Name, taskList.Items);
+						int NumberOfTicket = CheckTicket (statusList.Items [i].Name, taskList);
 
 						//Add button into View
 						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button, NumberOfTicket);
@@ -260,7 +220,7 @@ namespace LinkOM
 		}
 
 
-		private int CheckTicket(string status, List<TicketObject>  list_Ticket){
+		private int CheckTicket(string status, List<TicketList>  list_Ticket){
 			int count = 0;
 			foreach (var task in list_Ticket) {
 				if (task.TicketStatusName == status)
@@ -356,71 +316,33 @@ namespace LinkOM
 		}
 
 
-		private void GetTicketDetailList(int StatusId){
+		private void GetTicketDetailList(int StatusId)
+		{
 
 			if (StatusId != 0) {
 
-				string url = Settings.InstanceURL;
+					TicketFilter objFilter = new TicketFilter ();
+					objFilter.AssignedToId = Settings.UserId;
+					objFilter.TicketStatusId = StatusId;
 
-				url=url+"/api/TicketList";
+					var TicketReturn = TicketHelper.GetTicketList (objFilter);
+					if(TicketReturn!=null){
+						
+							var taskListAdapter = new TicketListAdapter (this,TicketReturn);
 
-				var objTicket = new
-				{
-					Title = "",
-					AssignedToId = Settings.UserId,
-					ClientId = string.Empty,
-					TicketStatusId = StatusId,
-					PriorityId = string.Empty,
-					DueBeforeDate = string.Empty,
-					DepartmentId = string.Empty,
-					ProjectId = string.Empty,
-					AssignByMe = string.Empty,
-					Filter = string.Empty,
-					Label = string.Empty,
-				};
+							taskListView.Adapter = taskListAdapter;
 
-				List<objSort> objSort = new List<objSort>{
-					new objSort{ColumnName = "T.Code", Direction = "2"},
-				};
-
-				var objsearch = (new
+							taskListView.ItemClick += listView_ItemClick;
+					} 
+					else 
 					{
-						objApiSearch = new
-						{
-							UserId = Settings.UserId,
-							TokenNumber = Settings.Token,
-							PageSize = 100,
-							PageNumber = 1,
-							Sort = objSort,
-							Item = objTicket
-						}
-					});
-
-				string results = ConnectWebAPI.Request (url, objsearch);
-
-				if (results != null && results != "") {
-
-					TicketList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
-
-					if (obj.Items != null) {
-
-						taskListAdapter = new TicketListAdapter (this, obj.Items);
-
-						taskListView.Adapter = taskListAdapter;
-
-						taskListView.ItemClick += listView_ItemClick;
-
-
-					} else {
-						taskListView.Adapter = null;
-						Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
+							taskListView.Adapter = null;
+							Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
 
 					}
 
 					frame_TicketDetail.Visibility = ViewStates.Invisible;
 				}
-			}
-
 		}
 
 		//handle list item clicked
@@ -504,7 +426,7 @@ namespace LinkOM
 			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
 		}
 
-		public void DisplayTicket(TicketObject obj)
+		public void DisplayTicket(TicketList obj)
 		{
 
 			var TicketName = FindViewById<TextView> (Resource.Id.tv_TicketDetailName);

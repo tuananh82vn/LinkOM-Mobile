@@ -31,7 +31,7 @@ namespace LinkOM
 		public LinearLayout LinearLayout_Master;
 //		public ProgressDialog progress;
 		public List<Button> buttonList;
-		public List<TaskObject> taskList;
+		public List<TaskList> taskList;
 		public TaskListAdapter taskListAdapter;
 
 		public ListView taskListView ;
@@ -45,7 +45,7 @@ namespace LinkOM
 
 		public InputMethodManager inputManager;
 
-		public TaskObject TaskSelected;
+		public TaskDetailList TaskSelected;
 		public FrameLayout frame_TaskDetail;
 
 		protected override void OnCreate (Bundle bundle)
@@ -170,52 +170,43 @@ namespace LinkOM
 
 		public void GetTaskStatus ()
 		{
-			taskList = TaskHelper.GetTaskList ();
+
+			TaskFilter objFilter = new TaskFilter ();
+			objFilter.AssignedToId = Settings.UserId;
+
+			taskList = TaskHelper.GetTaskList (objFilter);
 
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
 
-			string url = Settings.InstanceURL;
 
-			string url_TaskStatusList= url+"/api/TaskStatusList";
+			var statusList = TaskHelper.GetTaskStatus ();
 
-			string results_TaskList= ConnectWebAPI.Request(url_TaskStatusList,"");
+			if (statusList !=null) {
 
-			if (results_TaskList != null && results_TaskList != "") {
-
-				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TaskList);
-
-				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
-
-				if (statusList.Items.Count > 0) {
-
-					buttonList = new List<Button> (statusList.Items.Count);
+				buttonList = new List<Button> (statusList.Count);
 
 
-					for (int i = 0; i < statusList.Items.Count; i++) {
-						//Init button
-						Button button = new Button (this);
+				for (int i = 0; i < statusList.Count; i++) {
+					//Init button
+					Button button = new Button (this);
 
-						//Get number of task
-						int NumberOfTask = CheckTask (statusList.Items [i].Name, taskList);
+					//Get number of task
+					int NumberOfTask = CheckTask (statusList[i].Name, taskList);
 
-						//Add button into View
-						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button, NumberOfTask);
+					//Add button into View
+					AddRow (statusList[i].Id ,statusList[i].Name,ColorHelper.GetColor(statusList[i].ColourName),button, NumberOfTask);
 
-						RunOnUiThread (() => button.Text =  NumberOfTask.ToString());
+					RunOnUiThread (() => button.Text =  NumberOfTask.ToString());
 
-						buttonList.Add (button);
-					}
+					buttonList.Add (button);
 				}
 			}
-
-
-
 			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
 		}
 
 
-		private int CheckTask(string status, List<TaskObject>  list_Task){
+		private int CheckTask(string status, List<TaskList>  list_Task){
 			int count = 0;
 			foreach (var task in list_Task) {
 				if (task.StatusName == status)
@@ -302,86 +293,50 @@ namespace LinkOM
 				activity.PutExtra ("TaskStatusId", whichOne);
 				StartActivity (activity);
 			}
-			else{
+			else
+			{
 					taskListView = FindViewById<ListView> (Resource.Id.TaskListView);
 					TextView myObject2 = (TextView)sender;
 					whichOne = (int)myObject2.Tag;
-					GetTaskDetailList (whichOne);
+					GetTaskList (whichOne);
 			}
 		}
 
 
-		private void GetTaskDetailList(int StatusId){
+		private void GetTaskList(int StatusId){
 
 			if (StatusId != 0) {
 
-				string url = Settings.InstanceURL;
+				TaskFilter objFilter = new TaskFilter ();
+				objFilter.AssignedToId = Settings.UserId;
+				objFilter.MainStatusId = StatusId;
 
-				url=url+"/api/TaskList";
+				var objReturn = TaskHelper.GetTaskList (objFilter);
 
-				var objTask = new
+				if (objReturn != null) {
+
+					taskListAdapter = new TaskListAdapter (this, objReturn);
+
+					taskListView.Adapter = taskListAdapter;
+
+					taskListView.ItemClick += listView_ItemClick;
+				} 
+				else 
 				{
-					Title = "",
-					AssignedToId = Settings.UserId,
-					ClientId = string.Empty,
-					TaskStatusId = StatusId,
-					PriorityId = string.Empty,
-					DueBeforeDate = string.Empty,
-					DepartmentId = string.Empty,
-					ProjectId = string.Empty,
-					AssignByMe = string.Empty,
-					Filter = string.Empty,
-					Label = string.Empty,
-				};
-
-				List<objSort> objSort = new List<objSort>{
-					new objSort{ColumnName = "T.Code", Direction = "2"},
-				};
-
-				var objsearch = (new
-					{
-						objApiSearch = new
-						{
-							UserId = Settings.UserId,
-							TokenNumber = Settings.Token,
-							PageSize = 100,
-							PageNumber = 1,
-							Sort = objSort,
-							Item = objTask
-						}
-					});
-
-				string results = ConnectWebAPI.Request (url, objsearch);
-
-				if (results != null && results != "") {
-
-					TaskList obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (results);
-
-					if (obj.Items != null) {
-
-						taskListAdapter = new TaskListAdapter (this, obj.Items);
-
-						taskListView.Adapter = taskListAdapter;
-
-						taskListView.ItemClick += listView_ItemClick;
-
-
-					} else {
-						taskListView.Adapter = null;
-						Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
-
-					}
-
-					frame_TaskDetail.Visibility = ViewStates.Invisible;
+					taskListView.Adapter = null;
+					Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
 				}
-			}
 
+				frame_TaskDetail.Visibility = ViewStates.Invisible;
+			}
 		}
 
 		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			TaskSelected = this.taskListAdapter.GetItemAtPosition (e.Position);
+			TaskSelected = TaskHelper.GetTaskDetail(this.taskListAdapter.GetItemAtPosition (e.Position).Id);
+
+
 			frame_TaskDetail.Visibility = ViewStates.Visible;
 			DisplayTask (TaskSelected);
 		}
@@ -415,7 +370,9 @@ namespace LinkOM
 
 					inputManager.ShowSoftInput (mSearch, ShowFlags.Implicit);
 
-				} else {
+				} 
+				else 
+				{
 
 					mSearch.Focusable = false;
 					mSearch.FocusableInTouchMode = false;
@@ -459,7 +416,7 @@ namespace LinkOM
 			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
 		}
 
-		public void DisplayTask(TaskObject obj)
+		public void DisplayTask(TaskDetailList obj)
 		{
 
 			var TaskName = FindViewById<TextView> (Resource.Id.tv_TaskDetailName);
@@ -472,31 +429,22 @@ namespace LinkOM
 			Status.Text = obj.StatusName;
 
 			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-			Internal.Checked = obj.IsInternal.Value;
+			Internal.Checked = obj.IsInternal;
 
 			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-			Management.Checked = obj.IsManagerial.Value;
-
-//						var Completed = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
-//						Completed.Text = obj;
+			Management.Checked = obj.IsManagerial;
 
 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
 			ProjectName.Text = obj.ProjectName;
 
-			//			var ProjectManager = FindViewById<TextView> (Resource.Id.tv_ProjectDetailManager);
-			//			ProjectManager.Text = obj.ProjectManagerName;
-
-
 			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
-			tv_AssignedTo.Text = obj.AssignedTo;
+			tv_AssignedTo.Text = obj.AssignedToName;
 
 
 			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
-			AlloHours.Text = obj.AllocatedHours;
+			AlloHours.Text = obj.AllocatedHours.Value.ToString();
 
-			//			var SpentHours = FindViewById<TextView> (Resource.Id.tv_SpentHours);
-			//			SpentHours.Text = obj.SpentHours;
 
 			var StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
 			if(obj.StartDate!=null)
@@ -517,9 +465,6 @@ namespace LinkOM
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
 			if(obj.Description!=null)
 				Description.Text = obj.Description;
-
-			//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
-			//			DepartmentName.Text = obj.DepartmentName;
 
 		}
 	}
