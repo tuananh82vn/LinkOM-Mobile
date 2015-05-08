@@ -12,6 +12,7 @@ namespace LinkOM
 	public class TicketListAdapter : BaseAdapter<TicketList>, IFilterable
 	{
 		private List<TicketList> _originalData;
+
 		private List<TicketList> _TicketList;
 
 		Activity _activity;

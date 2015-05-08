@@ -31,10 +31,10 @@ namespace LinkOM
 		public LinearLayout LinearLayout_Master;
 //		public ProgressDialog progress;
 		public List<Button> buttonList;
-		public List<TicketList> taskList;
-		public TicketListAdapter taskListAdapter;
+		public List<TicketList> ticketList;
+		public TicketListAdapter ticketListAdapter;
 
-		public ListView taskListView ;
+		public ListView ticketListView ;
 
 		public RadialProgressView progressView;
 		private System.Timers.Timer _timer;
@@ -46,6 +46,7 @@ namespace LinkOM
 		public InputMethodManager inputManager;
 
 		public TicketList TicketSelected;
+
 		public FrameLayout frame_TicketDetail;
 
 		protected override void OnCreate (Bundle bundle)
@@ -105,7 +106,7 @@ namespace LinkOM
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
 		{
-			taskListAdapter.Filter.InvokeFilter(mSearch.Text);
+			ticketListAdapter.Filter.InvokeFilter(mSearch.Text);
 		}
 
 		//Handle item on action bar clicked
@@ -175,7 +176,7 @@ namespace LinkOM
 
 
 
-			taskList = TicketHelper.GetTicketList (objFilter);
+			ticketList = TicketHelper.GetTicketList (objFilter);
 
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
@@ -194,7 +195,7 @@ namespace LinkOM
 						Button button = new Button (this);
 
 						//Get number of task
-						int NumberOfTicket = CheckTicket (statusList [i].Name, taskList);
+						int NumberOfTicket = CheckTicket (statusList [i].Name, ticketList);
 
 						//Add button into View
 						AddRow (statusList [i].Id, statusList [i].Name, ColorHelper.GetColor (statusList [i].ColourName), button, NumberOfTicket);
@@ -298,8 +299,9 @@ namespace LinkOM
 				activity.PutExtra ("TicketStatusId", whichOne);
 				StartActivity (activity);
 			}
-			else{
-					taskListView = FindViewById<ListView> (Resource.Id.TicketListView);
+			else
+			{
+					ticketListView = FindViewById<ListView> (Resource.Id.TicketListView);
 					TextView myObject2 = (TextView)sender;
 					whichOne = (int)myObject2.Tag;
 					GetTicketDetailList (whichOne);
@@ -319,15 +321,15 @@ namespace LinkOM
 					var TicketReturn = TicketHelper.GetTicketList (objFilter);
 					if(TicketReturn!=null){
 						
-							var taskListAdapter = new TicketListAdapter (this,TicketReturn);
+							ticketListAdapter = new TicketListAdapter (this,TicketReturn);
 
-							taskListView.Adapter = taskListAdapter;
+							ticketListView.Adapter = ticketListAdapter;
 
-							taskListView.ItemClick += listView_ItemClick;
+							ticketListView.ItemClick += listView_ItemClick;
 					} 
 					else 
 					{
-							taskListView.Adapter = null;
+							ticketListView.Adapter = null;
 							Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
 
 					}
@@ -339,7 +341,7 @@ namespace LinkOM
 		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			TicketSelected = this.taskListAdapter.GetItemAtPosition (e.Position);
+			TicketSelected = this.ticketListAdapter.GetItemAtPosition (e.Position);
 			frame_TicketDetail.Visibility = ViewStates.Visible;
 			DisplayTicket (TicketSelected);
 		}
@@ -349,7 +351,7 @@ namespace LinkOM
 			//go edit action will login
 			if (actionId == ImeAction.Search) {
 				if (!string.IsNullOrEmpty (mSearch.Text)) {
-					taskListAdapter.Filter.InvokeFilter(mSearch.Text);
+					ticketListAdapter.Filter.InvokeFilter(mSearch.Text);
 				} 
 				return true;
 				//next action will set focus to password edit text.
@@ -359,17 +361,17 @@ namespace LinkOM
 
 		public void btSearchClick()
 		{
-			if (taskListAdapter != null) {
+			if (ticketListAdapter != null) {
 				if (!mAnimatedDown) {
 					mSearch.Focusable = true;
 					mSearch.FocusableInTouchMode = true;
 					mSearch.RequestFocus ();
-					MyAnimation anim = new MyAnimation (taskListView, taskListView.Height - mSearch.Height);
+					MyAnimation anim = new MyAnimation (ticketListView, ticketListView.Height - mSearch.Height);
 					anim.Duration = 500;
-					taskListView.StartAnimation (anim);
+					ticketListView.StartAnimation (anim);
 					anim.AnimationStart += anim_AnimationStartDown;
 					anim.AnimationEnd += anim_AnimationEndDown;
-					taskListView.Animate ().TranslationYBy (mSearch.Height).SetDuration (500).Start ();
+					ticketListView.Animate ().TranslationYBy (mSearch.Height).SetDuration (500).Start ();
 
 					inputManager.ShowSoftInput (mSearch, ShowFlags.Implicit);
 
@@ -378,12 +380,12 @@ namespace LinkOM
 					mSearch.Focusable = false;
 					mSearch.FocusableInTouchMode = false;
 
-					MyAnimation anim = new MyAnimation (taskListView, taskListView.Height + mSearch.Height);
+					MyAnimation anim = new MyAnimation (ticketListView, ticketListView.Height + mSearch.Height);
 					anim.Duration = 500;
-					taskListView.StartAnimation (anim);
+					ticketListView.StartAnimation (anim);
 					anim.AnimationStart += anim_AnimationStartUp;
 					anim.AnimationEnd += anim_AnimationEndUp;
-					taskListView.Animate ().TranslationYBy (-mSearch.Height).SetDuration (500).Start ();
+					ticketListView.Animate ().TranslationYBy (-mSearch.Height).SetDuration (500).Start ();
 
 					inputManager.HideSoftInputFromWindow (this.mSearch.WindowToken, 0);
 

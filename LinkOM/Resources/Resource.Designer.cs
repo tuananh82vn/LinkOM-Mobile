@@ -5704,8 +5704,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f0c00c4
 			public const int editText_EndDate = 2131493060;
 			
-			// aapt resource value: 0x7f0c012c
-			public const int editText_Notes = 2131493164;
+			// aapt resource value: 0x7f0c012d
+			public const int editText_Notes = 2131493165;
 			
 			// aapt resource value: 0x7f0c0128
 			public const int editText_ProjectName = 2131493160;
@@ -6004,8 +6004,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f0c00a6
 			public const int sliding_tabs = 2131493030;
 			
-			// aapt resource value: 0x7f0c012b
-			public const int spinner1 = 2131493163;
+			// aapt resource value: 0x7f0c012c
+			public const int spinner1 = 2131493164;
 			
 			// aapt resource value: 0x7f0c00c1
 			public const int spinner_AssignedTo = 2131493057;
@@ -6028,8 +6028,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f0c00c2
 			public const int spinner_Owner = 2131493058;
 			
-			// aapt resource value: 0x7f0c012d
-			public const int spinner_Phase = 2131493165;
+			// aapt resource value: 0x7f0c012b
+			public const int spinner_Phase = 2131493163;
 			
 			// aapt resource value: 0x7f0c00c0
 			public const int spinner_Priority = 2131493056;

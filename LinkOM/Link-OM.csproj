@@ -525,12 +525,12 @@
     <AndroidResource Include="Resources\layout-sw720dp-land\Ticket.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\TicketEdit.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Issues.axml" />
-    <AndroidResource Include="Resources\layout-sw720dp-land\IssuesEdit.axml" />
     <AndroidResource Include="Resources\layout\SplashLayout.axml" />
     <AndroidResource Include="Resources\anim\rotate_center.xml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Milestones.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Document.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\DocumentEdit.axml" />
+    <AndroidResource Include="Resources\layout-sw720dp-land\IssuesEdit.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
