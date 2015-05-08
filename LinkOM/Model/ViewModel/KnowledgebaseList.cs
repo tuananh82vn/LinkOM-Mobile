@@ -2,7 +2,7 @@
 
 namespace LinkOM
 {
-	public class KnowledgebaseObject
+	public class KnowledgebaseList
 	{
 		public virtual Int32 Id { get; set; }
 

@@ -125,7 +125,6 @@
     <Compile Include="Helper\LoginService.cs" />
     <Compile Include="Model\ViewModel\Status.cs" />
     <Compile Include="Model\ReceiveModel\JsonData.cs" />
-    <Compile Include="Model\ReceiveModel\StatusList.cs" />
     <Compile Include="UIControl\SwipeRefreshLayout.cs" />
     <Compile Include="UIControl\MyAnimation.cs" />
     <Compile Include="Helper\JavaHolder.cs" />
@@ -151,16 +150,12 @@
     <Compile Include="Helper\ActionBarDrawerEventArgs.cs" />
     <Compile Include="Adapter\MenuListAdapter.cs" />
     <Compile Include="Model\ViewModel\TaskCommentObject.cs" />
-    <Compile Include="Model\ReceiveModel\TicketCommentList.cs" />
-    <Compile Include="Model\ViewModel\TicketCommentObject.cs" />
     <Compile Include="UIControl\Utility.cs" />
     <Compile Include="Adapter\TicketCommentListAdapter.cs" />
     <Compile Include="Adapter\IssuesCommentListAdapter.cs" />
     <Compile Include="Adapter\TaskCommentListAdapter.cs" />
     <Compile Include="Activity\Knowledgebase\KnowledgebaseActivity.cs" />
-    <Compile Include="Model\ReceiveModel\KnowledgebaseList.cs" />
     <Compile Include="Adapter\KnowledgebaseListAdapter.cs" />
-    <Compile Include="Model\ViewModel\KnowledgebaseObject.cs" />
     <Compile Include="Activity\Document\DocumentDetailActivity.cs" />
     <Compile Include="Activity\Document\DocumentEditActivity.cs" />
     <Compile Include="Activity\Document\DocumentAddActivity.cs" />
@@ -217,6 +212,10 @@
     <Compile Include="ObjectHelper\TicketHelper.cs" />
     <Compile Include="Model\FilterModel\TicketFilter.cs" />
     <Compile Include="Model\ViewModel\TicketList.cs" />
+    <Compile Include="ObjectHelper\KnowledgeBaseHelper.cs" />
+    <Compile Include="Model\ViewModel\KnowledgebaseList.cs" />
+    <Compile Include="Model\FilterModel\KnowledgebaseFilter.cs" />
+    <Compile Include="Model\ViewModel\TicketCommentList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -5,7 +5,7 @@ using Java.Interop;
 namespace LinkOM
 {
 	[Serializable]
-	public class TicketCommentObject
+	public class TicketCommentList
 	{
 		public virtual string UserName { get; set; }
 

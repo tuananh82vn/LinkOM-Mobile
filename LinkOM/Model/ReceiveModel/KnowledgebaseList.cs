@@ -5,7 +5,7 @@ namespace LinkOM
 {
 	public class KnowledgebaseList
 	{
-		public List<KnowledgebaseObject> Items { get; set; }
+		public List<KnowledgebaseList> Items { get; set; }
 		public int PageNumber { get; set; }
 		public int TotalRecords { get; set; }
 		public bool Success { get; set; }

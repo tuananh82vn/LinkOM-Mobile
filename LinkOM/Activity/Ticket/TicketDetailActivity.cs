@@ -64,48 +64,18 @@ namespace LinkOM
 
 		public void LoadTicketComment(int TicketId){
 
-			string url = Settings.InstanceURL;
+			TicketCommentListAdapter = new TicketCommentListAdapter (this, TicketHelper.GetTicketCommentList(TicketId));
 
-			//Load data
-			string url_Task= url+"/api/TicketCommentList";
+			ticketCommentListView = FindViewById<ListView> (Resource.Id.TicketCommentListView);
 
+			ticketCommentListView.Adapter = TicketCommentListAdapter;
 
-			var objTask = new
-			{
-				TicketId = TicketId,
-			};
+			ticketCommentListView.DividerHeight = 0;
 
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber =Settings.Token,
-						Item = objTask
-					}
-				});
+			Utility.setListViewHeightBasedOnChildren (ticketCommentListView);
 
-			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
+			//ticketCommentListView.ItemClick += listView_ItemClick;
 
-			if (results_Task != null && results_Task != "") {
-
-				var ticketList = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketCommentList> (results_Task);
-
-				if (ticketList.Items != null) {
-
-					TicketCommentListAdapter = new TicketCommentListAdapter (this, ticketList.Items);
-
-					ticketCommentListView = FindViewById<ListView> (Resource.Id.TicketCommentListView);
-
-					ticketCommentListView.Adapter = TicketCommentListAdapter;
-
-					ticketCommentListView.DividerHeight = 0;
-
-					Utility.setListViewHeightBasedOnChildren (ticketCommentListView);
-
-					//ticketCommentListView.ItemClick += listView_ItemClick;
-				} 
-
-			}
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)

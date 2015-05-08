@@ -443,7 +443,10 @@ namespace LinkOM
 
 
 			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
-			AlloHours.Text = obj.AllocatedHours.Value.ToString();
+			if (obj.AllocatedHours.HasValue) {
+				AlloHours.Text = obj.AllocatedHours.Value.ToString ();
+			} else
+				AlloHours.Text = "0";
 
 
 			var StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);

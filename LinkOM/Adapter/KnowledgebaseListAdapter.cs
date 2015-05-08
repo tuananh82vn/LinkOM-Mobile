@@ -8,11 +8,11 @@ namespace LinkOM
 {
 	public class KnowledgebaseListAdapter : BaseAdapter
 	{
-		List<KnowledgebaseObject> _KnowledgeList;
+		List<KnowledgebaseList> _KnowledgeList;
 
 		Activity _activity;
 
-		public KnowledgebaseListAdapter (Activity activity, List<KnowledgebaseObject> data)
+		public KnowledgebaseListAdapter (Activity activity, List<KnowledgebaseList> data)
 		{
 			_activity = activity;
 			_KnowledgeList = data;

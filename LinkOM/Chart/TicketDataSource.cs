@@ -25,7 +25,7 @@ namespace LinkOM
 
 		public string[] TicketStatusName;
 
-		public StatusList statusList;
+		public List<Status> statusList;
 
 		public TicketDataSource(){
 			InitData ();
@@ -46,22 +46,21 @@ namespace LinkOM
 
 			string results_TicketkList= ConnectWebAPI.Request(url_TicketStatusList,"");
 
-			if (results_TicketkList != null && results_TicketkList != "") {
 
-				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TicketkList);
+			statusList = TicketHelper.GetTicketStatusList ();
 
-				statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
+			if (statusList != null) {
+				if (statusList.Count > 0) {
 
-				if (statusList.Items.Count > 0) {
+					TicketStatusName = new string[statusList.Count];
 
-					TicketStatusName = new string[statusList.Items.Count];
-
-					for (int i = 0; i < statusList.Items.Count; i++) {
-						TicketStatusName[i]=statusList.Items [i].Name;
+					for (int i = 0; i < statusList.Count; i++) {
+						TicketStatusName [i] = statusList [i].Name;
 					}
 				}
 			}
 		}
+
 
 		private int CheckTicket(string status, List<TicketList>  list_Task){
 			int count = 0;
@@ -96,11 +95,11 @@ namespace LinkOM
 
 		public NChartPoint[] Points (NChartSeries series)
 		{
-			NChartPoint[] result = new NChartPoint[statusList.Items.Count];
+			NChartPoint[] result = new NChartPoint[statusList.Count];
 
-			for (int i = 0; i < statusList.Items.Count; i++) {
+			for (int i = 0; i < statusList.Count; i++) {
 				//Get number of task
-				var NumberOfTask = CheckTicket (statusList.Items [i].Name, taskList);
+				var NumberOfTask = CheckTicket (statusList [i].Name, taskList);
 
 				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (NumberOfTask, i), series);
 			}

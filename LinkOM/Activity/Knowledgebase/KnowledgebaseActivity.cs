@@ -92,52 +92,24 @@ namespace LinkOM
 				return;
 			loading = true;
 
-			TokenNumber = Settings.Token;
-			string url = Settings.InstanceURL;
+			KnowledgebaseFilter objFilter = new KnowledgebaseFilter ();
+			var ObjectReturn = KnowledgeBaseHelper.GetKnowledgebaseList (objFilter);
 
-			url=url+"/api/KnowledgeBaseList";
-
-
-			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "K.Title", Direction = "1"},
-				new objSort{ColumnName = "P.ProjectId", Direction = "2"}
-			};
-
-			var objDocument = new
+			if(ObjectReturn!=null)
 			{
-				Title = string.Empty,
-				ArticleStatusId = string.Empty,
-			};
+				knowledgebaseList = new KnowledgebaseListAdapter (this,ObjectReturn);
 
-			var objsearch = (new
-				{
-					objApiSearch = new
-					{
-						TokenNumber = TokenNumber,
-						PageSize = 20,
-						PageNumber = 1,
-						Sort = objSort,
-						Item = objDocument
-					}
-				});
+				knowledgebaseListView = FindViewById<ListView> (Android.Resource.Id.List);
 
-			string results=  ConnectWebAPI.Request(url,objsearch);
+				knowledgebaseListView.Adapter = knowledgebaseList;
 
-			KnowledgebaseList Knowledgebase = Newtonsoft.Json.JsonConvert.DeserializeObject<KnowledgebaseList> (results);
+	//			projectListView.ItemClick += listView_ItemClick;
+	//
+	//			RegisterForContextMenu(projectListView);
+			}
 
-			knowledgebaseList = new KnowledgebaseListAdapter (this,Knowledgebase.Items);
-
-			knowledgebaseListView = FindViewById<ListView> (Android.Resource.Id.List);
-
-			knowledgebaseListView.Adapter = knowledgebaseList;
-
-//			projectListView.ItemClick += listView_ItemClick;
-//
-//			RegisterForContextMenu(projectListView);
-//
 			loading = false;
-//
-//			Console.WriteLine ("End load data");
+
 		}
 
 		private void finish(){

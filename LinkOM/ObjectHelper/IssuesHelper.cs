@@ -88,6 +88,42 @@ namespace LinkOM
 				return null;
 		}
 
+		public static List<Status> GetIssuesStatusList(){
+
+			string url = Settings.InstanceURL;
+
+			string url_TicketStatusList= url+"/api/IssueStatusList";
+
+			string results_TicketkList= ConnectWebAPI.Request(url_TicketStatusList,"");
+
+
+			if (results_TicketkList != null && results_TicketkList != "") {
+
+				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TicketkList);
+
+				if (data.Data != null) {
+
+					ApiResultList<IEnumerable<Status>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<Status>>> (data.Data);
+
+					List<Status> returnObject = new List<Status> ();
+
+					if (objResult.Items != null) {
+						foreach (object Item in objResult.Items) {
+							Status temp = Newtonsoft.Json.JsonConvert.DeserializeObject<Status> (Item.ToString ());
+							returnObject.Add (temp);
+						}
+					}
+					else
+						return null;
+
+					return returnObject;
+				} else
+					return null;
+			} else
+				return null;
+		}
+
+
 	}
 }
 

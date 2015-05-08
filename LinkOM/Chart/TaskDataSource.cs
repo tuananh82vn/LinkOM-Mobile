@@ -25,7 +25,7 @@ namespace LinkOM
 
 		public string[] TaskStatusName;
 
-		public StatusList statusList;
+		public List<Status> statusList;
 
 		public TaskDataSource(){
 			InitData ();
@@ -39,7 +39,7 @@ namespace LinkOM
 			taskList = TaskHelper.GetTaskList (objFilter);
 
 
-			var statusList = TaskHelper.GetTaskStatus ();
+			statusList = TaskHelper.GetTaskStatus ();
 
 			if (statusList.Count > 0) {
 
@@ -87,11 +87,11 @@ namespace LinkOM
 
 		public NChartPoint[] Points (NChartSeries series)
 		{
-			NChartPoint[] result = new NChartPoint[statusList.Items.Count];
+			NChartPoint[] result = new NChartPoint[statusList.Count];
 
-			for (int i = 0; i < statusList.Items.Count; i++) {
+			for (int i = 0; i < statusList.Count; i++) {
 				//Get number of task
-				var NumberOfTask = CheckTask (statusList.Items [i].Name, taskList);
+				var NumberOfTask = CheckTask (statusList [i].Name, taskList);
 
 				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (NumberOfTask, i), series);
 			}

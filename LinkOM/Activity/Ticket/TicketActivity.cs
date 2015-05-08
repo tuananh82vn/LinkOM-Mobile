@@ -180,44 +180,35 @@ namespace LinkOM
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
 
-			string url = Settings.InstanceURL;
 
-			string url_TicketStatusList= url+"/api/TicketStatusList";
+			var statusList = TicketHelper.GetTicketStatusList ();
+			if (statusList != null) {
 
-			string results_TicketList= ConnectWebAPI.Request(url_TicketStatusList,"");
+				if (statusList.Count > 0) {
 
-			if (results_TicketList != null && results_TicketList != "") {
-
-				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TicketList);
-
-				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
-
-				if (statusList.Items.Count > 0) {
-
-					buttonList = new List<Button> (statusList.Items.Count);
+					buttonList = new List<Button> (statusList.Count);
 
 
-					for (int i = 0; i < statusList.Items.Count; i++) {
+					for (int i = 0; i < statusList.Count; i++) {
 						//Init button
 						Button button = new Button (this);
 
 						//Get number of task
-						int NumberOfTicket = CheckTicket (statusList.Items [i].Name, taskList);
+						int NumberOfTicket = CheckTicket (statusList [i].Name, taskList);
 
 						//Add button into View
-						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button, NumberOfTicket);
+						AddRow (statusList [i].Id, statusList [i].Name, ColorHelper.GetColor (statusList [i].ColourName), button, NumberOfTicket);
 
-						RunOnUiThread (() => button.Text =  NumberOfTicket.ToString());
+						RunOnUiThread (() => button.Text = NumberOfTicket.ToString ());
 
 						buttonList.Add (button);
 					}
 				}
 			}
-
-
-
 			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
+
 		}
+
 
 
 		private int CheckTicket(string status, List<TicketList>  list_Ticket){

@@ -179,43 +179,33 @@ namespace LinkOM
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
 
-			string url = Settings.InstanceURL;
 
-			string url_IssuesStatusList= url+"/api/IssueStatusList";
+				var statusList = IssuesHelper.GetIssuesStatusList ();
 
-			string results_IssuesList= ConnectWebAPI.Request(url_IssuesStatusList,"");
+				if(statusList!=null){
 
-			if (results_IssuesList != null && results_IssuesList != "") {
+					if (statusList.Count > 0) {
 
-				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_IssuesList);
-
-				StatusList statusList = Newtonsoft.Json.JsonConvert.DeserializeObject<StatusList> (data.Data);
-
-				if (statusList.Items.Count > 0) {
-
-					buttonList = new List<Button> (statusList.Items.Count);
+						buttonList = new List<Button> (statusList.Count);
 
 
-					for (int i = 0; i < statusList.Items.Count; i++) {
-						//Init button
-						Button button = new Button (this);
+						for (int i = 0; i < statusList.Count; i++) {
+							//Init button
+							Button button = new Button (this);
 
-						//Get number of task
-						int NumberOfIssues = CheckIssues (statusList.Items [i].Name, issuesList);
+							//Get number of task
+							int NumberOfIssues = CheckIssues (statusList [i].Name, issuesList);
 
-						//Add button into View
-						AddRow (statusList.Items [i].Id ,statusList.Items [i].Name,ColorHelper.GetColor(statusList.Items [i].ColourName),button, NumberOfIssues);
+							//Add button into View
+							AddRow (statusList [i].Id ,statusList [i].Name,ColorHelper.GetColor(statusList [i].ColourName),button, NumberOfIssues);
 
-						RunOnUiThread (() => button.Text =  NumberOfIssues.ToString());
+							RunOnUiThread (() => button.Text =  NumberOfIssues.ToString());
 
-						buttonList.Add (button);
+							buttonList.Add (button);
+						}
 					}
 				}
-			}
-
-
-
-			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
+				RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
 		}
 
 

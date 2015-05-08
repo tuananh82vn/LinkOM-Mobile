@@ -8,11 +8,11 @@ namespace LinkOM
 {
 	public class TicketCommentListAdapter : BaseAdapter
 	{
-		List<TicketCommentObject> _TicketCommentObject;
+		List<TicketCommentList> _TicketCommentObject;
 
 		Activity _activity;
 
-		public TicketCommentListAdapter (Activity activity, List<TicketCommentObject> data)
+		public TicketCommentListAdapter (Activity activity, List<TicketCommentList> data)
 		{
 			_activity = activity;
 			_TicketCommentObject = data;
@@ -36,7 +36,7 @@ namespace LinkOM
 			return null;
 		}
 
-		public TicketCommentObject GetItemAtPosition(int position)
+		public TicketCommentList GetItemAtPosition(int position)
 		{
 			return _TicketCommentObject[position];
 		}
