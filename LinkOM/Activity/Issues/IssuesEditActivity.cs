@@ -25,7 +25,7 @@ namespace LinkOM
 		const int Actual_End_DATE_DIALOG_ID = 3;
 
 
-		public IssuesList IssuesDetail;
+		public IssuesDetailList IssuesDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 		public ArrayAdapter PriorityAdapter;
@@ -120,7 +120,9 @@ namespace LinkOM
 
 			results= Intent.GetStringExtra ("Issues");
 
-			IssuesDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
+			var temp = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
+
+			IssuesDetail = IssuesHelper.GetIssuesDetail (temp.Id.Value);
 		}
 
 		public void InitControl(){
@@ -162,7 +164,7 @@ namespace LinkOM
 
 
 
-		public void DisplayIssues(IssuesList obj){
+		public void DisplayIssues(IssuesDetailList obj){
 
 			editText_Title.Text = obj.Title;
 
@@ -186,7 +188,7 @@ namespace LinkOM
 
 			editText_AllocatedHours.Text = obj.AllocatedHours.ToString();
 
-			editText_Description.Text = obj.Description;
+			editText_Description.Text = obj.IssueDescription;
 
 		}
 
@@ -363,7 +365,7 @@ namespace LinkOM
 			var objItem = new
 			{
 				Id = IssuesDetail.Id,
-				Guid = IssuesDetail.Guid,
+//				Guid = IssuesDetail.Guid,
 //				AssignedToId= IssuesDetail.AssignedToId,
 				AssignToName= String.Empty,
 				Title= editText_Title.Text,

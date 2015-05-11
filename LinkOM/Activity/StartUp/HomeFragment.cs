@@ -65,7 +65,7 @@ namespace LinkOM
 			//Get only Status Open
 			objMilestone.StatusId = 1;
 	
-			milestoneList = new MilestoneListAdapter (this.Activity, MilestonesHelper.GetAllMilestonesList(objMilestone));
+			milestoneList = new MilestoneListAdapter (this.Activity, MilestonesHelper.GetMilestonesList(objMilestone));
 
 			milestoneListView.Adapter = milestoneList;
 

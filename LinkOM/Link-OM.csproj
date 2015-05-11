@@ -217,6 +217,8 @@
     <Compile Include="Model\ViewModel\LoginObject.cs" />
     <Compile Include="Model\FilterModel\objSort.cs" />
     <Compile Include="Model\ViewModel\TicketDetailList.cs" />
+    <Compile Include="Model\ViewModel\IssuesDetailList.cs" />
+    <Compile Include="Model\ViewModel\ApiFileReference.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

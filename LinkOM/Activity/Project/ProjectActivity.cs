@@ -331,7 +331,10 @@ namespace LinkOM
 
 			var milestoneListView = FindViewById<ListView> (Resource.Id.MilestonesListView);
 
-			var milestoneListAdapter = new MilestoneListAdapter (this, MilestonesHelper.GetMilestonesListByProjectId(obj.ProjectId.Value));
+			MilestoneFilter objFilter = new MilestoneFilter ();
+			objFilter.ProjectId = obj.ProjectId.Value;
+
+			var milestoneListAdapter = new MilestoneListAdapter (this, MilestonesHelper.GetMilestonesList(objFilter));
 
 			milestoneListView.Adapter = milestoneListAdapter;
 

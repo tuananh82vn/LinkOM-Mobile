@@ -19,38 +19,23 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:id="@+id/tableRow7">
-        <TableLayout
-            android:id="@+id/tableLayout5"
-            android:stretchColumns="*">
-            <TableRow
-                android:id="@+id/tableRow12"
-                android:minWidth="25px"
-                android:minHeight="25px"
-                android:layout_marginBottom="0dp">
-                <TextView
-                    android:text="Server URL"
-                    android:layout_column="0"
-                    android:id="@+id/textview"
-                    android:textSize="18dp"
-                    android:textColor="#ff00947A"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="25.0dp"
-                    android:layout_marginRight="25.0dp"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="0dp"
-                    android:textStyle="normal"
-                    android:layout_marginBottom="0dp" />
-            </TableRow>
-        </TableLayout>
+        <TextView
+            android:text="Domain"
+            android:id="@+id/textview"
+            android:textSize="18dp"
+            android:textColor="#ff00947A"
+            android:gravity="center_vertical"
+            android:textStyle="normal"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp" />
     </TableRow>
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:id="@+id/view1"
         android:background="#ff006848"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp" />
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp" />
     <TableRow
         android:id="@+id/tableRow12"
         android:minWidth="25px"

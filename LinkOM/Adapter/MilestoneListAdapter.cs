@@ -74,7 +74,7 @@ namespace LinkOM
 				EndDate.Text = _MilestoneList [position].EndDateString;
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _MilestoneList [position].AssignedTo;
+			CreatedPerson.Text = _MilestoneList [position].AssignedToName;
 
 
 			return view;

@@ -45,7 +45,7 @@ namespace LinkOM
 
 		public InputMethodManager inputManager;
 
-		public IssuesList IssuesSelected;
+		public IssuesDetailList IssuesSelected;
 
 		public FrameLayout frame_IssuesDetail;
 
@@ -338,8 +338,11 @@ namespace LinkOM
 		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			IssuesSelected = this.issuesListAdapter.GetItemAtPosition (e.Position);
+			var temp = this.issuesListAdapter.GetItemAtPosition (e.Position);
 			frame_IssuesDetail.Visibility = ViewStates.Visible;
+
+			IssuesSelected = IssuesHelper.GetIssuesDetail (temp.Id.Value);
+
 			DisplayIssues (IssuesSelected);
 		}
 
@@ -416,7 +419,7 @@ namespace LinkOM
 			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
 		}
 
-		public void DisplayIssues(IssuesList obj)
+		public void DisplayIssues(IssuesDetailList obj)
 		{
 
 			var IssuesName = FindViewById<TextView> (Resource.Id.tv_IssuesDetailName);
@@ -468,8 +471,8 @@ namespace LinkOM
 
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.Description!=null)
-				Description.Text = obj.Description;
+			if(obj.IssueDescription!=null)
+				Description.Text = obj.IssueDescription;
 
 			//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			//			DepartmentName.Text = obj.DepartmentName;

@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long MilestoneId;
-		public MilestonesList MilestoneDetail;
+		public MilestonesDetailList MilestoneDetail;
 		public string results;
 
 		protected override void OnCreate (Bundle bundle)
@@ -54,7 +54,9 @@ namespace LinkOM
 			
 			results= Intent.GetStringExtra ("Milestone");
 
-			MilestoneDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesList> (results);
+			var temp  = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesList> (results);
+
+			MilestoneDetail = MilestonesHelper.GetMilestonesDetail (temp.Id.Value);
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -90,14 +92,14 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayMilestone(MilestonesList obj){
+		public void DisplayMilestone(MilestonesDetailList obj){
 
 			var MilestoneName = FindViewById<TextView> (Resource.Id.tv_MilestoneName);
 			MilestoneName.Text = obj.Title;
 
 
 			var MilestoneStatus = FindViewById<TextView> (Resource.Id.tv_Status);
-			MilestoneStatus.Text = obj.Status;
+			MilestoneStatus.Text = obj.StatusName;
 
 			var DueDate = FindViewById<TextView> (Resource.Id.tv_DueDate);
 			if(obj.EndDateString!=null)

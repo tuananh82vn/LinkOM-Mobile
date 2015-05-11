@@ -123,6 +123,44 @@ namespace LinkOM
 				return null;
 		}
 
+		public static IssuesDetailList GetIssuesDetail(int IssuesId){
+			string url = Settings.InstanceURL;
+
+			//Load data
+			string url_Task = url + "/api/IssueDetailList";
+
+
+			var objTask = new
+			{
+				Id = IssuesId
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						TokenNumber = Settings.Token,
+						Item = objTask
+					}
+				});
+
+			string results_Task = ConnectWebAPI.Request (url_Task, objsearch);
+
+			if (results_Task != null && results_Task != "") {
+
+				ApiResultDetail<IssuesDetailList> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultDetail<IssuesDetailList>> (results_Task);
+				if (objResult.Success) {
+
+					IssuesDetailList returnObject = (IssuesDetailList)objResult.Item;
+					return returnObject;
+				}
+				else
+					return null;
+
+			} else
+				return null;
+		}
+
 
 	}
 }

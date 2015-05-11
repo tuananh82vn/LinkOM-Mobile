@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public IssuesList IssuesDetail;
+		public IssuesDetailList IssuesDetail;
 		public string results;
 
 		protected override void OnCreate (Bundle bundle)
@@ -40,7 +40,7 @@ namespace LinkOM
 
 			DisplayIssues (IssuesDetail);
 
-			LoadIssueComment (IssuesDetail.Id);
+			LoadIssueComment (IssuesDetail.Id.Value);
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) 
@@ -59,7 +59,9 @@ namespace LinkOM
 			
 			results= Intent.GetStringExtra ("Issue");
 
-			IssuesDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
+			var temp  = Newtonsoft.Json.JsonConvert.DeserializeObject<IssuesList> (results);
+
+			IssuesDetail = IssuesHelper.GetIssuesDetail (temp.Id.Value);
 		}
 
 		public void LoadIssueComment(int IssueId){
@@ -115,7 +117,7 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayIssues(IssuesList obj){
+		public void DisplayIssues(IssuesDetailList obj){
 
 			var IssuesName = FindViewById<TextView> (Resource.Id.tv_IssuesName);
 			IssuesName.Text = obj.Title;
@@ -166,8 +168,8 @@ namespace LinkOM
 
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.Description!=null)
-				Description.Text = obj.Description;
+			if(obj.IssueDescription!=null)
+				Description.Text = obj.IssueDescription;
 
 //			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 //			DepartmentName.Text = obj.DepartmentName;

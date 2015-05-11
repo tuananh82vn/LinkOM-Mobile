@@ -319,7 +319,7 @@ namespace LinkOM
 			var objItem = new
 			{
 				Id = IssuesDetail.Id,
-				Guid = IssuesDetail.Guid,
+	//			Guid = IssuesDetail.Guid,
 	//			AssignedToId= IssuesDetail.AssignedToId,
 				AssignToName= String.Empty,
 				Title= editText_Title.Text,
