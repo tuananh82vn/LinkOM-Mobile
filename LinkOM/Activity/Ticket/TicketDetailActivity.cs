@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public TicketList TicketDetail;
+		public TicketDetailList TicketDetail;
 		public string results;
 
 		public TicketCommentListAdapter TicketCommentListAdapter;
@@ -43,7 +43,7 @@ namespace LinkOM
 
 			DisplayTicket (TicketDetail);
 
-			LoadTicketComment (TicketDetail.Id);
+			LoadTicketComment (TicketDetail.Id.Value);
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -59,7 +59,10 @@ namespace LinkOM
 			
 			results= Intent.GetStringExtra ("Ticket");
 
-			TicketDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
+			var temp = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
+
+			TicketDetail = TicketHelper.GetTicketDetail (temp.Id.Value);
+
 		}
 
 		public void LoadTicketComment(int TicketId){
@@ -112,7 +115,7 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayTicket(TicketList obj){
+		public void DisplayTicket(TicketDetailList obj){
 
 			var TicketName = FindViewById<TextView> (Resource.Id.tv_TicketName);
 			TicketName.Text = obj.Title;
@@ -121,13 +124,19 @@ namespace LinkOM
 			Code.Text = obj.Code;
 
 			var Status = FindViewById<TextView> (Resource.Id.tv_Status);
-			Status.Text = obj.TicketStatusName;
+			Status.Text = obj.StatusName;
 
 			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-			Internal.Checked = obj.IsInternal;
+			if(obj.IsInternal.HasValue)
+				Internal.Checked = obj.IsInternal.Value;
+			else
+				Internal.Checked = false;
 
 			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-			Management.Checked = obj.IsManagement;
+			if(obj.IsManagement.HasValue)
+				Management.Checked = obj.IsManagement.Value;
+			else
+				Management.Checked =false;
 
 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
@@ -144,7 +153,7 @@ namespace LinkOM
 			Type.Text = obj.TicketTypeName;
 
 			var Receive  = FindViewById<TextView> (Resource.Id.tv_Receive);
-			Receive.Text = obj.TicketReceivedMethodName;
+			Receive.Text = obj.TicketReceivedMethod;
 
 
 			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
@@ -163,8 +172,8 @@ namespace LinkOM
 
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.Description!=null)
-				Description.Text = obj.Description;
+			if(obj.TicketDiscription!=null)
+				Description.Text = obj.TicketDiscription;
 
 			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			DepartmentName.Text = obj.DepartmentName;

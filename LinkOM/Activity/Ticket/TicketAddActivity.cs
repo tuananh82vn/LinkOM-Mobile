@@ -329,14 +329,13 @@ namespace LinkOM
 				AssignToName= String.Empty,
 				Title= editText_Title.Text,
 				ProjectId= Selected_ProjectID,
-				OwnerId= TicketDetail.OwnerId,
 				StartDate= editText_StartDate.Text,
 				EndDate= editText_EndDate.Text,
 				PriorityId= Selected_PriorityID,
 				TicketStatusId= Selected_StatusID,
 				AllocatedHours= editText_AllocatedHours.Text,
 				IsUserWatch = cb_WatchList.Checked,
-				UpdatedBy = TicketDetail.CreatedBy,
+
 			};
 
 			var objEditTicket = (new

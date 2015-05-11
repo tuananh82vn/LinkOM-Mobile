@@ -65,7 +65,7 @@ namespace LinkOM
 		private int CheckTicket(string status, List<TicketList>  list_Task){
 			int count = 0;
 			foreach (var task in list_Task) {
-				if (task.TicketStatusName == status)
+				if (task.StatusName == status)
 					count++;
 			}
 			return count;

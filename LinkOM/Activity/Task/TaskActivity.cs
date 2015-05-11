@@ -182,7 +182,7 @@ namespace LinkOM
 
 			var statusList = TaskHelper.GetTaskStatus ();
 
-			if (statusList !=null) {
+			if (statusList !=null && taskList!=null) {
 
 				buttonList = new List<Button> (statusList.Count);
 

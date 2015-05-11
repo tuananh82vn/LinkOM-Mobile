@@ -5,9 +5,9 @@ namespace LinkOM
 {
 	public class LoginService
 	{
-		public LoginJson Login(string username,string password)
+		public LoginObject Login(string username,string password)
 		{
-			LoginJson obj = new LoginJson ();
+			LoginObject obj = new LoginObject ();
 
 			string url = Settings.InstanceURL;
 			
@@ -26,7 +26,7 @@ namespace LinkOM
 
 				string results= ConnectWebAPI.Request(url,logon);
 
-				obj = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginJson> (results);
+				obj = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginObject> (results);
 
 				return obj;
 				

@@ -177,7 +177,7 @@ namespace LinkOM
 			_timer.Enabled = true;
 
 			_loginService = new LoginService();
-			LoginJson obj = _loginService.Login (username.Text, password.Text);
+			LoginObject obj = _loginService.Login (username.Text, password.Text);
 
 //			RunOnUiThread (() => progress.Dismiss());
 
@@ -192,7 +192,7 @@ namespace LinkOM
 			}
 		}
 
-		private void onSuccessfulLogin(LoginJson obj)
+		private void onSuccessfulLogin(LoginObject obj)
 		{
 			Settings.UserId = obj.UserId;
 			Settings.Token = obj.TokenNumber;
@@ -211,7 +211,7 @@ namespace LinkOM
 			this.Finish();
 		}
 
-		private void onFailLogin(LoginJson obj)
+		private void onFailLogin(LoginObject obj)
 		{
 			RunOnUiThread (() => Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ());
 		}

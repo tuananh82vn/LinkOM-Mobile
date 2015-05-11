@@ -13,10 +13,11 @@ namespace LinkOM
 			string url_Task= url+"/api/TaskList";
 
 			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.AssignedToMeOrder", Direction = "1"},
 				new objSort{ColumnName = "T.PriorityId", Direction = "2"},
+				new objSort{ColumnName = "T.TaskStatusId", Direction = "2"},
 				new objSort{ColumnName = "T.EndDate", Direction = "1"},
-				new objSort{ColumnName = "T.ProjectName", Direction = "1"},
+				new objSort{ColumnName = "T.Id", Direction = "1"},
+				new objSort{ColumnName = "P.Name", Direction = "1"},
 			};
 
 
@@ -25,6 +26,7 @@ namespace LinkOM
 					objApiSearch = new
 					{
 						TokenNumber =Settings.Token,
+						IsShowAll = true,
 						PageSize = 100,
 						PageNumber = 1,
 						Sort = objSort,
@@ -40,12 +42,14 @@ namespace LinkOM
 
 				List<TaskList> returnObject = new List<TaskList> ();
 
-				foreach (object Item in objResult.Items) {
-					TaskList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (Item.ToString ());
-					returnObject.Add (temp);
+				if (objResult.Items != null) {
+					foreach (object Item in objResult.Items) {
+						TaskList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskList> (Item.ToString ());
+						returnObject.Add (temp);
+					}
 				}
-
-				return returnObject;
+					return returnObject;
+				
 			} else
 				return null;
 			

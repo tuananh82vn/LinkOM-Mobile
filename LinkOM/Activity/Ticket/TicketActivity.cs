@@ -45,7 +45,7 @@ namespace LinkOM
 
 		public InputMethodManager inputManager;
 
-		public TicketList TicketSelected;
+		public TicketDetailList TicketSelected;
 
 		public FrameLayout frame_TicketDetail;
 
@@ -174,16 +174,14 @@ namespace LinkOM
 			TicketFilter objFilter = new TicketFilter ();
 			objFilter.AssignedToId = Settings.UserId;
 
-
-
 			ticketList = TicketHelper.GetTicketList (objFilter);
 
 			//Init layout
 			LinearLayout_Master = FindViewById<LinearLayout>(Resource.Id.linearLayout_Main);
 
-
 			var statusList = TicketHelper.GetTicketStatusList ();
-			if (statusList != null) {
+
+			if (statusList != null && ticketList!=null) {
 
 				if (statusList.Count > 0) {
 
@@ -215,7 +213,7 @@ namespace LinkOM
 		private int CheckTicket(string status, List<TicketList>  list_Ticket){
 			int count = 0;
 			foreach (var task in list_Ticket) {
-				if (task.TicketStatusName == status)
+				if (task.StatusName == status)
 					count++;
 			}
 			return count;
@@ -341,8 +339,11 @@ namespace LinkOM
 		//handle list item clicked
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			TicketSelected = this.ticketListAdapter.GetItemAtPosition (e.Position);
+			var temp = this.ticketListAdapter.GetItemAtPosition (e.Position);
 			frame_TicketDetail.Visibility = ViewStates.Visible;
+
+			TicketSelected = TicketHelper.GetTicketDetail (temp.Id.Value);
+
 			DisplayTicket (TicketSelected);
 		}
 
@@ -419,7 +420,7 @@ namespace LinkOM
 			mSearch.Animate().AlphaBy(-1.0f).SetDuration(1000).Start();
 		}
 
-		public void DisplayTicket(TicketList obj)
+		public void DisplayTicket(TicketDetailList obj)
 		{
 
 			var TicketName = FindViewById<TextView> (Resource.Id.tv_TicketDetailName);
@@ -429,14 +430,19 @@ namespace LinkOM
 			Code.Text = obj.Code;
 
 			var Status = FindViewById<TextView> (Resource.Id.tv_Status);
-			Status.Text = obj.TicketStatusName;
+			Status.Text = obj.StatusName;
 
 			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-			Internal.Checked = obj.IsInternal;
+			if (obj.IsInternal.HasValue)
+				Internal.Checked = obj.IsInternal.Value;
+			else
+				Internal.Checked = false;
 
 			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-			Management.Checked = obj.IsManagement;
-
+			if (obj.IsManagement.HasValue)
+				Management.Checked = obj.IsManagement.Value;
+			else
+				Management.Checked = false;
 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
 			ProjectName.Text = obj.ProjectName;
@@ -452,7 +458,7 @@ namespace LinkOM
 			Type.Text = obj.TicketTypeName;
 
 			var Receive  = FindViewById<TextView> (Resource.Id.tv_Receive);
-			Receive.Text = obj.TicketReceivedMethodName;
+			Receive.Text = obj.TicketReceivedMethod;
 
 
 			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
@@ -471,8 +477,8 @@ namespace LinkOM
 
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.Description!=null)
-				Description.Text = obj.Description;
+			if(obj.TicketDiscription!=null)
+				Description.Text = obj.TicketDiscription;
 
 			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			DepartmentName.Text = obj.DepartmentName;

@@ -2,7 +2,7 @@
 
 namespace LinkOM
 {
-	public class LoginJson
+	public class LoginObject
 	{
 		public int UserId { get; set; }
 		public string TokenNumber { get; set; }

@@ -25,7 +25,7 @@ namespace LinkOM
 		const int Actual_End_DATE_DIALOG_ID = 3;
 
 
-		public TicketList TicketDetail;
+		public TicketDetailList TicketDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 		public ArrayAdapter PriorityAdapter;
@@ -120,7 +120,9 @@ namespace LinkOM
 
 			results= Intent.GetStringExtra ("Ticket");
 
-			TicketDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
+			var temp = Newtonsoft.Json.JsonConvert.DeserializeObject<TicketList> (results);
+
+			TicketDetail = TicketHelper.GetTicketDetail (temp.Id.Value);
 		}
 
 		public void InitControl(){
@@ -168,19 +170,21 @@ namespace LinkOM
 
 
 
-		public void DisplayTicket(TicketList obj){
+		public void DisplayTicket(TicketDetailList obj){
 
 			editText_Title.Text = obj.Title;
 
+			if (obj.IsInternal.HasValue)
+				cb_Internal.Checked = obj.IsInternal.Value;
+			else
+				cb_Internal.Checked = false;
 
-			cb_Internal.Checked = obj.IsInternal;
-
-
-			if(obj.IsAddToMyWatch.HasValue)
-				cb_WatchList.Checked = obj.IsAddToMyWatch.Value;
-
-			cb_Management.Checked = obj.IsManagement;
-			
+//			if(obj..HasValue)
+//				cb_WatchList.Checked = obj.IsAddToMyWatch.Value;
+			if (obj.IsManagement.HasValue)
+				cb_Management.Checked = obj.IsManagement.Value;
+			else
+				cb_Management.Checked = false;
 
 			editText_StartDate.Text = obj.StartDateString;
 
@@ -192,7 +196,7 @@ namespace LinkOM
 
 			editText_AllocatedHours.Text = obj.AllocatedHours.ToString();
 
-			editText_Description.Text = obj.Description;
+			editText_Description.Text = obj.TicketDiscription;
 
 		}
 
@@ -251,8 +255,8 @@ namespace LinkOM
 			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
 			spinner_Status.Adapter = StatusAdapter;
 
-			if(TicketDetail.TicketStatusName!=""){
-				int index = StatusAdapter.GetPosition (TicketDetail.TicketStatusName);
+			if(TicketDetail.StatusName!=""){
+				int index = StatusAdapter.GetPosition (TicketDetail.StatusName);
 				spinner_Status.SetSelection(index); 
 			}
 

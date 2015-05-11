@@ -113,8 +113,6 @@
     <Compile Include="Activity\StartUp\CheckActivity.cs" />
     <Compile Include="Activity\StartUp\LoginActivity.cs" />
     <Compile Include="Adapter\ProjectListAdapter.cs" />
-    <Compile Include="Model\SendModel\objSort.cs" />
-    <Compile Include="Model\ReceiveModel\Login.cs" />
     <Compile Include="Model\ReceiveModel\Results.cs" />
     <Compile Include="Activity\Project\ProjectDetailActivity.cs" />
     <Compile Include="Adapter\MilestoneListAdapter.cs" />
@@ -216,6 +214,9 @@
     <Compile Include="Model\ViewModel\KnowledgebaseList.cs" />
     <Compile Include="Model\FilterModel\KnowledgebaseFilter.cs" />
     <Compile Include="Model\ViewModel\TicketCommentList.cs" />
+    <Compile Include="Model\ViewModel\LoginObject.cs" />
+    <Compile Include="Model\FilterModel\objSort.cs" />
+    <Compile Include="Model\ViewModel\TicketDetailList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -589,7 +590,6 @@
     <Folder Include="Activity\Task\" />
     <Folder Include="Activity\Project\" />
     <Folder Include="Activity\StartUp\" />
-    <Folder Include="Model\SendModel\" />
     <Folder Include="Model\ReceiveModel\" />
     <Folder Include="Model\ViewModel\" />
     <Folder Include="Resources\menu\" />

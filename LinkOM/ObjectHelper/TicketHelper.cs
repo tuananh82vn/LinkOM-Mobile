@@ -13,7 +13,11 @@ namespace LinkOM
 			string url_Task= url+"/api/TicketList";
 
 			List<objSort> objSort = new List<objSort>{
-				new objSort{ColumnName = "T.Code", Direction = "2"},
+				new objSort{ColumnName = "P.Name", Direction = "1"},
+				new objSort{ColumnName = "T.EndDate", Direction = "1"},
+				new objSort{ColumnName = "T.Id", Direction = "1"},
+				new objSort{ColumnName = "T.TicketStatusId", Direction = "1"},
+				new objSort{ColumnName = "T.PriorityId", Direction = "1"},
 			};
 
 
@@ -22,6 +26,7 @@ namespace LinkOM
 					objApiSearch = new
 					{
 						TokenNumber =Settings.Token,
+						IsShowAll = true,
 						PageSize = 100,
 						PageNumber = 1,
 						Sort = objSort,
@@ -51,6 +56,44 @@ namespace LinkOM
 			
 		}
 
+		public static TicketDetailList GetTicketDetail(int TicketId){
+			string url = Settings.InstanceURL;
+
+			//Load data
+			string url_Ticket = url + "/api/TicketDetailList";
+
+
+			var objTicket = new
+			{
+				Id = TicketId
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						TokenNumber = Settings.Token,
+						Item = objTicket
+					}
+				});
+
+			string results_Task = ConnectWebAPI.Request (url_Ticket, objsearch);
+
+			if (results_Task != null && results_Task != "") {
+
+				ApiResultDetail<TicketDetailList> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultDetail<TicketDetailList>> (results_Task);
+				if (objResult.Success) {
+
+					TicketDetailList returnObject = (TicketDetailList)objResult.Item;
+					return returnObject;
+				}
+				else
+					return null;
+
+			} else
+				return null;
+		}
+
 		public static List<Status> GetTicketStatusList(){
 
 			string url = Settings.InstanceURL;
@@ -58,7 +101,6 @@ namespace LinkOM
 			string url_TicketStatusList= url+"/api/TicketStatusList";
 
 			string results_TicketkList= ConnectWebAPI.Request(url_TicketStatusList,"");
-
 
 			if (results_TicketkList != null && results_TicketkList != "") {
 
