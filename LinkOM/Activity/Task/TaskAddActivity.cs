@@ -28,6 +28,14 @@ namespace LinkOM
 		public TaskDetailList TaskDetail;
 
 		public ProjectSpinnerAdapter projectList; 
+
+		public ProjectPhaseSpinnerAdapter phaseList; 
+		public ProjectLabelSpinnerAdapter labelList; 
+
+
+		public StaffSpinnerAdapter AssignToStaffList; 
+		public StaffSpinnerAdapter OwnerStaffList; 
+
 		public ArrayAdapter PriorityAdapter;
 
 		public DateTime StartDate;
@@ -37,18 +45,19 @@ namespace LinkOM
 
 
 		public int Selected_ProjectID;
+		public int Selected_AssignToStaffID;
+		public int Selected_OwnerStaffID;
+
 		public int Selected_PriorityID;
 		public int Selected_StatusID;
 		public int Selected_PhaseID;
-
+		public string Selected_Label;
 
 		public EditText editText_Title;
 
 		public Spinner spinner_Project ;
 
 		public CheckBox cb_Internal ;
-
-		public CheckBox cb_WatchList ;
 
 		public CheckBox cb_Management ;
 
@@ -69,6 +78,8 @@ namespace LinkOM
 		public EditText editText_ActualEndDate ;
 
 		public EditText editText_AllocatedHours ;
+
+		public EditText editText_SpentHours ;
 
 		public EditText editText_Description ;
 
@@ -92,17 +103,11 @@ namespace LinkOM
 
 			InitControl ();
 
-//			GetProjectList ();
+			GetProjectList ();
 
 			GetStatusList ();
 
 			GetPriorityList ();
-
-			//			GetStaffList ();
-			//
-			GetPhaseList ();
-
-			//			GetLabel ();
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -121,8 +126,6 @@ namespace LinkOM
 			spinner_Project = FindViewById<Spinner> (Resource.Id.spinner_Project);
 
 			cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-
-			cb_WatchList = FindViewById<CheckBox> (Resource.Id.cb_WatchList);
 
 			cb_Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
 
@@ -144,6 +147,8 @@ namespace LinkOM
 
 			editText_AllocatedHours = FindViewById<EditText> (Resource.Id.editText_AllocatedHours);
 
+			editText_SpentHours = FindViewById<EditText> (Resource.Id.editText_SpentHours);
+
 			editText_Description = FindViewById<EditText> (Resource.Id.editText_Description);
 
 			spinner_Phase = FindViewById<Spinner> (Resource.Id.spinner_Phase);
@@ -155,6 +160,10 @@ namespace LinkOM
 			editText_ActualStartDate.Click += delegate { ShowDialog (Actual_Start_DATE_DIALOG_ID); };
 			editText_ActualEndDate.Click += delegate { ShowDialog (Actual_End_DATE_DIALOG_ID); };
 
+			StartDate = DateTime.Today;
+			EndDate = DateTime.Today;
+			ActualStartDate = DateTime.Today;
+			ActualEndDate = DateTime.Today;
 		}
 
 
@@ -165,10 +174,6 @@ namespace LinkOM
 
 			if(obj.IsInternal)
 				cb_Internal.Checked = obj.IsInternal;
-
-
-			if(obj.IsAddToMyWatch.HasValue)
-				cb_WatchList.Checked = obj.IsAddToMyWatch.Value;
 
 			if(obj.IsManagerial)
 				cb_Management.Checked = obj.IsManagerial;
@@ -184,7 +189,7 @@ namespace LinkOM
 
 			editText_AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
 
-			editText_Description.Text = obj.Description;
+			editText_Description.Text = obj.TaskDescription;
 
 		}
 
@@ -200,7 +205,7 @@ namespace LinkOM
 				break;
 
 			case Resource.Id.save:
-				OnBackPressed ();
+				btSaveClick ();
 				break;
 
 			default:
@@ -240,84 +245,70 @@ namespace LinkOM
 			spinner_Status.Adapter = StatusAdapter;
 
 
-			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
+			//spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
 		}
 
-		private void GetPhaseList(){
+		private void GetPhaseList(int ProjectId)
+		{
 
-			var PhaseAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.Phase, Android.Resource.Layout.SimpleSpinnerItem);
-			PhaseAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-			spinner_Phase.Adapter = PhaseAdapter;
+			phaseList = new ProjectPhaseSpinnerAdapter (this,PhaseHelper.GetProjectPhaseByProject(ProjectId));
 
+			spinner_Phase.Adapter = phaseList;
 
 			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
 		}
 
-//		private void GetProjectList(){
-//			//Handle Project Spinner
-//			string TokenNumber = Settings.Token;
-//			string url = Settings.InstanceURL;
-//
-//			url=url+"/api/ProjectList";
-//
-//
-//			List<objSort> objSort = new List<objSort>{
-//				new objSort{ColumnName = "P.Name", Direction = "1"},
-//				new objSort{ColumnName = "C.Name", Direction = "2"}
-//			};
-//
-//			var objProject = new
-//			{
-//				Name = string.Empty,
-//				ClientName = string.Empty,
-//				DepartmentId = string.Empty,
-//				ProjectStatusId = string.Empty,
-//			};
-//
-//			var objsearch = (new
-//				{
-//					objApiSearch = new
-//					{
-//						TokenNumber = TokenNumber,
-//						PageSize = 20,
-//						PageNumber = 1,
-//						Sort = objSort,
-//						Item = objProject
-//					}
-//				});
-//
-//			string results= ConnectWebAPI.Request(url,objsearch);
-//
-//			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
-//
-//			projectList = new ProjectSpinnerAdapter (this,ProjectList.Items);
-//
-//
-//			spinner_Project.Adapter = projectList;
-//
-//			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
-//		}
+		private void GetProjectList(){
 
-		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
-		{
-			Spinner spinner = (Spinner)sender;
-			string StatusName = spinner.GetItemAtPosition (e.Position).ToString();
-			if(StatusName.Equals("Open")){
-				Selected_StatusID=1;
-			}
-			else if(StatusName.Equals("Closed")){
-				Selected_StatusID=2;
-			}
-			else if(StatusName.Equals("Waiting On Client")){
-				Selected_StatusID=3;
-			}
-			else if(StatusName.Equals("In Progress")){
-				Selected_StatusID=4;
-			}
-			else if(StatusName.Equals("On Hold")){
-				Selected_StatusID=5;
-			}
+			projectList = new ProjectSpinnerAdapter (this,ProjectHelper.GetProjectList());
+
+			spinner_Project.Adapter = projectList;
+
+			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
+
 		}
+
+		private void GetLabelList(int ProjectId){
+
+			labelList = new ProjectLabelSpinnerAdapter (this,LabelHelper.GetProjectLabelByProject(ProjectId));
+
+			spinner_Label.Adapter = labelList;
+
+			spinner_Label.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Label_ItemSelected);
+
+		}
+
+		private void GetAssignToStaffList(int ProjectId){
+
+			SearchAssignedByProject objFilter = new SearchAssignedByProject ();
+			objFilter.ProjectId = ProjectId;
+
+			AssignToStaffList = new StaffSpinnerAdapter (this,StaffHelper.GetAssignedToByProject(objFilter));
+
+			spinner_AssignedTo.Adapter = null;
+
+			spinner_AssignedTo.Adapter = AssignToStaffList;
+
+			spinner_AssignedTo.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (AssignToStaff_ItemSelected);
+		}
+
+		private void GetOwnerStaffList(int ProjectId){
+
+			SearchAssignedByProject objFilter = new SearchAssignedByProject ();
+			objFilter.ProjectId = ProjectId;
+
+			OwnerStaffList = new StaffSpinnerAdapter (this,StaffHelper.GetOwnerByProject(objFilter));
+			spinner_Owner.Adapter = null;
+
+			spinner_Owner.Adapter = OwnerStaffList;
+
+			spinner_Owner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (OwnerStaff_ItemSelected);
+		}
+
+//		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+//		{
+//			Selected_StatusID =  statusList.GetItemAtPosition (e.Position).Id;
+//		}
 
 		private void Priority_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
@@ -334,69 +325,75 @@ namespace LinkOM
 			}
 		}
 
+		private void Label_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_Label = labelList.GetItemAtPosition (e.Position).Name;
+		}
+
 		private void Phase_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
-			Spinner spinner = (Spinner)sender;
-			string PhaseName = spinner.GetItemAtPosition (e.Position).ToString();
-			if(PhaseName.Equals("Low")){
-				Selected_PhaseID=1;
-			}
+			Selected_PhaseID = phaseList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void AssignToStaff_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_AssignToStaffID = AssignToStaffList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void OwnerStaff_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_OwnerStaffID = OwnerStaffList.GetItemAtPosition (e.Position).Id;
 		}
 
 		private void project_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Selected_ProjectID = projectList.GetItemAtPosition (e.Position).Id.Value;
+
+			GetAssignToStaffList (Selected_ProjectID);
+
+			GetOwnerStaffList (Selected_ProjectID);
+
+			GetPhaseList (Selected_ProjectID);
+
+			GetLabelList (Selected_ProjectID);
 		}
 
 
-		public void btSaveClick(object sender, EventArgs e)
+		public void btSaveClick()
 		{
-			string TokenNumber = Settings.Token;
-			string url = Settings.InstanceURL;
 
-			url=url+"/api/AddTask";
+			TaskAdd TaskObject = new TaskAdd ();
+			TaskObject.Title = editText_Title.Text;
+			TaskObject.ProjectId = Selected_ProjectID;
+			TaskObject.TaskStatusId = 1;
+			TaskObject.PriorityId = Selected_PriorityID;
+			TaskObject.ProjectPhaseId = Selected_PhaseID;
+			TaskObject.Label = Selected_Label;
+			TaskObject.StartDate = DateTime.Parse(editText_StartDate.Text);
+			TaskObject.EndDate = DateTime.Parse(editText_EndDate.Text);
+			TaskObject.ActualStartDate = DateTime.Parse(editText_ActualStartDate.Text);
+			TaskObject.ActualEndDate = DateTime.Parse(editText_ActualEndDate.Text);
+			TaskObject.IsInternal = cb_Internal.Checked;
+			TaskObject.IsManagerial = cb_Management.Checked;
+			TaskObject.AssignedToId = Selected_AssignToStaffID;
+			TaskObject.OwnerId = Selected_OwnerStaffID;
 
-			var objItem = new
-			{
-				Id = TaskDetail.Id,
-				Guid = TaskDetail.Guid,
-				AssignedToId= TaskDetail.AssignedToId,
-				AssignToName= String.Empty,
-				Title= editText_Title.Text,
-				ProjectId= Selected_ProjectID,
-				OwnerId= TaskDetail.OwnerId,
-				StartDate= editText_StartDate.Text,
-				EndDate= editText_EndDate.Text,
-				PriorityId= Selected_PriorityID,
-				TaskStatusId= Selected_StatusID,
-				AllocatedHours= editText_AllocatedHours.Text,
-				IsUserWatch = cb_WatchList.Checked,
-//				UpdatedBy = TaskDetail.CreatedBy,
-			};
+			if (editText_AllocatedHours.Text != "")
+				TaskObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
+			
+			if (editText_SpentHours.Text != "")
+				TaskObject.SpentHours = Double.Parse(editText_SpentHours.Text);
+			
+			TaskObject.Description = editText_Description.Text;
 
-			var objEditTask = (new
-				{
-					objTask = new
-					{
-						UserId = Settings.UserId,
-						UserName = Settings.Username,
-						Item = objItem
-					}
-				});
+			ApiResultSave restult = TaskHelper.AddTask (TaskObject);
 
-			string results= ConnectWebAPI.Request(url,objEditTask);
+			if (restult.Success) {
+				OnBackPressed ();
+				Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
 
-			if (results != null) {
-				ResultsJson ResultsJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
-
-				if (ResultsJson.Success) {
-					Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
-				} else
-					Toast.MakeText (this, ResultsJson.ErrorMessage, ToastLength.Short).Show ();
-			}
-			else
-				Toast.MakeText (this, "Error to connect to server", ToastLength.Short).Show ();
-
+			} else
+				Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();
 		}
 
 		// the event received when the user "sets" the date in the dialog

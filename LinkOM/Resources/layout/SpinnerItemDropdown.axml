@@ -4,4 +4,5 @@
     style="?android:attr/spinnerDropDownItemStyle"
     android:singleLine="true"
     android:layout_width="fill_parent"
+    android:textSize="12dp"
     android:layout_height="?android:attr/listPreferredItemHeight" />

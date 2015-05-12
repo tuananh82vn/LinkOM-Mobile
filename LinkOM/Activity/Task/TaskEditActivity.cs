@@ -193,7 +193,7 @@ namespace LinkOM
 
 			editText_AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
 
-			editText_Description.Text = obj.Description;
+			editText_Description.Text = obj.TaskDescription;
 
 		}
 

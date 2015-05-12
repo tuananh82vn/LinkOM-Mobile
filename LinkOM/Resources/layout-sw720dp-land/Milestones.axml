@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/FlyOutContent"
@@ -51,17 +52,18 @@
                     android:id="@+id/tableRow11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Milestone Name"
                         android:layout_column="0"
                         android:id="@+id/tv_MilestoneDetailName"
                         android:layout_marginLeft="25.0dp"
                         android:layout_width="match_parent"
-                        android:textSize="22dp"
+                        android:textSize="18dp"
                         android:layout_height="match_parent"
                         android:textColor="#ff00947A"
                         android:layout_marginTop="5dp"
                         android:layout_marginRight="25.0dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginBottom="5dp" />
                 </TableRow>
                 <TableRow
@@ -80,22 +82,24 @@
                             android:id="@+id/tableRow11"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <TextView
+                            <LinkOM.MyTextView
                                 android:text="Status"
                                 android:layout_column="0"
                                 android:id="@+id/textView30"
                                 android:layout_marginLeft="25.0dp"
                                 android:layout_width="150dp"
-                                android:textSize="10dp"
+                                android:textSize="12dp"
                                 android:textColor="#ff437800"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:layout_height="wrap_content" />
-                            <TextView
+                            <LinkOM.MyTextView
                                 android:text="Internal ?"
                                 android:layout_column="1"
                                 android:id="@+id/textView30"
                                 android:layout_width="150dp"
-                                android:textSize="10dp"
+                                android:textSize="12dp"
                                 android:textColor="#ff437800"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:layout_height="wrap_content" />
                         </TableRow>
                         <TableRow
@@ -104,8 +108,7 @@
                             android:minHeight="25px"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent">
-                            <TextView
-                                android:text="Status"
+                            <LinkOM.MyTextView
                                 android:layout_column="0"
                                 android:id="@+id/tv_Status"
                                 android:textSize="12dp"
@@ -113,6 +116,7 @@
                                 android:layout_width="150dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="25.0dp"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:gravity="center_vertical" />
                             <CheckBox
                                 android:layout_column="1"
@@ -137,7 +141,7 @@
                             android:minWidth="25px"
                             android:minHeight="25px"
                             android:layout_marginBottom="0dp">
-                            <TextView
+                            <LinkOM.MyTextView
                                 android:text="Project"
                                 android:layout_column="0"
                                 android:id="@+id/textview"
@@ -150,6 +154,7 @@
                                 android:gravity="center_vertical"
                                 android:layout_marginTop="0dp"
                                 android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:layout_marginBottom="0dp" />
                         </TableRow>
                     </TableLayout>
@@ -158,7 +163,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:id="@+id/view1"
-                    android:background="#ff006848"
+                    android:background="#ffe6e6e6"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
                 <TableRow
@@ -167,8 +172,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:text="Project Name"
+                    <LinkOM.MyTextView
                         android:layout_column="0"
                         android:id="@+id/tv_ProjectName"
                         android:textSize="12dp"
@@ -178,6 +182,7 @@
                         android:layout_marginLeft="25dp"
                         android:layout_marginRight="30dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
                 </TableRow>
                 <TableRow
@@ -195,7 +200,7 @@
                             android:minWidth="25px"
                             android:minHeight="25px"
                             android:layout_marginBottom="0dp">
-                            <TextView
+                            <LinkOM.MyTextView
                                 android:text="Information"
                                 android:layout_column="0"
                                 android:id="@+id/textview"
@@ -208,6 +213,7 @@
                                 android:gravity="center_vertical"
                                 android:layout_marginTop="10dp"
                                 android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:layout_marginBottom="0dp" />
                         </TableRow>
                     </TableLayout>
@@ -216,7 +222,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:id="@+id/view1"
-                    android:background="#ff006848"
+                    android:background="#ffe6e6e6"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
                 <TableRow
@@ -225,7 +231,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Assigned To:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -235,9 +241,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
-                    <TextView
-                        android:text="Assigned To"
+                    <LinkOM.MyTextView
                         android:layout_column="1"
                         android:id="@+id/tv_AssignedTo"
                         android:textSize="12dp"
@@ -246,8 +252,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Owner:"
                         android:layout_column="2"
                         android:id="@+id/textview"
@@ -257,9 +264,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
-                    <TextView
-                        android:text="Owner"
+                    <LinkOM.MyTextView
                         android:layout_column="3"
                         android:id="@+id/tv_Owner"
                         android:textSize="12dp"
@@ -268,6 +275,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
                 </TableRow>
                 <TableRow
@@ -285,7 +293,7 @@
                             android:minWidth="25px"
                             android:minHeight="25px"
                             android:layout_marginBottom="0dp">
-                            <TextView
+                            <LinkOM.MyTextView
                                 android:text="Date"
                                 android:layout_column="0"
                                 android:id="@+id/textview"
@@ -298,6 +306,7 @@
                                 android:gravity="center_vertical"
                                 android:layout_marginTop="10dp"
                                 android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:layout_marginBottom="0dp" />
                         </TableRow>
                     </TableLayout>
@@ -306,7 +315,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:id="@+id/view1"
-                    android:background="#ff006848"
+                    android:background="#ffe6e6e6"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
                 <TableRow
@@ -315,7 +324,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Due Date"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -325,8 +334,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="01/01/1999"
                         android:layout_column="1"
                         android:id="@+id/tv_DueDate"
@@ -336,8 +346,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Expected Complete Date"
                         android:id="@+id/textview"
                         android:textSize="12dp"
@@ -346,8 +357,9 @@
                         android:layout_width="150dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="25dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="01/01/1999"
                         android:layout_column="1"
                         android:id="@+id/tv_CompletedDate"
@@ -357,6 +369,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
                 </TableRow>
                 <TableRow
@@ -374,7 +387,7 @@
                             android:minWidth="25px"
                             android:minHeight="25px"
                             android:layout_marginBottom="0dp">
-                            <TextView
+                            <LinkOM.MyTextView
                                 android:text="Description"
                                 android:layout_column="0"
                                 android:id="@+id/textview"
@@ -387,6 +400,7 @@
                                 android:gravity="center_vertical"
                                 android:layout_marginTop="10dp"
                                 android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:layout_marginBottom="0dp" />
                         </TableRow>
                     </TableLayout>
@@ -395,7 +409,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:id="@+id/view1"
-                    android:background="#ff006848"
+                    android:background="#ffe6e6e6"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
                 <TableRow
@@ -404,8 +418,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:text="This is a description"
+                    <LinkOM.MyTextView
                         android:layout_column="0"
                         android:id="@+id/tv_Description"
                         android:textSize="12dp"
@@ -415,6 +428,7 @@
                         android:layout_marginLeft="25dp"
                         android:layout_marginRight="25dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginTop="5dp" />
                 </TableRow>
                 <TableRow
@@ -432,7 +446,7 @@
                             android:minWidth="25px"
                             android:minHeight="25px"
                             android:layout_marginBottom="0dp">
-                            <TextView
+                            <LinkOM.MyTextView
                                 android:text="Department"
                                 android:layout_column="0"
                                 android:id="@+id/textview"
@@ -445,6 +459,7 @@
                                 android:gravity="center_vertical"
                                 android:layout_marginTop="0dp"
                                 android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:layout_marginBottom="0dp" />
                         </TableRow>
                     </TableLayout>
@@ -453,7 +468,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:id="@+id/view1"
-                    android:background="#ff006848"
+                    android:background="#ffe6e6e6"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
                 <TableRow
@@ -462,8 +477,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <TextView
-                        android:text="Department"
+                    <LinkOM.MyTextView
                         android:layout_column="0"
                         android:id="@+id/tv_Department"
                         android:textSize="12dp"
@@ -474,6 +488,7 @@
                         android:layout_marginRight="30dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_marginBottom="5.9dp" />
                 </TableRow>
                 <TableRow
@@ -491,7 +506,7 @@
                             android:minWidth="25px"
                             android:minHeight="25px"
                             android:layout_marginBottom="0dp">
-                            <TextView
+                            <LinkOM.MyTextView
                                 android:text="Change History"
                                 android:layout_column="0"
                                 android:id="@+id/textview"
@@ -504,6 +519,7 @@
                                 android:gravity="center_vertical"
                                 android:layout_marginTop="0dp"
                                 android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
                                 android:layout_marginBottom="0dp" />
                         </TableRow>
                     </TableLayout>
@@ -512,7 +528,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:id="@+id/view1"
-                    android:background="#ff006848"
+                    android:background="#ffe6e6e6"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
                 <ListView

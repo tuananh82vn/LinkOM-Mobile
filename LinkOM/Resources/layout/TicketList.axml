@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
     p1:orientation="vertical"
     p1:minWidth="25px"
     p1:minHeight="25px"
@@ -12,7 +13,7 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow2"
         p1:layout_marginTop="5.0dp">
-        <TextView
+        <LinkOM.MyTextView
             p1:text="Ticket Name"
             p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/tv_TicketName"
@@ -22,7 +23,8 @@
             p1:layout_marginLeft="5.0dp"
             p1:textColor="#ff000000"
             p1:layout_marginTop="5dp"
-            p1:textSize="20dp"
+            p1:textSize="18dp"
+            foo:customFont="Fonts/arial.ttf"
             p1:layout_marginRight="5.0dp" />
     </TableRow>
     <TableRow
@@ -30,7 +32,7 @@
         p1:layout_height="23.2dp"
         p1:id="@+id/tableRow2"
         p1:layout_marginBottom="5.0dp">
-        <TextView
+        <LinkOM.MyTextView
             p1:text="Project Name"
             p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/tv_ProjectName"
@@ -40,7 +42,9 @@
             p1:layout_marginLeft="5dp"
             p1:textColor="#ffaeaeae"
             p1:layout_marginTop="5dp"
-            p1:layout_marginRight="5dp" />
+            foo:customFont="Fonts/arial.ttf"
+            p1:layout_marginRight="5dp"
+            p1:textSize="12dp" />
         <ImageView
             p1:src="@drawable/hight_priority"
             p1:layout_column="1"

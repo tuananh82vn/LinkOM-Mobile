@@ -193,8 +193,8 @@ namespace LinkOM
 				ActualEndDate.Text = obj.ActualEndDateString;
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.Description!=null)
-				Description.Text = obj.Description;
+			if(obj.TaskDescription!=null)
+				Description.Text = obj.TaskDescription;
 
 //			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 //			DepartmentName.Text = obj.DepartmentName;

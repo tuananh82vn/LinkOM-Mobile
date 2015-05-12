@@ -309,7 +309,7 @@ namespace LinkOM
 
 				TaskFilter objFilter = new TaskFilter ();
 				objFilter.AssignedToId = Settings.UserId;
-				objFilter.MainStatusId = StatusId;
+				objFilter.TaskStatusId = StatusId.ToString();
 
 				var objReturn = TaskHelper.GetTaskList (objFilter);
 
@@ -338,6 +338,7 @@ namespace LinkOM
 
 
 			frame_TaskDetail.Visibility = ViewStates.Visible;
+
 			DisplayTask (TaskSelected);
 		}
 
@@ -434,12 +435,28 @@ namespace LinkOM
 			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
 			Management.Checked = obj.IsManagerial;
 
+			var tv_Phase = FindViewById<TextView> (Resource.Id.tv_Phase);
+			tv_Phase.Text = obj.ProjectPhaseName;
 
+			var tv_Label = FindViewById<TextView> (Resource.Id.tv_Label);
+			tv_Label.Text = obj.Label;
+
+			 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
 			ProjectName.Text = obj.ProjectName;
 
+			var tv_ProjectDetailManager = FindViewById<TextView> (Resource.Id.tv_ProjectDetailManager);
+			tv_ProjectDetailManager.Text = obj.ProjectManager;
+
+			var tv_Department = FindViewById<TextView> (Resource.Id.tv_Department);
+			tv_Department.Text = obj.DepartmentName;
+
 			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
 			tv_AssignedTo.Text = obj.AssignedToName;
+
+			var tv_Owner = FindViewById<TextView> (Resource.Id.tv_Owner);
+			tv_Owner.Text = obj.OwnerName;
+
 
 
 			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
@@ -466,8 +483,8 @@ namespace LinkOM
 				ActualEndDate.Text = obj.ActualEndDateString;
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.Description!=null)
-				Description.Text = obj.Description;
+			if(obj.TaskDescription!=null)
+				Description.Text = obj.TaskDescription;
 
 		}
 	}

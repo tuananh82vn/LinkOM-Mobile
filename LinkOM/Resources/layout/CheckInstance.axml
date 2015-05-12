@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -19,10 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:id="@+id/tableRow7">
-        <TextView
+        <LinkOM.MyTextView
             android:text="Domain"
             android:id="@+id/textview"
             android:textSize="18dp"
+            foo:customFont="Fonts/arial.ttf"
             android:textColor="#ff00947A"
             android:gravity="center_vertical"
             android:textStyle="normal"
@@ -48,7 +50,7 @@
             android:id="@+id/URLText"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffffff"
-            android:textSize="14dp"
+            android:textSize="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25.0dp"
@@ -63,5 +65,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25.0dp"
-        android:layout_marginRight="25.0dp" />
+        android:layout_marginRight="25.0dp"
+        android:textSize="18dp" />
 </LinearLayout>

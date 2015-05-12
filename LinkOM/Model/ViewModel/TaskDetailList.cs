@@ -22,10 +22,12 @@ namespace LinkOM
 		public virtual String ProjectName { get; set; }
 
 		public virtual String ProjectManager { get; set; }
+
 		public virtual String ProjectManagerGuid { get; set; }
 
 
 		public virtual String DepartmentName { get; set; }
+
 		public virtual String DepartmentColor { get; set; }
 
 
@@ -100,7 +102,7 @@ namespace LinkOM
 
 		public virtual double? Percentcomplete { get; set; }
 
-		public virtual String Description { get; set; }
+		public virtual String TaskDescription { get; set; }
 
 //		[DisplayName("Attachment")]
 //		[File(AllowedFileExtensions = new string[] { ".jpeg", ".jpg", ".png", ".pdf", ".doc", ".docx", ".xls", ".bmp", ".xlsx" }, UploadFileType = AppEnums.UploadFileType.IssueAttachment, ErrorMessage = "Invalid File")]

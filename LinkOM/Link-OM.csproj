@@ -113,7 +113,6 @@
     <Compile Include="Activity\StartUp\CheckActivity.cs" />
     <Compile Include="Activity\StartUp\LoginActivity.cs" />
     <Compile Include="Adapter\ProjectListAdapter.cs" />
-    <Compile Include="Model\ReceiveModel\Results.cs" />
     <Compile Include="Activity\Project\ProjectDetailActivity.cs" />
     <Compile Include="Adapter\MilestoneListAdapter.cs" />
     <Compile Include="Activity\StartUp\SplashActivity.cs" />
@@ -122,7 +121,6 @@
     <Compile Include="Activity\Task\TaskListActivity.cs" />
     <Compile Include="Helper\LoginService.cs" />
     <Compile Include="Model\ViewModel\Status.cs" />
-    <Compile Include="Model\ReceiveModel\JsonData.cs" />
     <Compile Include="UIControl\SwipeRefreshLayout.cs" />
     <Compile Include="UIControl\MyAnimation.cs" />
     <Compile Include="Helper\JavaHolder.cs" />
@@ -177,11 +175,8 @@
     <Compile Include="Helper\ColorHelper.cs" />
     <Compile Include="Helper\ScreenHelper.cs" />
     <Compile Include="Model\ViewModel\DashboardObject.cs" />
-    <Compile Include="Model\ReceiveModel\ApiResult.cs" />
     <Compile Include="Activity\Ticket\TicketActivity.cs" />
     <Compile Include="Activity\Issues\IssuesActivity.cs" />
-    <Compile Include="Model\ReceiveModel\ApiResultList.cs" />
-    <Compile Include="Model\ReceiveModel\ApiResultSingle.cs" />
     <Compile Include="Model\ViewModel\ProjectList.cs" />
     <Compile Include="Model\ViewModel\ProjectDetailList.cs" />
     <Compile Include="ObjectHelper\ProjectHelper.cs" />
@@ -206,7 +201,6 @@
     <Compile Include="Model\FilterModel\TaskFilter.cs" />
     <Compile Include="Model\ViewModel\TaskDetailList.cs" />
     <Compile Include="Model\ViewModel\TaskList.cs" />
-    <Compile Include="Model\ReceiveModel\ApiResultDetail.cs" />
     <Compile Include="ObjectHelper\TicketHelper.cs" />
     <Compile Include="Model\FilterModel\TicketFilter.cs" />
     <Compile Include="Model\ViewModel\TicketList.cs" />
@@ -218,7 +212,21 @@
     <Compile Include="Model\FilterModel\objSort.cs" />
     <Compile Include="Model\ViewModel\TicketDetailList.cs" />
     <Compile Include="Model\ViewModel\IssuesDetailList.cs" />
-    <Compile Include="Model\ViewModel\ApiFileReference.cs" />
+    <Compile Include="ObjectHelper\StaffHelper.cs" />
+    <Compile Include="Model\ViewModel\StaffList.cs" />
+    <Compile Include="Model\FilterModel\SearchAssignedByProject.cs" />
+    <Compile Include="Adapter\StaffSpinnerAdapter.cs" />
+    <Compile Include="Model\ApiModel\Results.cs" />
+    <Compile Include="Model\ApiModel\JsonData.cs" />
+    <Compile Include="Model\ApiModel\ApiResult.cs" />
+    <Compile Include="Model\ApiModel\ApiResultList.cs" />
+    <Compile Include="Model\ApiModel\ApiResultSingle.cs" />
+    <Compile Include="Model\ApiModel\ApiResultDetail.cs" />
+    <Compile Include="Model\ApiModel\ApiSave.cs" />
+    <Compile Include="Model\ViewModel\TaskAdd.cs" />
+    <Compile Include="Model\ApiModel\ApiFileReference.cs" />
+    <Compile Include="Model\ApiModel\ApiResultSave.cs" />
+    <Compile Include="Adapter\ProjectLabelSpinnerAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -277,7 +285,6 @@
     <AndroidResource Include="Resources\drawable\Projects.png" />
     <AndroidResource Include="Resources\drawable\RoundButton.xml" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\layout\StatusRow.xml" />
     <AndroidResource Include="Resources\drawable\action_menu.png" />
     <AndroidResource Include="Resources\drawable\iconelse.png" />
     <AndroidResource Include="Resources\drawable\Documents.png" />
@@ -286,7 +293,6 @@
     <AndroidResource Include="Resources\drawable\Tasks.png" />
     <AndroidResource Include="Resources\drawable\Tickets.png" />
     <AndroidResource Include="Resources\layout\TaskList.axml" />
-    <AndroidResource Include="Resources\layout\OpenTaskView.axml" />
     <AndroidResource Include="Resources\layout\MainContentLayout.axml" />
     <AndroidResource Include="Resources\layout\Project.axml" />
     <AndroidResource Include="Resources\layout\ProjectDetailLayout.axml" />
@@ -474,7 +480,6 @@
     <AndroidResource Include="Resources\layout\DocumentEdit.axml" />
     <AndroidResource Include="Resources\drawable\home.png" />
     <AndroidResource Include="Resources\layout\DashboardLayout.axml" />
-    <AndroidResource Include="Resources\layout\Notify.axml" />
     <AndroidResource Include="Resources\layout\Milestones.axml" />
     <AndroidResource Include="Resources\layout\fragment_sample.axml" />
     <AndroidResource Include="Resources\layout\pager_item.axml" />
@@ -517,9 +522,6 @@
     <AndroidResource Include="Resources\drawable-land\Background3.png" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Login.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\MainContentLayout.axml" />
-    <AndroidResource Include="Resources\layout-sw720dp-land\MilestoneList.axml" />
-    <AndroidResource Include="Resources\layout\SuperAwesomeMain.axml" />
-    <AndroidResource Include="Resources\layout\SuperAwesomeRow.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Project.axml" />
     <AndroidResource Include="Resources\menu\AddEditSearchMenu.xml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\ProjectEdit.axml" />
@@ -592,7 +594,6 @@
     <Folder Include="Activity\Task\" />
     <Folder Include="Activity\Project\" />
     <Folder Include="Activity\StartUp\" />
-    <Folder Include="Model\ReceiveModel\" />
     <Folder Include="Model\ViewModel\" />
     <Folder Include="Resources\menu\" />
     <Folder Include="Resources\drawable-land\" />
@@ -617,6 +618,7 @@
     <Folder Include="Resources\layout-sw720dp-land\" />
     <Folder Include="ObjectHelper\" />
     <Folder Include="Model\FilterModel\" />
+    <Folder Include="Model\ApiModel\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />

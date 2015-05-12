@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="260dp"
     android:layout_height="fill_parent"
@@ -20,7 +21,7 @@
             android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView_Menu" />
-        <TextView
+        <LinkOM.MyTextView
             android:text="Project"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"
@@ -29,6 +30,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="8dp"
             android:textColor="#fff8f8f8"
+            foo:customFont="Fonts/arial.ttf"
             android:gravity="center_vertical" />
     </LinearLayout>
 </LinearLayout>

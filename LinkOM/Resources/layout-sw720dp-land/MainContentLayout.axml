@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -87,13 +88,13 @@
             android:background="#ffffffff"
             android:layout_marginTop="95dp"
             android:layout_marginRight="20dp">
-            <TextView
+            <LinkOM.MyTextView
                 android:text="Pending Milestones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView1"
                 android:textStyle="normal"
-                android:textSize="30dp"
+                android:textSize="18dp"
                 android:layout_marginTop="10dp" />
             <ListView
                 android:id="@+id/MilestoneListView"
@@ -118,11 +119,11 @@
                 android:id="@+id/tableLayout2">
                 <TableRow
                     android:id="@+id/tableRow1">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:layout_column="0"
                         android:id="@+id/textView20"
                         android:layout_width="wrap_content" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Overdue"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="1"
@@ -130,8 +131,9 @@
                         android:layout_height="40dp"
                         android:layout_width="80dp"
                         android:gravity="center"
-                        android:textSize="15dp" />
-                    <TextView
+                        foo:customFont="Fonts/arial.ttf"
+                        android:textSize="12dp" />
+                    <LinkOM.MyTextView
                         android:text="Open"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="2"
@@ -141,8 +143,9 @@
                         android:layout_marginLeft="0dp"
                         android:layout_marginRight="0dp"
                         android:gravity="center"
-                        android:textSize="15dp" />
-                    <TextView
+                        foo:customFont="Fonts/arial.ttf"
+                        android:textSize="12dp" />
+                    <LinkOM.MyTextView
                         android:text="Closed"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="3"
@@ -150,283 +153,316 @@
                         android:layout_height="match_parent"
                         android:layout_width="80dp"
                         android:gravity="center"
-                        android:textSize="15dp" />
-                    <TextView
+                        foo:customFont="Fonts/arial.ttf"
+                        android:textSize="12dp" />
+                    <LinkOM.MyTextView
                         android:text="Other"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="4"
                         android:id="@+id/textView14"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="80dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Total"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/textView14"
                         android:layout_height="match_parent"
                         android:layout_width="80dp"
                         android:gravity="center"
-                        android:textSize="15dp" />
+                        foo:customFont="Fonts/arial.ttf"
+                        android:textSize="12dp" />
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow2">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Milestones"
                         android:layout_column="0"
                         android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
                         android:textColor="#ff00ccff" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_MileStone_OverDue"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_MileStone_Open"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_MileStone_Closed"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_MileStone_Other"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_MileStone_Total"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow3">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Tickets"
                         android:layout_column="0"
                         android:id="@+id/textView16"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
                         android:textColor="#ffff001d" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_Ticket_OverDue"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_Ticket_Open"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_Ticket_Closed"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_Ticket_Other"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_Ticket_Total"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow4">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Tasks"
                         android:layout_column="0"
                         android:id="@+id/textView17"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
                         android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textColor="#ffe800ff" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_Task_OverDue"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_Task_Open"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_Task_Closed"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_Task_Other"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_Task_Total"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow5">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="Issues"
                         android:layout_column="0"
                         android:id="@+id/textView18"
                         android:layout_height="40dp"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
                         android:gravity="center_vertical"
                         android:textColor="#ff0016ff"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_Issues_OverDue"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="match_parent" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_Issues_Open"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_Issues_Closed"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_Issues_Other"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_Issues_Total"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:textSize="15dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow6">
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="All"
                         android:layout_column="0"
                         android:id="@+id/textView19"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
+                        foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
                         android:textColor="#ff000000" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_All_OverDue"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_All_Open"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_All_Closed"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_All_Other"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <TextView
+                    <LinkOM.MyTextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_All_Total"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
                         android:gravity="center"
+                        foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                 </TableRow>
             </TableLayout>

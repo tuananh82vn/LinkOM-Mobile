@@ -28,7 +28,7 @@
                 android:layout_marginTop="5dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
-                android:textSize="14dp"
+                android:textSize="10dp"
                 android:layout_marginBottom="0dp" />
         </TableRow>
         <TableRow
@@ -61,7 +61,7 @@
                 android:layout_marginTop="5dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
-                android:textSize="14dp"
+                android:textSize="10dp"
                 android:layout_marginBottom="0dp" />
         </TableRow>
         <TableRow
@@ -94,7 +94,7 @@
                 android:layout_marginTop="5dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
-                android:textSize="14dp"
+                android:textSize="10dp"
                 android:layout_marginBottom="0dp" />
         </TableRow>
         <TableRow
