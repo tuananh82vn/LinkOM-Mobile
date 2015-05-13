@@ -223,10 +223,11 @@
     <Compile Include="Model\ApiModel\ApiResultSingle.cs" />
     <Compile Include="Model\ApiModel\ApiResultDetail.cs" />
     <Compile Include="Model\ApiModel\ApiSave.cs" />
-    <Compile Include="Model\ViewModel\TaskAdd.cs" />
     <Compile Include="Model\ApiModel\ApiFileReference.cs" />
     <Compile Include="Model\ApiModel\ApiResultSave.cs" />
     <Compile Include="Adapter\ProjectLabelSpinnerAdapter.cs" />
+    <Compile Include="Model\ViewModel\TaskObject.cs" />
+    <Compile Include="Adapter\StatusSpinnerAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

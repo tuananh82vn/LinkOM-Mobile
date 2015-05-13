@@ -439,7 +439,7 @@
                 android:layout_column="1"
                 android:id="@+id/tv_AlloHours"
                 android:textSize="12dp"
-                android:textColor="#ffff5c00"
+                android:textColor="#ff000000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -470,7 +470,7 @@
                 android:layout_column="1"
                 android:id="@+id/tv_SpentHours"
                 android:textSize="12dp"
-                android:textColor="#ffff5c00"
+                android:textColor="#ff000000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -497,11 +497,10 @@
                 android:gravity="center_vertical"
                 android:layout_marginTop="5dp" />
             <LinkOM.MyTextView
-                android:text="01/01/1999"
                 android:layout_column="1"
                 android:id="@+id/tv_StartDate"
                 android:textSize="12dp"
-                android:textColor="#ffff0000"
+                android:textColor="#ff000000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -528,11 +527,10 @@
                 android:gravity="center_vertical"
                 android:layout_marginTop="5dp" />
             <LinkOM.MyTextView
-                android:text="01/01/1999"
                 android:layout_column="1"
                 android:id="@+id/tv_ActualStartDate"
                 android:textSize="12dp"
-                android:textColor="#ffff0000"
+                android:textColor="#ff000000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -559,11 +557,10 @@
                 android:gravity="center_vertical"
                 android:layout_marginTop="5dp" />
             <LinkOM.MyTextView
-                android:text="01/01/1999"
                 android:layout_column="1"
                 android:id="@+id/tv_EndDate"
                 android:textSize="12dp"
-                android:textColor="#ff000bff"
+                android:textColor="#ff000000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
@@ -590,11 +587,10 @@
                 android:gravity="center_vertical"
                 android:layout_marginTop="5dp" />
             <LinkOM.MyTextView
-                android:text="01/01/1999"
                 android:layout_column="1"
                 android:id="@+id/tv_ActualEndDate"
                 android:textSize="12dp"
-                android:textColor="#ff000bff"
+                android:textColor="#ff000000"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"

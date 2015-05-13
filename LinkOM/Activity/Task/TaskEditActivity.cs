@@ -27,7 +27,14 @@ namespace LinkOM
 
 		public TaskDetailList TaskDetail;
 
-		public ProjectSpinnerAdapter projectList; 
+		public ProjectSpinnerAdapter projectList;
+		public ProjectLabelSpinnerAdapter labelList;
+		public ProjectPhaseSpinnerAdapter phaseList;
+		public StatusSpinnerAdapter statusList;
+		public StaffSpinnerAdapter OwnerStaffList; 
+		public StaffSpinnerAdapter AssignToStaffList;
+
+
 		public ArrayAdapter PriorityAdapter;
 
 		public DateTime StartDate;
@@ -37,9 +44,12 @@ namespace LinkOM
 
 
 		public int Selected_ProjectID;
+		public int Selected_AssignToStaffID;
+		public int Selected_OwnerStaffID;
 		public int Selected_PriorityID;
 		public int Selected_StatusID;
 		public int Selected_PhaseID;
+		public string Selected_Label;
 
 
 		public EditText editText_Title;
@@ -47,8 +57,6 @@ namespace LinkOM
 		public Spinner spinner_Project ;
 
 		public CheckBox cb_Internal ;
-
-		public CheckBox cb_WatchList ;
 
 		public CheckBox cb_Management ;
 
@@ -94,17 +102,19 @@ namespace LinkOM
 
 			InitControl ();
 
-//			GetProjectList ();
+			GetProjectList ();
 
 			GetStatusList ();
 
 			GetPriorityList ();
 
-//			GetStaffList ();
-//
-			GetPhaseList ();
+			GetOwnerStaffList (TaskDetail.ProjectId);
 
-//			GetLabel ();
+			GetAssignToStaffList (TaskDetail.ProjectId);
+
+			GetPhaseList (TaskDetail.ProjectId);
+
+			GetLabelList (TaskDetail.ProjectId);
 
 			DisplayTask (TaskDetail);
 
@@ -123,15 +133,14 @@ namespace LinkOM
 			TaskDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<TaskDetailList> (results);
 		}
 
+
 		public void InitControl(){
-			
+
 			editText_Title = FindViewById<EditText> (Resource.Id.editText_Title);
 
 			spinner_Project = FindViewById<Spinner> (Resource.Id.spinner_Project);
 
 			cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-
-			cb_WatchList = FindViewById<CheckBox> (Resource.Id.cb_WatchList);
 
 			cb_Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
 
@@ -166,6 +175,80 @@ namespace LinkOM
 
 		}
 
+		private void GetProjectList(){
+
+			projectList = new ProjectSpinnerAdapter (this,ProjectHelper.GetProjectList());
+
+			spinner_Project.Adapter = projectList;
+
+			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
+			if(TaskDetail.ProjectId!=null)
+			spinner_Project.SetSelection(projectList.getPositionById (TaskDetail.ProjectId));
+
+		}
+
+		private void project_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_ProjectID = projectList.GetItemAtPosition (e.Position).Id.Value;
+		}
+
+		private void GetStatusList(){
+
+			statusList = new StatusSpinnerAdapter (this,TaskHelper.GetTaskStatus());
+
+			spinner_Status.Adapter = statusList;
+
+			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (status_ItemSelected);
+
+			if(TaskDetail.StatusName!=null)
+				spinner_Status.SetSelection(statusList.getPositionByName (TaskDetail.StatusName));
+		}
+
+		private void status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_StatusID = statusList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void GetOwnerStaffList(int ProjectId){
+
+			SearchAssignedByProject objFilter = new SearchAssignedByProject ();
+			objFilter.ProjectId = ProjectId;
+
+			OwnerStaffList = new StaffSpinnerAdapter (this,StaffHelper.GetOwnerByProject(objFilter));
+			spinner_Owner.Adapter = null;
+
+			spinner_Owner.Adapter = OwnerStaffList;
+
+			spinner_Owner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (OwnerStaff_ItemSelected);
+			if(TaskDetail.OwnerId!=null)
+			spinner_Owner.SetSelection(OwnerStaffList.getPositionById (TaskDetail.OwnerId));
+		}
+
+		private void GetAssignToStaffList(int ProjectId){
+
+			SearchAssignedByProject objFilter = new SearchAssignedByProject ();
+			objFilter.ProjectId = ProjectId;
+
+			AssignToStaffList = new StaffSpinnerAdapter (this,StaffHelper.GetAssignedToByProject(objFilter));
+
+			spinner_AssignedTo.Adapter = null;
+
+			spinner_AssignedTo.Adapter = AssignToStaffList;
+
+			spinner_AssignedTo.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (AssignToStaff_ItemSelected);
+			if(TaskDetail.AssignedToId!=null)
+			spinner_AssignedTo.SetSelection(AssignToStaffList.getPositionById (TaskDetail.AssignedToId));
+		}
+
+		private void OwnerStaff_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_OwnerStaffID = OwnerStaffList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void AssignToStaff_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_AssignToStaffID = AssignToStaffList.GetItemAtPosition (e.Position).Id;
+		}
 
 
 		public void DisplayTask(TaskDetailList obj){
@@ -174,10 +257,6 @@ namespace LinkOM
 
 			if(obj.IsInternal)
 				cb_Internal.Checked = obj.IsInternal;
-
-
-			if(obj.IsAddToMyWatch.HasValue)
-				cb_WatchList.Checked = obj.IsAddToMyWatch.Value;
 
 			if(obj.IsManagerial)
 				cb_Management.Checked = obj.IsManagerial;
@@ -212,7 +291,7 @@ namespace LinkOM
 					break;
 
 				case Resource.Id.save:
-					OnBackPressed ();
+					btSaveClick ();
 					break;
 
 				default:
@@ -237,8 +316,9 @@ namespace LinkOM
 		private void GetPriorityList(){
 			//Handle priority
 
-			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
-			PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Resource.Layout.SpinnerItemDropdown);
+			//PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+
 			spinner_Priority.Adapter = PriorityAdapter;
 
 			if(TaskDetail.PriorityName!=""){
@@ -249,68 +329,40 @@ namespace LinkOM
 			spinner_Priority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Priority_ItemSelected);
 		}
 
-		private void GetStatusList(){
 
-			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
-			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-			spinner_Status.Adapter = StatusAdapter;
 
-			if(TaskDetail.StatusName!=""){
-				int index = StatusAdapter.GetPosition (TaskDetail.StatusName);
-				spinner_Status.SetSelection(index); 
-			}
+		private void GetPhaseList(int ProjectId)
+		{
 
-			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
-		}
+			phaseList = new ProjectPhaseSpinnerAdapter (this,PhaseHelper.GetProjectPhaseByProject(ProjectId));
 
-		private void GetPhaseList(){
-
-			var PhaseAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.Phase, Android.Resource.Layout.SimpleSpinnerItem);
-			PhaseAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-			spinner_Phase.Adapter = PhaseAdapter;
-
-			if(TaskDetail.ProjectPhaseName!=""){
-				int index = PhaseAdapter.GetPosition (TaskDetail.ProjectPhaseName);
-				spinner_Phase.SetSelection(index); 
-			}
+			spinner_Phase.Adapter = phaseList;
 
 			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
+
+			if(TaskDetail.ProjectPhaseId.HasValue)
+				spinner_Phase.SetSelection(phaseList.getPositionById(TaskDetail.ProjectPhaseId.Value));
+				
 		}
 
-//		private void GetProjectList(){
-//
-//
-//			projectList = new ProjectSpinnerAdapter (this,ProjectList.);
-//
-//
-//			spinner_Project.Adapter = projectList;
-//
-//			if(TaskDetail.ProjectId.HasValue)
-//				spinner_Project.SetSelection(projectList.getPositionById(TaskDetail.ProjectId.Value)); 
-//
-//			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
-//		}
+		private void GetLabelList(int ProjectId){
 
-		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+			labelList = new ProjectLabelSpinnerAdapter (this,LabelHelper.GetProjectLabelByProject(ProjectId));
+
+			spinner_Label.Adapter = labelList;
+
+			spinner_Label.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Label_ItemSelected);
+
+			if(TaskDetail.Label!=null)
+			spinner_Label.SetSelection(labelList.getPositionByName(TaskDetail.Label));
+
+		}
+
+		private void Label_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
-			Spinner spinner = (Spinner)sender;
-			string StatusName = spinner.GetItemAtPosition (e.Position).ToString();
-			if(StatusName.Equals("Open")){
-				Selected_StatusID=1;
-			}
-			else if(StatusName.Equals("Closed")){
-				Selected_StatusID=2;
-			}
-			else if(StatusName.Equals("Waiting On Client")){
-				Selected_StatusID=3;
-			}
-			else if(StatusName.Equals("In Progress")){
-				Selected_StatusID=4;
-			}
-			else if(StatusName.Equals("On Hold")){
-				Selected_StatusID=5;
-			}
+			Selected_Label = labelList.GetItemAtPosition (e.Position).Name;
 		}
+
 
 		private void Priority_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
@@ -329,67 +381,53 @@ namespace LinkOM
 
 		private void Phase_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
-			Spinner spinner = (Spinner)sender;
-			string PhaseName = spinner.GetItemAtPosition (e.Position).ToString();
-			if(PhaseName.Equals("Low")){
-				Selected_PhaseID=1;
-			}
+			Selected_PhaseID = phaseList.GetItemAtPosition (e.Position).Id;
 		}
 
-		private void project_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		public void btSaveClick()
 		{
-			Selected_ProjectID = projectList.GetItemAtPosition (e.Position).Id.Value;
-		}
 
+			TaskEdit TaskObject = new TaskEdit ();
+			TaskObject.Title = editText_Title.Text;
+			TaskObject.ProjectId = Selected_ProjectID;
+			TaskObject.TaskStatusId = Selected_StatusID;
+			TaskObject.PriorityId = Selected_PriorityID;
+			TaskObject.ProjectPhaseId = Selected_PhaseID;
+			TaskObject.Label = Selected_Label;
 
-		public void btSaveClick(object sender, EventArgs e)
-		{
-			string TokenNumber = Settings.Token;
-			string url = Settings.InstanceURL;
+			if (editText_StartDate.Text != "")
+			TaskObject.StartDate = DateTime.Parse(editText_StartDate.Text);
+			
+			if (editText_EndDate.Text != "")
+			TaskObject.EndDate = DateTime.Parse(editText_EndDate.Text);
+			
+			if (editText_ActualStartDate.Text != "")
+				TaskObject.ActualStartDate = DateTime.Parse(editText_ActualStartDate.Text);
+			
+			if (editText_ActualEndDate.Text != "")
+			TaskObject.ActualEndDate = DateTime.Parse(editText_ActualEndDate.Text);
+			
+			TaskObject.IsInternal = cb_Internal.Checked;
+			TaskObject.IsManagerial = cb_Management.Checked;
+			TaskObject.AssignedToId = Selected_AssignToStaffID;
+			TaskObject.OwnerId = Selected_OwnerStaffID;
 
-			url=url+"/api/EditTask";
+			if (editText_AllocatedHours.Text != "")
+				TaskObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
 
-			var objItem = new
-			{
-				Id = TaskDetail.Id,
-				Guid = TaskDetail.Guid,
-				AssignedToId= TaskDetail.AssignedToId,
-				AssignToName= String.Empty,
-				Title= editText_Title.Text,
-				ProjectId= Selected_ProjectID,
-				OwnerId= TaskDetail.OwnerId,
-				StartDate= editText_StartDate.Text,
-				EndDate= editText_EndDate.Text,
-				PriorityId= Selected_PriorityID,
-				TaskStatusId= Selected_StatusID,
-				AllocatedHours= editText_AllocatedHours.Text,
-				IsUserWatch = cb_WatchList.Checked,
-//				UpdatedBy = TaskDetail.,
-			};
+			TaskObject.Description = editText_Description.Text;
 
-			var objEditTask = (new
-				{
-					objTask = new
-					{
-						UserId = Settings.UserId,
-						UserName = Settings.Username,
-						Item = objItem
-					}
-				});
-
-			string results= ConnectWebAPI.Request(url,objEditTask);
-
-			if (results != null) {
-				ResultsJson ResultsJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
-
-				if (ResultsJson.Success) {
+			ApiResultSave restult = TaskHelper.EditTask (TaskObject);
+			if (restult != null) {
+				if (restult.Success) {
+					OnBackPressed ();
 					Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
-				} else
-					Toast.MakeText (this, ResultsJson.ErrorMessage, ToastLength.Short).Show ();
+				}
+				else
+					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();
 			}
 			else
-				Toast.MakeText (this, "Error to connect to server", ToastLength.Short).Show ();
-
+				Toast.MakeText (this, "Server problem...", ToastLength.Short).Show ();
 		}
 
 		// the event received when the user "sets" the date in the dialog

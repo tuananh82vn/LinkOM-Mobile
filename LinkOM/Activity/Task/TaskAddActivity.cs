@@ -28,9 +28,9 @@ namespace LinkOM
 		public TaskDetailList TaskDetail;
 
 		public ProjectSpinnerAdapter projectList; 
-
 		public ProjectPhaseSpinnerAdapter phaseList; 
 		public ProjectLabelSpinnerAdapter labelList; 
+		public StatusSpinnerAdapter statusList;
 
 
 		public StaffSpinnerAdapter AssignToStaffList; 
@@ -47,7 +47,6 @@ namespace LinkOM
 		public int Selected_ProjectID;
 		public int Selected_AssignToStaffID;
 		public int Selected_OwnerStaffID;
-
 		public int Selected_PriorityID;
 		public int Selected_StatusID;
 		public int Selected_PhaseID;
@@ -105,7 +104,7 @@ namespace LinkOM
 
 			GetProjectList ();
 
-			GetStatusList ();
+			GetStatusList();
 
 			GetPriorityList ();
 
@@ -146,8 +145,6 @@ namespace LinkOM
 			editText_ActualEndDate = FindViewById<EditText> (Resource.Id.editText_ActualEndDate);
 
 			editText_AllocatedHours = FindViewById<EditText> (Resource.Id.editText_AllocatedHours);
-
-			editText_SpentHours = FindViewById<EditText> (Resource.Id.editText_SpentHours);
 
 			editText_Description = FindViewById<EditText> (Resource.Id.editText_Description);
 
@@ -236,16 +233,6 @@ namespace LinkOM
 
 
 			spinner_Priority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Priority_ItemSelected);
-		}
-
-		private void GetStatusList(){
-
-			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
-			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-			spinner_Status.Adapter = StatusAdapter;
-
-
-			//spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
 		}
 
 		private void GetPhaseList(int ProjectId)
@@ -358,6 +345,21 @@ namespace LinkOM
 			GetLabelList (Selected_ProjectID);
 		}
 
+		private void GetStatusList(){
+
+			statusList = new StatusSpinnerAdapter (this,TaskHelper.GetTaskStatus());
+
+			spinner_Status.Adapter = statusList;
+
+			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (status_ItemSelected);
+
+		}
+
+		private void status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_StatusID = statusList.GetItemAtPosition (e.Position).Id;
+		}
+
 
 		public void btSaveClick()
 		{
@@ -365,7 +367,7 @@ namespace LinkOM
 			TaskAdd TaskObject = new TaskAdd ();
 			TaskObject.Title = editText_Title.Text;
 			TaskObject.ProjectId = Selected_ProjectID;
-			TaskObject.TaskStatusId = 1;
+			TaskObject.TaskStatusId = Selected_StatusID;
 			TaskObject.PriorityId = Selected_PriorityID;
 			TaskObject.ProjectPhaseId = Selected_PhaseID;
 			TaskObject.Label = Selected_Label;

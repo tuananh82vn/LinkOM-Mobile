@@ -133,8 +133,7 @@ namespace LinkOM
 
 			cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
 
-			cb_WatchList = FindViewById<CheckBox> (Resource.Id.cb_WatchList);
-
+	
 			cb_Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
 
 			spinner_Status = FindViewById<Spinner> (Resource.Id.spinner_Status);

@@ -7,22 +7,22 @@ using Android.Widget;
 
 namespace LinkOM
 {
-	public class ProjectLabelSpinnerAdapter : BaseAdapter, ISpinnerAdapter
+	public class StatusSpinnerAdapter : BaseAdapter, ISpinnerAdapter
 	{
 		private readonly Activity _context;
-		private List<ProjectLabelList> _ProjectLabelList;
+		private List<Status> _StatusList;
 
 		private readonly IList<View> _views = new List<View>();
 
-		public ProjectLabelSpinnerAdapter(Activity context, List<ProjectLabelList> data)
+		public StatusSpinnerAdapter(Activity context, List<Status> data)
 		{
 			_context = context;
-			_ProjectLabelList = data;
+			_StatusList = data;
 		}
 
-		public ProjectLabelList GetItemAtPosition(int position)
+		public Status GetItemAtPosition(int position)
 		{
-			return _ProjectLabelList.ElementAt(position);
+			return _StatusList.ElementAt(position);
 		}
 
 		public override Java.Lang.Object GetItem(int position)
@@ -35,28 +35,28 @@ namespace LinkOM
 			return id;
 		}
 
-		public int getPositionByName(string LabelName){
-			for (int i = 0; i < _ProjectLabelList.Count (); i++) {
-				if (_ProjectLabelList.ElementAt (i).Name == LabelName) {
+		public int getPositionByName(string StatusName){
+			for (int i = 0; i < _StatusList.Count (); i++) {
+				if (_StatusList.ElementAt (i).Name == StatusName) {
 					return i;
 				}
-
+			
 			}
 			return -1;
-		}
+	    }
 
 		public override int Count
 		{
 			get
 			{
-				return _ProjectLabelList == null ? 0 : _ProjectLabelList.Count();
+				return _StatusList == null ? 0 : _StatusList.Count();
 			}
 		}
 
 
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
-			ProjectLabelList item = _ProjectLabelList.ElementAt(position);
+			Status item = _StatusList.ElementAt(position);
 
 			var view = convertView ?? _context.LayoutInflater.Inflate (Resource.Layout.SpinnerItemDropdown, parent, false);
 
