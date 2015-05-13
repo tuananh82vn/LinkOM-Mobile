@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Title"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="0dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Project"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Internal"
                 android:layout_column="0"
@@ -135,7 +135,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="0dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Status"
                 android:layout_column="0"
@@ -174,7 +174,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="0dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Assigned To"
                 android:layout_height="wrap_content"
@@ -211,7 +211,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="0dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Owner"
                 android:layout_height="wrap_content"
@@ -248,7 +248,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Date"
                 android:layout_column="0"
@@ -269,7 +269,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="End Date:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -303,7 +303,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Actual End Date:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -337,7 +337,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Description"
                 android:layout_column="0"

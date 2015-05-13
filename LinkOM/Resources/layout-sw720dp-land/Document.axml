@@ -47,7 +47,7 @@
                     android:id="@+id/tableRow11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="0"
                         android:id="@+id/tv_DocumentDetailName"
                         android:layout_marginLeft="25.0dp"
@@ -72,7 +72,7 @@
                         android:stretchColumns="*">
                         <TableRow
                             android:id="@+id/tableRow11">
-                            <LinkOM.MyTextView
+                            <TextView
                                 android:text="Internal ?"
                                 android:layout_column="0"
                                 android:id="@+id/textView30"
@@ -82,7 +82,7 @@
                                 android:textColor="#ff437800"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="25.0dp" />
-                            <LinkOM.MyTextView
+                            <TextView
                                 android:text="Email Client ?"
                                 android:layout_column="1"
                                 android:id="@+id/textView30"
@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Information"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -149,7 +149,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Project:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -161,7 +161,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="1"
                         android:id="@+id/tv_ProjectName"
                         android:textSize="12dp"
@@ -172,7 +172,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Department:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -184,7 +184,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="1"
                         android:id="@+id/tv_DepartmentName"
                         android:textSize="12dp"
@@ -202,7 +202,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Label:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -214,7 +214,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="1"
                         android:id="@+id/tv_Label"
                         android:textSize="12dp"
@@ -225,7 +225,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Category:"
                         android:layout_column="2"
                         android:id="@+id/textview"
@@ -237,7 +237,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="3"
                         android:id="@+id/tv_Category"
                         android:textSize="12dp"
@@ -256,7 +256,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Description"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -285,7 +285,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="0"
                         android:id="@+id/tv_Description"
                         android:textSize="12dp"
@@ -305,7 +305,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Document Versions"
                         android:layout_column="0"
                         android:id="@+id/textview"

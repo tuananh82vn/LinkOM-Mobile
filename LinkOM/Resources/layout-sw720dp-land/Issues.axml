@@ -82,7 +82,7 @@
                     android:id="@+id/tableRow11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Issue Name"
                         android:layout_column="0"
                         android:id="@+id/tv_IssuesDetailName"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Status:"
                         android:id="@+id/textView30"
                         android:textSize="12dp"
@@ -111,7 +111,7 @@
                         android:textColor="#ff437800"
                         android:layout_width="100dp"
                         android:layout_marginLeft="25dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:id="@+id/tv_DetailStatus"
                         android:textSize="12dp"
                         android:textColor="#ff000000"
@@ -121,7 +121,7 @@
                         foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
                         android:layout_column="1" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Priority:"
                         android:id="@+id/textView30"
                         android:layout_marginLeft="25.0dp"
@@ -131,7 +131,7 @@
                         android:textColor="#ff437800"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="0.0dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:id="@+id/tv_Priority"
                         android:textSize="12dp"
                         android:textColor="#ff000000"
@@ -150,7 +150,7 @@
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7"
                     android:layout_marginTop="10dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Project"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -179,7 +179,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="0"
                         android:id="@+id/tv_ProjectDetailName"
                         android:textSize="12dp"
@@ -198,7 +198,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Project Manager:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -210,7 +210,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="1"
                         android:id="@+id/tv_ProjectManager"
                         android:textSize="12dp"
@@ -231,7 +231,7 @@
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7"
                     android:layout_marginTop="10dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Information"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -260,7 +260,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Assigned To:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -272,7 +272,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="1"
                         android:id="@+id/tv_AssignedTo"
                         android:textSize="12dp"
@@ -283,7 +283,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Owner:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -295,7 +295,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="1"
                         android:id="@+id/tv_Owner"
                         android:textSize="12dp"
@@ -313,7 +313,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Receive Method:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -325,7 +325,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="1"
                         android:id="@+id/tv_Receive"
                         android:textSize="12dp"
@@ -336,7 +336,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Label:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -348,7 +348,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="1"
                         android:id="@+id/tv_Label"
                         android:textSize="12dp"
@@ -368,7 +368,7 @@
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7"
                     android:layout_marginTop="10dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Time"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -397,7 +397,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Allocated Hours"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -409,7 +409,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0.00"
                         android:layout_column="1"
                         android:id="@+id/tv_AlloHours"
@@ -421,7 +421,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Actual Hours:"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -433,7 +433,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0.00"
                         android:layout_column="1"
                         android:id="@+id/tv_ActualHours"
@@ -452,7 +452,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Open Date"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -464,7 +464,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="01/01/1999"
                         android:layout_column="1"
                         android:id="@+id/tv_StartDate"
@@ -476,7 +476,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="End Date"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -488,7 +488,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="01/01/1999"
                         android:layout_column="1"
                         android:id="@+id/tv_EndDate"
@@ -507,7 +507,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Resolution Target Date"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -519,7 +519,7 @@
                         android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
                         android:layout_marginTop="5dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="01/01/1999"
                         android:layout_column="1"
                         android:id="@+id/tv_EndDate"
@@ -541,7 +541,7 @@
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7"
                     android:layout_marginTop="10dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Description"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -570,7 +570,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="0"
                         android:id="@+id/tv_Description"
                         android:textSize="12dp"
@@ -591,7 +591,7 @@
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7"
                     android:layout_marginTop="10dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Action"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -619,7 +619,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="0"
                         android:id="@+id/tv_Description"
                         android:textSize="12dp"
@@ -639,7 +639,7 @@
                     android:layout_marginBottom="0dp"
                     android:id="@+id/tableRow7"
                     android:layout_marginTop="10dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Department"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -668,7 +668,7 @@
                     android:minHeight="25px"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="0"
                         android:id="@+id/tv_Department"
                         android:textSize="12dp"

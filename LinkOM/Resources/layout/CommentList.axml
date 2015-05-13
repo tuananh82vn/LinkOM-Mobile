@@ -13,7 +13,7 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:layout_marginTop="5dp">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="12/12/2012 01:01:01"
             p1:layout_column="0"
             p1:id="@+id/tv_CommentDate"
@@ -25,7 +25,7 @@
             p1:gravity="center_vertical"
             p1:textColor="#ffa0c673"
             p1:layout_marginRight="5dp" />
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Created Person"
             p1:layout_column="1"
             p1:id="@+id/tv_CreatedPerson"
@@ -41,7 +41,7 @@
         p1:layout_height="23.2dp"
         p1:id="@+id/tableRow1"
         p1:layout_marginBottom="5.0dp">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Comment Name"
             p1:id="@+id/tv_Name"
             p1:layout_height="match_parent"

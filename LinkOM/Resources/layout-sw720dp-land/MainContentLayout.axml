@@ -88,7 +88,7 @@
             android:background="#ffffffff"
             android:layout_marginTop="95dp"
             android:layout_marginRight="20dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Pending Milestones"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,11 +119,11 @@
                 android:id="@+id/tableLayout2">
                 <TableRow
                     android:id="@+id/tableRow1">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="0"
                         android:id="@+id/textView20"
                         android:layout_width="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Overdue"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="1"
@@ -133,7 +133,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="12dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Open"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="2"
@@ -145,7 +145,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="12dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Closed"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="3"
@@ -155,7 +155,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="12dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Other"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="4"
@@ -165,7 +165,7 @@
                         android:textSize="12dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="80dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Total"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/textView14"
@@ -177,7 +177,7 @@
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow2">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Milestones"
                         android:layout_column="0"
                         android:id="@+id/textView15"
@@ -187,7 +187,7 @@
                         foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
                         android:textColor="#ff00ccff" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_MileStone_OverDue"
@@ -196,7 +196,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_MileStone_Open"
@@ -205,7 +205,7 @@
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_MileStone_Closed"
@@ -214,7 +214,7 @@
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_MileStone_Other"
@@ -223,7 +223,7 @@
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_MileStone_Total"
@@ -235,7 +235,7 @@
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow3">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Tickets"
                         android:layout_column="0"
                         android:id="@+id/textView16"
@@ -245,7 +245,7 @@
                         foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
                         android:textColor="#ffff001d" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_Ticket_OverDue"
@@ -254,7 +254,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_Ticket_Open"
@@ -263,7 +263,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_Ticket_Closed"
@@ -272,7 +272,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_Ticket_Other"
@@ -281,7 +281,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_Ticket_Total"
@@ -293,7 +293,7 @@
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow4">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Tasks"
                         android:layout_column="0"
                         android:id="@+id/textView17"
@@ -303,7 +303,7 @@
                         android:gravity="center_vertical"
                         foo:customFont="Fonts/arial.ttf"
                         android:textColor="#ffe800ff" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_Task_OverDue"
@@ -312,7 +312,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_Task_Open"
@@ -321,7 +321,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_Task_Closed"
@@ -330,7 +330,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_Task_Other"
@@ -339,7 +339,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_Task_Total"
@@ -351,7 +351,7 @@
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow5">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Issues"
                         android:layout_column="0"
                         android:id="@+id/textView18"
@@ -361,7 +361,7 @@
                         android:textColor="#ff0016ff"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_Issues_OverDue"
@@ -370,7 +370,7 @@
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="match_parent" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_Issues_Open"
@@ -379,7 +379,7 @@
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_Issues_Closed"
@@ -388,7 +388,7 @@
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_Issues_Other"
@@ -397,7 +397,7 @@
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_Issues_Total"
@@ -409,7 +409,7 @@
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow6">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="All"
                         android:layout_column="0"
                         android:id="@+id/textView19"
@@ -419,7 +419,7 @@
                         foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
                         android:textColor="#ff000000" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_All_OverDue"
@@ -428,7 +428,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="2"
                         android:id="@+id/tv_All_Open"
@@ -437,7 +437,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="3"
                         android:id="@+id/tv_All_Closed"
@@ -446,7 +446,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="4"
                         android:id="@+id/tv_All_Other"
@@ -455,7 +455,7 @@
                         android:gravity="center"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="0"
                         android:layout_column="5"
                         android:id="@+id/tv_All_Total"

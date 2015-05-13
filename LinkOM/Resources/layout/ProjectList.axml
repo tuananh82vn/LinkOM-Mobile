@@ -13,7 +13,7 @@
         p1:layout_height="35.2dp"
         p1:id="@+id/tableRow1"
         p1:layout_marginBottom="5.0dp">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Project Name"
             p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/tv_ProjectName"
@@ -31,7 +31,7 @@
         p1:layout_height="23.2dp"
         p1:id="@+id/tableRow2"
         p1:layout_marginBottom="5.0dp">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Client Name"
             p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/tv_ClientName"
@@ -44,7 +44,7 @@
             p1:layout_marginRight="5dp"
             foo:customFont="Fonts/arial.ttf"
             p1:textSize="12dp" />
-        <LinkOM.MyTextView
+        <TextView
             p1:layout_column="1"
             p1:id="@+id/tv_Status"
             p1:layout_height="match_parent"

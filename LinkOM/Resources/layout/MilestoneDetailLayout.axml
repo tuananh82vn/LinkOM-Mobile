@@ -17,7 +17,7 @@
             android:id="@+id/tableRow11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Milestone Name"
                 android:layout_column="0"
                 android:id="@+id/tv_MilestoneName"
@@ -43,7 +43,7 @@
                 android:stretchColumns="*">
                 <TableRow
                     android:id="@+id/tableRow11">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Status"
                         android:layout_column="0"
                         android:id="@+id/textView30"
@@ -53,7 +53,7 @@
                         android:textColor="#ff437800"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_height="wrap_content" />
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Internal ?"
                         android:layout_column="1"
                         android:id="@+id/textView30"
@@ -68,7 +68,7 @@
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_height="wrap_content">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:layout_column="0"
                         android:id="@+id/tv_Status"
                         android:textSize="12dp"
@@ -101,7 +101,7 @@
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_marginBottom="0dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Project"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -132,7 +132,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinkOM.MyTextView
+            <TextView
                 android:layout_column="0"
                 android:id="@+id/tv_ProjectName"
                 android:textSize="12dp"
@@ -160,7 +160,7 @@
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_marginBottom="0dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Information"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -191,7 +191,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Assigned To:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -204,7 +204,7 @@
                 android:gravity="center_vertical"
                 foo:customFont="Fonts/arial.ttf"
                 android:layout_marginTop="5dp" />
-            <LinkOM.MyTextView
+            <TextView
                 android:layout_column="1"
                 android:id="@+id/tv_AssignedTo"
                 android:textSize="12dp"
@@ -223,7 +223,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Owner:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -236,7 +236,7 @@
                 android:gravity="center_vertical"
                 foo:customFont="Fonts/arial.ttf"
                 android:layout_marginTop="5dp" />
-            <LinkOM.MyTextView
+            <TextView
                 android:layout_column="1"
                 android:id="@+id/tv_Owner"
                 android:textSize="12dp"
@@ -264,7 +264,7 @@
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_marginBottom="0dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Date"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -295,7 +295,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Due Date"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -308,7 +308,7 @@
                 android:gravity="center_vertical"
                 foo:customFont="Fonts/arial.ttf"
                 android:layout_marginTop="5dp" />
-            <LinkOM.MyTextView
+            <TextView
                 android:text="01/01/1999"
                 android:layout_column="1"
                 android:id="@+id/tv_DueDate"
@@ -328,7 +328,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Exp Complete Date"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -341,7 +341,7 @@
                 android:gravity="center_vertical"
                 foo:customFont="Fonts/arial.ttf"
                 android:layout_marginTop="5dp" />
-            <LinkOM.MyTextView
+            <TextView
                 android:text="01/01/1999"
                 android:layout_column="1"
                 android:id="@+id/tv_CompletedDate"
@@ -370,7 +370,7 @@
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_marginBottom="0dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Description"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -401,7 +401,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinkOM.MyTextView
+            <TextView
                 android:layout_column="0"
                 android:id="@+id/tv_Description"
                 android:textSize="12dp"
@@ -429,7 +429,7 @@
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_marginBottom="0dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Department"
                         android:layout_column="0"
                         android:id="@+id/textview"
@@ -460,7 +460,7 @@
             android:minHeight="25px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <LinkOM.MyTextView
+            <TextView
                 android:layout_column="0"
                 android:id="@+id/tv_Department"
                 android:textSize="12dp"
@@ -489,7 +489,7 @@
                     android:minWidth="25px"
                     android:minHeight="25px"
                     android:layout_marginBottom="0dp">
-                    <LinkOM.MyTextView
+                    <TextView
                         android:text="Change History"
                         android:layout_column="0"
                         android:id="@+id/textview"

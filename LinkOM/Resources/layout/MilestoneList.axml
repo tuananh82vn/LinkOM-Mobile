@@ -12,7 +12,7 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Milestone Name"
             p1:id="@+id/tv_MilestoneName"
             p1:layout_height="match_parent"
@@ -29,7 +29,7 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Project Name"
             p1:id="@+id/tv_ProjectName"
             p1:layout_height="match_parent"
@@ -44,7 +44,7 @@
         p1:id="@+id/tableRow8"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Created Person"
             p1:layout_column="0"
             p1:id="@+id/tv_CreatedPerson"
@@ -54,7 +54,7 @@
             p1:textSize="12dp"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_marginLeft="20dp" />
-        <LinkOM.MyTextView
+        <TextView
             p1:text="12/12/2012"
             p1:layout_column="1"
             p1:id="@+id/tv_EndDate"

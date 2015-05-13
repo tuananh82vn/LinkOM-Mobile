@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:id="@+id/tableRow7">
-        <LinkOM.MyTextView
+        <TextView
             android:text="Domain"
             android:id="@+id/textview"
             android:textSize="18dp"

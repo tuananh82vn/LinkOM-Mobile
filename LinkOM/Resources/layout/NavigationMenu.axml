@@ -21,7 +21,7 @@
             android:layout_width="37dp"
             android:layout_height="wrap_content"
             android:id="@+id/imageView_Menu" />
-        <LinkOM.MyTextView
+        <TextView
             android:text="Project"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:layout_width="match_parent"

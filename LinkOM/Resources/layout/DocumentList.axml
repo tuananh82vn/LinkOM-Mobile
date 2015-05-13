@@ -13,7 +13,7 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1"
         p1:layout_gravity="center_vertical">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Document Name"
             p1:id="@+id/tv_DocumentName"
             foo:customFont="Fonts/arial.ttf"
@@ -29,7 +29,7 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow2">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Project"
             p1:id="@+id/tv_project"
             foo:customFont="Fonts/arial.ttf"
@@ -45,7 +45,7 @@
         p1:layout_width="match_parent"
         p1:layout_height="23.2dp"
         p1:id="@+id/tableRow2">
-        <LinkOM.MyTextView
+        <TextView
             p1:text="Publish on:"
             p1:id="@+id/tv"
             p1:layout_height="match_parent"
@@ -56,7 +56,7 @@
             p1:textColor="#ffaeaeae"
             p1:layout_marginRight="5.0dp"
             p1:textSize="12dp" />
-        <LinkOM.MyTextView
+        <TextView
             p1:text="01/01/1999"
             p1:id="@+id/tv_publishdate"
             p1:layout_height="match_parent"

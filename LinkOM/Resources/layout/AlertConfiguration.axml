@@ -19,16 +19,16 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Notify when get new task"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="#ff00947A"
+                android:textColor="#ff437800"
                 foo:customFont="Fonts/arial.ttf"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:layout_marginBottom="0dp" />
         </TableRow>
         <TableRow
@@ -42,7 +42,8 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_Internal"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:textSize="12dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -52,16 +53,16 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Notify when get new ticket"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="#ff00947A"
+                android:textColor="#ff437800"
                 foo:customFont="Fonts/arial.ttf"
-                android:textSize="10dp"
+                android:textSize="12dp"
                 android:layout_marginBottom="0dp" />
         </TableRow>
         <TableRow
@@ -75,7 +76,8 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_Internal"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:textSize="12dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -85,14 +87,14 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Notify when get new issue"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:textColor="#ff00947A"
+                android:textColor="#ff437800"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="10dp"
                 android:layout_marginBottom="0dp" />
@@ -108,7 +110,8 @@
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_Internal"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:textSize="12dp" />
         </TableRow>
     </LinearLayout>
 </ScrollView>

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Title"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="10dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Project"
                 android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
                 android:layout_marginBottom="0dp"
                 android:layout_marginTop="5dp"
                 android:textStyle="normal" />
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Internal?"
                 android:layout_column="1"
@@ -86,7 +86,7 @@
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="18dp"
                 android:layout_marginBottom="0dp" />
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Management?"
                 android:layout_column="2"
@@ -136,7 +136,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="10dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Status"
                 android:layout_column="0"
@@ -149,7 +149,7 @@
                 android:textSize="18dp"
                 android:layout_marginBottom="0dp"
                 android:textStyle="normal" />
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Priority"
                 android:layout_column="1"
@@ -162,7 +162,7 @@
                 android:layout_marginBottom="0dp"
                 android:layout_marginTop="5dp"
                 android:textStyle="normal" />
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Assigned To"
                 android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
                 android:layout_marginBottom="0dp"
                 android:layout_marginTop="5dp"
                 android:textStyle="normal" />
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Owner"
                 android:layout_height="wrap_content"
@@ -239,7 +239,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="10dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Time"
                 android:layout_column="0"
@@ -260,7 +260,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Start Date:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -284,7 +284,7 @@
                 android:focusable="false"
                 android:textSize="12dp"
                 android:text="01/01/1900" />
-            <LinkOM.MyTextView
+            <TextView
                 android:text="End Date:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -316,7 +316,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Actual Start Date:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -340,7 +340,7 @@
                 android:focusable="false"
                 android:textSize="12dp"
                 android:text="01/01/1900" />
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Actual End Date:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -372,7 +372,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
-            <LinkOM.MyTextView
+            <TextView
                 android:text="Allocated Hours:"
                 android:layout_column="0"
                 android:id="@+id/textview"
@@ -403,7 +403,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="10dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Description"
                 android:layout_column="0"
@@ -440,7 +440,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp"
             android:layout_marginTop="10dp">
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Phase"
                 android:layout_column="0"
@@ -452,7 +452,7 @@
                 android:textSize="18dp"
                 android:layout_marginBottom="0dp"
                 android:layout_marginTop="5dp" />
-            <LinkOM.MyTextView
+            <TextView
                 android:id="@+id/MyTextView"
                 android:text="Label"
                 android:layout_column="1"
