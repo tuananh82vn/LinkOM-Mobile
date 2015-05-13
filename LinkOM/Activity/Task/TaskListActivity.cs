@@ -60,11 +60,11 @@ namespace LinkOM
 
 			InitData ();
 
-			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-
-			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
-
-			refresher.Refresh += HandleRefresh;
+//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+//
+//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
+//
+//			refresher.Refresh += HandleRefresh;
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -116,13 +116,13 @@ namespace LinkOM
 			taskList.Filter.InvokeFilter(mSearch.Text);
 		}
 
-		async void HandleRefresh (object sender, EventArgs e)
-		{
-			await InitData ();
-			refresher.Refreshing = false;
-		}
+//		async void HandleRefresh (object sender, EventArgs e)
+//		{
+//			await InitData ();
+//			refresher.Refreshing = false;
+//		}
 
-		private async Task InitData(){
+		private void InitData(){
 			
 			if (StatusId != 0) {
 

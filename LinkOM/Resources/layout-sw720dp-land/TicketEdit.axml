@@ -265,7 +265,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -289,7 +289,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -321,7 +321,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -345,7 +345,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -377,7 +377,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -431,7 +431,7 @@
                 android:layout_marginRight="40dp"
                 android:textSize="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="80dp" />
+                android:layout_height="50dp" />
         </TableRow>
         <TableRow
             android:minHeight="25px"

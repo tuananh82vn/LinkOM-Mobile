@@ -15,7 +15,6 @@
         p1:layout_marginTop="5.0dp">
         <LinkOM.MyTextView
             p1:text="Task Name"
-            p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/tv_TaskName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
@@ -23,7 +22,7 @@
             p1:layout_marginLeft="5.0dp"
             p1:textColor="#ff000000"
             p1:layout_marginTop="5dp"
-            p1:textSize="20dp"
+            p1:textSize="18dp"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_marginRight="5.0dp" />
     </TableRow>
@@ -34,7 +33,6 @@
         p1:layout_marginBottom="5.0dp">
         <LinkOM.MyTextView
             p1:text="Project Name"
-            p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/tv_ProjectName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
@@ -43,7 +41,8 @@
             p1:textColor="#ffaeaeae"
             p1:layout_marginTop="5dp"
             foo:customFont="Fonts/arial.ttf"
-            p1:layout_marginRight="5dp" />
+            p1:layout_marginRight="5dp"
+            p1:textSize="12dp" />
         <ImageView
             p1:src="@drawable/hight_priority"
             p1:layout_column="1"

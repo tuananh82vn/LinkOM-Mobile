@@ -191,7 +191,10 @@ namespace LinkOM
 
 			editText_ActualEndDate.Text = obj.ActualEndDateString;
 
-			editText_AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
+			if (obj.AllocatedHours.HasValue)
+				editText_AllocatedHours.Text = obj.AllocatedHours.Value.ToString ();
+			else
+				editText_AllocatedHours.Text = "";
 
 			editText_Description.Text = obj.TaskDescription;
 

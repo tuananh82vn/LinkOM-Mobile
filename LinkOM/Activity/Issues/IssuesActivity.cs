@@ -236,7 +236,7 @@ namespace LinkOM
 			layoutParams_textView.LeftMargin = dpToPx (10);
 			textView.LayoutParameters = layoutParams_textView;
 			textView.Gravity = GravityFlags.CenterVertical;
-			textView.TextSize = 20;
+			textView.TextSize = 18;
 
 			if (Settings.Orientation.Equals ("Portrait"))
 				textView.Text = Title;

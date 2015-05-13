@@ -233,7 +233,7 @@ namespace LinkOM
 			layoutParams_textView.LeftMargin = dpToPx (10);
 			textView.LayoutParameters = layoutParams_textView;
 			textView.Gravity = GravityFlags.CenterVertical;
-			textView.TextSize = 20;
+			textView.TextSize = 18;
 
 			if(Settings.Orientation.Equals("Portrait"))
 				textView.Text = Title;
@@ -257,7 +257,7 @@ namespace LinkOM
 			View view = new View (this);
 			TableRow.LayoutParams layoutParams_view = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, dpToPx(1));
 			view.LayoutParameters = layoutParams_view;
-			view.SetBackgroundColor (Color.ParseColor("#AEAEAE"));
+			view.SetBackgroundColor (Color.ParseColor("#E6E6E6"));
 
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
 
@@ -431,9 +431,11 @@ namespace LinkOM
 
 			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
 			Internal.Checked = obj.IsInternal;
+			Internal.Enabled = false;
 
 			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
 			Management.Checked = obj.IsManagerial;
+			Management.Enabled = false;
 
 			var tv_Phase = FindViewById<TextView> (Resource.Id.tv_Phase);
 			tv_Phase.Text = obj.ProjectPhaseName;

@@ -118,8 +118,9 @@ namespace LinkOM
 					OnBackPressed ();
 					break;
 				case Resource.Id.edit:
+				
 					Intent Intent = new Intent (this, typeof(TaskEditActivity));
-					Intent.PutExtra ("Task", results);
+					Intent.PutExtra ("Task", Newtonsoft.Json.JsonConvert.SerializeObject (TaskDetail));
 					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
 					StartActivity(Intent);
 					break;
