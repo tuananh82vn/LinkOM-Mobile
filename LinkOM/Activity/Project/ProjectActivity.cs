@@ -17,6 +17,7 @@ using Android.Views.InputMethods;
 using Android.Text;
 using Android.Content.PM;
 using System.Collections;
+using com.refractored.fab;
 
 
 namespace LinkOM
@@ -74,14 +75,28 @@ namespace LinkOM
 			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
 
 
-			if (Settings.Orientation.Equals ("Portrait")) {
+			if (Settings.Orientation.Equals ("Portrait")) 
+			{
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			} else {
+			} 
+			else 
+			{
 				frame_Detail  = FindViewById<FrameLayout> (Resource.Id.frameDetail);
 				frame_Detail.Visibility = ViewStates.Invisible;
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
+			var fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+			fab.AttachToListView(projectListView);
+			fab.Size = FabSize.Mini;
+			fab.Click += Fab_Click;
+		}
+
+		void Fab_Click (object sender, EventArgs e)
+		{
+			Intent Intent = new Intent (this, typeof(ProjectAddActivity));
+			Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			StartActivity(Intent);
 		}
 
 //		//Refesh data
@@ -117,11 +132,6 @@ namespace LinkOM
 				break;
 			case Resource.Id.search:
 				btSearchClick ();
-				break;
-			case Resource.Id.add:
-				Intent Intent = new Intent (this, typeof(ProjectAddActivity));
-				Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
-				StartActivity(Intent);
 				break;
 			case Resource.Id.edit:
 				if (ProjectSelected != null) {
@@ -172,10 +182,10 @@ namespace LinkOM
 			inflater = this.MenuInflater;
 
 			if (Settings.Orientation.Equals ("Portrait")) {
-				inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.SearchMenu, menu);
 			}
 			else
-				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
 
 			return true;
 		}

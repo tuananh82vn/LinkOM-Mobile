@@ -431,7 +431,7 @@
                 android:layout_marginRight="40dp"
                 android:textSize="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="wrap_content" />
         </TableRow>
         <TableRow
             android:minHeight="25px"

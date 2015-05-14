@@ -124,7 +124,7 @@
         <TableRow
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:id="@+id/tableRow1"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp">
@@ -132,14 +132,14 @@
                 android:id="@+id/editText_RefCode"
                 android:layout_column="0"
                 android:layout_marginLeft="20dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_width="200dp"
                 android:layout_marginTop="0dp"
                 android:textSize="12dp" />
             <CheckBox
                 android:layout_width="200dp"
                 android:layout_column="1"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/checkBox_Active"
                 android:layout_marginLeft="20dp" />
             <Spinner
@@ -397,8 +397,9 @@
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp">
             <TextView
                 android:text="Delivery Manager:"
                 android:layout_column="0"

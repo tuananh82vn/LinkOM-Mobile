@@ -15,7 +15,6 @@
         p1:layout_marginBottom="5.0dp">
         <TextView
             p1:text="Project Name"
-            p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/tv_ProjectName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
@@ -33,7 +32,6 @@
         p1:layout_marginBottom="5.0dp">
         <TextView
             p1:text="Client Name"
-            p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/tv_ClientName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
