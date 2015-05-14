@@ -15,11 +15,15 @@ namespace LinkOM
 			}
 
 			int totalHeight = listView.PaddingTop + listView.PaddingBottom;
-			for (int i = 0; i < listView.Count; i++) {
+
+			for (int i = 0; i < listView.Count; i++) 
+			{
 				View listItem = listView.Adapter.GetView (i, null, listView);
-				if (listItem.GetType () == typeof(ViewGroup)) {
+				if (listItem.GetType () == typeof(ViewGroup)) 
+				{
 					listItem.LayoutParameters = new LinearLayout.LayoutParams (ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.WrapContent);
 				}
+
 				listItem.Measure (0, 0);
 				totalHeight += listItem.MeasuredHeight;
 			}

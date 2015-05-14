@@ -335,9 +335,7 @@ namespace LinkOM
 			objFilter.ProjectId = obj.ProjectId.Value;
 
 			var milestoneListAdapter = new MilestoneListAdapter (this, MilestonesHelper.GetMilestonesList(objFilter));
-
 			milestoneListView.Adapter = milestoneListAdapter;
-
 			milestoneListView.DividerHeight = 0;
 
 			Utility.setListViewHeightBasedOnChildren (milestoneListView);

@@ -268,7 +268,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -294,7 +294,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -320,7 +320,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -354,7 +354,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -378,7 +378,7 @@
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
-                android:textColor="#ff000000"
+                android:textColor="#ff437800"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -432,7 +432,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="wrap_content" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
@@ -468,7 +468,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="wrap_content" />
         </TableRow>
     </LinearLayout>
 </ScrollView>
