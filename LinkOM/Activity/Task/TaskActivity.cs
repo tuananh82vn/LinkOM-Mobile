@@ -132,6 +132,11 @@ namespace LinkOM
 				case Android.Resource.Id.Home:
 					OnBackPressed ();
 					break;
+				case Resource.Id.add:
+					Intent Intent2 = new Intent (this, typeof(TaskAddActivity));
+					Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity(Intent2);
+					break;
 				case Resource.Id.edit:
 				if (TaskSelected != null) 
 				{
@@ -162,7 +167,7 @@ namespace LinkOM
 			MenuInflater inflater = this.MenuInflater;
 
 			if (Settings.Orientation.Equals ("Portrait")) {
-
+				inflater.Inflate (Resource.Menu.AddMenu, menu);
 			}
 			else
 				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
@@ -255,12 +260,14 @@ namespace LinkOM
 			textView.Gravity = GravityFlags.CenterVertical;
 			textView.TextSize = 18;
 
-			if(Settings.Orientation.Equals("Portrait"))
+			if (Settings.Orientation.Equals ("Portrait"))
 				textView.Text = Title;
-			else
-				textView.Text = Title +" (" +NumberOfTask.ToString()+")";
-			
-			textView.Click += HandleMyButton;
+			else {
+				textView.Text = Title + " (" + NumberOfTask.ToString () + ")";
+				textView.Click += HandleMyButton;
+
+			}
+
 			textView.Tag = id;
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
@@ -307,11 +314,16 @@ namespace LinkOM
 			int whichOne = 0;
 			if (Settings.Orientation.Equals ("Portrait")) {
 				Button myObject1 = (Button)sender;
-				whichOne = (int)myObject1.Tag;
+				int Number = Int32.Parse (myObject1.Text);
+				if (Number == 0) {
+					Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
+				} else {
+					whichOne = (int)myObject1.Tag;
 
-				var activity = new Intent (this, typeof(TaskListActivity));
-				activity.PutExtra ("TaskStatusId", whichOne);
-				StartActivity (activity);
+					var activity = new Intent (this, typeof(TaskListActivity));
+					activity.PutExtra ("TaskStatusId", whichOne);
+					StartActivity (activity);
+				}
 			}
 			else
 			{
@@ -333,7 +345,8 @@ namespace LinkOM
 
 				var objReturn = TaskHelper.GetTaskList (objFilter);
 
-				if (objReturn != null) {
+				if (objReturn != null && objReturn.Count !=0) 
+				{
 
 					taskListAdapter = new TaskListAdapter (this, objReturn);
 
@@ -346,6 +359,8 @@ namespace LinkOM
 				} 
 				else 
 				{
+					fab.Visibility = ViewStates.Invisible;
+					fab.Hide ();
 					taskListView.Adapter = null;
 					Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
 				}

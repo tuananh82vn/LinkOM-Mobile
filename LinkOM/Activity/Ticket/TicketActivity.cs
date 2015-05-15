@@ -22,6 +22,7 @@ using RadialProgress;
 using System.Timers;
 using Android.Views.InputMethods;
 using Android.Text;
+using com.refractored.fab;
 
 namespace LinkOM
 {
@@ -48,6 +49,7 @@ namespace LinkOM
 		public TicketDetailList TicketSelected;
 
 		public FrameLayout frame_TicketDetail;
+		public FloatingActionButton fab;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -78,6 +80,8 @@ namespace LinkOM
 					inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
 					frame_TicketDetail  = FindViewById<FrameLayout> (Resource.Id.frame_taskdetail);
 					frame_TicketDetail.Visibility = ViewStates.Invisible;
+
+					ticketListView = FindViewById<ListView> (Resource.Id.TicketListView);
 
 				}
 
@@ -124,8 +128,7 @@ namespace LinkOM
 					Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
 					StartActivity(Intent2);
 					break;
-
-			case Resource.Id.edit:
+				case Resource.Id.edit:
 				if (TicketSelected != null) {
 					Intent Intent = new Intent (this, typeof(TicketEditActivity));
 					Intent.PutExtra ("Ticket", Newtonsoft.Json.JsonConvert.SerializeObject (TicketSelected));
@@ -157,7 +160,7 @@ namespace LinkOM
 				inflater.Inflate (Resource.Menu.AddMenu, menu);
 			}
 			else
-				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
 			return true;
 		}
 
@@ -169,8 +172,28 @@ namespace LinkOM
 			}
 		}
 
+		void Fab_Click (object sender, EventArgs e)
+		{
+			Intent Intent2 = new Intent (this, typeof(TicketAddActivity));
+			Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			StartActivity(Intent2);
+		}
+
+
 		public void GetTicketStatus ()
 		{
+
+			if (!Settings.Orientation.Equals ("Portrait")) 
+			{
+				fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+				if (fab != null) {
+					fab.Visibility = ViewStates.Invisible;
+					fab.Hide ();
+					fab.AttachToListView (ticketListView);
+					fab.Click += Fab_Click;
+				}
+			}
+
 			TicketFilter objFilter = new TicketFilter ();
 			objFilter.AssignedToId = Settings.UserId;
 
@@ -239,12 +262,13 @@ namespace LinkOM
 			textView.Gravity = GravityFlags.CenterVertical;
 			textView.TextSize = 18;
 
-			if(Settings.Orientation.Equals("Portrait"))
+			if (Settings.Orientation.Equals ("Portrait"))
 				textView.Text = Title;
-			else
-				textView.Text = Title +" (" +NumberOfTicket.ToString()+")";
-			
-			textView.Click += HandleMyButton;
+			else {
+				textView.Text = Title + " (" + NumberOfTicket.ToString () + ")";
+				textView.Click += HandleMyButton;
+			}
+
 			textView.Tag = id;
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
@@ -289,17 +313,23 @@ namespace LinkOM
 		private void HandleMyButton(object sender, EventArgs e)
 		{
 			int whichOne = 0;
-			if (Settings.Orientation.Equals ("Portrait")) {
+			if (Settings.Orientation.Equals ("Portrait")) 
+			{
 				Button myObject1 = (Button)sender;
-				whichOne = (int)myObject1.Tag;
+				int Number = Int32.Parse (myObject1.Text);
+				if (Number == 0) {
+					Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
+				} else {
+					whichOne = (int)myObject1.Tag;
 
-				var activity = new Intent (this, typeof(TicketListActivity));
-				activity.PutExtra ("TicketStatusId", whichOne);
-				StartActivity (activity);
+					var activity = new Intent (this, typeof(TicketListActivity));
+					activity.PutExtra ("TicketStatusId", whichOne);
+					StartActivity (activity);
+				}
 			}
 			else
 			{
-					ticketListView = FindViewById<ListView> (Resource.Id.TicketListView);
+					
 					TextView myObject2 = (TextView)sender;
 					whichOne = (int)myObject2.Tag;
 					GetTicketDetailList (whichOne);
@@ -317,16 +347,21 @@ namespace LinkOM
 					objFilter.TicketStatusId = StatusId;
 
 					var TicketReturn = TicketHelper.GetTicketList (objFilter);
-					if(TicketReturn!=null){
+					if(TicketReturn!=null && TicketReturn.Count!=0){
 						
 							ticketListAdapter = new TicketListAdapter (this,TicketReturn);
 
 							ticketListView.Adapter = ticketListAdapter;
 
 							ticketListView.ItemClick += listView_ItemClick;
+
+							fab.Visibility = ViewStates.Visible;
+							fab.Show ();
 					} 
 					else 
 					{
+							fab.Visibility = ViewStates.Invisible;
+							fab.Hide ();
 							ticketListView.Adapter = null;
 							Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
 

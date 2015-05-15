@@ -130,7 +130,9 @@
                                     android:layout_column="1"
                                     android:id="@+id/cb_Internal"
                                     android:layout_width="150dp"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:enabled="false"
+                                    android:editable="false" />
                             </TableRow>
                         </TableLayout>
                     </TableRow>
@@ -345,7 +347,6 @@
                             foo:customFont="Fonts/arial.ttf"
                             android:layout_marginTop="5dp" />
                         <TextView
-                            android:text="01/01/1999"
                             android:layout_column="1"
                             android:id="@+id/tv_DueDate"
                             android:textSize="12dp"
@@ -368,7 +369,6 @@
                             foo:customFont="Fonts/arial.ttf"
                             android:layout_marginTop="5dp" />
                         <TextView
-                            android:text="01/01/1999"
                             android:layout_column="1"
                             android:id="@+id/tv_CompletedDate"
                             android:textSize="12dp"

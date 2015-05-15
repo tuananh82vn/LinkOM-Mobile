@@ -22,6 +22,7 @@ using RadialProgress;
 using System.Timers;
 using Android.Views.InputMethods;
 using Android.Text;
+using com.refractored.fab;
 
 namespace LinkOM
 {
@@ -48,6 +49,8 @@ namespace LinkOM
 		public IssuesDetailList IssuesSelected;
 
 		public FrameLayout frame_IssuesDetail;
+
+		public FloatingActionButton fab;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -80,6 +83,8 @@ namespace LinkOM
 					frame_IssuesDetail  = FindViewById<FrameLayout> (Resource.Id.frame_taskdetail);
 					frame_IssuesDetail.Visibility = ViewStates.Invisible;
 
+					issuesListView = FindViewById<ListView> (Resource.Id.IssuesListView);
+
 				}
 
 				progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
@@ -101,6 +106,13 @@ namespace LinkOM
 				_timer.Start ();
 
 				ThreadPool.QueueUserWorkItem (o => GetIssuesStatus ());
+		}
+
+		void Fab_Click (object sender, EventArgs e)
+		{
+			Intent Intent2 = new Intent (this, typeof(IssuesAddActivity));
+			Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			StartActivity(Intent2);
 		}
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
@@ -156,7 +168,7 @@ namespace LinkOM
 				inflater.Inflate (Resource.Menu.AddMenu, menu);
 			}
 			else
-				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
 			return true;
 		}
 
@@ -170,7 +182,18 @@ namespace LinkOM
 
 		public void GetIssuesStatus ()
 		{
-			
+
+			if (!Settings.Orientation.Equals ("Portrait")) 
+			{
+				fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+				if (fab != null) {
+					fab.Visibility = ViewStates.Invisible;
+					fab.Hide ();
+					fab.AttachToListView (issuesListView);
+					fab.Click += Fab_Click;
+				}
+			}
+
 			IssuesFilter objFilter = new IssuesFilter ();
 
 			issuesList = IssuesHelper.GetIssuesList (objFilter);
@@ -242,9 +265,10 @@ namespace LinkOM
 				textView.Text = Title;
 			else {
 				textView.Text = Title + " (" + NumberOfIssues.ToString () + ")";
+				textView.Click += HandleMyButton;
 			}
 
-			textView.Click += HandleMyButton;
+
 			textView.Tag = id;
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
@@ -291,15 +315,20 @@ namespace LinkOM
 			int whichOne = 0;
 			if (Settings.Orientation.Equals ("Portrait")) {
 				Button myObject1 = (Button)sender;
-				whichOne = (int)myObject1.Tag;
+				int Number = Int32.Parse (myObject1.Text);
+				if (Number == 0) {
+					Toast.MakeText (this, "No Issue Available.", ToastLength.Short).Show ();
+				} else {
+					whichOne = (int)myObject1.Tag;
 
-				var activity = new Intent (this, typeof(IssuesListActivity));
-				activity.PutExtra ("IssuesStatusId", whichOne);
-				StartActivity (activity);
+					var activity = new Intent (this, typeof(IssuesListActivity));
+					activity.PutExtra ("IssuesStatusId", whichOne);
+					StartActivity (activity);
+				}
 			}
 			else
 			{
-					issuesListView = FindViewById<ListView> (Resource.Id.IssuesListView);
+					
 					TextView myObject2 = (TextView)sender;
 					whichOne = (int)myObject2.Tag;
 					GetIssuesListByStatusId (whichOne);
@@ -323,9 +352,15 @@ namespace LinkOM
 						issuesListView.Adapter = issuesListAdapter;
 
 						issuesListView.ItemClick += listView_ItemClick;
+
+						fab.Visibility = ViewStates.Visible;
+						fab.Show ();
 					} 
 					else 
 					{
+						fab.Visibility = ViewStates.Invisible;
+						fab.Hide ();
+
 						issuesListView.Adapter = null;
 						Toast.MakeText (this, "No Issues Available.", ToastLength.Short).Show ();
 

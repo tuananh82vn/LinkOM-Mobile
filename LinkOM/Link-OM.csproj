@@ -541,6 +541,7 @@
     <AndroidResource Include="Resources\layout-sw720dp-land\DocumentEdit.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\IssuesEdit.axml" />
     <AndroidResource Include="Resources\menu\EditSearchMenu.xml" />
+    <AndroidResource Include="Resources\drawable\style_button.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
