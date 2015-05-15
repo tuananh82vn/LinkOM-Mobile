@@ -98,9 +98,11 @@ namespace LinkOM
 			NChartPoint[] result = new NChartPoint[statusList.Count];
 
 			for (int i = 0; i < statusList.Count; i++) {
-				//Get number of task
-				var NumberOfTask = CheckTicket (statusList [i].Name, taskList);
-
+				int NumberOfTask = 0;
+				if (taskList != null) {
+					//Get number of task
+					NumberOfTask = CheckTicket (statusList [i].Name, taskList);
+				}
 				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (NumberOfTask, i), series);
 			}
 

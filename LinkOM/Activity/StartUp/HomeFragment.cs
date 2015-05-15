@@ -28,24 +28,24 @@ namespace LinkOM
 			this.HasOptionsMenu = true;
 			var ignored = base.OnCreateView(inflater, container, savedInstanceState);
 
-			var view = inflater.Inflate(Resource.Layout.MainContentLayout, null);
+			var	view = inflater.Inflate (Resource.Layout.MainContentLayout2, null);
 
-			ImageButton bt_Task = view.FindViewById<ImageButton>(Resource.Id.bt_Task);
+			RelativeLayout bt_Task = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Task);
 			bt_Task.Click += btTaskClick;
 
-			ImageButton bt_Project = view.FindViewById<ImageButton>(Resource.Id.bt_Project);
+			RelativeLayout bt_Project = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Project);
 			bt_Project.Click += btProjectClick;
 
-			ImageButton bt_Ticket = view.FindViewById<ImageButton>(Resource.Id.bt_Ticket);
+			RelativeLayout bt_Ticket = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Ticket);
 			bt_Ticket.Click += bt_TicketClick;
 
-			ImageButton bt_Milestone = view.FindViewById<ImageButton>(Resource.Id.bt_Milestone);
+			RelativeLayout bt_Milestone = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Milestone);
 			bt_Milestone.Click += bt_MilestoneClick;
 
-			ImageButton bt_Issues = view.FindViewById<ImageButton>(Resource.Id.bt_Issues);
+			RelativeLayout bt_Issues = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Issues);
 			bt_Issues.Click += bt_IssuesClick;
 
-			ImageButton bt_Document = view.FindViewById<ImageButton>(Resource.Id.bt_Document);
+			RelativeLayout bt_Document = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Documents);
 			bt_Document.Click += bt_DocumentClick;
 
 			if(Settings.Orientation.Equals("Landscape")){

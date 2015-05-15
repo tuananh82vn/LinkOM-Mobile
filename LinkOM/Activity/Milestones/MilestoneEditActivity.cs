@@ -20,7 +20,7 @@ namespace LinkOM
 	{
 		public string results;
 
-		public MilestonesList MilestoneDetail;
+		public MilestonesDetailList MilestoneDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 
@@ -100,7 +100,7 @@ namespace LinkOM
 
 			results= Intent.GetStringExtra ("Milestone");
 
-			MilestoneDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesList> (results);
+			MilestoneDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesDetailList> (results);
 		}
 
 		public void InitControl(){
@@ -149,7 +149,7 @@ namespace LinkOM
 			}
 		}
 
-		public void DisplayMilestone(MilestonesList obj){
+		public void DisplayMilestone(MilestonesDetailList obj){
 
 			editText_Title.Text = obj.Title;
 

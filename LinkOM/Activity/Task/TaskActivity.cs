@@ -207,7 +207,7 @@ namespace LinkOM
 
 			var statusList = TaskHelper.GetTaskStatus ();
 
-			if (statusList !=null && taskList!=null) {
+			if (statusList !=null) {
 
 				buttonList = new List<Button> (statusList.Count);
 
@@ -215,9 +215,11 @@ namespace LinkOM
 				for (int i = 0; i < statusList.Count; i++) {
 					//Init button
 					Button button = new Button (this);
+					int NumberOfTask = 0;
 
+					if(taskList!=null)
 					//Get number of task
-					int NumberOfTask = CheckTask (statusList[i].Name, taskList);
+						NumberOfTask = CheckTask (statusList[i].Name, taskList);
 
 					//Add button into View
 					AddRow (statusList[i].Id ,statusList[i].Name,ColorHelper.GetColor(statusList[i].ColourName),button, NumberOfTask);

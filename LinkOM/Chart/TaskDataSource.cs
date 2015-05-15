@@ -38,17 +38,17 @@ namespace LinkOM
 				
 			taskList = TaskHelper.GetTaskList (objFilter);
 
-
 			statusList = TaskHelper.GetTaskStatus ();
 
-			if (statusList.Count > 0) {
+			if (statusList.Count > 0 && statusList!=null) {
 
 				TaskStatusName = new string[statusList.Count];
+				int NumberOfTask = 0;
 
-				for (int i = 0; i < statusList.Count; i++) {
-					TaskStatusName[i]=statusList [i].Name;
-					//Get number of task
-					var NumberOfTask = CheckTask (statusList [i].Name, taskList).ToString ();
+				if (taskList != null) {
+					for (int i = 0; i < statusList.Count; i++) {
+						TaskStatusName [i] = statusList [i].Name;
+					}
 				}
 			}
 
@@ -91,14 +91,13 @@ namespace LinkOM
 
 			for (int i = 0; i < statusList.Count; i++) {
 				//Get number of task
-				var NumberOfTask = CheckTask (statusList [i].Name, taskList);
+				int NumberOfTask =0;
+
+				if(taskList!=null)
+					NumberOfTask = CheckTask (statusList [i].Name, taskList);
 
 				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (NumberOfTask, i), series);
 			}
-
-
-//			for (int i = 0; i <= 4; ++i)
-//				result [i] = new NChartPoint (NChartPointState.PointStateAlignedToYWithXY (random.Next (30) + 1, i), series);
 
 			return result;
 		}

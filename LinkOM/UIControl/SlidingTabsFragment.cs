@@ -132,9 +132,6 @@ namespace LinkOM
 					NChartBarSeries seriesBar1 = new NChartBarSeries ();
 					seriesBar1.Brush = new NChartSolidColorBrush (Color.Argb (255, 0, 192, 96));
 
-					
-					
-
 					mNChartView1.Chart.RemoveAllSeries ();
 
 					if (position == 0) {

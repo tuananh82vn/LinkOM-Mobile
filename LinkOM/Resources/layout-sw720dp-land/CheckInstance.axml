@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/Background2">
+    <ImageView
+        android:src="@drawable/LinkOM_Logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView1"
+        android:layout_marginLeft="0.0dp"
+        android:layout_marginRight="0.0dp"
+        android:layout_marginBottom="0.0dp" />
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp">
+        <TextView
+            android:text="Domain:"
+            android:id="@+id/textview"
+            android:textSize="18dp"
+            foo:customFont="Fonts/arial.ttf"
+            android:textColor="#ff00947A"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="300dp"
+            android:layout_width="100dp"
+            android:layout_column="0"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_column="0"
+            android:text="http://synotive.link-om.com"
+            android:id="@+id/URLText"
+            android:textColor="#ff437800"
+            android:textSize="18dp"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+        <Button
+            android:id="@+id/CheckButton"
+            android:gravity="center"
+            android:text="Check"
+            android:textColor="#ff437800"
+            android:textSize="18dp"
+            android:layout_column="2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+    </TableRow>
+</LinearLayout>

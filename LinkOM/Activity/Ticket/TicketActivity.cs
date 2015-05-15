@@ -204,7 +204,7 @@ namespace LinkOM
 
 			var statusList = TicketHelper.GetTicketStatusList ();
 
-			if (statusList != null && ticketList!=null) {
+			if (statusList != null) {
 
 				if (statusList.Count > 0) {
 
@@ -214,9 +214,12 @@ namespace LinkOM
 					for (int i = 0; i < statusList.Count; i++) {
 						//Init button
 						Button button = new Button (this);
+						int NumberOfTicket = 0;
 
-						//Get number of task
-						int NumberOfTicket = CheckTicket (statusList [i].Name, ticketList);
+						if (ticketList != null) {
+							//Get number of task
+							NumberOfTicket = CheckTicket (statusList [i].Name, ticketList);
+						}
 
 						//Add button into View
 						AddRow (statusList [i].Id, statusList [i].Name, ColorHelper.GetColor (statusList [i].ColourName), button, NumberOfTicket);

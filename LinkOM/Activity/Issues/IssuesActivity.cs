@@ -216,8 +216,11 @@ namespace LinkOM
 							//Init button
 							Button button = new Button (this);
 
+							int NumberOfIssues = 0;
+
 							//Get number of task
-							int NumberOfIssues = CheckIssues (statusList [i].Name, issuesList);
+							if(issuesList!=null)
+								NumberOfIssues = CheckIssues (statusList [i].Name, issuesList);
 
 							//Add button into View
 							AddRow (statusList [i].Id ,statusList [i].Name,ColorHelper.GetColor(statusList [i].ColourName),button, NumberOfIssues);

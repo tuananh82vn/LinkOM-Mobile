@@ -140,6 +140,16 @@ namespace LinkOM
 			case Android.Resource.Id.Home:
 				OnBackPressed ();
 				break;
+			case Resource.Id.edit:
+				if (MilestoneSelected != null) {
+					Intent Intent = new Intent (this, typeof(MilestoneEditActivity));
+					Intent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject (MilestoneSelected));
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity (Intent);
+				}
+				else
+					Toast.MakeText (this, "No Issues Selected.", ToastLength.Short).Show ();
+				break;
 			case Resource.Id.search:
 				btSearchClick ();
 				break;
@@ -176,12 +186,20 @@ namespace LinkOM
 		public void DisplayMilestone(MilestonesDetailList obj){
 			
 			frameLayout1.Visibility = ViewStates.Visible;
+
 			var MilestoneName = FindViewById<TextView> (Resource.Id.tv_MilestoneDetailName);
 			MilestoneName.Text = obj.Title;
 
 
 			var MilestoneStatus = FindViewById<TextView> (Resource.Id.tv_Status);
 			MilestoneStatus.Text = obj.StatusName;
+
+			var cb_Internal  = FindViewById<CheckBox> (Resource.Id.cb_Internal); 
+			if(obj.IsInternal.HasValue)
+			cb_Internal.Checked = obj.IsInternal.Value;
+
+			var tv_ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			tv_ProjectName.Text = obj.ProjectName;
 
 			var DueDate = FindViewById<TextView> (Resource.Id.tv_DueDate);
 			if(obj.EndDateString!=null)
