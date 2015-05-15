@@ -12,7 +12,7 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1"
-        p1:layout_marginBottom="10dp">
+        p1:layout_marginBottom="5dp">
         <TextView
             p1:text="Milestone Name"
             p1:id="@+id/tv_MilestoneName"
@@ -29,7 +29,8 @@
     <TableRow
         p1:id="@+id/tableRow8"
         p1:layout_width="match_parent"
-        p1:layout_height="wrap_content">
+        p1:layout_height="wrap_content"
+        p1:layout_marginBottom="10dp">
         <TextView
             p1:text="Created Person"
             p1:layout_column="0"

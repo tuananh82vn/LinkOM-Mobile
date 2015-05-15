@@ -13,7 +13,7 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1"
         p1:layout_gravity="center_vertical"
-        p1:layout_marginBottom="10dp">
+        p1:layout_marginBottom="5dp">
         <TextView
             p1:text="Document Name"
             p1:id="@+id/tv_DocumentName"
@@ -30,7 +30,8 @@
     <TableRow
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/tableRow2">
+        p1:id="@+id/tableRow2"
+        p1:layout_marginBottom="10dp">
         <TextView
             p1:text="Project"
             p1:id="@+id/tv_project"

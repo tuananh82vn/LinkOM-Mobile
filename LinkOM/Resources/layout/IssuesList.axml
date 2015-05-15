@@ -30,7 +30,7 @@
         p1:layout_width="match_parent"
         p1:layout_height="23.2dp"
         p1:id="@+id/tableRow2"
-        p1:layout_marginBottom="5.0dp">
+        p1:layout_marginBottom="10dp">
         <TextView
             p1:text="Project Name"
             p1:id="@+id/tv_ProjectName"
@@ -38,7 +38,7 @@
             p1:gravity="center_vertical"
             p1:layout_width="300dp"
             p1:layout_marginLeft="20dp"
-            p1:textColor="#ffaeaeae"
+            p1:textColor="#ff437800"
             p1:layout_marginTop="5dp"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_marginRight="5dp"
