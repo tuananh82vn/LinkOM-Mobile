@@ -10,8 +10,8 @@ Reference : http://www.computerhope.com/htmcolor.htm , http://www.color-hex.com/
 	<color name="primary">#3498DB</color>
     <color name="primary_pressed">#2C3E50</color>
     <color name="ripple">#ff80ab</color>
-    <color name="accent">#E64A19</color>
-    <color name="accent_pressed">#BF360C</color>
+    <color name="accent">#1D7CC1</color>
+    <color name="accent_pressed">#165C8E</color>
 
 	<color name="air_force_blue">#5D8AA8</color>
 	<color name="algae_green">#64E986</color>

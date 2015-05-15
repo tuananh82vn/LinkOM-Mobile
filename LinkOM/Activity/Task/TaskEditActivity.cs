@@ -168,6 +168,11 @@ namespace LinkOM
 
 			spinner_Label= FindViewById<Spinner> (Resource.Id.spinner_Label);
 
+			if (TaskDetail.StartDate != null)
+				StartDate = TaskDetail.StartDate;
+			else
+				StartDate = DateTime.Today;
+
 			editText_StartDate.Click += delegate { ShowDialog (Start_DATE_DIALOG_ID); };
 			editText_EndDate.Click += delegate { ShowDialog (End_DATE_DIALOG_ID); };
 			editText_ActualStartDate.Click += delegate { ShowDialog (Actual_Start_DATE_DIALOG_ID); };
@@ -386,8 +391,9 @@ namespace LinkOM
 
 		public void btSaveClick()
 		{
-
+			
 			TaskEdit TaskObject = new TaskEdit ();
+			TaskObject.Id = TaskDetail.Id;
 			TaskObject.Title = editText_Title.Text;
 			TaskObject.ProjectId = Selected_ProjectID;
 			TaskObject.TaskStatusId = Selected_StatusID;
@@ -396,16 +402,16 @@ namespace LinkOM
 			TaskObject.Label = Selected_Label;
 
 			if (editText_StartDate.Text != "")
-			TaskObject.StartDate = DateTime.Parse(editText_StartDate.Text);
+				TaskObject.StartDate = DateTime.Parse(editText_StartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			
 			if (editText_EndDate.Text != "")
-			TaskObject.EndDate = DateTime.Parse(editText_EndDate.Text);
+				TaskObject.EndDate = DateTime.Parse(editText_EndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			
 			if (editText_ActualStartDate.Text != "")
-				TaskObject.ActualStartDate = DateTime.Parse(editText_ActualStartDate.Text);
+				TaskObject.ActualStartDate = DateTime.Parse(editText_ActualStartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			
 			if (editText_ActualEndDate.Text != "")
-			TaskObject.ActualEndDate = DateTime.Parse(editText_ActualEndDate.Text);
+				TaskObject.ActualEndDate = DateTime.Parse(editText_ActualEndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			
 			TaskObject.IsInternal = cb_Internal.Checked;
 			TaskObject.IsManagerial = cb_Management.Checked;

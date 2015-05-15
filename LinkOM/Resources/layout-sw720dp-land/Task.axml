@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -59,6 +60,16 @@
                 android:textColor="#000"
                 android:imeOptions="actionSearch"
                 android:inputType="text" />
+            <com.refractored.fab.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="16dp"
+                android:src="@drawable/add"
+                fab:fab_colorNormal="@color/accent"
+                fab:fab_colorPressed="@color/accent_pressed"
+                fab:fab_colorRipple="@color/ripple" />
         </FrameLayout>
         <ScrollView
             android:minWidth="25px"
@@ -507,7 +518,6 @@
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                         <TextView
-                            android:text="01/01/1999"
                             android:layout_column="1"
                             android:id="@+id/tv_StartDate"
                             android:textSize="12dp"
@@ -529,7 +539,6 @@
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                         <TextView
-                            android:text="01/01/1999"
                             android:layout_column="1"
                             android:id="@+id/tv_ActualStartDate"
                             android:textSize="12dp"
@@ -558,7 +567,6 @@
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                         <TextView
-                            android:text="01/01/1999"
                             android:layout_column="1"
                             android:id="@+id/tv_EndDate"
                             android:textSize="12dp"
@@ -580,7 +588,6 @@
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                         <TextView
-                            android:text="01/01/1999"
                             android:layout_column="3"
                             android:id="@+id/tv_ActualEndDate"
                             android:textSize="12dp"

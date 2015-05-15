@@ -19,7 +19,7 @@
             p1:gravity="left"
             p1:layout_width="match_parent"
             p1:layout_marginLeft="20dp"
-            p1:textColor="#ff000000"
+            p1:textColor="#ff5a5a5a"
             p1:textSize="18dp"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_marginTop="5.0dp"
@@ -28,17 +28,9 @@
     <TableRow
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/tableRow1">
-        <TextView
-            p1:text="Project Name"
-            p1:id="@+id/tv_ProjectName"
-            p1:layout_height="match_parent"
-            p1:gravity="left"
-            p1:layout_width="match_parent"
-            p1:layout_marginLeft="20dp"
-            p1:textSize="12dp"
-            foo:customFont="Fonts/arial.ttf"
-            p1:textColor="#ffa4a4a4" />
+        p1:id="@+id/tableRow1"
+        p1:minWidth="25px"
+        p1:minHeight="25px">
     </TableRow>
     <TableRow
         p1:id="@+id/tableRow8"
@@ -53,7 +45,8 @@
             p1:gravity="left"
             p1:textSize="12dp"
             foo:customFont="Fonts/arial.ttf"
-            p1:layout_marginLeft="20dp" />
+            p1:layout_marginLeft="20dp"
+            p1:textColor="#ff437800" />
         <TextView
             p1:text="12/12/2012"
             p1:layout_column="1"
@@ -62,7 +55,7 @@
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
             p1:gravity="right"
-            p1:textColor="#ffa0c673"
+            p1:textColor="#ff437800"
             p1:textSize="12dp"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_marginRight="20dp" />

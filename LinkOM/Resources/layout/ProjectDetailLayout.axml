@@ -389,7 +389,7 @@
                 android:id="@+id/textview"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
-                android:layout_width="118dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:gravity="center_vertical"
@@ -405,7 +405,8 @@
                 android:layout_marginRight="15dp"
                 android:gravity="center_vertical"
                 foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -419,7 +420,7 @@
                 android:id="@+id/textview"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
-                android:layout_width="118dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:gravity="center_vertical"
@@ -435,7 +436,8 @@
                 android:layout_marginRight="15.0dp"
                 android:gravity="center_vertical"
                 foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -449,7 +451,7 @@
                 android:id="@+id/textview"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
-                android:layout_width="118dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:gravity="center_vertical"
@@ -465,7 +467,8 @@
                 android:layout_marginRight="15.0dp"
                 android:gravity="center_vertical"
                 foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"

@@ -22,19 +22,19 @@
                 android:layout_marginTop="95dp">
                 <ImageButton
                     android:id="@+id/bt_Project"
+                    android:background="@drawable/Project_button"
                     android:layout_column="0"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
                     android:layout_marginLeft="40.0dp"
                     android:layout_marginRight="5.0dp"
-                    android:layout_marginTop="10.0dp"
-                    android:background="@drawable/Project_button" />
+                    android:layout_marginTop="10.0dp" />
                 <ImageButton
-                    android:id="@+id/bt_Task"
+                    android:id="@+id/bt_Milestone"
+                    android:background="@drawable/Milestone_button"
                     android:layout_column="1"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
-                    android:background="@drawable/Task_button"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="40.0dp"
                     android:layout_marginTop="10.0dp" />
@@ -43,41 +43,43 @@
                 android:id="@+id/tableRow2">
                 <ImageButton
                     android:id="@+id/bt_Ticket"
+                    android:background="@drawable/Ticket_button"
                     android:layout_column="0"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
-                    android:background="@drawable/Ticket_button"
                     android:layout_marginLeft="40.0dp"
                     android:layout_marginRight="5.0dp"
                     android:layout_marginTop="20dp" />
                 <ImageButton
-                    android:id="@+id/bt_Issues"
+                    android:id="@+id/bt_Task"
+                    android:background="@drawable/Task_button"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
-                    android:background="@drawable/Issues_button"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="40.0dp"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="20dp"
+                    android:layout_column="1" />
             </TableRow>
             <TableRow
                 android:id="@+id/tableRow3">
                 <ImageButton
-                    android:id="@+id/bt_Milestone"
+                    android:id="@+id/bt_Issues"
+                    android:background="@drawable/Issues_button"
                     android:layout_column="0"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
-                    android:background="@drawable/Milestone_button"
                     android:layout_marginLeft="40.0dp"
                     android:layout_marginRight="5.0dp"
                     android:layout_marginTop="20dp" />
                 <ImageButton
                     android:id="@+id/bt_Document"
+                    android:background="@drawable/Document_button"
                     android:layout_width="149dp"
                     android:layout_height="149dp"
-                    android:background="@drawable/Document_button"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="40.0dp"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="20dp"
+                    android:layout_column="1" />
             </TableRow>
         </TableLayout>
         <LinearLayout
@@ -95,7 +97,8 @@
                 android:id="@+id/textView1"
                 android:textStyle="normal"
                 android:textSize="18dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:textColor="#ff00947A" />
             <ListView
                 android:id="@+id/MilestoneListView"
                 android:layout_width="match_parent"
@@ -130,9 +133,10 @@
                         android:id="@+id/textView12"
                         android:layout_height="40dp"
                         android:layout_width="80dp"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:textColor="#ff00947A" />
                     <TextView
                         android:text="Open"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -142,9 +146,10 @@
                         android:layout_width="80dp"
                         android:layout_marginLeft="0dp"
                         android:layout_marginRight="0dp"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:textColor="#ff00947A" />
                     <TextView
                         android:text="Closed"
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -152,28 +157,31 @@
                         android:id="@+id/textView14"
                         android:layout_height="match_parent"
                         android:layout_width="80dp"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:textColor="#ff00947A" />
                     <TextView
                         android:text="Other"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_column="4"
                         android:id="@+id/textView14"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="12dp"
                         foo:customFont="Fonts/arial.ttf"
-                        android:layout_width="80dp" />
+                        android:layout_width="80dp"
+                        android:textColor="#ff00947A" />
                     <TextView
                         android:text="Total"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:id="@+id/textView14"
                         android:layout_height="match_parent"
                         android:layout_width="80dp"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        android:textColor="#ff00947A" />
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow2">
@@ -186,14 +194,14 @@
                         android:textSize="12dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
-                        android:textColor="#ff00ccff" />
+                        android:textColor="#ff00947A" />
                     <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_MileStone_OverDue"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -201,7 +209,7 @@
                         android:layout_column="2"
                         android:id="@+id/tv_MileStone_Open"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
@@ -210,7 +218,7 @@
                         android:layout_column="3"
                         android:id="@+id/tv_MileStone_Closed"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
@@ -219,7 +227,7 @@
                         android:layout_column="4"
                         android:id="@+id/tv_MileStone_Other"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
@@ -228,7 +236,7 @@
                         android:layout_column="5"
                         android:id="@+id/tv_MileStone_Total"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
@@ -244,14 +252,14 @@
                         android:textSize="12dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
-                        android:textColor="#ffff001d" />
+                        android:textColor="#ff00947A" />
                     <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_Ticket_OverDue"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -260,7 +268,7 @@
                         android:id="@+id/tv_Ticket_Open"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -269,7 +277,7 @@
                         android:id="@+id/tv_Ticket_Closed"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -278,7 +286,7 @@
                         android:id="@+id/tv_Ticket_Other"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -287,7 +295,7 @@
                         android:id="@+id/tv_Ticket_Total"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                 </TableRow>
@@ -298,18 +306,18 @@
                         android:layout_column="0"
                         android:id="@+id/textView17"
                         android:layout_width="wrap_content"
-                        android:layout_height="40dp"
+                        android:layout_height="40.0dp"
                         android:textSize="12dp"
                         android:gravity="center_vertical"
                         foo:customFont="Fonts/arial.ttf"
-                        android:textColor="#ffe800ff" />
+                        android:textColor="#ff00947A" />
                     <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_Task_OverDue"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -318,7 +326,7 @@
                         android:id="@+id/tv_Task_Open"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -327,7 +335,7 @@
                         android:id="@+id/tv_Task_Closed"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -336,7 +344,7 @@
                         android:id="@+id/tv_Task_Other"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -345,7 +353,7 @@
                         android:id="@+id/tv_Task_Total"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                 </TableRow>
@@ -358,7 +366,7 @@
                         android:layout_height="40dp"
                         android:textSize="12dp"
                         android:gravity="center_vertical"
-                        android:textColor="#ff0016ff"
+                        android:textColor="#ff00947A"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
                     <TextView
@@ -366,7 +374,7 @@
                         android:layout_column="1"
                         android:id="@+id/tv_Issues_OverDue"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="match_parent" />
@@ -375,7 +383,7 @@
                         android:layout_column="2"
                         android:id="@+id/tv_Issues_Open"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
@@ -384,7 +392,7 @@
                         android:layout_column="3"
                         android:id="@+id/tv_Issues_Closed"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
@@ -393,7 +401,7 @@
                         android:layout_column="4"
                         android:id="@+id/tv_Issues_Other"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
@@ -402,7 +410,7 @@
                         android:layout_column="5"
                         android:id="@+id/tv_Issues_Total"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         android:textSize="15dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:layout_width="wrap_content" />
@@ -418,14 +426,14 @@
                         android:textSize="12dp"
                         foo:customFont="Fonts/arial.ttf"
                         android:gravity="center_vertical"
-                        android:textColor="#ff000000" />
+                        android:textColor="#ff00947A" />
                     <TextView
                         android:text="0"
                         android:layout_column="1"
                         android:id="@+id/tv_All_OverDue"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -434,7 +442,7 @@
                         android:id="@+id/tv_All_Open"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -443,7 +451,7 @@
                         android:id="@+id/tv_All_Closed"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -452,7 +460,7 @@
                         android:id="@+id/tv_All_Other"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                     <TextView
@@ -461,7 +469,7 @@
                         android:id="@+id/tv_All_Total"
                         android:layout_height="match_parent"
                         android:layout_width="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical|right"
                         foo:customFont="Fonts/arial.ttf"
                         android:textSize="15dp" />
                 </TableRow>

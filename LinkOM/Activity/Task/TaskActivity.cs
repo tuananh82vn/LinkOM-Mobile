@@ -22,6 +22,7 @@ using RadialProgress;
 using System.Timers;
 using Android.Views.InputMethods;
 using Android.Text;
+using com.refractored.fab;
 
 namespace LinkOM
 {
@@ -47,6 +48,7 @@ namespace LinkOM
 
 		public TaskDetailList TaskSelected;
 		public FrameLayout frame_TaskDetail;
+		public FloatingActionButton fab;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -87,6 +89,11 @@ namespace LinkOM
 					frame_TaskDetail.Visibility = ViewStates.Invisible;
 
 					RequestedOrientation = ScreenOrientation.SensorLandscape;
+					
+					taskListView = FindViewById<ListView> (Resource.Id.TaskListView);
+
+
+					
 				}
 
 				progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
@@ -101,6 +108,13 @@ namespace LinkOM
 				ThreadPool.QueueUserWorkItem (o => GetTaskStatus ());
 
 				
+		}
+
+		void Fab_Click (object sender, EventArgs e)
+		{
+			Intent Intent2 = new Intent (this, typeof(TaskAddActivity));
+			Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			StartActivity(Intent2);
 		}
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
@@ -118,14 +132,9 @@ namespace LinkOM
 				case Android.Resource.Id.Home:
 					OnBackPressed ();
 					break;
-				case Resource.Id.add:
-					Intent Intent2 = new Intent (this, typeof(TaskAddActivity));
-					Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
-					StartActivity(Intent2);
-					break;
-
-			case Resource.Id.edit:
-				if (TaskSelected != null) {
+				case Resource.Id.edit:
+				if (TaskSelected != null) 
+				{
 					Intent Intent = new Intent (this, typeof(TaskEditActivity));
 					Intent.PutExtra ("Task", Newtonsoft.Json.JsonConvert.SerializeObject (TaskSelected));
 					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
@@ -153,10 +162,10 @@ namespace LinkOM
 			MenuInflater inflater = this.MenuInflater;
 
 			if (Settings.Orientation.Equals ("Portrait")) {
-				inflater.Inflate (Resource.Menu.AddMenu, menu);
+
 			}
 			else
-				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
 			return true;
 		}
 
@@ -170,6 +179,17 @@ namespace LinkOM
 
 		public void GetTaskStatus ()
 		{
+
+			if (!Settings.Orientation.Equals ("Portrait")) 
+			{
+				fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+				if (fab != null) {
+					fab.Visibility = ViewStates.Invisible;
+					fab.Hide ();
+					fab.AttachToListView (taskListView);
+					fab.Click += Fab_Click;
+				}
+			}
 
 			TaskFilter objFilter = new TaskFilter ();
 			objFilter.AssignedToId = Settings.UserId;
@@ -295,7 +315,7 @@ namespace LinkOM
 			}
 			else
 			{
-					taskListView = FindViewById<ListView> (Resource.Id.TaskListView);
+					
 					TextView myObject2 = (TextView)sender;
 					whichOne = (int)myObject2.Tag;
 					GetTaskList (whichOne);
@@ -320,6 +340,9 @@ namespace LinkOM
 					taskListView.Adapter = taskListAdapter;
 
 					taskListView.ItemClick += listView_ItemClick;
+
+					fab.Visibility = ViewStates.Visible;
+					fab.Show ();
 				} 
 				else 
 				{

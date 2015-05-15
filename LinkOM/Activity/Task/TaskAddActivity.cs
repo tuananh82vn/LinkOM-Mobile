@@ -292,11 +292,6 @@ namespace LinkOM
 			spinner_Owner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (OwnerStaff_ItemSelected);
 		}
 
-//		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
-//		{
-//			Selected_StatusID =  statusList.GetItemAtPosition (e.Position).Id;
-//		}
-
 		private void Priority_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Spinner spinner = (Spinner)sender;
@@ -371,10 +366,10 @@ namespace LinkOM
 			TaskObject.PriorityId = Selected_PriorityID;
 			TaskObject.ProjectPhaseId = Selected_PhaseID;
 			TaskObject.Label = Selected_Label;
-			TaskObject.StartDate = DateTime.Parse(editText_StartDate.Text);
-			TaskObject.EndDate = DateTime.Parse(editText_EndDate.Text);
-			TaskObject.ActualStartDate = DateTime.Parse(editText_ActualStartDate.Text);
-			TaskObject.ActualEndDate = DateTime.Parse(editText_ActualEndDate.Text);
+			TaskObject.StartDate = DateTime.Parse(editText_StartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+			TaskObject.EndDate = DateTime.Parse(editText_EndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+			TaskObject.ActualStartDate = DateTime.Parse(editText_ActualStartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+			TaskObject.ActualEndDate = DateTime.Parse(editText_ActualEndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			TaskObject.IsInternal = cb_Internal.Checked;
 			TaskObject.IsManagerial = cb_Management.Checked;
 			TaskObject.AssignedToId = Selected_AssignToStaffID;

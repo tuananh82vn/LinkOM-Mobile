@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Android.Views.InputMethods;
 using Android.Text;
 using Android.Content.PM;
+using com.refractored.fab;
 
 namespace LinkOM
 {
@@ -72,6 +73,17 @@ namespace LinkOM
 			} else {
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
+
+			var fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+			fab.AttachToListView(taskListView);
+			fab.Click += Fab_Click;
+		}
+
+		void Fab_Click (object sender, EventArgs e)
+		{
+			Intent Intent2 = new Intent (this, typeof(TaskAddActivity));
+			Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			StartActivity(Intent2);
 		}
 
 		//Handle item on action bar clicked
@@ -87,11 +99,6 @@ namespace LinkOM
 			case Resource.Id.search:
 				btSearchClick ();
 				break;
-			case Resource.Id.add:
-				Intent Intent2 = new Intent (this, typeof(TaskAddActivity));
-				Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
-				StartActivity(Intent2);
-				break;
 			default:
 				break;
 			}
@@ -106,7 +113,7 @@ namespace LinkOM
 
 			MenuInflater inflater = this.MenuInflater;
 
-			inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
+			inflater.Inflate (Resource.Menu.SearchMenu, menu);
 
 			return true;
 		}

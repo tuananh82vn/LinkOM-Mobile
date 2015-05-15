@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Android.Views.InputMethods;
 using Android.Text;
 using Android.Content.PM;
+using com.refractored.fab;
 
 namespace LinkOM
 {
@@ -70,6 +71,17 @@ namespace LinkOM
 			} else {
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
+
+			var fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+			fab.AttachToListView(ticketListView);
+			fab.Click += Fab_Click;
+		}
+
+		void Fab_Click (object sender, EventArgs e)
+		{
+			Intent Intent = new Intent (this, typeof(TicketAddActivity));
+			Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			StartActivity(Intent);
 		}
 
 		//Handle item on action bar clicked

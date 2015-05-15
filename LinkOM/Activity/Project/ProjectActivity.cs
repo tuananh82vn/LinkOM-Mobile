@@ -88,7 +88,6 @@ namespace LinkOM
 
 			var fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
 			fab.AttachToListView(projectListView);
-			fab.Size = FabSize.Mini;
 			fab.Click += Fab_Click;
 		}
 

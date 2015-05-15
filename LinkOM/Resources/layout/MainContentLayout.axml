@@ -24,11 +24,11 @@
                 android:layout_marginTop="10.0dp"
                 android:background="@drawable/Project_button" />
             <ImageButton
-                android:id="@+id/bt_Task"
+                android:id="@+id/bt_Milestone"
+                android:background="@drawable/Milestone_button"
                 android:layout_column="1"
                 android:layout_width="149dp"
                 android:layout_height="149dp"
-                android:background="@drawable/Task_button"
                 android:layout_marginLeft="5.0dp"
                 android:layout_marginRight="10.0dp"
                 android:layout_marginTop="10.0dp" />
@@ -37,18 +37,19 @@
             android:id="@+id/tableRow2">
             <ImageButton
                 android:id="@+id/bt_Ticket"
+                android:background="@drawable/Ticket_button"
                 android:layout_column="0"
                 android:layout_width="149dp"
                 android:layout_height="149dp"
-                android:background="@drawable/Ticket_button"
                 android:layout_marginLeft="25.0dp"
                 android:layout_marginRight="5.0dp"
                 android:layout_marginTop="10.0dp" />
             <ImageButton
-                android:id="@+id/bt_Issues"
+                android:id="@+id/bt_Task"
+                android:background="@drawable/Task_button"
+                android:layout_column="1"
                 android:layout_width="149dp"
                 android:layout_height="149dp"
-                android:background="@drawable/Issues_button"
                 android:layout_marginLeft="5.0dp"
                 android:layout_marginRight="10.0dp"
                 android:layout_marginTop="10.0dp" />
@@ -56,19 +57,20 @@
         <TableRow
             android:id="@+id/tableRow3">
             <ImageButton
-                android:id="@+id/bt_Milestone"
+                android:id="@+id/bt_Issues"
+                android:background="@drawable/Issues_button"
                 android:layout_column="0"
                 android:layout_width="149dp"
                 android:layout_height="149dp"
-                android:background="@drawable/Milestone_button"
                 android:layout_marginLeft="25.0dp"
                 android:layout_marginRight="5.0dp"
                 android:layout_marginTop="10.0dp" />
             <ImageButton
                 android:id="@+id/bt_Document"
+                android:background="@drawable/Document_button"
+                android:layout_column="1"
                 android:layout_width="149dp"
                 android:layout_height="149dp"
-                android:background="@drawable/Document_button"
                 android:layout_marginLeft="5.0dp"
                 android:layout_marginRight="10.0dp"
                 android:layout_marginTop="10.0dp" />

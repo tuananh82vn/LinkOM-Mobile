@@ -58,17 +58,17 @@ namespace LinkOM
 			InitControl ();
 
 			if (StartDatePicker.Text != "")
-				StartDate = DateTime.Parse (StartDatePicker.Text);
+				StartDate = DateTime.Parse (StartDatePicker.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			else
 				StartDate = DateTime.Today;
 
 			if (EndDatePicker.Text != "")
-				EndDate = DateTime.Parse (EndDatePicker.Text);
+				EndDate = DateTime.Parse (EndDatePicker.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			else
 				EndDate = DateTime.Today;
 
 			if (ActualStartDatePicker.Text != "")
-				ActualStartDate = DateTime.Parse (ActualStartDatePicker.Text);
+				ActualStartDate = DateTime.Parse (ActualStartDatePicker.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			else
 				ActualStartDate = DateTime.Today;
 

@@ -42,6 +42,20 @@ namespace LinkOM
 		public EditText AllocatedHours;
 
 		public Spinner spinner_Phase ;
+		public Spinner spinner_Status ;
+
+		public ProjectSpinnerAdapter projectList; 
+		public ProjectPhaseSpinnerAdapter phaseList; 
+		public ProjectLabelSpinnerAdapter labelList; 
+		public StatusSpinnerAdapter statusList;
+
+		public int Selected_ProjectID;
+		public int Selected_AssignToStaffID;
+		public int Selected_OwnerStaffID;
+		public int Selected_PriorityID;
+		public int Selected_StatusID;
+		public int Selected_PhaseID;
+		public string Selected_Label;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -65,12 +79,17 @@ namespace LinkOM
 
 			GetPhaseList ();
 
+			GetStatusList ();
+
 			Window.SetSoftInputMode(SoftInput.StateAlwaysHidden);
 
 			//Lock Orientation
-			if (Settings.Orientation.Equals ("Portrait")) {
+			if (Settings.Orientation.Equals ("Portrait")) 
+			{
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			} else {
+			} 
+			else 
+			{
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
@@ -95,19 +114,39 @@ namespace LinkOM
 			ActualEndDatePicker.Click += delegate { ShowDialog (Actual_End_DATE_DIALOG_ID); };
 
 			spinner_Phase = FindViewById<Spinner> (Resource.Id.spinner_Phase);
+
+			spinner_Status = FindViewById<Spinner> (Resource.Id.spinner_Status);
 		}
 
 		public void GetPhaseList (){
 			
-			ProjectPhaseSpinnerAdapter PhaseSpinnerAdapter = new ProjectPhaseSpinnerAdapter (this, PhaseHelper.GetProjectPhaseByProject (ProjectDetail.ProjectId.Value));
-			spinner_Phase.Adapter = PhaseSpinnerAdapter;
+			phaseList = new ProjectPhaseSpinnerAdapter (this, PhaseHelper.GetProjectPhaseByProject (ProjectDetail.ProjectId.Value));
+			spinner_Phase.Adapter = phaseList;
 
-//			if(TaskDetail.ProjectPhaseName!=""){
-//				int index = PhaseAdapter.GetPosition (TaskDetail.ProjectPhaseName);
-//				spinner_Phase.SetSelection(index); 
-//			}
+			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
 
-//			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
+		}
+
+		private void GetStatusList(){
+
+			statusList = new StatusSpinnerAdapter (this,ProjectHelper.GetProjectStatus());
+
+			spinner_Status.Adapter = statusList;
+
+			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (status_ItemSelected);
+
+			if(ProjectDetail.ProjectStatus!=null)
+				spinner_Status.SetSelection(statusList.getPositionByName (ProjectDetail.ProjectStatus));
+		}
+
+		private void status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_StatusID = statusList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void Phase_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_PhaseID = phaseList.GetItemAtPosition (e.Position).Id;
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
@@ -234,22 +273,22 @@ namespace LinkOM
 
 
 			if (StartDatePicker.Text != "")
-				StartDate = DateTime.Parse (StartDatePicker.Text);
+				StartDate = DateTime.Parse (StartDatePicker.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			else
 				StartDate = DateTime.Today;
 
 			if (EndDatePicker.Text != "")
-				EndDate = DateTime.Parse (EndDatePicker.Text);
+				EndDate = DateTime.Parse (EndDatePicker.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			else
 				EndDate = DateTime.Today;
 
 			if (ActualStartDatePicker.Text != "")
-				ActualStartDate = DateTime.Parse (ActualStartDatePicker.Text);
+				ActualStartDate = DateTime.Parse (ActualStartDatePicker.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			else
 				ActualStartDate = DateTime.Today;
 
 			if (ActualEndDatePicker.Text != "")
-				ActualEndDate = DateTime.Parse (ActualEndDatePicker.Text);
+				ActualEndDate = DateTime.Parse (ActualEndDatePicker.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			else
 				ActualEndDate = DateTime.Today;
 			

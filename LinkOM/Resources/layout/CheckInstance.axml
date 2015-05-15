@@ -35,7 +35,7 @@
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:id="@+id/view1"
-        android:background="#ff006848"
+        android:background="#ffe6e6e6"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp" />
     <TableRow

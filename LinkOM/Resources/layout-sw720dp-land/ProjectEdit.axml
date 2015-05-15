@@ -155,7 +155,8 @@
                 android:layout_column="3"
                 android:layout_height="match_parent"
                 android:id="@+id/spinner_Status"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:spinnerMode="dialog" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
