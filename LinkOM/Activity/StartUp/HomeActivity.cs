@@ -126,9 +126,22 @@ namespace LinkOM
 				activity = new Intent (this, typeof(KnowledgebaseActivity));
 				StartActivity (activity);
 				break;
+
+			case 10:
+				Toast.MakeText (this, "Coming Soon.", ToastLength.Short).Show ();
+				break;
+			case 11:
+				Toast.MakeText (this, "Coming Soon.", ToastLength.Short).Show ();
+				break;
 			case 12:
 				activity = new Intent (this, typeof(AlertConfigurationActivity));
 				StartActivity (activity);
+				break;
+			case 14:
+				Toast.MakeText (this, "Coming Soon.", ToastLength.Short).Show ();
+				break;
+			case 15:
+				Toast.MakeText (this, "Coming Soon.", ToastLength.Short).Show ();
 				break;
 			}
 

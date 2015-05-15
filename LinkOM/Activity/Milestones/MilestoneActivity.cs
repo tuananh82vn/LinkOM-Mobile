@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using Android.Views.InputMethods;
 using Android.Text;
 using Android.Content.PM;
-
+using com.refractored.fab;
 
 namespace LinkOM
 {
@@ -41,7 +41,7 @@ namespace LinkOM
 		public MilestonesDetailList MilestoneSelected;
 
 		public string results;
-
+		public FloatingActionButton fab;
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -92,6 +92,18 @@ namespace LinkOM
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
+			var fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+			fab.AttachToListView(milestoneListView);
+			fab.Click += Fab_Click;
+
+		}
+
+		void Fab_Click (object sender, EventArgs e)
+		{
+//			Intent Intent2 = new Intent (this, typeof(MilestoneAddActivity));
+//			Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+//			StartActivity(Intent2);
+			Toast.MakeText (this, "Coming soon.", ToastLength.Short).Show ();
 		}
 
 		public void LoadMilestone(){
@@ -162,6 +174,7 @@ namespace LinkOM
 		}
 
 		public void DisplayMilestone(MilestonesDetailList obj){
+			
 			frameLayout1.Visibility = ViewStates.Visible;
 			var MilestoneName = FindViewById<TextView> (Resource.Id.tv_MilestoneDetailName);
 			MilestoneName.Text = obj.Title;
@@ -195,8 +208,12 @@ namespace LinkOM
 
 			MenuInflater inflater = this.MenuInflater;
 
-			inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
-
+			if (Settings.Orientation.Equals ("Portrait")) {
+				inflater.Inflate (Resource.Menu.SearchMenu, menu);
+			}
+			else
+				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
+			
 			return true;
 		}
 

@@ -34,6 +34,16 @@
                 android:textColor="#000"
                 android:imeOptions="actionSearch"
                 android:inputType="text" />
+            <com.refractored.fab.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_margin="16dp"
+                android:src="@drawable/add"
+                foo:fab_colorNormal="@color/accent"
+                foo:fab_colorPressed="@color/accent_pressed"
+                foo:fab_colorRipple="@color/ripple" />
         </FrameLayout>
         <ScrollView
             android:minWidth="25px"

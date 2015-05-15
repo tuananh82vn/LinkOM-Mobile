@@ -12,19 +12,20 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1"
-        p1:layout_gravity="center_vertical">
+        p1:layout_gravity="center_vertical"
+        p1:layout_marginBottom="10dp">
         <TextView
             p1:text="Document Name"
-            p1:textAppearance="?android:attr/textAppearanceSmall"
             p1:id="@+id/KnowledgebaseName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
             p1:layout_width="match_parent"
             p1:layout_marginLeft="20dp"
-            p1:textColor="#ff000000"
+            p1:textColor="#ff5a5a5a"
             p1:textSize="18dp"
             foo:customFont="Fonts/arial.ttf"
-            p1:layout_marginRight="20dp" />
+            p1:layout_marginRight="20dp"
+            p1:layout_marginTop="5dp" />
     </TableRow>
     <TableRow
         p1:layout_width="match_parent"
@@ -35,38 +36,24 @@
             p1:id="@+id/tv_category"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
-            p1:layout_width="match_parent"
+            p1:layout_width="200dp"
             p1:layout_marginLeft="20dp"
             foo:customFont="Fonts/arial.ttf"
-            p1:textColor="#ffaeaeae"
+            p1:textColor="#ff437800"
             p1:textSize="12dp"
-            p1:layout_marginRight="20dp" />
-    </TableRow>
-    <TableRow
-        p1:layout_width="match_parent"
-        p1:layout_height="23.2dp"
-        p1:id="@+id/tableRow2">
+            p1:layout_marginRight="20dp"
+            p1:layout_marginTop="5dp" />
         <TextView
-            p1:text="Publish on:"
-            p1:id="@+id/tv"
-            p1:layout_height="match_parent"
-            p1:gravity="center_vertical"
-            p1:layout_width="wrap_content"
-            p1:layout_marginLeft="20dp"
-            p1:textColor="#ffaeaeae"
-            foo:customFont="Fonts/arial.ttf"
-            p1:layout_marginRight="5.0dp"
-            p1:textSize="12dp" />
-        <TextView
-            p1:text="01/01/1999"
             p1:id="@+id/tv_publishdate"
             p1:layout_height="match_parent"
-            p1:gravity="center_vertical"
+            p1:gravity="left"
             p1:layout_width="wrap_content"
-            p1:layout_marginLeft="5.0dp"
-            p1:textColor="#ffaeaeae"
+            p1:layout_marginLeft="20dp"
+            p1:textColor="#ff437800"
             foo:customFont="Fonts/arial.ttf"
-            p1:layout_marginRight="5.0dp"
-            p1:textSize="12dp" />
+            p1:layout_marginRight="20dp"
+            p1:textSize="12dp"
+            p1:layout_column="1"
+            p1:layout_marginTop="5dp" />
     </TableRow>
 </LinearLayout>

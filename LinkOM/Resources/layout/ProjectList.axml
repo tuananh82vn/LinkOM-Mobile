@@ -10,36 +10,36 @@
     p1:background="@drawable/list_selector">
     <TableRow
         p1:layout_width="match_parent"
-        p1:layout_height="35.2dp"
+        p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1"
-        p1:layout_marginBottom="5.0dp">
+        p1:layout_marginBottom="10dp">
         <TextView
             p1:text="Project Name"
             p1:id="@+id/tv_ProjectName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
             p1:layout_width="match_parent"
-            p1:layout_marginLeft="5.0dp"
-            p1:textColor="#ff000000"
+            p1:layout_marginLeft="20dp"
+            p1:textColor="#ff5a5a5a"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_marginTop="5dp"
-            p1:textSize="18dp" />
+            p1:textSize="18dp"
+            p1:layout_marginRight="20dp" />
     </TableRow>
     <TableRow
         p1:layout_width="match_parent"
-        p1:layout_height="23.2dp"
-        p1:id="@+id/tableRow2"
-        p1:layout_marginBottom="5.0dp">
+        p1:layout_height="wrap_content"
+        p1:id="@+id/tableRow2">
         <TextView
             p1:text="Client Name"
             p1:id="@+id/tv_ClientName"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
-            p1:layout_width="270.6dp"
-            p1:layout_marginLeft="5.0dp"
-            p1:textColor="#ffaeaeae"
+            p1:layout_width="200dp"
+            p1:layout_marginLeft="20dp"
+            p1:textColor="#ff437800"
             p1:layout_marginTop="5dp"
-            p1:layout_marginRight="5dp"
+            p1:layout_marginRight="20dp"
             foo:customFont="Fonts/arial.ttf"
             p1:textSize="12dp" />
         <TextView
@@ -47,10 +47,10 @@
             p1:id="@+id/tv_Status"
             p1:layout_height="match_parent"
             p1:gravity="center_vertical"
-            p1:layout_marginLeft="5.0dp"
-            p1:textColor="#ffaeaeae"
+            p1:layout_marginLeft="20dp"
+            p1:textColor="#ff437800"
             p1:layout_marginTop="5dp"
-            p1:layout_marginRight="5dp"
+            p1:layout_marginRight="20dp"
             p1:text="Status"
             p1:layout_width="match_parent"
             foo:customFont="Fonts/arial.ttf"

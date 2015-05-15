@@ -50,7 +50,7 @@ namespace LinkOM
 			SetContentView (Resource.Layout.MilestoneEdit);
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
-			ActionBar.SetTitle(Resource.String.document_title_edit);
+			ActionBar.SetTitle(Resource.String.milestone_title_edit);
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);

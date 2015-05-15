@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 using Android.Support.V4.Widget;
 using Android.Views.InputMethods;
 using Android.Text;
-
+using com.refractored.fab;
 namespace LinkOM
 {
 	[Activity (Label = "Document", Theme = "@style/Theme.Customtheme")]				
@@ -43,7 +43,8 @@ namespace LinkOM
 		public FrameLayout frame_Detail;
 
 		public DocumentList documentSelected;
-	
+		public FloatingActionButton fab;
+
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
@@ -66,6 +67,7 @@ namespace LinkOM
 			mSearch.FocusableInTouchMode = false;
 			mSearch.TextChanged += InputSearchOnTextChanged;
 
+			documentListView = FindViewById<ListView> (Resource.Id.DocumentListView);
 
 			InitData ();
 
@@ -80,6 +82,17 @@ namespace LinkOM
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
+			var fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
+			fab.AttachToListView(documentListView);
+			fab.Click += Fab_Click;
+		}
+
+		void Fab_Click (object sender, EventArgs e)
+		{
+			//			Intent Intent2 = new Intent (this, typeof(MilestoneAddActivity));
+			//			Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			//			StartActivity(Intent2);
+			Toast.MakeText (this, "Coming soon.", ToastLength.Short).Show ();
 		}
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
@@ -131,10 +144,10 @@ namespace LinkOM
 			MenuInflater inflater = this.MenuInflater;
 
 			if (Settings.Orientation.Equals ("Portrait")) {
-				inflater.Inflate (Resource.Menu.AddSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.SearchMenu, menu);
 			}
 			else
-				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
 
 			return true;
 		}
@@ -188,7 +201,7 @@ namespace LinkOM
 
 			documentList = new DocumentListAdapter (this,DocumentHelper.GetDocumentList(objectFilter));
 
-			documentListView = FindViewById<ListView> (Resource.Id.DocumentListView);
+
 
 			documentListView.Adapter = documentList;
 

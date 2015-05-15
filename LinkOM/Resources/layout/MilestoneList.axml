@@ -11,7 +11,8 @@
     <TableRow
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/tableRow1">
+        p1:id="@+id/tableRow1"
+        p1:layout_marginBottom="10dp">
         <TextView
             p1:text="Milestone Name"
             p1:id="@+id/tv_MilestoneName"
@@ -26,13 +27,6 @@
             p1:layout_marginRight="20dp" />
     </TableRow>
     <TableRow
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/tableRow1"
-        p1:minWidth="25px"
-        p1:minHeight="25px">
-    </TableRow>
-    <TableRow
         p1:id="@+id/tableRow8"
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content">
@@ -41,23 +35,26 @@
             p1:layout_column="0"
             p1:id="@+id/tv_CreatedPerson"
             p1:layout_height="match_parent"
-            p1:layout_width="wrap_content"
+            p1:layout_width="200dp"
             p1:gravity="left"
             p1:textSize="12dp"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_marginLeft="20dp"
-            p1:textColor="#ff437800" />
+            p1:textColor="#ff437800"
+            p1:layout_marginTop="5dp"
+            p1:layout_marginRight="20dp" />
         <TextView
             p1:text="12/12/2012"
             p1:layout_column="1"
             p1:id="@+id/tv_EndDate"
-            p1:layout_marginLeft="5.0dp"
+            p1:layout_marginLeft="20dp"
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
             p1:gravity="right"
             p1:textColor="#ff437800"
             p1:textSize="12dp"
             foo:customFont="Fonts/arial.ttf"
-            p1:layout_marginRight="20dp" />
+            p1:layout_marginRight="20dp"
+            p1:layout_marginTop="5dp" />
     </TableRow>
 </LinearLayout>
