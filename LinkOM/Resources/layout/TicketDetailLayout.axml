@@ -462,7 +462,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="Allocated Hours"
+                android:text="Allocated Hours:"
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
@@ -528,7 +528,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="Start Date"
+                android:text="Start Date:"
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
@@ -541,7 +541,6 @@
                 foo:customFont="Fonts/arial.ttf"
                 android:layout_marginTop="5dp" />
             <TextView
-                android:text="01/01/1999"
                 android:layout_column="1"
                 android:id="@+id/tv_StartDate"
                 android:textSize="12dp"
@@ -561,7 +560,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="End Date"
+                android:text="End Date:"
                 android:layout_column="0"
                 android:id="@+id/textview"
                 android:textSize="12dp"
@@ -574,7 +573,6 @@
                 foo:customFont="Fonts/arial.ttf"
                 android:layout_marginTop="5dp" />
             <TextView
-                android:text="01/01/1999"
                 android:layout_column="1"
                 android:id="@+id/tv_EndDate"
                 android:textSize="12dp"

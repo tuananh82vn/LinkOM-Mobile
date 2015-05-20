@@ -279,8 +279,12 @@ namespace LinkOM
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
 			button.Text="0";
 			button.Gravity = GravityFlags.Center;
-			button.SetTextColor (Color.Black);
 			button.SetBackgroundColor (color);
+			if (color == Color.Black) {
+				button.SetTextColor (Color.White);
+			}
+			else
+				button.SetTextColor (Color.Black);
 			button.Tag = id;
 			button.Click += HandleMyButton;
 

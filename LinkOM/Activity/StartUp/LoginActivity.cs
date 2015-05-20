@@ -70,12 +70,6 @@ namespace LinkOM
 
 
 
-//			progress = new ProgressDialog (this);
-//			progress.Indeterminate = true;
-//			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-//			progress.SetMessage ("Please wait... 5");
-
-
 			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
 			progressView.MinValue = 0;
 			progressView.MaxValue = 100;
@@ -119,27 +113,12 @@ namespace LinkOM
 
 		private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
 		{
-	//		_countSeconds++;
-
-			//Update visual representation here
-			//Remember to do it on UI thread
-
-//			RunOnUiThread (() => progress.SetMessage("Please wait... "+_countSeconds.ToString()));
-
 			RunOnUiThread (() => progressView.Value ++);
 
 			if (progressView.Value >= 100) {
 				progressView.Value = 0;
 			}
 
-
-//			if (_countSeconds == 10)
-//			{
-////				RunOnUiThread (() => progress.SetCancelable(true));
-////				RunOnUiThread (() => progress.SetMessage("No Connection..."));
-//				_timer.Stop();
-//
-//			}
 		}
 
 		private int ConvertPixelsToDp(float pixelValue)
@@ -162,24 +141,18 @@ namespace LinkOM
 				var imm = (InputMethodManager)GetSystemService (Context.InputMethodService);
 				imm.HideSoftInputFromWindow (password.WindowToken, HideSoftInputFlags.NotAlways);
 
-				//add progress when click login
-
-
 				ThreadPool.QueueUserWorkItem (o => Login());
 			}
 		}
 
 		private void Login(){
 
-//			RunOnUiThread (() => progress.SetCancelable(false));
-//			RunOnUiThread (() => progress.Show());
 
 			_timer.Enabled = true;
 
 			_loginService = new LoginService();
 			LoginObject obj = _loginService.Login (username.Text, password.Text);
 
-//			RunOnUiThread (() => progress.Dismiss());
 
 			if (obj != null) {
 				if (obj.Success)
@@ -213,6 +186,8 @@ namespace LinkOM
 
 		private void onFailLogin(LoginObject obj)
 		{
+			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
+
 			RunOnUiThread (() => Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ());
 		}
 

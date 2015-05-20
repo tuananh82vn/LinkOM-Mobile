@@ -40,7 +40,8 @@ namespace LinkOM
 
 			statusList = TaskHelper.GetTaskStatus ();
 
-			if (statusList.Count > 0 && statusList!=null) {
+
+			if (statusList!=null) {
 
 				TaskStatusName = new string[statusList.Count];
 				int NumberOfTask = 0;

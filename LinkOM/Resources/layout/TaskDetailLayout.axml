@@ -197,7 +197,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="PM :"
+                android:text="Project Manager:"
                 android:layout_column="0"
                 android:id="@+id/textview6"
                 android:textSize="12dp"
@@ -425,7 +425,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="Allocated Hours"
+                android:text="Allocated Hours:"
                 android:layout_column="0"
                 android:id="@+id/textview11"
                 android:textSize="12dp"
@@ -487,7 +487,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="Start Date"
+                android:text="Start Date:"
                 android:layout_column="0"
                 android:id="@+id/textview13"
                 android:textSize="12dp"
@@ -517,7 +517,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="Acctual Start Date"
+                android:text="Act Start Date:"
                 android:layout_column="0"
                 android:id="@+id/textview14"
                 android:textSize="12dp"
@@ -547,7 +547,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="End Date"
+                android:text="End Date:"
                 android:layout_column="0"
                 android:id="@+id/textview15"
                 android:textSize="12dp"
@@ -577,7 +577,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="Exp. Compl. Date"
+                android:text="Exp. Compl. Date:"
                 android:layout_column="0"
                 android:id="@+id/textview16"
                 android:textSize="12dp"

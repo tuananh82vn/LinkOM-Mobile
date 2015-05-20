@@ -106,7 +106,7 @@ namespace LinkOM
 
 		public virtual String Code { get; set; }
 
-		public virtual Int32 OwnerId { get; set; }
+		public virtual Int32? OwnerId { get; set; }
 
 		public bool IsOverDueTasks { get; set; }
 
