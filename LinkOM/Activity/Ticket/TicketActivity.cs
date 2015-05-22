@@ -163,7 +163,7 @@ namespace LinkOM
 				inflater.Inflate (Resource.Menu.AddMenu, menu);
 			}
 			else
-				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
 			return true;
 		}
 

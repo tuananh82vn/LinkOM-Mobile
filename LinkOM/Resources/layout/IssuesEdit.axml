@@ -80,11 +80,11 @@
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/tableRow1">
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_Project"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -105,7 +105,7 @@
                 android:text="Status"
                 android:layout_column="0"
                 android:layout_height="wrap_content"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
@@ -119,22 +119,8 @@
                 android:text="Priority"
                 android:layout_column="1"
                 android:layout_height="wrap_content"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_marginRight="5dp"
-                android:textColor="#ff00947A"
-                foo:customFont="Fonts/arial.ttf"
-                android:textSize="18dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginTop="5dp"
-                android:textStyle="normal" />
-            <TextView
-                android:id="@+id/MyTextView"
-                android:text="Label"
-                android:layout_column="2"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="20dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
                 android:textSize="18dp"
@@ -146,33 +132,24 @@
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
             <Spinner
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_column="0"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_Status"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="5dp"
                 android:spinnerMode="dialog"
                 android:gravity="center_vertical" />
             <Spinner
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_column="1"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_Priority"
                 android:layout_marginRight="5dp"
-                android:spinnerMode="dialog"
-                android:gravity="center_vertical" />
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_column="2"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner_Label"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="20dp"
                 android:spinnerMode="dialog"
                 android:gravity="center_vertical" />
         </TableRow>
@@ -201,12 +178,12 @@
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_AssignedTo"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -238,12 +215,12 @@
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
             <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_Owner"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -284,7 +261,7 @@
                 android:id="@+id/textview"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
@@ -296,14 +273,13 @@
                 android:layout_column="1"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_StartDate"
+                android:id="@+id/editText_OpenDate"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:clickable="true"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:textSize="12dp"
-                android:text="01/01/1900" />
+                android:textSize="12dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -318,7 +294,7 @@
                 android:id="@+id/textview"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
@@ -330,14 +306,13 @@
                 android:layout_column="1"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_EndDate"
+                android:id="@+id/editText_CloseDate"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:clickable="true"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:textSize="12dp"
-                android:text="01/01/1900" />
+                android:textSize="12dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -352,7 +327,7 @@
                 android:id="@+id/textview"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
@@ -364,14 +339,13 @@
                 android:layout_column="1"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText_ActualStartDate"
+                android:id="@+id/editText_ResDate"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:clickable="true"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:textSize="12dp"
-                android:text="01/01/1900" />
+                android:textSize="12dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -386,39 +360,7 @@
                 android:id="@+id/textview"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="0dp"
-                android:textStyle="normal" />
-            <EditText
-                android:inputType="numberDecimal"
-                android:layout_column="1"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/editText_AllocatedHours"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:imeOptions="actionDone"
-                android:textSize="12dp"
-                android:text="0" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical">
-            <TextView
-                android:text="Actual Hours:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="120dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
@@ -504,7 +446,7 @@
             android:layout_marginBottom="0dp">
             <EditText
                 android:inputType="textMultiLine"
-                android:id="@+id/editText_Description"
+                android:id="@+id/editText_Action"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"

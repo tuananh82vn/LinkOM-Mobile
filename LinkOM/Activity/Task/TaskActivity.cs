@@ -50,6 +50,10 @@ namespace LinkOM
 		public FrameLayout frame_TaskDetail;
 		public FloatingActionButton fab;
 
+		public TaskCommentListAdapter taskCommentListAdapter;
+
+		public ListView taskCommentListView;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 
@@ -170,7 +174,7 @@ namespace LinkOM
 				inflater.Inflate (Resource.Menu.AddMenu, menu);
 			}
 			else
-				inflater.Inflate (Resource.Menu.EditSearchMenu, menu);
+				inflater.Inflate (Resource.Menu.AddEditSearchMenu, menu);
 			return true;
 		}
 
@@ -190,7 +194,6 @@ namespace LinkOM
 				fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
 				if (fab != null) {
 					fab.Visibility = ViewStates.Invisible;
-					fab.Hide ();
 					fab.AttachToListView (taskListView);
 					fab.Click += Fab_Click;
 				}
@@ -385,6 +388,21 @@ namespace LinkOM
 			frame_TaskDetail.Visibility = ViewStates.Visible;
 
 			DisplayTask (TaskSelected);
+
+			LoadTaskComment (TaskSelected.Id);
+		}
+
+		public void LoadTaskComment(int Id){
+
+			taskCommentListAdapter = new TaskCommentListAdapter (this, TaskHelper.GetTaskCommentList(Id));
+
+			taskCommentListView = FindViewById<ListView> (Resource.Id.TaskCommentListView);
+
+			taskCommentListView.Adapter = taskCommentListAdapter;
+
+			taskCommentListView.DividerHeight = 0;
+
+			Utility.setListViewHeightBasedOnChildren (taskCommentListView);
 		}
 
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)

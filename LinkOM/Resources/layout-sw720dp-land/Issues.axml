@@ -122,43 +122,66 @@
                         android:layout_marginBottom="0dp"
                         android:id="@+id/tableRow7">
                         <TextView
+                            android:text="Code:"
+                            android:id="@+id/textView30"
+                            android:textSize="12dp"
+                            foo:customFont="Fonts/arial.ttf"
+                            android:textColor="#ff437800"
+                            android:layout_width="80dp"
+                            android:layout_marginLeft="25dp"
+                            android:layout_column="0"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_CodeIssues"
+                            android:textSize="12dp"
+                            android:textColor="#ff000000"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            foo:customFont="Fonts/arial.ttf"
+                            android:gravity="center_vertical"
+                            android:layout_column="1" />
+                        <TextView
                             android:text="Status:"
                             android:id="@+id/textView30"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff437800"
-                            android:layout_width="100dp"
-                            android:layout_marginLeft="25dp" />
+                            android:layout_width="80dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_column="2"
+                            android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_DetailStatus"
                             android:textSize="12dp"
                             android:textColor="#ff000000"
-                            android:layout_width="100dp"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
+                            android:layout_marginLeft="10dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:gravity="center_vertical"
-                            android:layout_column="1" />
+                            android:layout_column="3" />
                         <TextView
                             android:text="Priority:"
                             android:id="@+id/textView30"
-                            android:layout_marginLeft="25.0dp"
-                            android:layout_width="100dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="80dp"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff437800"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="0.0dp" />
+                            android:layout_marginRight="0.0dp"
+                            android:layout_column="4" />
                         <TextView
                             android:id="@+id/tv_Priority"
                             android:textSize="12dp"
                             android:textColor="#ff000000"
-                            android:layout_width="100dp"
+                            android:layout_width="80dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
-                            android:layout_column="1" />
+                            android:layout_column="5" />
                     </TableRow>
                     <TableRow
                         android:minWidth="25px"
@@ -207,37 +230,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:layout_marginRight="30dp"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" />
-                    </TableRow>
-                    <TableRow
-                        android:id="@+id/tableRow12"
-                        android:minWidth="25px"
-                        android:minHeight="25px"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:text="Project Manager:"
-                            android:layout_column="0"
-                            android:id="@+id/textview"
-                            android:textSize="12dp"
-                            foo:customFont="Fonts/arial.ttf"
-                            android:textColor="#ff437800"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" />
-                        <TextView
-                            android:layout_column="1"
-                            android:id="@+id/tv_ProjectManager"
-                            android:textSize="12dp"
-                            foo:customFont="Fonts/arial.ttf"
-                            android:textColor="#ff000000"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginRight="15.0dp"
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                     </TableRow>
@@ -422,7 +414,7 @@
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff437800"
-                            android:layout_width="100dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:gravity="center_vertical"
@@ -436,7 +428,7 @@
                             android:textColor="#ff000000"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                         <TextView
@@ -460,7 +452,7 @@
                             android:textColor="#ff000000"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                     </TableRow>
@@ -477,24 +469,24 @@
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff437800"
-                            android:layout_width="100dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                         <TextView
                             android:layout_column="1"
-                            android:id="@+id/tv_StartDate"
+                            android:id="@+id/tv_OpenDate"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff000000"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                         <TextView
-                            android:text="End Date:"
+                            android:text="Closed Date:"
                             android:layout_column="0"
                             android:id="@+id/textview"
                             android:textSize="12dp"
@@ -507,13 +499,13 @@
                             android:layout_marginTop="5dp" />
                         <TextView
                             android:layout_column="1"
-                            android:id="@+id/tv_EndDate"
+                            android:id="@+id/tv_ClosedDate"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff000000"
                             android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                     </TableRow>
@@ -530,20 +522,20 @@
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff437800"
-                            android:layout_width="100dp"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="25dp"
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
                         <TextView
                             android:layout_column="1"
-                            android:id="@+id/tv_EndDate"
+                            android:id="@+id/tv_ResDate"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff000000"
-                            android:layout_width="match_parent"
+                            android:layout_width="100dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_marginRight="15.0dp"
                             android:gravity="center_vertical"
                             android:layout_marginTop="5dp" />
@@ -636,7 +628,7 @@
                         android:layout_height="wrap_content">
                         <TextView
                             android:layout_column="0"
-                            android:id="@+id/tv_Description"
+                            android:id="@+id/tv_Action"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff000000"
@@ -655,7 +647,7 @@
                         android:id="@+id/tableRow7"
                         android:layout_marginTop="10dp">
                         <TextView
-                            android:text="Department"
+                            android:text="Change History"
                             android:layout_column="0"
                             android:id="@+id/textview"
                             android:textSize="18dp"
@@ -677,25 +669,10 @@
                         android:background="#ffe6e6e6"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp" />
-                    <TableRow
-                        android:id="@+id/tableRow12"
-                        android:minWidth="25px"
-                        android:minHeight="25px"
+                    <ListView
+                        android:id="@+id/IssuesCommentListView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_column="0"
-                            android:id="@+id/tv_Department"
-                            android:textSize="12dp"
-                            foo:customFont="Fonts/arial.ttf"
-                            android:textColor="#ff000000"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="25dp"
-                            android:layout_marginRight="30dp"
-                            android:gravity="center_vertical"
-                            android:layout_marginTop="5dp" />
-                    </TableRow>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </FrameLayout>
         </ScrollView>

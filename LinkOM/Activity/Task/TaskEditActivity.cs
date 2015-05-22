@@ -439,25 +439,25 @@ namespace LinkOM
 		// the event received when the user "sets" the date in the dialog
 		void OnStartDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			editText_StartDate.Text = e.Date.ToString ("d");
+			editText_StartDate.Text = e.Date.ToString ("dd'/'MM'/'yyyy");
 		}
 
 		// the event received when the user "sets" the date in the dialog
 		void OnEndDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			editText_EndDate.Text = e.Date.ToString ("d");
+			editText_EndDate.Text = e.Date.ToString ("dd'/'MM'/'yyyy");
 		}
 
 		// the event received when the user "sets" the date in the dialog
 		void OnActualStartDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			editText_ActualStartDate.Text = e.Date.ToString ("d");
+			editText_ActualStartDate.Text = e.Date.ToString ("dd'/'MM'/'yyyy");
 		}
 
 		// the event received when the user "sets" the date in the dialog
 		void OnActualEndDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			editText_ActualEndDate.Text = e.Date.ToString ("d");
+			editText_ActualEndDate.Text = e.Date.ToString ("dd'/'MM'/'yyyy");
 		}
 
 		protected override Dialog OnCreateDialog (int id)

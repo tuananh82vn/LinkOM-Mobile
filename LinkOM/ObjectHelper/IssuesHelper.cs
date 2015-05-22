@@ -161,6 +161,62 @@ namespace LinkOM
 				return null;
 		}
 
+		public static ApiResultSave EditIssue(IssuesEdit objTaskDetail){
+
+			string url = Settings.InstanceURL;
+
+			string url_Task= url+"/api/EditIssue";
+
+
+			var objIssue = (new
+				{
+					objIssue = new
+					{
+						TokenNumber = Settings.Token,
+						Item = objTaskDetail
+					}
+				});
+
+			string results_Task= ConnectWebAPI.Request(url_Task,objIssue);
+
+			if (results_Task != null) {
+
+				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
+				return data;
+
+			} 
+			else
+				return null;
+		}
+
+		public static ApiResultSave AddIssue(IssuesAdd objTaskDetail){
+
+			string url = Settings.InstanceURL;
+
+			string url_Task= url+"/api/AddIssue";
+
+
+			var objIssue = (new
+				{
+					objIssue = new
+					{
+						TokenNumber = Settings.Token,
+						Item = objTaskDetail
+					}
+				});
+
+			string results_Task= ConnectWebAPI.Request(url_Task,objIssue);
+
+			if (results_Task != null) {
+
+				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
+				return data;
+
+			} 
+			else
+				return null;
+		}
+
 
 	}
 }

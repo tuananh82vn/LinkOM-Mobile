@@ -233,6 +233,7 @@
     <Compile Include="Adapter\StatusSpinnerAdapter.cs" />
     <Compile Include="ObjectHelper\DashboardHelper.cs" />
     <Compile Include="Model\ViewModel\TicketObject.cs" />
+    <Compile Include="Model\ViewModel\IssuesObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -545,6 +546,7 @@
     <AndroidResource Include="Resources\layout\MainContentLayout2.axml" />
     <AndroidResource Include="Resources\drawable\style_button.xml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\MainContentLayout2.axml" />
+    <AndroidResource Include="Resources\menu\RefeshMenu.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -119,61 +119,51 @@ namespace LinkOM
 
 		public void DisplayIssues(IssuesDetailList obj){
 
-			var IssuesName = FindViewById<TextView> (Resource.Id.tv_IssuesName);
+			var IssuesName = FindViewById<TextView> (Resource.Id.tv_IssuesDetailName);
 			IssuesName.Text = obj.Title;
 
-			var Status = FindViewById<TextView> (Resource.Id.tv_Status);
+			var Status = FindViewById<TextView> (Resource.Id.tv_DetailStatus);
 			Status.Text = obj.StatusName;
+
+			var tv_CodeIssues = FindViewById<TextView> (Resource.Id.tv_CodeIssues);
+			tv_CodeIssues.Text = obj.IssueCode;
 
 			var Priority = FindViewById<TextView> (Resource.Id.tv_Priority);
 			Priority.Text = obj.PriorityName;
 
-//			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-//			Internal.Checked = obj.IsInternal;
 
-//			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-//			Management.Checked = obj.IsManagement;
-
-
-			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
 			ProjectName.Text = obj.ProjectName;
 
-//			var ProjectManager = FindViewById<TextView> (Resource.Id.tv_ProjectManager);
-//			ProjectManager.Text = obj.ProjectManager;
+			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
+			tv_AssignedTo.Text = obj.AssignedToName;
 
-
-//			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
-//			Label.Text = obj.Label;
-//
-//			var Type = FindViewById<TextView> (Resource.Id.tv_Type);
-//			Type.Text = obj.IssuesTypeName;
-//
-//			var Receive  = FindViewById<TextView> (Resource.Id.tv_Receive);
-//			Receive.Text = obj.IssuesReceivedMethodName;
-
+			var tv_Owner = FindViewById<TextView> (Resource.Id.tv_Owner);
+			tv_Owner.Text = obj.OwnerName;
 
 			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
 			AlloHours.Text = obj.AllocatedHours.ToString();
 
-//			var ActualHours  = FindViewById<TextView> (Resource.Id.tv_ActualHours);
-//			ActualHours.Text = obj.ActualHours.ToString();
+			var OpenDate = FindViewById<TextView> (Resource.Id.tv_OpenDate);
+			if(obj.OpenDateString!=null)
+				OpenDate.Text = obj.OpenDateString;
 
-//			var StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
-//			if(obj.StartDate!=null)
-//				StartDate.Text = obj.StartDateString;
-//
-//			var EndDate = FindViewById<TextView> (Resource.Id.tv_EndDate);
-//			if(obj.EndDate!=null)
-//				EndDate.Text = obj.EndDateString;
+			var tv_ClosedDate = FindViewById<TextView> (Resource.Id.tv_ClosedDate);
+			if(obj.CloseDateString!=null)
+				tv_ClosedDate.Text = obj.CloseDateString;
 
+			var tv_ResDate = FindViewById<TextView> (Resource.Id.tv_ResDate);
+			if(obj.RessolutionTargetDateString!=null)
+				tv_ResDate.Text = obj.RessolutionTargetDateString;
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
 			if(obj.IssueDescription!=null)
 				Description.Text = obj.IssueDescription;
 
-//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
-//			DepartmentName.Text = obj.DepartmentName;
 
+			var Action = FindViewById<TextView> (Resource.Id.tv_Action);
+			if(obj.IssueAction!=null)
+				Action.Text = obj.IssueAction;
 		}
 	}
 }

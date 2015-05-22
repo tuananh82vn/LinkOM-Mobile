@@ -73,9 +73,8 @@ namespace LinkOM
 			this.drawerLayout.SetDrawerListener (this.drawerToggle);
 
 			Android.Support.V4.App.Fragment fragment = new HomeFragment ();
-			SupportFragmentManager.BeginTransaction ()
-				.Replace (Resource.Id.content_frame, fragment)
-				.Commit ();
+
+			SupportFragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, fragment).Commit ();
 			
 
 			this.ActionBar.SetDisplayHomeAsUpEnabled (true);
@@ -150,6 +149,18 @@ namespace LinkOM
 			this.drawerLayout.CloseDrawers();
 		}
 
+		//Init menu on action bar
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			base.OnCreateOptionsMenu (menu);
+
+			MenuInflater inflater = this.MenuInflater;
+
+			inflater.Inflate (Resource.Menu.RefeshMenu, menu);
+
+			return true;
+		}
+
 		public override bool OnPrepareOptionsMenu (IMenu menu)
 		{
 
@@ -181,7 +192,22 @@ namespace LinkOM
 			if (this.drawerToggle.OnOptionsItemSelected (item))
 				return true;
 
-			return base.OnOptionsItemSelected (item);
+			base.OnOptionsItemSelected (item);
+
+			switch (item.ItemId)
+			{
+
+				case Resource.Id.refesh:
+					Android.Support.V4.App.Fragment fragment = new HomeFragment ();
+					SupportFragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, fragment).Commit ();
+					Toast.MakeText (this, "Reloaded", ToastLength.Short).Show ();
+					break;
+			
+				default:
+					break;
+			}
+
+			return true;
 		}
 
 		public override void OnBackPressed() {

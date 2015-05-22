@@ -48,11 +48,14 @@ namespace LinkOM
 			RelativeLayout bt_Document = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Documents);
 			bt_Document.Click += bt_DocumentClick;
 
-			if (Settings.Orientation.Equals ("Landscape")) {
+			if (Settings.Orientation.Equals ("Landscape")) 
+			{
 				milestoneListView = view.FindViewById<ListView> (Resource.Id.MilestoneListView);
 				InitDataMilestone ();
 				InitDataDashboard (view);
-			} else {
+			} 
+			else 
+			{
 				InitSmallDataDashboard (view);
 			}
 

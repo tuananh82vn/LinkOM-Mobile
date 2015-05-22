@@ -21,60 +21,59 @@ namespace LinkOM
 
 		const int Start_DATE_DIALOG_ID = 0;
 		const int End_DATE_DIALOG_ID = 1;
-		const int Actual_Start_DATE_DIALOG_ID = 2;
-		const int Actual_End_DATE_DIALOG_ID = 3;
+		const int Res_DATE_DIALOG_ID = 2;
 
 
-		public IssuesList IssuesDetail;
+		public IssuesDetailList IssuesDetail;
 
 		public ProjectSpinnerAdapter projectList; 
 		public ArrayAdapter PriorityAdapter;
 
 		public DateTime StartDate;
 		public DateTime EndDate;
-		public DateTime ActualStartDate;
-		public DateTime ActualEndDate;
+		public DateTime ResDate;
 
+		public StaffSpinnerAdapter OwnerStaffList; 
+		public StaffSpinnerAdapter AssignToStaffList;
 
 		public int Selected_ProjectID;
 		public int Selected_PriorityID;
 		public int Selected_StatusID;
 		public int Selected_PhaseID;
+		public int Selected_OwnerStaffID;
+		public int Selected_AssignToStaffID;
 
 
 		public EditText editText_Title;
 
 		public Spinner spinner_Project ;
 
-		public CheckBox cb_Internal ;
-
-		public CheckBox cb_WatchList ;
-
-		public CheckBox cb_Management ;
-
 		public Spinner spinner_Status ;
 
 		public Spinner spinner_Priority ;
+
+		public Spinner spinner_Label;
 
 		public Spinner spinner_AssignedTo ;
 
 		public Spinner spinner_Owner;
 
-		public EditText editText_StartDate ;
 
-		public EditText editText_EndDate ;
+		public EditText editText_OpenDate ;
 
-		public EditText editText_ActualStartDate ;
+		public EditText editText_CloseDate ;
 
-		public EditText editText_ActualEndDate ;
+		public EditText editText_ResDate ;
+
 
 		public EditText editText_AllocatedHours ;
 
 		public EditText editText_Description ;
 
-		public Spinner spinner_Phase ;
+		public EditText editText_Action ;
 
-		public Spinner spinner_Label;
+
+		public StatusSpinnerAdapter statusList;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -90,23 +89,13 @@ namespace LinkOM
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
 
-//			LoadIssues ();
-
 			InitControl ();
 
-//			GetProjectList ();
+			GetProjectList ();
 
 			GetStatusList ();
 
 			GetPriorityList ();
-
-//			GetStaffList ();
-//
-//			GetPhaseList ();
-
-//			GetLabel ();
-
-//			DisplayIssues (IssuesDetail);
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -123,36 +112,95 @@ namespace LinkOM
 
 			spinner_Project = FindViewById<Spinner> (Resource.Id.spinner_Project);
 
-			cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-
-			cb_Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-
 			spinner_Status = FindViewById<Spinner> (Resource.Id.spinner_Status);
 
 			spinner_Priority = FindViewById<Spinner> (Resource.Id.spinner_Priority);
+
 
 			spinner_AssignedTo = FindViewById<Spinner> (Resource.Id.spinner_AssignedTo);
 
 			spinner_Owner= FindViewById<Spinner> (Resource.Id.spinner_Owner);
 
-			editText_StartDate = FindViewById<EditText> (Resource.Id.editText_StartDate);
 
-			editText_EndDate = FindViewById<EditText> (Resource.Id.editText_EndDate);
+			editText_OpenDate = FindViewById<EditText> (Resource.Id.editText_OpenDate);
+
+			editText_CloseDate = FindViewById<EditText> (Resource.Id.editText_CloseDate);
+
+			editText_ResDate = FindViewById<EditText> (Resource.Id.editText_ResDate);
 
 			editText_AllocatedHours = FindViewById<EditText> (Resource.Id.editText_AllocatedHours);
 
+
 			editText_Description = FindViewById<EditText> (Resource.Id.editText_Description);
 
-			spinner_Phase = FindViewById<Spinner> (Resource.Id.spinner_Phase);
+			editText_Action = FindViewById<EditText> (Resource.Id.editText_Action);
 
-			spinner_Label= FindViewById<Spinner> (Resource.Id.spinner_Label);
 
-			editText_StartDate.Click += delegate { ShowDialog (Start_DATE_DIALOG_ID); };
-			editText_EndDate.Click += delegate { ShowDialog (End_DATE_DIALOG_ID); };
+			editText_OpenDate.Click += delegate { ShowDialog (Start_DATE_DIALOG_ID); };
+			editText_CloseDate.Click += delegate { ShowDialog (End_DATE_DIALOG_ID); };
+			editText_ResDate.Click += delegate { ShowDialog (Res_DATE_DIALOG_ID); };
 
+			StartDate = DateTime.Today;
+			EndDate= DateTime.Today;
+			ResDate= DateTime.Today;
 
 		}
 
+		private void GetOwnerStaffList(int ProjectId){
+
+			SearchAssignedByProject objFilter = new SearchAssignedByProject ();
+			objFilter.ProjectId = ProjectId;
+
+			OwnerStaffList = new StaffSpinnerAdapter (this,StaffHelper.GetOwnerByProject(objFilter));
+			spinner_Owner.Adapter = null;
+
+			spinner_Owner.Adapter = OwnerStaffList;
+
+			spinner_Owner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (OwnerStaff_ItemSelected);
+		}
+
+		private void OwnerStaff_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_OwnerStaffID = OwnerStaffList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void GetAssignToStaffList(int ProjectId){
+
+			SearchAssignedByProject objFilter = new SearchAssignedByProject ();
+			objFilter.ProjectId = ProjectId;
+
+			AssignToStaffList = new StaffSpinnerAdapter (this,StaffHelper.GetAssignedToByProject(objFilter));
+
+			spinner_AssignedTo.Adapter = null;
+
+			spinner_AssignedTo.Adapter = AssignToStaffList;
+
+			spinner_AssignedTo.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (AssignToStaff_ItemSelected);
+		}
+
+		private void AssignToStaff_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_AssignToStaffID = AssignToStaffList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void GetProjectList(){
+
+			projectList = new ProjectSpinnerAdapter (this,ProjectHelper.GetProjectList());
+
+			spinner_Project.Adapter = projectList;
+
+			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
+
+		}
+
+		private void project_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_ProjectID = projectList.GetItemAtPosition (e.Position).Id.Value;
+
+			GetOwnerStaffList (Selected_ProjectID);
+
+			GetAssignToStaffList (Selected_ProjectID);
+		}
 
 		//Handle item on action bar clicked
 		public override bool OnOptionsItemSelected (IMenuItem item)
@@ -166,7 +214,7 @@ namespace LinkOM
 					break;
 
 				case Resource.Id.save:
-					OnBackPressed ();
+					btSaveClick ();
 					break;
 
 				default:
@@ -191,90 +239,12 @@ namespace LinkOM
 		private void GetPriorityList(){
 			//Handle priority
 
-			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
-			PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Resource.Layout.SpinnerItemDropdown);
+			//PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+
 			spinner_Priority.Adapter = PriorityAdapter;
 
-
 			spinner_Priority.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Priority_ItemSelected);
-		}
-
-		private void GetStatusList(){
-
-			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
-			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-			spinner_Status.Adapter = StatusAdapter;
-
-
-			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
-		}
-
-
-//		private void GetProjectList(){
-//			//Handle Project Spinner
-//			string TokenNumber = Settings.Token;
-//			string url = Settings.InstanceURL;
-//
-//			url=url+"/api/ProjectList";
-//
-//
-//			List<objSort> objSort = new List<objSort>{
-//				new objSort{ColumnName = "P.Name", Direction = "1"},
-//				new objSort{ColumnName = "C.Name", Direction = "2"}
-//			};
-//
-//			var objProject = new
-//			{
-//				Name = string.Empty,
-//				ClientName = string.Empty,
-//				DepartmentId = string.Empty,
-//				ProjectStatusId = string.Empty,
-//			};
-//
-//			var objsearch = (new
-//				{
-//					objApiSearch = new
-//					{
-//						TokenNumber = TokenNumber,
-//						PageSize = 20,
-//						PageNumber = 1,
-//						Sort = objSort,
-//						Item = objProject
-//					}
-//				});
-//
-//			string results= ConnectWebAPI.Request(url,objsearch);
-//
-//			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
-//
-//			projectList = new ProjectSpinnerAdapter (this,ProjectList.Items);
-//
-//
-//			spinner_Project.Adapter = projectList;
-//
-//
-//			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
-//		}
-
-		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
-		{
-			Spinner spinner = (Spinner)sender;
-			string StatusName = spinner.GetItemAtPosition (e.Position).ToString();
-			if(StatusName.Equals("Open")){
-				Selected_StatusID=1;
-			}
-			else if(StatusName.Equals("Closed")){
-				Selected_StatusID=2;
-			}
-			else if(StatusName.Equals("Waiting On Client")){
-				Selected_StatusID=3;
-			}
-			else if(StatusName.Equals("In Progress")){
-				Selected_StatusID=4;
-			}
-			else if(StatusName.Equals("On Hold")){
-				Selected_StatusID=5;
-			}
 		}
 
 		private void Priority_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
@@ -285,101 +255,86 @@ namespace LinkOM
 				Selected_PriorityID=1;
 			}
 			else if(PriorityName.Equals("Medium")){
-					Selected_PriorityID=2;
-				}
+				Selected_PriorityID=2;
+			}
 			else if(PriorityName.Equals("High")){
-						Selected_PriorityID=3;
-					}
-		}
-
-		private void Phase_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
-		{
-			Spinner spinner = (Spinner)sender;
-			string PhaseName = spinner.GetItemAtPosition (e.Position).ToString();
-			if(PhaseName.Equals("Low")){
-				Selected_PhaseID=1;
+				Selected_PriorityID=3;
 			}
 		}
 
-		private void project_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		private void GetStatusList(){
+
+			statusList = new StatusSpinnerAdapter (this,IssuesHelper.GetIssuesStatusList());
+
+			spinner_Status.Adapter = statusList;
+
+			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
+		}
+
+		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
-			Selected_ProjectID = projectList.GetItemAtPosition (e.Position).Id.Value;
+			Selected_StatusID = statusList.GetItemAtPosition (e.Position).Id;
 		}
 
 
-		public void btSaveClick(object sender, EventArgs e)
+
+		public void btSaveClick()
 		{
-			string TokenNumber = Settings.Token;
-			string url = Settings.InstanceURL;
+			IssuesAdd IssueObject = new IssuesAdd ();
+			IssueObject.Title = editText_Title.Text;
+			IssueObject.ProjectId = Selected_ProjectID;
+			IssueObject.StatusId = Selected_StatusID;
+			IssueObject.PriorityId = Selected_PriorityID;
 
-			url=url+"/api/EditIssues";
+			if (editText_OpenDate.Text != "")
+				IssueObject.OpenDate = DateTime.Parse(editText_OpenDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 
-			var objItem = new
-			{
-				Id = IssuesDetail.Id,
-	//			Guid = IssuesDetail.Guid,
-	//			AssignedToId= IssuesDetail.AssignedToId,
-				AssignToName= String.Empty,
-				Title= editText_Title.Text,
-				ProjectId= Selected_ProjectID,
-				OwnerId= IssuesDetail.OwnerId,
-				StartDate= editText_StartDate.Text,
-				EndDate= editText_EndDate.Text,
-				PriorityId= Selected_PriorityID,
-				IssuesStatusId= Selected_StatusID,
-				AllocatedHours= editText_AllocatedHours.Text,
-				IsUserWatch = cb_WatchList.Checked,
-				UpdatedBy = IssuesDetail.CreatedBy,
-			};
+			if (editText_CloseDate.Text != "")
+				IssueObject.CloseDate = DateTime.Parse(editText_CloseDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 
-			var objEditIssues = (new
-				{
-					objIssues = new
-					{
-						UserId = Settings.UserId,
-						UserName = Settings.Username,
-						Item = objItem
-					}
-				});
+			if (editText_ResDate.Text != "")
+				IssueObject.RessolutionTargetDate = DateTime.Parse(editText_ResDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 
-			string results= ConnectWebAPI.Request(url,objEditIssues);
 
-			if (results != null) {
-				ResultsJson ResultsJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
+			IssueObject.AssignedToId = Selected_AssignToStaffID;
+			IssueObject.OwnerId = Selected_OwnerStaffID;
 
-				if (ResultsJson.Success) {
-					Toast.MakeText (this, "Issues Saved", ToastLength.Short).Show ();
-				} else
-					Toast.MakeText (this, ResultsJson.ErrorMessage, ToastLength.Short).Show ();
+			if (editText_AllocatedHours.Text != "")
+				IssueObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
+
+			IssueObject.Description = editText_Description.Text;
+
+			ApiResultSave restult = IssuesHelper.AddIssue (IssueObject);
+			if (restult != null) {
+				if (restult.Success) {
+					OnBackPressed ();
+					Toast.MakeText (this, "Issue Added", ToastLength.Short).Show ();
+				}
+				else
+					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();
 			}
 			else
-				Toast.MakeText (this, "Error to connect to server", ToastLength.Short).Show ();
-
+				Toast.MakeText (this, "Server problem...", ToastLength.Short).Show ();
 		}
 
 		// the event received when the user "sets" the date in the dialog
 		void OnStartDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			editText_StartDate.Text = e.Date.ToString ("d");
+			editText_OpenDate.Text = e.Date.ToString ("dd'/'MM'/'yyyy");
 		}
 
 		// the event received when the user "sets" the date in the dialog
 		void OnEndDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			editText_EndDate.Text = e.Date.ToString ("d");
+			editText_CloseDate.Text = e.Date.ToString ("dd'/'MM'/'yyyy");
 		}
 
 		// the event received when the user "sets" the date in the dialog
-		void OnActualStartDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
+		void OnResDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
-			editText_ActualStartDate.Text = e.Date.ToString ("d");
+			editText_ResDate.Text = e.Date.ToString ("dd'/'MM'/'yyyy");
 		}
 
-		// the event received when the user "sets" the date in the dialog
-		void OnActualEndDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
-		{
-			editText_ActualEndDate.Text = e.Date.ToString ("d");
-		}
 
 		protected override Dialog OnCreateDialog (int id)
 		{
@@ -389,10 +344,8 @@ namespace LinkOM
 			case End_DATE_DIALOG_ID:
 				return new DatePickerDialog (this, OnEndDateSet, EndDate.Year, EndDate.Month - 1, EndDate.Day); 
 
-			case Actual_Start_DATE_DIALOG_ID:
-				return new DatePickerDialog (this, OnActualStartDateSet, ActualStartDate.Year, ActualStartDate.Month - 1, ActualStartDate.Day); 
-			case Actual_End_DATE_DIALOG_ID:
-				return new DatePickerDialog (this, OnActualEndDateSet, ActualEndDate.Year, ActualEndDate.Month - 1, ActualEndDate.Day); 
+			case Res_DATE_DIALOG_ID:
+				return new DatePickerDialog (this, OnResDateSet, ResDate.Year, ResDate.Month - 1, ResDate.Day); 
 			}
 			return null;
 		}
