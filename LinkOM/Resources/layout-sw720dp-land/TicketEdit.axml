@@ -18,7 +18,7 @@
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
             <TextView
-                android:id="@+id/MyTextView"
+                android:id="@+id/tv_TicketTitle"
                 android:text="Title"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
@@ -88,12 +88,23 @@
                 android:layout_marginBottom="0dp" />
             <TextView
                 android:id="@+id/MyTextView"
-                android:text="Management?"
+                android:text="Ticket Type"
                 android:layout_column="2"
                 android:layout_height="wrap_content"
                 android:layout_width="150dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#ff00947A"
+                foo:customFont="Fonts/arial.ttf"
+                android:textSize="18dp"
+                android:layout_marginBottom="0dp" />
+            <TextView
+                android:id="@+id/MyTextView"
+                android:text="Received Method"
+                android:layout_column="2"
+                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
                 android:textColor="#ff00947A"
                 foo:customFont="Fonts/arial.ttf"
@@ -104,11 +115,11 @@
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/tableRow1">
             <Spinner
                 android:layout_width="320dp"
-                android:layout_height="33dp"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_Project"
                 android:layout_marginLeft="40dp"
                 android:gravity="center_vertical"
@@ -119,15 +130,31 @@
             <CheckBox
                 android:layout_width="150dp"
                 android:layout_column="1"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/cb_Internal"
                 android:layout_marginLeft="20dp" />
-            <CheckBox
+            <Spinner
                 android:layout_width="150dp"
-                android:layout_column="2"
-                android:layout_height="wrap_content"
-                android:id="@+id/cb_Management"
-                android:layout_marginLeft="20dp" />
+                android:layout_column="1"
+                android:layout_height="match_parent"
+                android:id="@+id/spinner_Type"
+                android:layout_marginLeft="20dp"
+                android:spinnerMode="dialog"
+                android:gravity="center_vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_marginTop="5dp" />
+            <Spinner
+                android:layout_width="150dp"
+                android:layout_column="1"
+                android:layout_height="match_parent"
+                android:id="@+id/spinner_Method"
+                android:layout_marginLeft="20dp"
+                android:spinnerMode="dialog"
+                android:gravity="center_vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_marginTop="5dp" />
         </TableRow>
         <TableRow
             android:minHeight="25px"
@@ -186,18 +213,30 @@
                 android:layout_marginBottom="0dp"
                 android:layout_marginTop="5dp"
                 android:textStyle="normal" />
+            <TextView
+                android:id="@+id/MyTextView"
+                android:text="Label"
+                android:layout_column="1"
+                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:textColor="#ff00947A"
+                foo:customFont="Fonts/arial.ttf"
+                android:textSize="18dp"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp" />
         </TableRow>
         <TableRow
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:id="@+id/tableRow1"
             android:layout_marginBottom="0dp">
             <Spinner
                 android:layout_width="150dp"
                 android:layout_column="0"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_Status"
                 android:layout_marginLeft="40dp"
                 android:spinnerMode="dialog"
@@ -206,7 +245,7 @@
             <Spinner
                 android:layout_width="150dp"
                 android:layout_column="1"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_Priority"
                 android:layout_marginLeft="20dp"
                 android:spinnerMode="dialog"
@@ -214,7 +253,7 @@
                 android:layout_marginTop="5dp" />
             <Spinner
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/spinner_AssignedTo"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
@@ -226,9 +265,20 @@
                 android:spinnerMode="dialog"
                 android:gravity="center_vertical"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_column="3"
+                android:layout_marginTop="5dp" />
+            <Spinner
+                android:layout_width="150dp"
+                android:layout_column="1"
+                android:layout_height="match_parent"
+                android:id="@+id/spinner_Label"
+                android:layout_marginLeft="20dp"
+                android:spinnerMode="dialog"
+                android:gravity="center_vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
                 android:layout_marginTop="5dp" />
         </TableRow>
         <TableRow
@@ -263,7 +313,7 @@
             <TextView
                 android:text="Start Date:"
                 android:layout_column="0"
-                android:id="@+id/textview"
+                android:id="@+id/tv_StartDate_Title"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
                 android:layout_width="150dp"
@@ -282,12 +332,11 @@
                 android:clickable="true"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:textSize="12dp"
-                android:text="01/01/1900" />
+                android:textSize="12dp" />
             <TextView
                 android:text="End Date:"
                 android:layout_column="0"
-                android:id="@+id/textview"
+                android:id="@+id/tv_EndDate_Title"
                 android:textSize="12dp"
                 android:textColor="#ff437800"
                 android:layout_width="150dp"
@@ -306,8 +355,7 @@
                 android:clickable="true"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:textSize="12dp"
-                android:text="01/01/1900" />
+                android:textSize="12dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -338,8 +386,7 @@
                 android:clickable="true"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:textSize="12dp"
-                android:text="01/01/1900" />
+                android:textSize="12dp" />
             <TextView
                 android:text="Actual End Date:"
                 android:layout_column="0"
@@ -362,8 +409,7 @@
                 android:clickable="true"
                 android:cursorVisible="false"
                 android:focusable="false"
-                android:textSize="12dp"
-                android:text="01/01/1900" />
+                android:textSize="12dp" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow12"
@@ -432,66 +478,6 @@
                 android:textSize="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-        </TableRow>
-        <TableRow
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tableRow1"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="10dp">
-            <TextView
-                android:id="@+id/MyTextView"
-                android:text="Phase"
-                android:layout_column="0"
-                android:layout_height="wrap_content"
-                android:layout_width="160dp"
-                android:layout_marginLeft="40dp"
-                android:textColor="#ff00947A"
-                foo:customFont="Fonts/arial.ttf"
-                android:textSize="18dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:id="@+id/MyTextView"
-                android:text="Label"
-                android:layout_column="1"
-                android:layout_height="wrap_content"
-                android:layout_width="160dp"
-                android:textColor="#ff00947A"
-                foo:customFont="Fonts/arial.ttf"
-                android:textSize="18dp"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tableRow1"
-            android:layout_marginBottom="0dp">
-            <Spinner
-                android:layout_width="160dp"
-                android:layout_column="0"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner_Phase"
-                android:layout_marginLeft="40dp"
-                android:spinnerMode="dialog"
-                android:gravity="center_vertical"
-                android:minWidth="25px"
-                android:minHeight="25px" />
-            <Spinner
-                android:layout_width="160dp"
-                android:layout_column="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner_Label"
-                android:layout_marginLeft="5dp"
-                android:spinnerMode="dialog"
-                android:gravity="center_vertical"
-                android:minWidth="25px"
-                android:minHeight="25px" />
         </TableRow>
     </LinearLayout>
 </ScrollView>

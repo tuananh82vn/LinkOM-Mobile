@@ -117,7 +117,7 @@ namespace LinkOM
 
 		public void DisplayTicket(TicketDetailList obj){
 
-			var TicketName = FindViewById<TextView> (Resource.Id.tv_TicketName);
+			var TicketName = FindViewById<TextView> (Resource.Id.tv_TicketDetailName);
 			TicketName.Text = obj.Title;
 
 			var Code = FindViewById<TextView> (Resource.Id.tv_Code);
@@ -127,24 +127,32 @@ namespace LinkOM
 			Status.Text = obj.StatusName;
 
 			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-			if(obj.IsInternal.HasValue)
+			if (obj.IsInternal.HasValue)
 				Internal.Checked = obj.IsInternal.Value;
 			else
 				Internal.Checked = false;
 
-			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-			if(obj.IsManagement.HasValue)
-				Management.Checked = obj.IsManagement.Value;
-			else
-				Management.Checked =false;
+			var Priority = FindViewById<TextView> (Resource.Id.tv_Priority);
+			Priority.Text = obj.PriorityName;
 
-
-			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
 			ProjectName.Text = obj.ProjectName;
 
 			var ProjectManager = FindViewById<TextView> (Resource.Id.tv_ProjectManager);
 			ProjectManager.Text = obj.ProjectManager;
 
+			var DeliveryManager = FindViewById<TextView> (Resource.Id.tv_DeliveryManager);
+			DeliveryManager.Text = obj.DeliveryManager;
+
+			var CoordinatorManager = FindViewById<TextView> (Resource.Id.tv_CoordinatorManager);
+			CoordinatorManager.Text = obj.ProjectCoordinator;
+
+
+			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
+			tv_AssignedTo.Text = obj.AssignedToName;
+
+			var tv_Owner = FindViewById<TextView> (Resource.Id.tv_Owner);
+			tv_Owner.Text = obj.OwnerName;
 
 			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
 			Label.Text = obj.Label;
@@ -170,6 +178,14 @@ namespace LinkOM
 			if(obj.EndDate!=null)
 				EndDate.Text = obj.EndDateString;
 
+			var ActStartDate = FindViewById<TextView> (Resource.Id.tv_ActStartDate);
+			if(obj.ActualStartDate!=null)
+				ActStartDate.Text = obj.ActualStartDateString;
+
+			var ActEndDate = FindViewById<TextView> (Resource.Id.tv_ActEndDate);
+			if(obj.ActualEndDate!=null)
+				ActEndDate.Text = obj.ActualEndDateString;
+
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
 			if(obj.TicketDiscription!=null)
@@ -177,6 +193,9 @@ namespace LinkOM
 
 			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			DepartmentName.Text = obj.DepartmentName;
+
+			var ClientName = FindViewById<TextView> (Resource.Id.tv_Client);
+			ClientName.Text = obj.ClientName;
 
 		}
 	}

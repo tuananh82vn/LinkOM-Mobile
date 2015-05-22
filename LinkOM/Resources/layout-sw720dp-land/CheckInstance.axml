@@ -18,7 +18,7 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp">
         <TextView
@@ -28,28 +28,30 @@
             foo:customFont="Fonts/arial.ttf"
             android:textColor="#ff00947A"
             android:gravity="center_vertical"
-            android:layout_marginLeft="300dp"
+            android:layout_marginLeft="350dp"
             android:layout_width="100dp"
             android:layout_column="0"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
         <EditText
             android:layout_column="0"
             android:text="http://synotive.link-om.com"
             android:id="@+id/URLText"
-            android:textColor="#ff437800"
+            android:textColor="#ffffffff"
             android:textSize="18dp"
             android:layout_width="400dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp" />
         <Button
-            android:id="@+id/CheckButton"
+            android:id="@+id/btCheck"
+            android:background="@drawable/style_button"
+            style="@style/button_text"
             android:gravity="center"
             android:text="Check"
-            android:textColor="#ff437800"
+            android:textColor="#ffffffff"
             android:textSize="18dp"
             android:layout_column="2"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="142.4dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="10dp" />
     </TableRow>
 </LinearLayout>

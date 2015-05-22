@@ -28,7 +28,14 @@ namespace LinkOM
 		public TicketDetailList TicketDetail;
 
 		public ProjectSpinnerAdapter projectList; 
+		public ProjectLabelSpinnerAdapter labelList;
 		public ArrayAdapter PriorityAdapter;
+		public StatusSpinnerAdapter statusList;
+		public StatusSpinnerAdapter typeList;
+		public StatusSpinnerAdapter methodList;
+
+		public StaffSpinnerAdapter OwnerStaffList; 
+		public StaffSpinnerAdapter AssignToStaffList;
 
 		public DateTime StartDate;
 		public DateTime EndDate;
@@ -40,6 +47,12 @@ namespace LinkOM
 		public int Selected_PriorityID;
 		public int Selected_StatusID;
 		public int Selected_PhaseID;
+		public int Selected_AssignToStaffID;
+		public int Selected_OwnerStaffID;
+
+		public string Selected_Label;
+		public int Selected_TypeID;
+		public int Selected_MethodID;
 
 
 		public EditText editText_Title;
@@ -59,6 +72,10 @@ namespace LinkOM
 		public Spinner spinner_AssignedTo ;
 
 		public Spinner spinner_Owner;
+
+		public Spinner spinner_Type;
+
+		public Spinner spinner_Method;
 
 		public EditText editText_StartDate ;
 
@@ -94,17 +111,21 @@ namespace LinkOM
 
 			InitControl ();
 
-		//	GetProjectList ();
+			GetProjectList ();
 
 			GetStatusList ();
 
 			GetPriorityList ();
 
-//			GetStaffList ();
-//
-//			GetPhaseList ();
+			GetOwnerStaffList (TicketDetail.ProjectId.Value);
 
-//			GetLabel ();
+			GetAssignToStaffList (TicketDetail.ProjectId.Value);
+
+			GetLabelList (TicketDetail.ProjectId.Value);
+
+			GetTypeList();
+
+			GetReceivedMethodList();
 
 			DisplayTicket (TicketDetail);
 
@@ -133,8 +154,6 @@ namespace LinkOM
 
 			cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
 
-			cb_Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-
 			spinner_Status = FindViewById<Spinner> (Resource.Id.spinner_Status);
 
 			spinner_Priority = FindViewById<Spinner> (Resource.Id.spinner_Priority);
@@ -142,6 +161,10 @@ namespace LinkOM
 			spinner_AssignedTo = FindViewById<Spinner> (Resource.Id.spinner_AssignedTo);
 
 			spinner_Owner= FindViewById<Spinner> (Resource.Id.spinner_Owner);
+
+			spinner_Type= FindViewById<Spinner> (Resource.Id.spinner_Type);
+
+			spinner_Method= FindViewById<Spinner> (Resource.Id.spinner_Method);
 
 			editText_StartDate = FindViewById<EditText> (Resource.Id.editText_StartDate);
 
@@ -164,9 +187,30 @@ namespace LinkOM
 			editText_ActualStartDate.Click += delegate { ShowDialog (Actual_Start_DATE_DIALOG_ID); };
 			editText_ActualEndDate.Click += delegate { ShowDialog (Actual_End_DATE_DIALOG_ID); };
 
+			StartDate = DateTime.Today;
+			EndDate= DateTime.Today;
+			ActualStartDate= DateTime.Today;
+			ActualEndDate= DateTime.Today;
+
 		}
 
+		private void GetLabelList(int ProjectId){
 
+			labelList = new ProjectLabelSpinnerAdapter (this,LabelHelper.GetProjectLabelByProject(ProjectId));
+
+			spinner_Label.Adapter = labelList;
+
+			spinner_Label.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Label_ItemSelected);
+
+			if(TicketDetail.Label!=null)
+				spinner_Label.SetSelection(labelList.getPositionByName(TicketDetail.Label));
+
+		}
+
+		private void Label_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_Label = labelList.GetItemAtPosition (e.Position).Name;
+		}
 
 		public void DisplayTicket(TicketDetailList obj){
 
@@ -176,13 +220,6 @@ namespace LinkOM
 				cb_Internal.Checked = obj.IsInternal.Value;
 			else
 				cb_Internal.Checked = false;
-
-//			if(obj..HasValue)
-//				cb_WatchList.Checked = obj.IsAddToMyWatch.Value;
-			if (obj.IsManagement.HasValue)
-				cb_Management.Checked = obj.IsManagement.Value;
-			else
-				cb_Management.Checked = false;
 
 			editText_StartDate.Text = obj.StartDateString;
 
@@ -210,7 +247,7 @@ namespace LinkOM
 					break;
 
 				case Resource.Id.save:
-					OnBackPressed ();
+					btSaveClick ();
 					break;
 
 				default:
@@ -218,6 +255,95 @@ namespace LinkOM
 			}
 
 			return true;
+		}
+
+		public void btSaveClick()
+		{
+
+			TicketEdit TicketObject = new TicketEdit ();
+			TicketObject.Id = TicketDetail.Id.Value;
+			TicketObject.Title = editText_Title.Text;
+			TicketObject.ProjectId = Selected_ProjectID;
+			TicketObject.TicketStatusId = Selected_StatusID;
+			TicketObject.PriorityId = Selected_PriorityID;
+			TicketObject.Label = Selected_Label;
+			TicketObject.TicketReceivedMethodId = Selected_MethodID;
+			TicketObject.TicketTypeId= Selected_TypeID;
+			if (editText_StartDate.Text != "")
+				TicketObject.StartDate = DateTime.Parse(editText_StartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+
+			if (editText_EndDate.Text != "")
+				TicketObject.EndDate = DateTime.Parse(editText_EndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+
+			if (editText_ActualStartDate.Text != "")
+				TicketObject.ActualStartDate = DateTime.Parse(editText_ActualStartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+
+			if (editText_ActualEndDate.Text != "")
+				TicketObject.ActualEndDate = DateTime.Parse(editText_ActualEndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+
+			TicketObject.IsInternal = cb_Internal.Checked;
+			TicketObject.AssignedToId = Selected_AssignToStaffID;
+			TicketObject.OwnerId = Selected_OwnerStaffID;
+			TicketObject.UserName = Settings.Username;
+
+			if (editText_AllocatedHours.Text != "")
+				TicketObject.AllocatedHours = Int32.Parse(editText_AllocatedHours.Text);
+
+
+			TicketObject.Description = editText_Description.Text;
+
+			ApiResultSave restult = TicketHelper.EditTicket (TicketObject);
+			if (restult != null) {
+				if (restult.Success) {
+					OnBackPressed ();
+					Toast.MakeText (this, "Ticket Saved", ToastLength.Short).Show ();
+				}
+				else
+					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();
+			}
+			else
+				Toast.MakeText (this, "Server problem...", ToastLength.Short).Show ();
+		}
+
+		private void GetOwnerStaffList(int ProjectId){
+
+			SearchAssignedByProject objFilter = new SearchAssignedByProject ();
+			objFilter.ProjectId = ProjectId;
+
+			OwnerStaffList = new StaffSpinnerAdapter (this,StaffHelper.GetOwnerByProject(objFilter));
+			spinner_Owner.Adapter = null;
+
+			spinner_Owner.Adapter = OwnerStaffList;
+
+			spinner_Owner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (OwnerStaff_ItemSelected);
+			if(TicketDetail.OwnerId.HasValue)
+				spinner_Owner.SetSelection(OwnerStaffList.getPositionById (TicketDetail.OwnerId.Value));
+		}
+
+		private void OwnerStaff_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_OwnerStaffID = OwnerStaffList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void GetAssignToStaffList(int ProjectId){
+
+			SearchAssignedByProject objFilter = new SearchAssignedByProject ();
+			objFilter.ProjectId = ProjectId;
+
+			AssignToStaffList = new StaffSpinnerAdapter (this,StaffHelper.GetAssignedToByProject(objFilter));
+
+			spinner_AssignedTo.Adapter = null;
+
+			spinner_AssignedTo.Adapter = AssignToStaffList;
+
+			spinner_AssignedTo.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (AssignToStaff_ItemSelected);
+			if(TicketDetail.AssignedToId.HasValue)
+				spinner_AssignedTo.SetSelection(AssignToStaffList.getPositionById (TicketDetail.AssignedToId.Value));
+		}
+
+		private void AssignToStaff_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_AssignToStaffID = AssignToStaffList.GetItemAtPosition (e.Position).Id;
 		}
 
 		//Init menu on action bar
@@ -235,8 +361,8 @@ namespace LinkOM
 		private void GetPriorityList(){
 			//Handle priority
 
-			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
-			PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Resource.Layout.SpinnerItemDropdown);
+
 			spinner_Priority.Adapter = PriorityAdapter;
 
 			if(TicketDetail.PriorityName!=""){
@@ -249,99 +375,65 @@ namespace LinkOM
 
 		private void GetStatusList(){
 
-			var StatusAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskStatus, Android.Resource.Layout.SimpleSpinnerItem);
-			StatusAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-			spinner_Status.Adapter = StatusAdapter;
+			statusList = new StatusSpinnerAdapter (this,TicketHelper.GetTicketStatusList());
 
-			if(TicketDetail.StatusName!=""){
-				int index = StatusAdapter.GetPosition (TicketDetail.StatusName);
-				spinner_Status.SetSelection(index); 
-			}
+			spinner_Status.Adapter = statusList;
 
 			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
+
+			if(TicketDetail.StatusName!=null)
+				spinner_Status.SetSelection(statusList.getPositionByName (TicketDetail.StatusName));
 		}
 
-//		private void GetPhaseList(){
-//
-//			var PhaseAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.Phase, Android.Resource.Layout.SimpleSpinnerItem);
-//			PhaseAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
-//			spinner_Phase.Adapter = PhaseAdapter;
-//
-//			if(TicketDetail.ProjectPhaseName!=""){
-//				int index = PhaseAdapter.GetPosition (TicketDetail.ProjectPhaseName);
-//				spinner_Phase.SetSelection(index); 
-//			}
-//
-//			spinner_Phase.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Phase_ItemSelected);
-//		}
+		private void GetTypeList(){
 
-//		private void GetProjectList(){
-//			//Handle Project Spinner
-//			string TokenNumber = Settings.Token;
-//			string url = Settings.InstanceURL;
-//
-//			url=url+"/api/ProjectList";
-//
-//
-//			List<objSort> objSort = new List<objSort>{
-//				new objSort{ColumnName = "P.Name", Direction = "1"},
-//				new objSort{ColumnName = "C.Name", Direction = "2"}
-//			};
-//
-//			var objProject = new
-//			{
-//				Name = string.Empty,
-//				ClientName = string.Empty,
-//				DepartmentId = string.Empty,
-//				ProjectStatusId = string.Empty,
-//			};
-//
-//			var objsearch = (new
-//				{
-//					objApiSearch = new
-//					{
-//						TokenNumber = TokenNumber,
-//						PageSize = 20,
-//						PageNumber = 1,
-//						Sort = objSort,
-//						Item = objProject
-//					}
-//				});
-//
-//			string results= ConnectWebAPI.Request(url,objsearch);
-//
-//			ProjectListJson ProjectList = Newtonsoft.Json.JsonConvert.DeserializeObject<ProjectListJson> (results);
-//
-//			projectList = new ProjectSpinnerAdapter (this,ProjectList.Items);
-//
-//
-//			spinner_Project.Adapter = projectList;
-//
-//			if(TicketDetail.ProjectId!=null)
-//				spinner_Project.SetSelection(projectList.getPositionById(TicketDetail.ProjectId)); 
-//
-//			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
-//		}
+			typeList = new StatusSpinnerAdapter (this,TicketHelper.GetTicketTypeList());
+
+			spinner_Type.Adapter = typeList;
+
+			spinner_Type.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Type_ItemSelected);
+
+			if(TicketDetail.TicketTypeName!=null)
+				spinner_Type.SetSelection(typeList.getPositionByName (TicketDetail.TicketTypeName));
+		}
+
+		private void GetReceivedMethodList(){
+
+			methodList = new StatusSpinnerAdapter (this,TicketHelper.GetReceivedMethodList());
+
+			spinner_Method.Adapter = methodList;
+
+			spinner_Method.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Method_ItemSelected);
+
+			if(TicketDetail.TicketReceivedMethod!=null)
+				spinner_Method.SetSelection(methodList.getPositionByName (TicketDetail.TicketReceivedMethod));
+		}
+
+		private void Type_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_TypeID = typeList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void Method_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
+		{
+			Selected_MethodID = methodList.GetItemAtPosition (e.Position).Id;
+		}
+
+		private void GetProjectList(){
+
+			projectList = new ProjectSpinnerAdapter (this,ProjectHelper.GetProjectList());
+
+			spinner_Project.Adapter = projectList;
+
+			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
+			if(TicketDetail.ProjectId.HasValue)
+				spinner_Project.SetSelection(projectList.getPositionById (TicketDetail.ProjectId.Value));
+
+		}
 
 		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
-			Spinner spinner = (Spinner)sender;
-			string StatusName = spinner.GetItemAtPosition (e.Position).ToString();
-			if(StatusName.Equals("Open")){
-				Selected_StatusID=1;
-			}
-			else if(StatusName.Equals("Closed")){
-				Selected_StatusID=2;
-			}
-			else if(StatusName.Equals("Waiting On Client")){
-				Selected_StatusID=3;
-			}
-			else if(StatusName.Equals("In Progress")){
-				Selected_StatusID=4;
-			}
-			else if(StatusName.Equals("On Hold")){
-				Selected_StatusID=5;
-			}
+			Selected_StatusID = statusList.GetItemAtPosition (e.Position).Id;
 		}
 
 		private void Priority_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
@@ -359,69 +451,10 @@ namespace LinkOM
 					}
 		}
 
-		private void Phase_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
-		{
-			Spinner spinner = (Spinner)sender;
-			string PhaseName = spinner.GetItemAtPosition (e.Position).ToString();
-			if(PhaseName.Equals("Low")){
-				Selected_PhaseID=1;
-			}
-		}
 
 		private void project_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
 		{
 			Selected_ProjectID = projectList.GetItemAtPosition (e.Position).Id.Value;
-		}
-
-
-		public void btSaveClick(object sender, EventArgs e)
-		{
-			string TokenNumber = Settings.Token;
-			string url = Settings.InstanceURL;
-
-			url=url+"/api/EditTicket";
-
-			var objItem = new
-			{
-				Id = TicketDetail.Id,
-				Guid = TicketDetail.Guid,
-				AssignedToId= TicketDetail.AssignedToId,
-				AssignToName= String.Empty,
-				Title= editText_Title.Text,
-				ProjectId= Selected_ProjectID,
-				OwnerId= TicketDetail.OwnerId,
-				StartDate= editText_StartDate.Text,
-				EndDate= editText_EndDate.Text,
-				PriorityId= Selected_PriorityID,
-				TicketStatusId= Selected_StatusID,
-				AllocatedHours= editText_AllocatedHours.Text,
-				IsUserWatch = cb_WatchList.Checked,
-				UpdatedBy = TicketDetail.CreatedBy,
-			};
-
-			var objEditTicket = (new
-				{
-					objTicket = new
-					{
-						UserId = Settings.UserId,
-						UserName = Settings.Username,
-						Item = objItem
-					}
-				});
-
-			string results= ConnectWebAPI.Request(url,objEditTicket);
-
-			if (results != null) {
-				ResultsJson ResultsJson = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
-
-				if (ResultsJson.Success) {
-					Toast.MakeText (this, "Ticket Saved", ToastLength.Short).Show ();
-				} else
-					Toast.MakeText (this, ResultsJson.ErrorMessage, ToastLength.Short).Show ();
-			}
-			else
-				Toast.MakeText (this, "Error to connect to server", ToastLength.Short).Show ();
-
 		}
 
 		// the event received when the user "sets" the date in the dialog

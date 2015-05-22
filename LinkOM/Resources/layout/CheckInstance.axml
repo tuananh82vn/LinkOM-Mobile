@@ -55,15 +55,25 @@
             android:layout_marginLeft="25.0dp"
             android:layout_marginRight="25.0dp" />
     </TableRow>
-    <Button
-        android:id="@+id/CheckButton"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Check"
-        android:textColor="#ffffffff"
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25.0dp"
-        android:layout_marginRight="25.0dp"
-        android:textSize="18dp" />
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
+        <Button
+            android:background="@drawable/style_button"
+            style="@style/button_text"
+            android:id="@+id/btCheck"
+            android:gravity="center"
+            android:text="Check"
+            android:textSize="18dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25.0dp"
+            android:layout_marginRight="25.0dp"
+            android:layout_column="0" />
+    </TableRow>
 </LinearLayout>

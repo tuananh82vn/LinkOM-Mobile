@@ -26,15 +26,17 @@
             p1:textColor="#ffa0c673"
             p1:layout_marginRight="5dp" />
         <TextView
-            p1:text="Created Person"
             p1:layout_column="1"
             p1:id="@+id/tv_CreatedPerson"
             p1:textSize="12dp"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_height="wrap_content"
             p1:layout_width="match_parent"
-            p1:gravity="center_vertical"
-            p1:layout_marginLeft="5dp" />
+            p1:gravity="right"
+            p1:layout_marginLeft="5dp"
+            p1:layout_marginRight="25dp"
+            p1:text="Create Person"
+            p1:textColor="#ffaeaeae" />
     </TableRow>
     <TableRow
         p1:layout_width="match_parent"

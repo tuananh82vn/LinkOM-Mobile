@@ -51,6 +51,9 @@ namespace LinkOM
 		public FrameLayout frame_TicketDetail;
 		public FloatingActionButton fab;
 
+		public TicketCommentListAdapter TicketCommentListAdapter;
+		public ListView ticketCommentListView ;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 
@@ -387,6 +390,8 @@ namespace LinkOM
 			TicketSelected = TicketHelper.GetTicketDetail (temp.Id.Value);
 
 			DisplayTicket (TicketSelected);
+
+			LoadTicketComment (TicketSelected.Id.Value);
 		}
 
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
@@ -480,11 +485,8 @@ namespace LinkOM
 			else
 				Internal.Checked = false;
 
-			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
-			if (obj.IsManagement.HasValue)
-				Management.Checked = obj.IsManagement.Value;
-			else
-				Management.Checked = false;
+			var Priority = FindViewById<TextView> (Resource.Id.tv_Priority);
+			Priority.Text = obj.PriorityName;
 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
 			ProjectName.Text = obj.ProjectName;
@@ -492,6 +494,18 @@ namespace LinkOM
 			var ProjectManager = FindViewById<TextView> (Resource.Id.tv_ProjectManager);
 			ProjectManager.Text = obj.ProjectManager;
 
+			var DeliveryManager = FindViewById<TextView> (Resource.Id.tv_DeliveryManager);
+			DeliveryManager.Text = obj.DeliveryManager;
+
+			var CoordinatorManager = FindViewById<TextView> (Resource.Id.tv_CoordinatorManager);
+			CoordinatorManager.Text = obj.ProjectCoordinator;
+
+
+			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
+			tv_AssignedTo.Text = obj.AssignedToName;
+
+			var tv_Owner = FindViewById<TextView> (Resource.Id.tv_Owner);
+			tv_Owner.Text = obj.OwnerName;
 
 			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
 			Label.Text = obj.Label;
@@ -517,6 +531,14 @@ namespace LinkOM
 			if(obj.EndDate!=null)
 				EndDate.Text = obj.EndDateString;
 
+			var ActStartDate = FindViewById<TextView> (Resource.Id.tv_ActStartDate);
+			if(obj.ActualStartDate!=null)
+				ActStartDate.Text = obj.ActualStartDateString;
+
+			var ActEndDate = FindViewById<TextView> (Resource.Id.tv_ActEndDate);
+			if(obj.ActualEndDate!=null)
+				ActEndDate.Text = obj.ActualEndDateString;
+
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
 			if(obj.TicketDiscription!=null)
@@ -524,6 +546,25 @@ namespace LinkOM
 
 			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			DepartmentName.Text = obj.DepartmentName;
+
+			var ClientName = FindViewById<TextView> (Resource.Id.tv_Client);
+			ClientName.Text = obj.ClientName;
+
+		}
+
+		public void LoadTicketComment(int TicketId){
+
+			TicketCommentListAdapter = new TicketCommentListAdapter (this, TicketHelper.GetTicketCommentList(TicketId));
+
+			ticketCommentListView = FindViewById<ListView> (Resource.Id.TicketCommentListView);
+
+			ticketCommentListView.Adapter = TicketCommentListAdapter;
+
+			ticketCommentListView.DividerHeight = 0;
+
+			Utility.setListViewHeightBasedOnChildren (ticketCommentListView);
+
+			//ticketCommentListView.ItemClick += listView_ItemClick;
 
 		}
 	}

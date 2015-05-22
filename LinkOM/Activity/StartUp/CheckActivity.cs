@@ -36,7 +36,7 @@ namespace LinkOM
 			URLText = FindViewById<EditText>(Resource.Id.URLText);
 			URLText.Text = Settings.InstanceURL;
 
-			Button button = FindViewById<Button>(Resource.Id.CheckButton);
+			Button button = FindViewById<Button>(Resource.Id.btCheck);
 
 			button.Click += (sender, e) => {
 				progress.Show();

@@ -15,13 +15,13 @@ namespace LinkOM
 	{
 		public ListView milestoneListView;
 		public MilestoneListAdapter milestoneList;
+		public DashboardObject temp;
 
 		public HomeFragment()
 		{
 			this.RetainInstance = true;
 		}
 
-//		private List<FriendViewModel> _friends;
 
 		public override Android.Views.View OnCreateView(Android.Views.LayoutInflater inflater, Android.Views.ViewGroup container, Android.OS.Bundle savedInstanceState)
 		{
@@ -48,10 +48,12 @@ namespace LinkOM
 			RelativeLayout bt_Document = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Documents);
 			bt_Document.Click += bt_DocumentClick;
 
-			if(Settings.Orientation.Equals("Landscape")){
+			if (Settings.Orientation.Equals ("Landscape")) {
 				milestoneListView = view.FindViewById<ListView> (Resource.Id.MilestoneListView);
 				InitDataMilestone ();
 				InitDataDashboard (view);
+			} else {
+				InitSmallDataDashboard (view);
 			}
 
 			return view;
@@ -74,30 +76,49 @@ namespace LinkOM
 		}
 
 		//Loading data
+		public void InitSmallDataDashboard(View view){
+
+				temp = DashboardHelper.GetDashboard ();
+				//-------------------------------------------------------------------------------------------------//
+				TextView tv_Project = view.FindViewById<TextView>(Resource.Id.tv_Project);
+				if (temp.ProjectOpenCount.HasValue) {
+					if(temp.ProjectOpenCount!=0)
+						tv_Project.Text = temp.ProjectOpenCount.ToString ();
+				}
+
+
+				TextView tv_Milestone = view.FindViewById<TextView>(Resource.Id.tv_Milestone);
+				if (temp.MilestoneOpenCount.HasValue) {
+					if(temp.MilestoneOpenCount!=0)
+						tv_Milestone.Text = temp.MilestoneOpenCount.ToString ();
+				}
+
+				TextView tv_Tickets = view.FindViewById<TextView>(Resource.Id.tv_Tickets);
+
+				if (temp.TicketOpenCount.HasValue) {
+					if(temp.TicketOpenCount!=0)
+						tv_Tickets.Text = temp.TicketOpenCount.ToString ();
+				}
+
+				TextView tv_Tasks = view.FindViewById<TextView>(Resource.Id.tv_Tasks);
+				if (temp.TaskOpenCount.HasValue) {
+					if(temp.TaskOpenCount!=0)
+						tv_Tasks.Text = temp.TaskOpenCount.ToString ();
+				}
+
+				TextView tv_Issues = view.FindViewById<TextView>(Resource.Id.tv_Issues);
+				if (temp.IssueOpenCount.HasValue) {
+					if(temp.IssueOpenCount!=0)
+						tv_Issues.Text = temp.IssueOpenCount.ToString ();
+				}
+
+				//-------------------------------------------------------------------------------------------------//
+		}
+
+		//Loading data
 		public void InitDataDashboard(View view){
 
-			string url = Settings.InstanceURL;
-
-			url=url+"/api/DashboardList";
-
-
-			var objsearch = (new
-			{
-				objApiSearch = new
-				{
-					TokenNumber = Settings.Token,
-					Item = string.Empty
-				}
-			});
-
-			string results=  ConnectWebAPI.Request(url,objsearch);
-
-			if (results != null) {
-
-				ApiResultList<IEnumerable<DashboardObject>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<DashboardObject>>> (results);
-				if (objResult.Success) {
-					
-					DashboardObject temp =  Newtonsoft.Json.JsonConvert.DeserializeObject<DashboardObject> (objResult.Items.FirstOrDefault().ToString());
+					InitSmallDataDashboard (view);
 
 					//-------------------------------------------------------------------------------------------------//
 					TextView tv_MileStone_OverDue = view.FindViewById<TextView>(Resource.Id.tv_MileStone_OverDue);
@@ -117,6 +138,7 @@ namespace LinkOM
 
 					tv_MileStone_Total.Text = MileStone_Total.ToString ();
 					//-------------------------------------------------------------------------------------------------//
+
 					TextView tv_Ticket_OverDue = view.FindViewById<TextView>(Resource.Id.tv_Ticket_OverDue);
 					tv_Ticket_OverDue.Text = temp.TicketOverdueCount.ToString ();
 
@@ -134,6 +156,7 @@ namespace LinkOM
 
 					tv_Ticket_Total.Text = Ticket_Total.ToString ();
 					//-------------------------------------------------------------------------------------------------//
+
 					TextView tv_Task_OverDue = view.FindViewById<TextView>(Resource.Id.tv_Task_OverDue);
 					tv_Task_OverDue.Text = temp.TaskOverdueCount.ToString ();
 
@@ -152,6 +175,7 @@ namespace LinkOM
 					tv_Task_Total.Text = Task_Total.ToString ();
 					//-------------------------------------------------------------------------------------------------//
 
+
 					TextView tv_Issues_OverDue = view.FindViewById<TextView>(Resource.Id.tv_Issues_OverDue);
 					tv_Issues_OverDue.Text = temp.IssueOverdueCount.ToString ();
 
@@ -169,6 +193,7 @@ namespace LinkOM
 
 					tv_Issues_Total.Text = Issues_Total.ToString ();
 					//-------------------------------------------------------------------------------------------------//
+
 
 					TextView tv_All_OverDue = view.FindViewById<TextView>(Resource.Id.tv_All_OverDue);
 					var All_OverDue = temp.MilestoneOverdueCount.Value + temp.TicketOverdueCount.Value + temp.TaskOverdueCount.Value + temp.IssueOverdueCount.Value;
@@ -194,9 +219,6 @@ namespace LinkOM
 					var All_Total = MileStone_Total + Ticket_Total + Task_Total + Issues_Total;
 
 					tv_All_Total.Text = All_Total.ToString ();
-				}
-			}
-
 		}
 
 		//handle list item clicked

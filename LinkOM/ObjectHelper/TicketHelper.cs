@@ -129,6 +129,77 @@ namespace LinkOM
 
 		}
 
+
+		public static List<Status> GetReceivedMethodList(){
+
+			string url = Settings.InstanceURL;
+
+			string url_TicketStatusList= url+"/api/TicketReceivedMethodList";
+
+			string results_TicketkList= ConnectWebAPI.Request(url_TicketStatusList,"");
+
+			if (results_TicketkList != null && results_TicketkList != "") {
+
+				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TicketkList);
+
+				if (data.Data != null) {
+
+					ApiResultList<IEnumerable<Status>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<Status>>> (data.Data);
+
+					List<Status> returnObject = new List<Status> ();
+
+					if (objResult.Items != null) {
+						foreach (object Item in objResult.Items) {
+							Status temp = Newtonsoft.Json.JsonConvert.DeserializeObject<Status> (Item.ToString ());
+							returnObject.Add (temp);
+						}
+					}
+					else
+						return null;
+
+					return returnObject;
+				} else
+					return null;
+			} else
+				return null;
+
+		}
+
+		public static List<Status> GetTicketTypeList(){
+
+			string url = Settings.InstanceURL;
+
+			string url_TicketStatusList= url+"/api/TicketTypeList";
+
+			string results_TicketkList= ConnectWebAPI.Request(url_TicketStatusList,"");
+
+			if (results_TicketkList != null && results_TicketkList != "") {
+
+				JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData> (results_TicketkList);
+
+				if (data.Data != null) {
+
+					ApiResultList<IEnumerable<Status>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<Status>>> (data.Data);
+
+					List<Status> returnObject = new List<Status> ();
+
+					if (objResult.Items != null) {
+						foreach (object Item in objResult.Items) {
+							Status temp = Newtonsoft.Json.JsonConvert.DeserializeObject<Status> (Item.ToString ());
+							returnObject.Add (temp);
+						}
+					}
+					else
+						return null;
+
+					return returnObject;
+				} else
+					return null;
+			} else
+				return null;
+
+		}
+
 		public static List<TicketCommentList> GetTicketCommentList(int TicketId){
 			
 			string url = Settings.InstanceURL;
@@ -173,6 +244,93 @@ namespace LinkOM
 			} else
 				return null;
 		}
+
+//		public static ApiResultSave AddTicket(TicketAdd objTaskDetail){
+//
+//			string url = Settings.InstanceURL;
+//
+//			string url_Task= url+"/api/AddTicket";
+//
+//
+//			var objTask = (new
+//				{
+//					objTask = new
+//					{
+//						UserId = Settings.UserId,
+//						UserName = Settings.Username,
+//						TokenNumber = Settings.Token,
+//						Item = objTaskDetail
+//					}
+//				});
+//
+//			string results_Task= ConnectWebAPI.Request(url_Task,objTask);
+//
+//			if (results_Task != null) {
+//
+//				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
+//				return data;
+//
+//			} 
+//			else
+//				return null;
+//		}
+
+		public static ApiResultSave EditTicket(TicketEdit objTaskDetail){
+
+			string url = Settings.InstanceURL;
+
+			string url_Task= url+"/api/EditTicket";
+
+
+			var objTicket = (new
+				{
+					objTicket = new
+					{
+						TokenNumber = Settings.Token,
+						Item = objTaskDetail
+					}
+				});
+
+			string results_Task= ConnectWebAPI.Request(url_Task,objTicket);
+
+			if (results_Task != null) {
+
+				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
+				return data;
+
+			} 
+			else
+				return null;
+		}
+
+		public static ApiResultSave AddTicket(TicketAdd objTaskDetail){
+
+			string url = Settings.InstanceURL;
+
+			string url_Task= url+"/api/AddTicket";
+
+
+			var objTicket = (new
+				{
+					objTicket = new
+					{
+						TokenNumber = Settings.Token,
+						Item = objTaskDetail
+					}
+				});
+
+			string results_Task= ConnectWebAPI.Request(url_Task,objTicket);
+
+			if (results_Task != null) {
+
+				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
+				return data;
+
+			} 
+			else
+				return null;
+		}
+
 	}
 }
 

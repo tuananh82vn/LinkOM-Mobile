@@ -231,6 +231,8 @@
     <Compile Include="Adapter\ProjectLabelSpinnerAdapter.cs" />
     <Compile Include="Model\ViewModel\TaskObject.cs" />
     <Compile Include="Adapter\StatusSpinnerAdapter.cs" />
+    <Compile Include="ObjectHelper\DashboardHelper.cs" />
+    <Compile Include="Model\ViewModel\TicketObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -297,7 +299,6 @@
     <AndroidResource Include="Resources\drawable\Tasks.png" />
     <AndroidResource Include="Resources\drawable\Tickets.png" />
     <AndroidResource Include="Resources\layout\TaskList.axml" />
-    <AndroidResource Include="Resources\layout\MainContentLayout.axml" />
     <AndroidResource Include="Resources\layout\Project.axml" />
     <AndroidResource Include="Resources\layout\ProjectDetailLayout.axml" />
     <AndroidResource Include="Resources\drawable\Lock_button.xml" />
@@ -525,7 +526,6 @@
     <AndroidResource Include="Resources\drawable-land\Background.jpg" />
     <AndroidResource Include="Resources\drawable-land\Background3.png" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Login.axml" />
-    <AndroidResource Include="Resources\layout-sw720dp-land\MainContentLayout.axml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\Project.axml" />
     <AndroidResource Include="Resources\menu\AddEditSearchMenu.xml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\ProjectEdit.axml" />
