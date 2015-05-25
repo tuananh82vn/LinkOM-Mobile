@@ -34,13 +34,14 @@
             android:layout_height="match_parent" />
         <EditText
             android:layout_column="0"
-            android:text="http://synotive.link-om.com"
             android:id="@+id/URLText"
             android:textColor="#ffffffff"
             android:textSize="18dp"
             android:layout_width="400dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:imeOptions="actionGo"
+            android:inputType="text" />
         <Button
             android:id="@+id/btCheck"
             android:background="@drawable/style_button"

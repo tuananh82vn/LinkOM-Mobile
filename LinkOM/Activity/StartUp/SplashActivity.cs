@@ -76,7 +76,7 @@ namespace LinkOM
 				// Simulate a long loading process on app startup.
 			 	Task<bool>.Run (() => {
 				Thread.Sleep (2000);
-				StartActivity(typeof(LoginActivity));
+				StartActivity(typeof(CheckActivity));
 				this.Finish();
 			}); 
 		}

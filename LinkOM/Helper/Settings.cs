@@ -14,7 +14,7 @@ namespace LinkOM
 
 		private const string InstanceURLKey = "InstanceURLKey";
 		//private static readonly string InstanceURL_Default = "http://10.0.2.2:60943";
-		private static readonly string InstanceURL_Default = "http://linkom-ins1.softwarestaging.com.au";
+		private static readonly string InstanceURL_Default = "";
 
 		private const string TokenKey = "TokenKey";
 		private static readonly string TokenKey_Default = string.Empty;

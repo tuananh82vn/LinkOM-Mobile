@@ -20,7 +20,7 @@ using Android.Graphics;
 namespace LinkOM
 {
 	[Activity(Label = "Link-OM", Icon = "@drawable/icon", Theme = "@style/Theme.Customtheme")]
-	public class LoginActivity : Activity, TextView.IOnEditorActionListener
+	public class LoginActivity : BaseActivity, TextView.IOnEditorActionListener
 	{
 		private LoginService _loginService;
 		private System.Timers.Timer _timer;
@@ -44,7 +44,9 @@ namespace LinkOM
 
 			ImageView imageView1 = FindViewById<ImageView>(Resource.Id.imageView1);
 			var imageBitmap = GetImageBitmapFromUrl(Settings.InstanceURL+"/FileReference/GetLogoImage");
-			imageView1.SetImageBitmap(imageBitmap);
+
+			if(imageBitmap!=null)
+				imageView1.SetImageBitmap(imageBitmap);
 
 
 			Button button = FindViewById<Button>(Resource.Id.btLogin);
@@ -94,6 +96,32 @@ namespace LinkOM
 
 		}
 
+		protected override void OnStart()
+		{
+			BaseActivity.s_mainactivityvisible = true;
+			base.OnStart();
+		}
+
+		protected override void OnStop()
+		{
+
+			BaseActivity.s_mainactivityvisible = false;
+			base.OnPause();
+		}
+
+		protected override void OnResume()
+		{
+			if (m_isAppWentToBg)
+			{
+//				_backgroundtimer.Stop ();
+//				Toast.MakeText(Android.App.Application.Context, "foreground " +_backgroundSeconds.ToString(), ToastLength.Short).Show();
+//					_backgroundSeconds = 30;
+				m_isAppWentToBg = false;
+			}
+
+			base.OnResume();
+		}
+
 
 		private Bitmap GetImageBitmapFromUrl(string url)
 		{
@@ -127,10 +155,6 @@ namespace LinkOM
 			return dp;
 		}
 
-		protected override void OnResume ()
-		{
-			base.OnResume ();
-		}
 
 		public void btloginClick(object sender, EventArgs e)
 		{
@@ -177,7 +201,6 @@ namespace LinkOM
 				Settings.RememberMe = false;
 				Settings.Password = "";
 			}
-
 
 			StartActivity (new Intent (this, typeof (HomeActivity)));
 			this.OverridePendingTransition(Resource.Animation.slide_in_top, Resource.Animation.slide_out_bottom);

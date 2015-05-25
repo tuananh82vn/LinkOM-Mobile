@@ -65,9 +65,6 @@
     <Reference Include="MonoDroid.TimesSquare">
       <HintPath>..\Components\MonoDroid.TimesSquare\MonoDroid.TimesSquare.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Controls.FlipNumbers.Android">
-      <HintPath>..\Components\flipnumbers-1.1.0.1\lib\android\Xamarin.Controls.FlipNumbers.Android.dll</HintPath>
-    </Reference>
     <Reference Include="NChart3D">
       <HintPath>..\packages\NChart3D\NChart3D.dll</HintPath>
     </Reference>
@@ -85,9 +82,6 @@
     </Reference>
     <Reference Include="Refractored.Xam.Settings">
       <HintPath>..\packages\Xam.Plugins.Settings.1.5.1\lib\MonoAndroid10\Refractored.Xam.Settings.dll</HintPath>
-    </Reference>
-    <Reference Include="com.alliance.calendar">
-      <HintPath>..\Components\alliance-calendar-component-1.0\lib\android\com.alliance.calendar.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
@@ -234,6 +228,7 @@
     <Compile Include="ObjectHelper\DashboardHelper.cs" />
     <Compile Include="Model\ViewModel\TicketObject.cs" />
     <Compile Include="Model\ViewModel\IssuesObject.cs" />
+    <Compile Include="Activity\Base\BaseActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -567,16 +562,8 @@
       <Version>6.0.8.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
-    <XamarinComponentReference Include="alliance-calendar-component">
-      <Version>1.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="radialprogress">
       <Version>1.0.1.3</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="flipnumbers">
-      <Version>1.1.0.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv4-18">
@@ -634,6 +621,7 @@
     <Folder Include="ObjectHelper\" />
     <Folder Include="Model\FilterModel\" />
     <Folder Include="Model\ApiModel\" />
+    <Folder Include="Activity\Base\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\Fonts\arial.ttf" />

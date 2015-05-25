@@ -46,14 +46,15 @@
         android:layout_height="wrap_content">
         <EditText
             android:layout_column="0"
-            android:text="http://synotive.link-om.com"
             android:id="@+id/URLText"
             android:textColor="#ffffffff"
             android:textSize="18dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25.0dp"
-            android:layout_marginRight="25.0dp" />
+            android:layout_marginRight="25.0dp"
+            android:imeOptions="actionGo"
+            android:inputType="text" />
     </TableRow>
     <TableRow
         android:id="@+id/tableRow12"
