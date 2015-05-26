@@ -30,15 +30,11 @@ namespace LinkOM
 	public class TicketActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public LinearLayout LinearLayout_Master;
-//		public ProgressDialog progress;
 		public List<Button> buttonList;
 		public List<TicketList> ticketList;
 		public TicketListAdapter ticketListAdapter;
 
 		public ListView ticketListView ;
-
-		public RadialProgressView progressView;
-		private System.Timers.Timer _timer;
 
 		public EditText mSearch;
 		private bool mAnimatedDown;
@@ -53,6 +49,8 @@ namespace LinkOM
 
 		public TicketCommentListAdapter TicketCommentListAdapter;
 		public ListView ticketCommentListView ;
+
+		public ProgressDialog progress;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -88,9 +86,11 @@ namespace LinkOM
 
 				}
 
-				progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
-				progressView.MinValue = 0;
-				progressView.MaxValue = 100;
+				progress = new ProgressDialog (this,Resource.Style.StyledDialog);
+				progress.Indeterminate = true;
+				progress.SetMessage("Please wait...");
+				progress.SetCancelable (true);
+				progress.Show ();
 
 
 
@@ -100,11 +100,6 @@ namespace LinkOM
 				} else {
 					RequestedOrientation = ScreenOrientation.SensorLandscape;
 				}
-
-
-				_timer = new System.Timers.Timer (10);
-				_timer.Elapsed += HandleElapsed;
-				_timer.Start ();
 
 				ThreadPool.QueueUserWorkItem (o => GetTicketStatus ());
 
@@ -167,14 +162,6 @@ namespace LinkOM
 			return true;
 		}
 
-		void HandleElapsed (object sender, ElapsedEventArgs e)
-		{
-			progressView.Value ++;
-			if (progressView.Value >= 100) {
-				progressView.Value = 0;
-			}
-		}
-
 		void Fab_Click (object sender, EventArgs e)
 		{
 			Intent Intent2 = new Intent (this, typeof(TicketAddActivity));
@@ -227,13 +214,15 @@ namespace LinkOM
 						//Add button into View
 						AddRow (statusList [i].Id, statusList [i].Name, ColorHelper.GetColor (statusList [i].ColourName), button, NumberOfTicket);
 
+
+							
 						RunOnUiThread (() => button.Text = NumberOfTicket.ToString ());
 
 						buttonList.Add (button);
 					}
 				}
 			}
-			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
+			RunOnUiThread (() => progress.Dismiss ());
 
 		}
 
@@ -281,13 +270,27 @@ namespace LinkOM
 			button.LayoutParameters = layoutParams_button;
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
 			button.Text="0";
-			button.Gravity = GravityFlags.Center;
-			button.SetBackgroundColor (color);
+
+			if (color == Color.White) {
+				button.SetBackgroundColor (Color.Gray);
+			}
+			else
+				button.SetBackgroundColor (color);
+
 			if (color == Color.Black) {
 				button.SetTextColor (Color.White);
 			}
 			else
-				button.SetTextColor (Color.Black);
+				if (color == Color.Blue) {
+					button.SetTextColor (Color.White);
+				}
+				else
+					if (color == Color.Purple) {
+						button.SetTextColor (Color.White);
+					}
+					else
+						button.SetTextColor (Color.Black);
+			
 			button.Tag = id;
 			button.Click += HandleMyButton;
 
@@ -297,10 +300,17 @@ namespace LinkOM
 			view.LayoutParameters = layoutParams_view;
 			view.SetBackgroundColor (Color.ParseColor("#AEAEAE"));
 
+			//LinearLayout_Inside.AddView (textView);
+
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
 
-			if(Settings.Orientation.Equals("Portrait"))
+			if (Settings.Orientation.Equals ("Portrait"))
+				//LinearLayout_Inside.AddView (button);
 				RunOnUiThread (() => LinearLayout_Inside.AddView (button));
+
+//			tableRow.AddView (LinearLayout_Inside);
+//			LinearLayout_Master.AddView (tableRow);
+//			LinearLayout_Master.AddView (view);
 
 			RunOnUiThread (() => tableRow.AddView (LinearLayout_Inside));
 			RunOnUiThread (() => LinearLayout_Master.AddView (tableRow));
@@ -313,12 +323,6 @@ namespace LinkOM
 			return Int32.Parse(Math.Round((float)dp * density).ToString());
 		}
 
-		public void btBackClick(object sender, EventArgs e)
-		{
-			_timer.Stop ();
-			this.Finish ();
-			OnBackPressed ();
-		}
 
 		private void HandleMyButton(object sender, EventArgs e)
 		{
@@ -566,6 +570,12 @@ namespace LinkOM
 
 			//ticketCommentListView.ItemClick += listView_ItemClick;
 
+		}
+
+		public override void OnBackPressed()
+		{
+			this.Finish ();
+			base.OnBackPressed();
 		}
 	}
 }

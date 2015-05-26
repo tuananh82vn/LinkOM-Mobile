@@ -16,6 +16,7 @@ using Android.Content.PM;
 
 using RadialProgress;
 using Android.Graphics;
+using Android.Views.Animations;
 
 namespace LinkOM
 {
@@ -32,7 +33,9 @@ namespace LinkOM
 
 		public ProgressDialog progress;
 
-		public RadialProgressView progressView;
+		public ImageView imageView_logo;
+
+//		public RadialProgressView progressView;
 
 
 		protected override void OnCreate (Bundle bundle)
@@ -42,7 +45,7 @@ namespace LinkOM
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Login);
 
-			ImageView imageView1 = FindViewById<ImageView>(Resource.Id.imageView1);
+			ImageView imageView1 = FindViewById<ImageView>(Resource.Id.imageView_companylogo);
 			var imageBitmap = GetImageBitmapFromUrl(Settings.InstanceURL+"/FileReference/GetLogoImage");
 
 			if(imageBitmap!=null)
@@ -71,11 +74,16 @@ namespace LinkOM
 			}
 
 
+			imageView_logo = FindViewById<ImageView>(Resource.Id.imageView_logo);
 
-			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
-			progressView.MinValue = 0;
-			progressView.MaxValue = 100;
-			progressView.Visibility=ViewStates.Invisible;
+
+
+
+
+//			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
+//			progressView.MinValue = 0;
+//			progressView.MaxValue = 100;
+//			progressView.Visibility=ViewStates.Invisible;
 
 
 
@@ -141,11 +149,11 @@ namespace LinkOM
 
 		private void OnTimedEvent(object sender, System.Timers.ElapsedEventArgs e)
 		{
-			RunOnUiThread (() => progressView.Value ++);
-
-			if (progressView.Value >= 100) {
-				progressView.Value = 0;
-			}
+//			RunOnUiThread (() => progressView.Value ++);
+//
+//			if (progressView.Value >= 100) {
+//				progressView.Value = 0;
+//			}
 
 		}
 
@@ -160,17 +168,22 @@ namespace LinkOM
 		{
 			if (!string.IsNullOrEmpty (username.Text) && !string.IsNullOrEmpty (password.Text)) {
 				//this hides the keyboard
-				progressView.Visibility=ViewStates.Visible;
+//				progressView.Visibility=ViewStates.Visible;
 
 				var imm = (InputMethodManager)GetSystemService (Context.InputMethodService);
 				imm.HideSoftInputFromWindow (password.WindowToken, HideSoftInputFlags.NotAlways);
 
-				ThreadPool.QueueUserWorkItem (o => Login());
+				ThreadPool.QueueUserWorkItem (o => Login ());
+			} else {
+				RunOnUiThread (() => Toast.MakeText (this, "Please enter username and password", ToastLength.Short).Show ());
 			}
 		}
 
 		private void Login(){
 
+			var rotateAboutCenterAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.rotate_center);
+
+			RunOnUiThread (() => imageView_logo.StartAnimation(rotateAboutCenterAnimation));
 
 			_timer.Enabled = true;
 
@@ -209,7 +222,7 @@ namespace LinkOM
 
 		private void onFailLogin(LoginObject obj)
 		{
-			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
+//			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
 
 			RunOnUiThread (() => Toast.MakeText (this, obj.ErrorMessage, ToastLength.Short).Show ());
 		}

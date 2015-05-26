@@ -26,6 +26,13 @@ namespace LinkOM
         {
             base.OnCreate (bundle);
 
+
+			var CheckAgain = Intent.GetBooleanExtra ("CheckAgain",false);
+
+			if (!CheckAgain) {
+				CheckServer ();
+			}
+
 			RequestWindowFeature (WindowFeatures.ActionBar);
 
 			// Set our view from the "main" layout resource
@@ -39,6 +46,11 @@ namespace LinkOM
 			URLText.RequestFocus ();
 			URLText.SetOnEditorActionListener (this);
 
+			progress = new ProgressDialog (this,Resource.Style.StyledDialog);
+			progress.Indeterminate = true;
+			progress.SetMessage("Checking Server...");
+			progress.SetCancelable (true);
+
 			Button button = FindViewById<Button>(Resource.Id.btCheck);
 
 			button.Click += (sender, e) => {
@@ -46,24 +58,13 @@ namespace LinkOM
 				ThreadPool.QueueUserWorkItem (o => CheckServerAgain ());
 			};
 
-			progress = new ProgressDialog (this);
-			progress.Indeterminate = true;
-			progress.SetProgressStyle(ProgressDialogStyle.Spinner);
-			progress.SetMessage("Checking Server...");
-			progress.SetCancelable(false);
-
-
-			var CheckAgain = Intent.GetBooleanExtra ("CheckAgain",false);
-
-			if (!CheckAgain) {
-				progress.Show();
-				ThreadPool.QueueUserWorkItem (o => CheckServer ());
-			}
-
 			//Lock Orientation
-			if (Settings.Orientation.Equals ("Portrait")) {
+			if (Settings.Orientation.Equals ("Portrait")) 
+			{
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			} else {
+			} 
+			else
+			{
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
         }
@@ -96,15 +97,15 @@ namespace LinkOM
 			if (results != "" && results != null) {
 				ResultsJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
 				if (obj.Success) {
-					RunOnUiThread (() => progress.Dismiss());
 					StartActivity (typeof(LoginActivity));
 					this.Finish ();
 				}
-			} else
-				RunOnUiThread (() => progress.Dismiss());
+			}
 		}
 
 		private void CheckServerAgain(){
+
+			RunOnUiThread (() => progress.Show());
 
 			string url1 = URLText.Text.ToLower();
 
@@ -130,6 +131,8 @@ namespace LinkOM
 		}
 
 		private void DisplayResults(string url , string results){
+			RunOnUiThread (() => progress.Dismiss());
+
 			if (results != null && results != "") {
 				ResultsJson obj = Newtonsoft.Json.JsonConvert.DeserializeObject<ResultsJson> (results);
 				if (obj.Success) {
@@ -139,13 +142,11 @@ namespace LinkOM
 				} 
 				else 
 				{
-					RunOnUiThread (() => progress.Dismiss());
 					RunOnUiThread (() => Toast.MakeText (this, "No Connection to server, try again later", ToastLength.Short).Show ());
 				}
 			} 
 			else 
 			{
-				RunOnUiThread (() => progress.Dismiss());
 				RunOnUiThread (() => Toast.MakeText (this, "No Connection to server, try again later", ToastLength.Short).Show ());
 			}
 		}
@@ -164,6 +165,12 @@ namespace LinkOM
 				//next action will set focus to password edit text.
 			} 
 			return false;
+		}
+
+		public override void OnBackPressed()
+		{
+			this.Finish ();
+			base.OnBackPressed();
 		}
 
 			

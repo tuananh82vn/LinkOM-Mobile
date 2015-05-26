@@ -542,6 +542,12 @@
     <AndroidResource Include="Resources\drawable\style_button.xml" />
     <AndroidResource Include="Resources\layout-sw720dp-land\MainContentLayout2.axml" />
     <AndroidResource Include="Resources\menu\RefeshMenu.xml" />
+    <AndroidResource Include="Resources\drawable\EditTextStyle.xml" />
+    <AndroidResource Include="Resources\drawable\Login_Background.png" />
+    <AndroidResource Include="Resources\drawable\CheckBox_Style.xml" />
+    <AndroidResource Include="Resources\drawable\checkbox_checked.png" />
+    <AndroidResource Include="Resources\drawable\checkbox_unchecked.png" />
+    <AndroidResource Include="Resources\drawable\ProgressDialog_Style.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

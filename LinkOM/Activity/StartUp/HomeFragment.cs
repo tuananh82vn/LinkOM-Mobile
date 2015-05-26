@@ -8,18 +8,23 @@ using Android.Widget;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Android.App;
 
 namespace LinkOM
 {
-	public class HomeFragment : Fragment
+	public class HomeFragment : Android.Support.V4.App.Fragment
 	{
 		public ListView milestoneListView;
 		public MilestoneListAdapter milestoneList;
 		public DashboardObject temp;
 
-		public HomeFragment()
+
+
+		public HomeFragment(Activity context)
 		{
 			this.RetainInstance = true;
+
+
 		}
 
 
@@ -47,6 +52,8 @@ namespace LinkOM
 
 			RelativeLayout bt_Document = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Documents);
 			bt_Document.Click += bt_DocumentClick;
+
+
 
 			if (Settings.Orientation.Equals ("Landscape")) 
 			{
@@ -253,18 +260,21 @@ namespace LinkOM
 
 		public void bt_TicketClick(object sender, EventArgs e)
 		{
+			
 			var activity = new Intent (base.Activity, typeof(TicketActivity));
 			StartActivity (activity);
 		}
 
 		public void bt_MilestoneClick(object sender, EventArgs e)
 		{
+			
 			var activity = new Intent (base.Activity, typeof(MilestoneActivity));
 			StartActivity (activity);
 		}
 
 		public void bt_IssuesClick(object sender, EventArgs e)
 		{
+
 			var activity = new Intent (base.Activity, typeof(IssuesActivity));
 			StartActivity (activity);
 		}

@@ -108,6 +108,8 @@ namespace LinkOM
 
 			GetPriorityList ();
 
+
+
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
@@ -227,8 +229,9 @@ namespace LinkOM
 		private void GetPriorityList(){
 			//Handle priority
 
-			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Android.Resource.Layout.SimpleSpinnerItem);
-			PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+			PriorityAdapter = ArrayAdapter.CreateFromResource (this, Resource.Array.TaskPriority, Resource.Layout.SpinnerItemDropdown);
+			//PriorityAdapter.SetDropDownViewResource (Android.Resource.Layout.SelectDialogSingleChoice);
+
 			spinner_Priority.Adapter = PriorityAdapter;
 
 
@@ -378,19 +381,21 @@ namespace LinkOM
 			if (editText_AllocatedHours.Text != "")
 				TaskObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
 			
-			if (editText_SpentHours.Text != "")
-				TaskObject.SpentHours = Double.Parse(editText_SpentHours.Text);
-			
 			TaskObject.Description = editText_Description.Text;
 
 			ApiResultSave restult = TaskHelper.AddTask (TaskObject);
+			if (restult != null) {
+				if (restult.Success) 
+				{
+					OnBackPressed ();
+					Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
 
-			if (restult.Success) {
-				OnBackPressed ();
-				Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
-
-			} else
-				Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();
+				} 
+				else
+					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();
+			}
+			else
+				Toast.MakeText (this, "Server Error", ToastLength.Short).Show ();
 		}
 
 		// the event received when the user "sets" the date in the dialog

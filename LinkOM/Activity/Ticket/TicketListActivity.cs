@@ -25,7 +25,7 @@ namespace LinkOM
 		public List<TicketList> _TicketList;
 		public TicketListAdapter ticketList;
 		public int StatusId;
-		public SwipeRefreshLayout refresher;
+//		public SwipeRefreshLayout refresher;
 		public bool loading;
 
 		private EditText mSearch;
@@ -59,16 +59,19 @@ namespace LinkOM
 
 			InitData ();
 
-			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-
-			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
-
-			refresher.Refresh += HandleRefresh;
+//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+//
+//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
+//
+//			refresher.Refresh += HandleRefresh;
 
 			//Lock Orientation
-			if (Settings.Orientation.Equals ("Portrait")) {
+			if (Settings.Orientation.Equals ("Portrait")) 
+			{
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			} else {
+			} 
+			else 
+			{
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
@@ -122,13 +125,13 @@ namespace LinkOM
 			ticketList.Filter.InvokeFilter(mSearch.Text);
 		}
 
-		async void HandleRefresh (object sender, EventArgs e)
-		{
-			await InitData ();
-			refresher.Refreshing = false;
-		}
+//		async void HandleRefresh (object sender, EventArgs e)
+//		{
+//			await InitData ();
+//			refresher.Refreshing = false;
+//		}
 
-		private async Task InitData(){
+		private void InitData(){
 
 			if (StatusId != 0) {
 
@@ -163,7 +166,7 @@ namespace LinkOM
 				ticketListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartDown;
 				anim.AnimationEnd += anim_AnimationEndDown;
-				refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+				//refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
 			}
 
 			else
@@ -174,7 +177,7 @@ namespace LinkOM
 				ticketListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartUp;
 				anim.AnimationEnd += anim_AnimationEndUp;
-				refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+				//refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
 			}
 
 			mAnimatedDown = !mAnimatedDown;
@@ -216,6 +219,12 @@ namespace LinkOM
 
 			StartActivity (activity);
 
+		}
+
+		public override void OnBackPressed()
+		{
+			this.Finish ();
+			base.OnBackPressed();
 		}
 
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)

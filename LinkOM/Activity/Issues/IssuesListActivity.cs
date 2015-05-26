@@ -153,9 +153,10 @@ namespace LinkOM
 			}
 		}
 
-		public void btBackClick(object sender, EventArgs e)
+		public override void OnBackPressed()
 		{
-			OnBackPressed ();
+			this.Finish ();
+			base.OnBackPressed();
 		}
 
 		public void btSearchClick()

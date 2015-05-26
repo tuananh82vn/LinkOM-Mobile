@@ -79,11 +79,14 @@ namespace LinkOM
 			ProjectName.Text = _ProjectList [position].Name;
 
 			var ClientName = view.FindViewById<TextView> (Resource.Id.tv_ClientName);
-			ClientName.Text = _ProjectList [position].ClientName;
+			ClientName.Text = _ProjectList [position].DepartmentName;
+			ClientName.SetTextColor(ColorHelper.GetColor( _ProjectList [position].DepartmentColor));
 
 			var ProjectStatus = view.FindViewById<TextView> (Resource.Id.tv_Status);
 			ProjectStatus.Text = _ProjectList [position].ProjectStatus;
+			ProjectStatus.SetBackgroundColor(ColorHelper.GetColor(_ProjectList [position].ProjectStatusColor));
 
+			
 //			if ((position % 2) == 1)
 //			{
 //				ProjectName.SetTextColor(Color.White);

@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <radialprogress.RadialProgressView
+    <!--        <radialprogress.RadialProgressView
             android:id="@+id/tinyProgress"
             progress_type="small"
             progress_color="#936DBA"
@@ -18,7 +18,7 @@
             value="0"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_gravity="center" />
+            android:layout_gravity="center" />-->
         <LinearLayout
             android:orientation="vertical"
             android:minWidth="25px"

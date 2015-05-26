@@ -61,12 +61,6 @@ namespace LinkOM
 
 			InitData ();
 
-//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-//
-//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
-//
-//			refresher.Refresh += HandleRefresh;
-
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
@@ -123,11 +117,6 @@ namespace LinkOM
 			taskList.Filter.InvokeFilter(mSearch.Text);
 		}
 
-//		async void HandleRefresh (object sender, EventArgs e)
-//		{
-//			await InitData ();
-//			refresher.Refreshing = false;
-//		}
 
 		private void InitData(){
 			
@@ -154,9 +143,10 @@ namespace LinkOM
 			}
 		}
 
-		public void btBackClick(object sender, EventArgs e)
+		public override void OnBackPressed()
 		{
-			OnBackPressed ();
+			this.Finish ();
+			base.OnBackPressed();
 		}
 
 		public void btSearchClick()

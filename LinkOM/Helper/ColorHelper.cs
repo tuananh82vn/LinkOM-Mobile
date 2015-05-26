@@ -12,7 +12,8 @@ namespace LinkOM
 				else
 					if (ColorName.Equals("pink")) return Color.Pink;
 					else
-						return Color.ParseColor(ColorName);
+						if (ColorName.Equals("purple")) return Color.Purple;
+							else return Color.ParseColor(ColorName);
 			}
 			catch(Exception)
 			{

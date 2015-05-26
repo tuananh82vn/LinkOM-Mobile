@@ -72,7 +72,7 @@ namespace LinkOM
 			//Set the drawer lister to be the toggle.
 			this.drawerLayout.SetDrawerListener (this.drawerToggle);
 
-			Android.Support.V4.App.Fragment fragment = new HomeFragment ();
+			Android.Support.V4.App.Fragment fragment = new HomeFragment (this);
 
 			SupportFragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, fragment).Commit ();
 			
@@ -198,7 +198,7 @@ namespace LinkOM
 			{
 
 				case Resource.Id.refesh:
-					Android.Support.V4.App.Fragment fragment = new HomeFragment ();
+					Android.Support.V4.App.Fragment fragment = new HomeFragment (this);
 					SupportFragmentManager.BeginTransaction ().Replace (Resource.Id.content_frame, fragment).Commit ();
 					Toast.MakeText (this, "Reloaded", ToastLength.Short).Show ();
 					break;

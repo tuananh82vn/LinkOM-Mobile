@@ -30,16 +30,12 @@ namespace LinkOM
 	public class TaskActivity : Activity, TextView.IOnEditorActionListener
 	{
 		public LinearLayout LinearLayout_Master;
-//		public ProgressDialog progress;
+
 		public List<Button> buttonList;
 		public List<TaskList> taskList;
 		public TaskListAdapter taskListAdapter;
 
 		public ListView taskListView ;
-
-		public RadialProgressView progressView;
-		private System.Timers.Timer _timer;
-
 		public EditText mSearch;
 		private bool mAnimatedDown;
 		private bool mIsAnimating;
@@ -53,6 +49,8 @@ namespace LinkOM
 		public TaskCommentListAdapter taskCommentListAdapter;
 
 		public ListView taskCommentListView;
+
+		public ProgressDialog progress;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -73,6 +71,11 @@ namespace LinkOM
 				ActionBar.SetDisplayHomeAsUpEnabled (true);
 				ActionBar.SetHomeButtonEnabled (true);
 
+				progress = new ProgressDialog (this,Resource.Style.StyledDialog);
+				progress.Indeterminate = true;
+				progress.SetMessage("Please wait...");
+				progress.SetCancelable (true);
+				progress.Show ();
 
 				//Lock Orientation
 				if (Settings.Orientation.Equals ("Portrait")) 
@@ -100,18 +103,8 @@ namespace LinkOM
 					
 				}
 
-				progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
-				progressView.MinValue = 0;
-				progressView.MaxValue = 100;
-
-
-				_timer = new System.Timers.Timer (10);
-				_timer.Elapsed += HandleElapsed;
-				_timer.Start ();
-
 				ThreadPool.QueueUserWorkItem (o => GetTaskStatus ());
 
-				
 		}
 
 		void Fab_Click (object sender, EventArgs e)
@@ -178,14 +171,6 @@ namespace LinkOM
 			return true;
 		}
 
-		void HandleElapsed (object sender, ElapsedEventArgs e)
-		{
-			progressView.Value ++;
-			if (progressView.Value >= 100) {
-				progressView.Value = 0;
-			}
-		}
-
 		public void GetTaskStatus ()
 		{
 
@@ -227,12 +212,14 @@ namespace LinkOM
 					//Add button into View
 					AddRow (statusList[i].Id ,statusList[i].Name,ColorHelper.GetColor(statusList[i].ColourName),button, NumberOfTask);
 
+					//button.Text = NumberOfTask.ToString ();
+						
 					RunOnUiThread (() => button.Text =  NumberOfTask.ToString());
 
 					buttonList.Add (button);
 				}
 			}
-			RunOnUiThread (() => progressView.Visibility=ViewStates.Invisible);
+			RunOnUiThread (() => progress.Dismiss ());
 		}
 
 
@@ -280,12 +267,25 @@ namespace LinkOM
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
 			button.Text="0";
 			button.Gravity = GravityFlags.Center;
-			button.SetBackgroundColor (color);
+			if (color == Color.White) {
+				button.SetBackgroundColor (Color.Gray);
+			}
+			else
+				button.SetBackgroundColor (color);
+			
 			if (color == Color.Black) {
 				button.SetTextColor (Color.White);
 			}
 			else
-				button.SetTextColor (Color.Black);
+				if (color == Color.Blue) {
+					button.SetTextColor (Color.White);
+				}
+				else
+					if (color == Color.Purple) {
+						button.SetTextColor (Color.White);
+					}
+					else
+						button.SetTextColor (Color.Black);
 
 			button.Tag = id;
 			button.Click += HandleMyButton;
@@ -298,8 +298,10 @@ namespace LinkOM
 
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
 
-			if(Settings.Orientation.Equals("Portrait"))
+			if (Settings.Orientation.Equals ("Portrait"))
+				//LinearLayout_Inside.AddView (button);
 				RunOnUiThread (() => LinearLayout_Inside.AddView (button));
+
 
 			RunOnUiThread (() => tableRow.AddView (LinearLayout_Inside));
 			RunOnUiThread (() => LinearLayout_Master.AddView (tableRow));
@@ -312,11 +314,10 @@ namespace LinkOM
 			return Int32.Parse(Math.Round((float)dp * density).ToString());
 		}
 
-		public void btBackClick(object sender, EventArgs e)
+		public override void OnBackPressed()
 		{
-			_timer.Stop ();
 			this.Finish ();
-			OnBackPressed ();
+			base.OnBackPressed();
 		}
 
 		private void HandleMyButton(object sender, EventArgs e)
@@ -383,7 +384,6 @@ namespace LinkOM
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			TaskSelected = TaskHelper.GetTaskDetail(this.taskListAdapter.GetItemAtPosition (e.Position).Id);
-
 
 			frame_TaskDetail.Visibility = ViewStates.Visible;
 

@@ -3,99 +3,127 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/Background3">
-    <LinearLayout
-        android:orientation="horizontal"
+    android:background="@drawable/Login_Background">
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="69.4dp"
+            android:id="@+id/imageView_companylogo"
+            android:layout_marginLeft="0.0dp"
+            android:layout_marginRight="0.0dp"
+            android:layout_marginBottom="0.0dp"
+            android:padding="10dp"
+            android:src="@drawable/Synotive"
+            android:layout_marginTop="60dp" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow12"
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout1">
+        android:layout_marginTop="24dp">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="39.9dp"
-            android:id="@+id/imageView1"
-            android:layout_margin="30dp"
+            android:layout_width="48.7dp"
+            android:layout_height="40.9dp"
+            android:id="@+id/imageView_logo"
+            android:layout_marginLeft="156dp"
+            android:layout_marginRight="0.0dp"
+            android:layout_marginBottom="0.0dp"
+            android:src="@drawable/icon"
             android:layout_gravity="center" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:id="@+id/latSection">
+        android:layout_height="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="15dp">
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:id="@+id/tv_username"
-            android:textColor="#ff000000"
-            android:layout_marginLeft="50dp"
+            android:layout_centerVertical="true"
+            android:textSize="14dp"
+            android:ellipsize="start"
+            android:gravity="center_vertical"
             android:hint="Username"
-            android:textColorHint="#ff000000"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:layout_marginRight="50dp"
-            android:textSize="18dp" />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:id="@+id/longSection">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/tv_password"
-            android:layout_marginLeft="50dp"
-            android:password="true"
-            android:textColor="#ff000000"
-            android:hint="Password"
-            android:textColorHint="#ff000000"
-            android:imeOptions="actionGo"
-            android:inputType="textPassword"
-            android:layout_marginRight="50dp"
-            android:textSize="18dp" />
-    </LinearLayout>
-    <CheckBox
-        android:text="Remember me"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cb_rememberMe"
-        android:textColor="#ff437800"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textSize="12dp" />
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_marginTop="28dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:id="@+id/getSection"
+            android:background="@drawable/EditTextStyle"
+            android:padding="10dp"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ff626262" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow12"
         android:minWidth="25px"
-        android:minHeight="25px">
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="5dp">
+        <EditText
+            android:id="@+id/tv_password"
+            android:layout_centerVertical="true"
+            android:textSize="14dp"
+            android:ellipsize="start"
+            android:gravity="center_vertical"
+            android:hint="Password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:imeOptions="actionGo"
+            android:inputType="text"
+            android:background="@drawable/EditTextStyle"
+            android:padding="10dp"
+            android:textColor="#ffffffff"
+            android:textColorHint="#ff626262"
+            android:password="true" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="5dp">
+        <CheckBox
+            android:text="  Remember Me"
+            android:button="@drawable/CheckBox_Style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_rememberMe"
+            android:textColor="#ff626262"
+            android:textSize="10dp" />
+    </TableRow>
+    <TableRow
+        android:id="@+id/tableRow12"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginRight="38dp"
+        android:layout_marginTop="5dp">
         <Button
             android:background="@drawable/style_button"
             style="@style/button_text"
             android:id="@+id/btLogin"
-            android:text="Login"
-            android:layout_width="242.0dp"
-            android:layout_height="49.1dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp" />
-        <radialprogress.RadialProgressView
-            android:id="@+id/tinyProgress"
-            progress_type="tiny"
-            progress_color="#00FF00"
-            min_value="0"
-            max_value="100"
-            value="0"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center" />
-    </LinearLayout>
+            android:gravity="center"
+            android:text="LOGIN"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
 </LinearLayout>

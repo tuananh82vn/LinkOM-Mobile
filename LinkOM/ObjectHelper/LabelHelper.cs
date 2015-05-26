@@ -9,7 +9,7 @@ namespace LinkOM
 			
 			string url = Settings.InstanceURL;
 
-			url=url+"/api/GetProjectPhaseByProject";
+			url=url+"/api/GetProjectLabelByProject";
 
 			var objProject = new
 			{
