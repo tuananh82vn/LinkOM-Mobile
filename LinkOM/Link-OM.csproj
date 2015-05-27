@@ -229,6 +229,9 @@
     <Compile Include="Model\ViewModel\TicketObject.cs" />
     <Compile Include="Model\ViewModel\IssuesObject.cs" />
     <Compile Include="Activity\Base\BaseActivity.cs" />
+    <Compile Include="Model\ViewModel\DocumentDetailList.cs" />
+    <Compile Include="Adapter\MilestoneCommentListAdapter.cs" />
+    <Compile Include="Model\ViewModel\MilestonesCommentList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -250,18 +250,18 @@ namespace LinkOM
 				AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
 
 			if(obj.StartDate!=null)
-				StartDatePicker.Text = obj.StartDate.Value.ToShortDateString();
+				StartDatePicker.Text = obj.StartDate.Value.ToString ("dd'/'MM'/'yyyy");
 
 			if(obj.EndDate!=null)
-				EndDatePicker.Text = obj.EndDate.Value.ToShortDateString();
+				EndDatePicker.Text = obj.EndDate.Value.ToString ("dd'/'MM'/'yyyy");
 
 			var ActualStartDate_EditText = FindViewById<EditText> (Resource.Id.editText_ActualStartDate);
 			if(obj.ActualStartDate!=null)
-				ActualStartDate_EditText.Text = obj.ActualStartDate.Value.ToShortDateString();
+				ActualStartDate_EditText.Text = obj.ActualStartDate.Value.ToString ("dd'/'MM'/'yyyy");
 
 			var ActualEndDate_EditText = FindViewById<EditText> (Resource.Id.editText_ActualEndDate);
 			if(obj.ActualEndDate!=null)
-				ActualEndDate_EditText.Text = obj.ActualEndDate.Value.ToShortDateString();
+				ActualEndDate_EditText.Text = obj.ActualEndDate.Value.ToString ("dd'/'MM'/'yyyy");
 
 			var Notes = FindViewById<EditText> (Resource.Id.editText_Notes);
 			if(obj.Notes!=null)

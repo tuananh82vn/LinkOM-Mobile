@@ -91,6 +91,7 @@ namespace LinkOM
 			loading = true;
 
 			KnowledgebaseFilter objFilter = new KnowledgebaseFilter ();
+
 			var ObjectReturn = KnowledgeBaseHelper.GetKnowledgebaseList (objFilter);
 
 			if(ObjectReturn!=null)

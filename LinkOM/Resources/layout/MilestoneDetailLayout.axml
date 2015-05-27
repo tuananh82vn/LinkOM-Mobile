@@ -515,7 +515,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp" />
         <ListView
-            android:id="@+id/TaskCommentListView"
+            android:id="@+id/MilestoneCommentListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

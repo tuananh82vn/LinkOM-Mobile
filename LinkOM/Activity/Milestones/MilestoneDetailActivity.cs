@@ -19,8 +19,11 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long MilestoneId;
+		public ListView milestoneCommentListView ;
 		public MilestonesDetailList MilestoneDetail;
 		public string results;
+
+		public MilestoneCommentListAdapter milestoneCommentListAdapter;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -38,7 +41,11 @@ namespace LinkOM
 
 			LoadMilestone ();
 
+			if(MilestoneDetail!=null)
 			DisplayMilestone (MilestoneDetail);
+
+			if(MilestoneDetail!=null)
+				LoadMilestoneComment (MilestoneDetail.Id.Value);
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -49,15 +56,46 @@ namespace LinkOM
 
 		}
 
+		public void LoadMilestoneComment(int MilestoneId){
+
+			milestoneCommentListAdapter = new MilestoneCommentListAdapter (this, MilestonesHelper.GetMilestoneCommentList(MilestoneId));
+
+			milestoneCommentListView = FindViewById<ListView> (Resource.Id.MilestoneCommentListView);
+
+			milestoneCommentListView.Adapter = milestoneCommentListAdapter;
+
+			milestoneCommentListView.DividerHeight = 0;
+
+			Utility.setListViewHeightBasedOnChildren (milestoneCommentListView);
+		}
 
 		public void LoadMilestone(){
 			
-			results= Intent.GetStringExtra ("Milestone");
+			var MilestoneId = Intent.GetIntExtra ("MilestoneId", 0);
 
-			var temp  = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesList> (results);
-
-			MilestoneDetail = MilestonesHelper.GetMilestonesDetail (temp.Id.Value);
+			if (MilestoneId != 0) 
+			{
+				MilestoneDetail = LoadMilestoneDetail (MilestoneId);
+			}
 		}
+
+		public MilestonesDetailList LoadMilestoneDetail(int MilestoneId){
+
+			if (CheckLoginHelper.CheckLogin ()) 
+			{
+				return MilestonesHelper.GetMilestonesDetail (MilestoneId);
+			} 
+			else 
+			{
+				var activity = new Intent (this, typeof(LoginActivity));
+				activity.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
+				StartActivity (activity);
+				Finish();
+				return null;
+			}
+		}
+
+
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
@@ -81,7 +119,7 @@ namespace LinkOM
 					break;
 				case Resource.Id.edit:
 					Intent Intent = new Intent (this, typeof(MilestoneEditActivity));
-					Intent.PutExtra ("Milestone", results);
+					Intent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject (MilestoneDetail));
 					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
 					StartActivity(Intent);
 					break;
@@ -97,9 +135,25 @@ namespace LinkOM
 			var MilestoneName = FindViewById<TextView> (Resource.Id.tv_MilestoneName);
 			MilestoneName.Text = obj.Title;
 
-
 			var MilestoneStatus = FindViewById<TextView> (Resource.Id.tv_Status);
+			if(obj.StatusName!=null)
 			MilestoneStatus.Text = obj.StatusName;
+
+			var cb_Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
+			if(obj.IsInternal!=null)
+				cb_Internal.Checked = obj.IsInternal.Value;
+
+			var tv_ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			if(obj.ProjectName!=null)
+			tv_ProjectName.Text = obj.ProjectName;
+
+			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
+			if(obj.AssignedToName!=null)
+			tv_AssignedTo.Text = obj.AssignedToName;
+
+			var tv_Owner = FindViewById<TextView> (Resource.Id.tv_Owner);
+			if(obj.OwnerName!=null)
+			tv_Owner.Text = obj.OwnerName;
 
 			var DueDate = FindViewById<TextView> (Resource.Id.tv_DueDate);
 			if(obj.EndDateString!=null)
@@ -107,16 +161,16 @@ namespace LinkOM
 
 			var ExpectedEndDate = FindViewById<TextView> (Resource.Id.tv_CompletedDate);
 			if(obj.ActualEndDateString!=null)
-				ExpectedEndDate.Text = obj.ActualEndDateString;
+				ExpectedEndDate.Text = obj.ExpectedCompletionDateString;
 
 
-//			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-//			if(obj.Description!=null)
-//				Description.Text = obj.Description;
+			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
+			if(obj.MilestoneDescription!=null)
+				Description.Text = obj.MilestoneDescription;
 
-//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
-//			DepartmentName.Text = obj.DepartmentName;
-
+			var tv_Department = FindViewById<TextView> (Resource.Id.tv_Department);
+			if(obj.DepartmentName!=null)
+				tv_Department.Text = obj.DepartmentName;
 		}
 	}
 }

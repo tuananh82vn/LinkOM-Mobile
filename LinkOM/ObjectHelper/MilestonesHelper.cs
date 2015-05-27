@@ -93,6 +93,51 @@ namespace LinkOM
 				return null;
 		}
 
+		public static List<MilestonesCommentList> GetMilestoneCommentList(int MilestoneId){
+
+			string url = Settings.InstanceURL;
+
+			//Load data
+			string url_Task= url+"/api/MilestoneCommentList";
+
+
+			var objMilestone = new
+			{
+				MilestoneId = MilestoneId,
+			};
+
+			var objsearch = (new
+				{
+					objApiSearch = new
+					{
+						TokenNumber =Settings.Token,
+						Item = objMilestone
+					}
+				});
+
+			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
+
+			if (results_Task != null && results_Task != "") {
+
+				ApiResultList<IEnumerable<MilestonesCommentList>> objResult = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultList<IEnumerable<MilestonesCommentList>>> (results_Task);
+
+				List<MilestonesCommentList> returnObject = new List<MilestonesCommentList> ();
+
+				if (objResult.Items != null) {
+					foreach (object Item in objResult.Items) {
+						MilestonesCommentList temp = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesCommentList> (Item.ToString ());
+						returnObject.Add (temp);
+					}
+				}
+				else
+					return null;
+
+				return returnObject;
+			} else
+				return null;
+
+		}
+
 
 
 	}

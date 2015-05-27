@@ -8,7 +8,6 @@ namespace LinkOM
 
 		public virtual String ProjectGuid { get; set; }
 
-	
 		public virtual String Title { get; set; }
 
 		public virtual Int32 DocumentCategoryId { get; set; }
@@ -39,7 +38,6 @@ namespace LinkOM
 
 		public virtual string Guid { get; set; }
 
-		//created by sanjay patel on  30 12 2014
 		public virtual int? TotalRows { get; set; }
 
 		public virtual bool? IsFromClient { get; set; }

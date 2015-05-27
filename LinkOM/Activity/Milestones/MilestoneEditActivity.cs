@@ -100,7 +100,8 @@ namespace LinkOM
 
 			results= Intent.GetStringExtra ("Milestone");
 
-			MilestoneDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesDetailList> (results);
+			if (results != "")
+				MilestoneDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<MilestonesDetailList> (results);
 		}
 
 		public void InitControl(){
@@ -152,8 +153,6 @@ namespace LinkOM
 		public void DisplayMilestone(MilestonesDetailList obj){
 
 			editText_Title.Text = obj.Title;
-
-//			editText_Description.Text = obj.Description;
 
 		}
 

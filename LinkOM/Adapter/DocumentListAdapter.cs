@@ -70,8 +70,11 @@ namespace LinkOM
 			var DocumentName = view.FindViewById<TextView> (Resource.Id.tv_DocumentName);
 			DocumentName.Text = _DocumentList [position].Title;
 
-			var project = view.FindViewById<TextView> (Resource.Id.tv_project);
+			var project = view.FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			project.Text = _DocumentList [position].ProjectName;
+
+			var tv_Category = view.FindViewById<TextView> (Resource.Id.tv_Category);
+			tv_Category.Text = _DocumentList [position].DocumentCategoryName;
 
 			var publishdate = view.FindViewById<TextView> (Resource.Id.tv_publishdate);
 			publishdate.Text = _DocumentList [position].CreatedDateString;

@@ -19,7 +19,7 @@ namespace LinkOM
 	{
 		private ImageButton overflowButton;
 		public long ProjectId;
-		public DocumentList DocumentDetail;
+		public DocumentDetailList DocumentDetail;
 		public string results;
 
 	//	public DocumentCommentListAdapter DocumentCommentListAdapter;
@@ -56,57 +56,33 @@ namespace LinkOM
 
 
 		public void LoadDocument(){
-			
-			results= Intent.GetStringExtra ("Document");
 
-			DocumentDetail = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentList> (results);
+
+			var DocumentId = Intent.GetIntExtra ("DocumentId", 0);
+
+			if (DocumentId != 0) 
+			{
+				DocumentDetail = LoadDocumentDetail(DocumentId);
+			}
+	    }
+
+
+
+		public DocumentDetailList LoadDocumentDetail (int DocumentId){
+
+			if (CheckLoginHelper.CheckLogin ()) 
+			{
+				return DocumentHelper.GetDocumentDetail (DocumentId);
+			} 
+			else 
+			{
+				var activity = new Intent (this, typeof(LoginActivity));
+				activity.SetFlags(ActivityFlags.ClearTop | ActivityFlags.NewTask);
+				StartActivity (activity);
+				Finish();
+				return null;
+			}
 		}
-
-//		public void LoadDocumentComment(int DocumentId){
-//
-//			string url = Settings.InstanceURL;
-//
-//			//Load data
-//			string url_Task= url+"/api/DocumentCommentList";
-//
-//
-//			var objTask = new
-//			{
-//				DocumentId = DocumentId,
-//			};
-//
-//			var objsearch = (new
-//				{
-//					objApiSearch = new
-//					{
-//						TokenNumber =Settings.Token,
-//						Item = objTask
-//					}
-//				});
-//
-//			string results_Task= ConnectWebAPI.Request(url_Task,objsearch);
-//
-//			if (results_Task != null && results_Task != "") {
-//
-//				var ticketList = Newtonsoft.Json.JsonConvert.DeserializeObject<DocumentCommentList> (results_Task);
-//
-//				if (ticketList.Items != null) {
-//
-//					DocumentCommentListAdapter = new DocumentCommentListAdapter (this, ticketList.Items);
-//
-//					ticketCommentListView = FindViewById<ListView> (Resource.Id.DocumentCommentListView);
-//
-//					ticketCommentListView.Adapter = DocumentCommentListAdapter;
-//
-//					ticketCommentListView.DividerHeight = 0;
-//
-//					Utility.setListViewHeightBasedOnChildren (ticketCommentListView);
-//
-//					//ticketCommentListView.ItemClick += listView_ItemClick;
-//				} 
-//
-//			}
-//		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
@@ -130,7 +106,7 @@ namespace LinkOM
 					break;
 				case Resource.Id.edit:
 					Intent Intent = new Intent (this, typeof(DocumentEditActivity));
-					Intent.PutExtra ("Document", results);
+					Intent.PutExtra ("Document", Newtonsoft.Json.JsonConvert.SerializeObject (DocumentDetail));
 					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
 					StartActivity(Intent);
 					break;
@@ -142,37 +118,41 @@ namespace LinkOM
 			return true;
 		}
 
-		public void DisplayDocument(DocumentList obj){
+		public void DisplayDocument(DocumentDetailList obj){
 
 			var DocumentName = FindViewById<TextView> (Resource.Id.tv_DocumentName);
 			DocumentName.Text = obj.Title;
 
-
-
 			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
+			if(obj.IsInternal!=null)
 			Internal.Checked = obj.IsInternal;
 
 			var Email = FindViewById<CheckBox> (Resource.Id.cb_Email);
+			if(obj.IsSendEmailToClient!=null)
 			Email.Checked = obj.IsSendEmailToClient;
 
 
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			if(obj.ProjectName!=null)
 			ProjectName.Text = obj.ProjectName;
 
+			var tv_DepartmentName = FindViewById<TextView> (Resource.Id.tv_DepartmentName);
+			if(obj.DepartmentName!=null)
+			tv_DepartmentName.Text = obj.DepartmentName;
+
+
+			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
+			if(obj.Label!=null)
+			Label.Text = obj.Label;
+
 			var Category = FindViewById<TextView> (Resource.Id.tv_Category);
+			if(obj.DocumentCategoryName!=null)
 			Category.Text = obj.DocumentCategoryName;
 
-
-//			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
-//			Label.Text = obj.Label;
-//
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
 			if(obj.Description!=null)
 				Description.Text = obj.Description;
-
-//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
-//			DepartmentName.Text = obj.DepartmentName;
 
 		}
 	}

@@ -169,7 +169,7 @@ namespace LinkOM
 
 				Intent addAccountIntent = new Intent (this, typeof(MilestoneDetailActivity));
 
-				addAccountIntent.PutExtra ("Milestone", Newtonsoft.Json.JsonConvert.SerializeObject (temp));
+				addAccountIntent.PutExtra ("MilestoneId",temp.Id.Value);
 
 				StartActivity (addAccountIntent);
 			}

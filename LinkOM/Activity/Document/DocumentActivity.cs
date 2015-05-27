@@ -74,9 +74,12 @@ namespace LinkOM
 			inputManager = (InputMethodManager)this.GetSystemService(Context.InputMethodService);
 
 			//Lock Orientation
-			if (Settings.Orientation.Equals ("Portrait")) {
+			if (Settings.Orientation.Equals ("Portrait")) 
+			{
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			} else {
+			} 
+			else 
+			{
 				frame_Detail  = FindViewById<FrameLayout> (Resource.Id.frameDetail);
 				frame_Detail.Visibility = ViewStates.Invisible;
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
@@ -89,10 +92,10 @@ namespace LinkOM
 
 		void Fab_Click (object sender, EventArgs e)
 		{
-			//			Intent Intent2 = new Intent (this, typeof(MilestoneAddActivity));
-			//			Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
-			//			StartActivity(Intent2);
-			Toast.MakeText (this, "Coming soon.", ToastLength.Short).Show ();
+			Intent Intent2 = new Intent (this, typeof(DocumentAddActivity));
+			Intent2.SetFlags (ActivityFlags.ClearWhenTaskReset);
+			StartActivity(Intent2);
+			//Toast.MakeText (this, "Coming soon.", ToastLength.Short).Show ();
 		}
 
 		private void InputSearchOnTextChanged(object sender, TextChangedEventArgs args)
@@ -179,7 +182,7 @@ namespace LinkOM
 				} 
 				else 
 				{
-					Toast.MakeText (this, "No project selected.", ToastLength.Short).Show ();
+					Toast.MakeText (this, "No document selected.", ToastLength.Short).Show ();
 				}
 				break;
 			default:
@@ -200,8 +203,6 @@ namespace LinkOM
 			var objectFilter = new DocumentFilter ();
 
 			documentList = new DocumentListAdapter (this,DocumentHelper.GetDocumentList(objectFilter));
-
-
 
 			documentListView.Adapter = documentList;
 
@@ -269,7 +270,7 @@ namespace LinkOM
 
 				var activity = new Intent (this, typeof(DocumentDetailActivity));
 
-				activity.PutExtra ("Document", Newtonsoft.Json.JsonConvert.SerializeObject(documentSelected));
+				activity.PutExtra ("DocumentId", documentSelected.Id);
 
 				StartActivity (activity);
 			}
