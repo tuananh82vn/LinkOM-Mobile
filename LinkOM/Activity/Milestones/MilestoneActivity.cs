@@ -27,7 +27,6 @@ namespace LinkOM
 		public MilestoneListAdapter milestoneList;
 
 		public int MilestoneId;
-		public SwipeRefreshLayout refresher;
 		public bool loading;
 
 

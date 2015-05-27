@@ -166,7 +166,7 @@ namespace LinkOM
 				ticketListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartDown;
 				anim.AnimationEnd += anim_AnimationEndDown;
-				//refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+				ticketListView.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
 			}
 
 			else
@@ -177,7 +177,7 @@ namespace LinkOM
 				ticketListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartUp;
 				anim.AnimationEnd += anim_AnimationEndUp;
-				//refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+				ticketListView.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
 			}
 
 			mAnimatedDown = !mAnimatedDown;

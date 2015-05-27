@@ -86,7 +86,17 @@ namespace LinkOM
 			ProjectStatus.Text = _ProjectList [position].ProjectStatus;
 			ProjectStatus.SetBackgroundColor(ColorHelper.GetColor(_ProjectList [position].ProjectStatusColor));
 
-			
+			var tv_StartDate = view.FindViewById<TextView> (Resource.Id.tv_StartDate);
+			tv_StartDate.Text = _ProjectList [position].StartDateString;
+
+			var tv_EndDate = view.FindViewById<TextView> (Resource.Id.tv_EndDate);
+			tv_EndDate.Text = _ProjectList [position].EndDateString;
+
+			if (_ProjectList [position].AllocatedHours.HasValue != null) {
+				var tv_AllocatedHours = view.FindViewById<TextView> (Resource.Id.tv_AllocatedHours);
+				tv_AllocatedHours.Text = _ProjectList [position].AllocatedHours.Value.ToString ();
+			}
+
 //			if ((position % 2) == 1)
 //			{
 //				ProjectName.SetTextColor(Color.White);

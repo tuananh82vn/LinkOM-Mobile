@@ -28,7 +28,6 @@ namespace LinkOM
 		public string TokenNumber;
 		public KnowledgebaseListAdapter knowledgebaseList; 
 		public ListView knowledgebaseListView;
-		public SwipeRefreshLayout refresher;
 	
 		protected override void OnCreate (Bundle savedInstanceState)
 		{
@@ -66,7 +65,6 @@ namespace LinkOM
 		async void HandleRefresh (object sender, EventArgs e)
 		{
 			await InitData ();
-			refresher.Refreshing = false;
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)

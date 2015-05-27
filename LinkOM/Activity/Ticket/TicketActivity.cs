@@ -261,9 +261,9 @@ namespace LinkOM
 				textView.Text = Title;
 			else {
 				textView.Text = Title + " (" + NumberOfTicket.ToString () + ")";
-				textView.Click += HandleMyButton;
-			}
 
+			}
+			textView.Click += HandleMyButton;
 			textView.Tag = id;
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
@@ -292,7 +292,7 @@ namespace LinkOM
 						button.SetTextColor (Color.Black);
 			
 			button.Tag = id;
-			button.Click += HandleMyButton;
+			//button.Click += HandleMyButton;
 
 
 			View view = new View (this);
@@ -327,26 +327,18 @@ namespace LinkOM
 		private void HandleMyButton(object sender, EventArgs e)
 		{
 			int whichOne = 0;
+			TextView myObject2 = (TextView)sender;
+			whichOne = (int)myObject2.Tag;
+
 			if (Settings.Orientation.Equals ("Portrait")) 
 			{
-				Button myObject1 = (Button)sender;
-				int Number = Int32.Parse (myObject1.Text);
-				if (Number == 0) {
-					Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
-				} else {
-					whichOne = (int)myObject1.Tag;
-
-					var activity = new Intent (this, typeof(TicketListActivity));
-					activity.PutExtra ("TicketStatusId", whichOne);
-					StartActivity (activity);
-				}
+				var activity = new Intent (this, typeof(TicketListActivity));
+				activity.PutExtra ("TicketStatusId", whichOne);
+				StartActivity (activity);
 			}
 			else
 			{
-					
-					TextView myObject2 = (TextView)sender;
-					whichOne = (int)myObject2.Tag;
-					GetTicketDetailList (whichOne);
+				GetTicketDetailList (whichOne);
 			}
 		}
 

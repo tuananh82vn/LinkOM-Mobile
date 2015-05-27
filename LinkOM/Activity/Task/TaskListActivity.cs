@@ -35,6 +35,7 @@ namespace LinkOM
 
 		public ListView taskListView ;
 
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -56,6 +57,9 @@ namespace LinkOM
 			mSearch.SetOnEditorActionListener (this);
 			mSearch.TextChanged += InputSearchOnTextChanged;
 
+//
+//			var inputManager = (InputMethodManager)GetSystemService(InputMethodService);
+//			inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.None);
 
 			StatusId= Intent.GetIntExtra ("TaskStatusId",0);
 
@@ -64,7 +68,9 @@ namespace LinkOM
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			} else {
+			} 
+			else 
+			{
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
@@ -159,7 +165,7 @@ namespace LinkOM
 				taskListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartDown;
 				anim.AnimationEnd += anim_AnimationEndDown;
-				refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+				taskListView.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
 			}
 
 			else
@@ -170,7 +176,7 @@ namespace LinkOM
 				taskListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartUp;
 				anim.AnimationEnd += anim_AnimationEndUp;
-				refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+				taskListView.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
 			}
 
 			mAnimatedDown = !mAnimatedDown;

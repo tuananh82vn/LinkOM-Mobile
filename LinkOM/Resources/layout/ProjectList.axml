@@ -20,7 +20,7 @@
             p1:gravity="center_vertical"
             p1:layout_width="match_parent"
             p1:layout_marginLeft="20dp"
-            p1:textColor="#ff5a5a5a"
+            p1:textColor="#ff000000"
             foo:customFont="Fonts/arial.ttf"
             p1:layout_marginTop="5dp"
             p1:textSize="18dp"
@@ -33,7 +33,7 @@
         p1:id="@+id/linearLayout2"
         p1:layout_marginBottom="5dp">
         <TextView
-            p1:text="Client Name"
+            p1:text="Department Name"
             p1:id="@+id/tv_ClientName"
             p1:gravity="center_vertical"
             p1:textColor="#ff437800"
@@ -64,4 +64,74 @@
             p1:layout_marginRight="10dp"
             p1:layout_marginLeft="2dp" />
     </LinearLayout>
+    <TableRow
+        p1:id="@+id/tableRow8"
+        p1:layout_width="match_parent"
+        p1:layout_height="20dp"
+        p1:layout_marginBottom="10dp">
+        <ImageView
+            p1:src="@drawable/calendar_green"
+            p1:layout_column="0"
+            p1:id="@+id/imageView1"
+            p1:layout_width="15.9dp"
+            p1:layout_height="12.3dp"
+            p1:layout_marginLeft="20dp"
+            p1:layout_marginRight="1dp"
+            p1:layout_marginTop="3dp" />
+        <TextView
+            p1:layout_column="1"
+            p1:id="@+id/tv_StartDate"
+            p1:layout_width="67.7dp"
+            p1:layout_height="wrap_content"
+            p1:gravity="center_vertical"
+            p1:textColor="#ff437800"
+            p1:textSize="12dp"
+            foo:customFont="Fonts/arial.ttf"
+            p1:layout_marginRight="10dp"
+            p1:text="01/01/1999" />
+        <ImageView
+            p1:src="@drawable/calendar_pink"
+            p1:layout_column="2"
+            p1:id="@+id/imageView1"
+            p1:layout_width="15.9dp"
+            p1:layout_height="12.3dp"
+            p1:layout_marginTop="3dp"
+            p1:layout_marginRight="1dp" />
+        <TextView
+            p1:layout_column="3"
+            p1:id="@+id/tv_EndDate"
+            p1:layout_width="67.7dp"
+            p1:layout_height="wrap_content"
+            p1:gravity="center_vertical"
+            p1:textColor="#ffDC6865"
+            p1:textSize="12dp"
+            foo:customFont="Fonts/arial.ttf"
+            p1:layout_marginRight="20dp"
+            p1:text="01/01/1999" />
+        <TextView
+            p1:layout_column="4"
+            p1:text="Alloc.hrs:"
+            p1:id="@+id/tv_label"
+            p1:gravity="right|center"
+            p1:textColor="#ff545454"
+            foo:customFont="Fonts/arial.ttf"
+            p1:textSize="12dp"
+            p1:layout_width="79.5dp"
+            p1:layout_alignParentLeft="true"
+            p1:layout_height="match_parent"
+            p1:layout_marginLeft="26dp" />
+        <TextView
+            p1:layout_column="5"
+            p1:text="0"
+            p1:id="@+id/tv_AllocatedHours"
+            p1:gravity="center_vertical"
+            p1:textColor="#ff545454"
+            foo:customFont="Fonts/arial.ttf"
+            p1:textSize="12dp"
+            p1:layout_width="wrap_content"
+            p1:layout_alignParentLeft="true"
+            p1:layout_height="match_parent"
+            p1:layout_marginLeft="2dp"
+            p1:layout_marginRight="2dp" />
+    </TableRow>
 </LinearLayout>

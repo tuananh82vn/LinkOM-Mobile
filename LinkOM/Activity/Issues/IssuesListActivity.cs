@@ -25,7 +25,6 @@ namespace LinkOM
 		public List<IssuesList> _IssuesList;
 		public IssuesListAdapter issuesList;
 		public int StatusId;
-		public SwipeRefreshLayout refresher;
 		public bool loading;
 
 		private EditText mSearch;
@@ -62,11 +61,11 @@ namespace LinkOM
 
 			InitData ();
 
-			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
-
-			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
-
-			refresher.Refresh += HandleRefresh;
+//			refresher = FindViewById<SwipeRefreshLayout> (Resource.Id.refresher);
+//
+//			refresher.SetColorScheme (Resource.Color.golden,Resource.Color.ginger_brown,Resource.Color.french_blue,Resource.Color.fern_green);
+//
+//			refresher.Refresh += HandleRefresh;
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -127,7 +126,7 @@ namespace LinkOM
 		async void HandleRefresh (object sender, EventArgs e)
 		{
 			await InitData ();
-			refresher.Refreshing = false;
+//			refresher.Refreshing = false;
 		}
 
 		private async Task InitData(){
@@ -169,7 +168,7 @@ namespace LinkOM
 				issuesListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartDown;
 				anim.AnimationEnd += anim_AnimationEndDown;
-				refresher.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
+				issuesListView.Animate().TranslationYBy(mSearch.Height).SetDuration(500).Start();
 			}
 
 			else
@@ -180,7 +179,7 @@ namespace LinkOM
 				issuesListView.StartAnimation(anim);
 				anim.AnimationStart += anim_AnimationStartUp;
 				anim.AnimationEnd += anim_AnimationEndUp;
-				refresher.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
+				issuesListView.Animate().TranslationYBy(-mSearch.Height).SetDuration(500).Start();
 			}
 
 			mAnimatedDown = !mAnimatedDown;

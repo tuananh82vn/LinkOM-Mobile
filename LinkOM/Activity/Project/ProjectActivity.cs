@@ -29,7 +29,7 @@ namespace LinkOM
 		public ProjectListAdapter projectList;
 
 		public int ProjectId;
-		public SwipeRefreshLayout refresher;
+//		public SwipeRefreshLayout refresher;
 		public bool loading;
 
 

@@ -262,10 +262,10 @@ namespace LinkOM
 				textView.Text = Title;
 			else {
 				textView.Text = Title + " (" + NumberOfIssues.ToString () + ")";
-				textView.Click += HandleMyButton;
+
 			}
 
-
+			textView.Click += HandleMyButton;
 			textView.Tag = id;
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
@@ -298,7 +298,7 @@ namespace LinkOM
 						button.SetTextColor (Color.Black);
 			
 			button.Tag = id;
-			button.Click += HandleMyButton;
+			//button.Click += HandleMyButton;
 
 
 			View view = new View (this);
@@ -332,24 +332,17 @@ namespace LinkOM
 		private void HandleMyButton(object sender, EventArgs e)
 		{
 			int whichOne = 0;
-			if (Settings.Orientation.Equals ("Portrait")) {
-				Button myObject1 = (Button)sender;
-				int Number = Int32.Parse (myObject1.Text);
-				if (Number == 0) {
-					Toast.MakeText (this, "No Issue Available.", ToastLength.Short).Show ();
-				} else {
-					whichOne = (int)myObject1.Tag;
+			TextView myObject2 = (TextView)sender;
+			whichOne = (int)myObject2.Tag;
 
+			if (Settings.Orientation.Equals ("Portrait")) {
 					var activity = new Intent (this, typeof(IssuesListActivity));
 					activity.PutExtra ("IssuesStatusId", whichOne);
 					StartActivity (activity);
-				}
 			}
+
 			else
 			{
-					
-					TextView myObject2 = (TextView)sender;
-					whichOne = (int)myObject2.Tag;
 					GetIssuesListByStatusId (whichOne);
 			}
 		}

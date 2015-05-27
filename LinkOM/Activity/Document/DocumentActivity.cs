@@ -33,7 +33,7 @@ namespace LinkOM
 		public string TokenNumber;
 
 		public ListView documentListView;
-		public SwipeRefreshLayout refresher;
+//		public SwipeRefreshLayout refresher;
 
 		public EditText mSearch;
 		private bool mAnimatedDown;
