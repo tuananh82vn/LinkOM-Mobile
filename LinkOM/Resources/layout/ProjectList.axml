@@ -11,8 +11,7 @@
     <TableRow
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/tableRow1"
-        p1:layout_marginBottom="5dp">
+        p1:id="@+id/tableRow1">
         <TextView
             p1:text="Project Name"
             p1:id="@+id/tv_ProjectName"
@@ -31,12 +30,12 @@
         p1:layout_width="match_parent"
         p1:layout_height="20dp"
         p1:id="@+id/linearLayout2"
-        p1:layout_marginBottom="5dp">
+        p1:layout_marginBottom="8dp">
         <TextView
             p1:text="Department Name"
             p1:id="@+id/tv_ClientName"
             p1:gravity="center_vertical"
-            p1:textColor="#ff437800"
+            p1:textColor="#ffcf823d"
             foo:customFont="Fonts/arial.ttf"
             p1:textSize="12dp"
             p1:layout_width="wrap_content"

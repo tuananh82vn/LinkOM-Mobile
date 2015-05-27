@@ -10,16 +10,16 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <LinkOM.ScrollChildSwipeRefreshLayout
+    <!--        <LinkOM.ScrollChildSwipeRefreshLayout
             android:id="@+id/refresher"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffffffff">
-            <ListView
-                android:id="@+id/TicketListView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinkOM.ScrollChildSwipeRefreshLayout>
+            android:background="#ffffffff">-->
+        <ListView
+            android:id="@+id/TicketListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    <!--        </LinkOM.ScrollChildSwipeRefreshLayout>-->
         <EditText
             android:id="@+id/etSearch"
             android:layout_height="wrap_content"
