@@ -548,6 +548,7 @@
     <AndroidResource Include="Resources\drawable\checkbox_checked.png" />
     <AndroidResource Include="Resources\drawable\checkbox_unchecked.png" />
     <AndroidResource Include="Resources\drawable\ProgressDialog_Style.xml" />
+    <AndroidResource Include="Resources\drawable-land\Login_Background.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

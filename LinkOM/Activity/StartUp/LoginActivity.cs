@@ -79,14 +79,6 @@ namespace LinkOM
 
 
 
-
-//			progressView = FindViewById<RadialProgressView> (Resource.Id.tinyProgress);
-//			progressView.MinValue = 0;
-//			progressView.MaxValue = 100;
-//			progressView.Visibility=ViewStates.Invisible;
-
-
-
 			_timer = new System.Timers.Timer();
 			//Trigger event every second
 			_timer.Interval = 10;
@@ -183,7 +175,10 @@ namespace LinkOM
 
 			var rotateAboutCenterAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.rotate_center);
 
+
 			RunOnUiThread (() => imageView_logo.StartAnimation(rotateAboutCenterAnimation));
+
+			Thread.Sleep (1000);
 
 			_timer.Enabled = true;
 
@@ -191,13 +186,15 @@ namespace LinkOM
 			LoginObject obj = _loginService.Login (username.Text, password.Text);
 
 
-			if (obj != null) {
+			if (obj != null) 
+			{
 				if (obj.Success)
 					onSuccessfulLogin (obj);
 				else
 					onFailLogin (obj);
-			} else {
-				
+			} 
+			else 
+			{
 				RunOnUiThread (() => Toast.MakeText (this, "No Connection", ToastLength.Short).Show ());
 			}
 		}

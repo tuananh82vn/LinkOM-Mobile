@@ -5672,8 +5672,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f0c00a7
 			public const int frame_taskdetail = 2131493031;
 			
-			// aapt resource value: 0x7f0c00cd
-			public const int getSection = 2131493069;
+			// aapt resource value: 0x7f0c00cb
+			public const int getSection = 2131493067;
 			
 			// aapt resource value: 0x7f0c0035
 			public const int grayscale = 2131492917;
@@ -5723,8 +5723,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f0c00c1
 			public const int image_Priority = 2131493057;
 			
-			// aapt resource value: 0x7f0c00cb
-			public const int latSection = 2131493067;
+			// aapt resource value: 0x7f0c00cc
+			public const int latSection = 2131493068;
 			
 			// aapt resource value: 0x7f0c00a3
 			public const int left_drawer = 2131493027;
@@ -5744,8 +5744,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f0c003f
 			public const int list_item = 2131492927;
 			
-			// aapt resource value: 0x7f0c00cc
-			public const int longSection = 2131493068;
+			// aapt resource value: 0x7f0c00cd
+			public const int longSection = 2131493069;
 			
 			// aapt resource value: 0x7f0c0166
 			public const int mainMenu = 2131493222;
