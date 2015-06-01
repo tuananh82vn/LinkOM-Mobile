@@ -42,7 +42,7 @@ namespace LinkOM
 		public InputMethodManager inputManager;
 		public FrameLayout frame_Detail;
 
-		public DocumentList documentSelected;
+		public DocumentDetailList documentSelected;
 		public FloatingActionButton fab;
 
 		protected override void OnCreate (Bundle savedInstanceState)
@@ -264,7 +264,7 @@ namespace LinkOM
 
 		void listView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			documentSelected = this.documentList.GetItemAtPosition (e.Position);
+			documentSelected = DocumentHelper.GetDocumentDetail(this.documentList.GetItemAtPosition (e.Position).Id);
 
 			if (Settings.Orientation.Equals ("Portrait")) {
 
@@ -283,7 +283,7 @@ namespace LinkOM
 
 		}
 
-		public void DisplayDocument(DocumentList obj){
+		public void DisplayDocument(DocumentDetailList obj){
 
 			var DocumentName = FindViewById<TextView> (Resource.Id.tv_DocumentDetailName);
 			DocumentName.Text = obj.Title;
@@ -295,24 +295,26 @@ namespace LinkOM
 			Email.Checked = obj.IsSendEmailToClient;
 
 
-			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
+			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
+			if(obj.ProjectName!=null)
 			ProjectName.Text = obj.ProjectName;
 
-			var Category = FindViewById<TextView> (Resource.Id.tv_Category);
+			var Category = FindViewById<TextView> (Resource.Id.tv_CategoryDetailName);
+			if(obj.DocumentCategoryName!=null)
 			Category.Text = obj.DocumentCategoryName;
 
+			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_DepartmentName);
+			if(obj.DepartmentName!=null)
+				DepartmentName.Text = obj.DepartmentName;
 
-			//			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
-			//			Label.Text = obj.Label;
-			//
+			var Label = FindViewById<TextView> (Resource.Id.tv_LabelDetail);
+			if(obj.Label!=null)
+			Label.Text = obj.Label;
+			
 
 			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
 			if(obj.Description!=null)
 				Description.Text = obj.Description;
-
-			//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
-			//			DepartmentName.Text = obj.DepartmentName;
-
 		}
 
 

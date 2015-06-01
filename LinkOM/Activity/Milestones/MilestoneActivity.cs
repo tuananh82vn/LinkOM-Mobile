@@ -197,24 +197,34 @@ namespace LinkOM
 			if(obj.IsInternal.HasValue)
 			cb_Internal.Checked = obj.IsInternal.Value;
 
-			var tv_ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
-			tv_ProjectName.Text = obj.ProjectName;
+			var tv_ProjectDetailName = FindViewById<TextView> (Resource.Id.tv_ProjectDetailName);
+			if(obj.ProjectName!=null)
+			tv_ProjectDetailName.Text = obj.ProjectName;
 
 			var DueDate = FindViewById<TextView> (Resource.Id.tv_DueDate);
 			if(obj.EndDateString!=null)
 				DueDate.Text = obj.EndDateString;
 
-			var ExpectedEndDate = FindViewById<TextView> (Resource.Id.tv_CompletedDate);
-			if(obj.ActualEndDateString!=null)
-				ExpectedEndDate.Text = obj.ActualEndDateString;
+			var tv_CompletedDate = FindViewById<TextView> (Resource.Id.tv_CompletedDate);
+			if(obj.ExpectedCompletionDateString!=null)
+				tv_CompletedDate.Text = obj.ExpectedCompletionDateString;
+
+			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
+			if(obj.AssignedToName!=null)
+				tv_AssignedTo.Text = obj.AssignedToName;
+
+			var tv_Owner = FindViewById<TextView> (Resource.Id.tv_Owner);
+			if(obj.OwnerName!=null)
+				tv_Owner.Text = obj.OwnerName;
 
 
-			//			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			//			if(obj.Description!=null)
-			//				Description.Text = obj.Description;
+			var tv_DescriptionName = FindViewById<TextView> (Resource.Id.tv_DescriptionName);
+			if(obj.MilestoneDescription!=null)
+				tv_DescriptionName.Text = obj.MilestoneDescription;
 
-			//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
-			//			DepartmentName.Text = obj.DepartmentName;
+			var tv_DepartmentName = FindViewById<TextView> (Resource.Id.tv_DepartmentName);
+			if(obj.DepartmentName!=null)
+			tv_DepartmentName.Text = obj.DepartmentName;
 
 		}
 

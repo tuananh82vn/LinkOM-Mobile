@@ -185,7 +185,7 @@
                             android:layout_marginTop="5dp" />
                         <TextView
                             android:layout_column="1"
-                            android:id="@+id/tv_ProjectName"
+                            android:id="@+id/tv_ProjectDetailName"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff000000"
@@ -238,7 +238,7 @@
                             android:layout_marginTop="5dp" />
                         <TextView
                             android:layout_column="1"
-                            android:id="@+id/tv_Label"
+                            android:id="@+id/tv_LabelDetail"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff1b806b"
@@ -261,7 +261,7 @@
                             android:layout_marginTop="5dp" />
                         <TextView
                             android:layout_column="3"
-                            android:id="@+id/tv_Category"
+                            android:id="@+id/tv_CategoryDetailName"
                             android:textSize="12dp"
                             foo:customFont="Fonts/arial.ttf"
                             android:textColor="#ff000000"

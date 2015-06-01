@@ -99,12 +99,7 @@ namespace LinkOM
 			StartActivity(Intent);
 		}
 
-//		//Refesh data
-//		async void HandleRefresh (object sender, EventArgs e)
-//		{
-//			await InitData ();
-//			refresher.Refreshing = false;
-//		}
+
 
 		//Loading data
 		public void InitData(){
@@ -116,8 +111,36 @@ namespace LinkOM
 
 			projectListView.ItemClick += listView_ItemClick;
 
+			RegisterForContextMenu(projectListView);
+
 			loading = false;
 
+		}
+
+		public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+		{
+			if (v.Id == Resource.Id.ProjectListView)
+			{
+				var info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+				menu.SetHeaderTitle(projectList[info.Position].Name);
+				var menuItems = Resources.GetStringArray(Resource.Array.menu);
+				for (var i = 0; i < menuItems.Length; i++)
+					menu.Add(Menu.None, i, i, menuItems[i]);
+			}
+		}
+
+		public override bool OnContextItemSelected(IMenuItem item)
+		{
+			var info = (AdapterView.AdapterContextMenuInfo) item.MenuInfo;
+			var menuItemIndex = item.ItemId;
+			var menuItems = Resources.GetStringArray(Resource.Array.menu);
+
+			var menuItemName = menuItems[menuItemIndex];
+
+			var listItemName = projectList[info.Position].Name;
+
+			Toast.MakeText(this, string.Format("Selected {0} for item {1}", menuItemName, listItemName), ToastLength.Short).Show();
+			return true;
 		}
 
 		//Handle item on action bar clicked
@@ -290,16 +313,18 @@ namespace LinkOM
 				AllocatedHours.Text = obj.AllocatedHours.Value.ToString();
 			else
 				AllocatedHours.Text = "";
-			var StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
-			if(obj.StartDate!=null)
-				StartDate.Text = obj.StartDate.Value.ToShortDateString();
+			
+			var tv_ProjectStartDate = FindViewById<TextView> (Resource.Id.tv_ProjectStartDate);
+			if (obj.StartDateString != null)
+				tv_ProjectStartDate.Text = obj.StartDateString;
 			else
-				StartDate.Text = "";
-			var EndDate = FindViewById<TextView> (Resource.Id.tv_EndDate);
-			if(obj.EndDate!=null)
-				EndDate.Text = obj.EndDate.Value.ToShortDateString();
+				tv_ProjectStartDate.Text = "";
+			
+			var tv_ProjectEndDate = FindViewById<TextView> (Resource.Id.tv_ProjectEndDate);
+			if (obj.EndDateString != null)
+				tv_ProjectEndDate.Text = obj.EndDateString;
 			else
-				EndDate.Text = "";
+				tv_ProjectEndDate.Text = "";
 			
 			var ActualStartDate = FindViewById<TextView> (Resource.Id.tv_ActualStartDate);
 			if (obj.ActualStartDate != null)
