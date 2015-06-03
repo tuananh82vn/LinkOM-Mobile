@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:foo="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:minWidth="25px"
     android:minHeight="25px"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffffff">
+    android:background="#E2E2E2">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -13,738 +14,788 @@
         android:id="@+id/linearLayout2"
         android:minWidth="25px"
         android:minHeight="25px">
-        <TableRow
-            android:id="@+id/tableRow11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Project Name"
-                android:layout_column="0"
-                android:id="@+id/tv_ProjectName"
-                android:layout_marginLeft="25.0dp"
-                android:layout_width="match_parent"
-                android:textSize="18dp"
-                android:layout_height="match_parent"
-                android:textColor="#ff00947A"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="25.0dp"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginBottom="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/tableRow7">
-            <TextView
-                android:text="Code:"
-                android:layout_column="0"
-                android:id="@+id/textView30"
-                android:layout_marginLeft="25.0dp"
-                android:layout_width="70dp"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_height="wrap_content"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:layout_column="1"
-                android:id="@+id/tv_Code"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:text="Ref Code:"
-                android:layout_column="2"
-                android:id="@+id/textView30"
-                android:layout_width="70dp"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:id="@+id/tv_RefCode"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_column="3"
-                android:layout_marginLeft="10dp"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
+            android:layout_marginBottom="5dp"
+            foo:cardCornerRadius="7dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:minWidth="25px"
+                android:minHeight="25px">
+                <TableRow
+                    android:id="@+id/tableRow11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="Project Name"
+                        android:layout_column="0"
+                        android:id="@+id/tv_ProjectName"
+                        android:layout_marginLeft="25.0dp"
+                        android:layout_width="match_parent"
+                        android:textSize="18dp"
+                        android:layout_height="match_parent"
+                        android:textColor="#ff00947A"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="25.0dp"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginBottom="5dp" />
+                </TableRow>
+                <TableRow
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:id="@+id/tableRow7">
+                    <TextView
+                        android:text="Code:"
+                        android:layout_column="0"
+                        android:id="@+id/textView30"
+                        android:layout_marginLeft="25.0dp"
+                        android:layout_width="70dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_height="wrap_content"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_Code"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:text="Ref Code:"
+                        android:layout_column="2"
+                        android:id="@+id/textView30"
+                        android:layout_width="70dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:id="@+id/tv_RefCode"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_column="3"
+                        android:layout_marginLeft="10dp"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                </TableRow>
+                <TableRow
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:id="@+id/tableRow7"
+                    android:layout_marginTop="0dp">
+                    <TextView
+                        android:layout_column="0"
+                        android:id="@+id/textView30"
+                        android:layout_marginLeft="25.0dp"
+                        android:layout_width="70dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_height="wrap_content"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:text="Phase:"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_Phase"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:text="Status:"
+                        android:layout_column="2"
+                        android:id="@+id/textView30"
+                        android:layout_width="70dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="3"
+                        android:id="@+id/tv_Status"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="0dp"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                </TableRow>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/tableRow7"
-            android:layout_marginTop="0dp">
-            <TextView
-                android:layout_column="0"
-                android:id="@+id/textView30"
-                android:layout_marginLeft="25.0dp"
-                android:layout_width="70dp"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_height="wrap_content"
-                foo:customFont="Fonts/arial.ttf"
-                android:text="Phase:"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:layout_column="1"
-                android:id="@+id/tv_Phase"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:text="Status:"
-                android:layout_column="2"
-                android:id="@+id/textView30"
-                android:layout_width="70dp"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:layout_column="3"
-                android:id="@+id/tv_Status"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="0dp"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tableRow7"
-            android:layout_marginBottom="0dp">
-            <TableLayout
-                android:id="@+id/tableLayout5"
-                android:stretchColumns="*">
+            android:layout_marginBottom="5dp"
+            foo:cardCornerRadius="7dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:minWidth="25px"
+                android:minHeight="25px">
+                <TableRow
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tableRow7"
+                    android:layout_marginBottom="0dp">
+                    <TableLayout
+                        android:id="@+id/tableLayout5"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:minWidth="25px"
+                            android:minHeight="25px"
+                            android:layout_marginBottom="0dp">
+                            <TextView
+                                android:text="Time"
+                                android:layout_column="0"
+                                android:id="@+id/textview"
+                                android:textSize="18dp"
+                                android:textColor="#ff00947A"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="25.0dp"
+                                android:layout_marginRight="25.0dp"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="12dp"
+                                android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
+                                android:layout_marginBottom="0dp" />
+                        </TableRow>
+                    </TableLayout>
+                </TableRow>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/view1"
+                    android:background="#ffe6e6e6"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp" />
                 <TableRow
                     android:id="@+id/tableRow12"
                     android:minWidth="25px"
                     android:minHeight="25px"
-                    android:layout_marginBottom="0dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
-                        android:text="Time"
+                        android:text="Allocated Hours:"
                         android:layout_column="0"
                         android:id="@+id/textview"
-                        android:textSize="18dp"
-                        android:textColor="#ff00947A"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="25.0dp"
-                        android:layout_marginRight="25.0dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="12dp"
-                        android:textStyle="normal"
                         foo:customFont="Fonts/arial.ttf"
-                        android:layout_marginBottom="0dp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:text="0.00"
+                        android:layout_column="1"
+                        android:id="@+id/tv_AlloHours"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="15.0dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
                 </TableRow>
-            </TableLayout>
-        </TableRow>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ffe6e6e6"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp" />
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Allocated Hours:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:text="0.00"
-                android:layout_column="1"
-                android:id="@+id/tv_AlloHours"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="15.0dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Start Date:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:text="01/01/1999"
-                android:layout_column="1"
-                android:id="@+id/tv_StartDate"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="15.0dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Acctual Start Date:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:text="01/01/1999"
-                android:layout_column="1"
-                android:id="@+id/tv_ActualStartDate"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="15.0dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="End Date:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:text="01/01/1999"
-                android:layout_column="1"
-                android:id="@+id/tv_EndDate"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="15.0dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Acctual End Date:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:text="01/01/1999"
-                android:layout_column="1"
-                android:id="@+id/tv_ActualEndDate"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="15.0dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/tableRow7">
-            <TableLayout
-                android:id="@+id/tableLayout5"
-                android:stretchColumns="*">
                 <TableRow
                     android:id="@+id/tableRow12"
                     android:minWidth="25px"
                     android:minHeight="25px"
-                    android:layout_marginBottom="0dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
-                        android:text="Manager"
+                        android:text="Start Date:"
                         android:layout_column="0"
                         android:id="@+id/textview"
-                        android:textSize="18dp"
-                        android:textColor="#ff00947A"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="25.0dp"
-                        android:layout_marginRight="25.0dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="12dp"
-                        android:textStyle="normal"
                         foo:customFont="Fonts/arial.ttf"
-                        android:layout_marginBottom="0dp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_StartDate"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="15.0dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
                 </TableRow>
-            </TableLayout>
-        </TableRow>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ffe6e6e6"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp" />
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Delivery Manager:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:layout_column="1"
-                android:id="@+id/tv_DeliveryManager"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Project Manager:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:layout_column="1"
-                android:id="@+id/tv_ProjectManager"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15.0dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp" />
-        </TableRow>
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Project Coordinator:"
-                android:layout_column="0"
-                android:id="@+id/textview"
-                android:textSize="12dp"
-                android:textColor="#ff437800"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-            <TextView
-                android:layout_column="1"
-                android:id="@+id/tv_ProjectCoordinator"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="15.0dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/tableRow7">
-            <TableLayout
-                android:id="@+id/tableLayout5"
-                android:stretchColumns="*">
                 <TableRow
                     android:id="@+id/tableRow12"
                     android:minWidth="25px"
                     android:minHeight="25px"
-                    android:layout_marginBottom="0dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
-                        android:text="Client"
+                        android:text="Acctual Start Date:"
                         android:layout_column="0"
                         android:id="@+id/textview"
-                        android:textSize="18dp"
-                        android:textColor="#ff00947A"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="25.0dp"
-                        android:layout_marginRight="25.0dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="12dp"
-                        android:textStyle="normal"
                         foo:customFont="Fonts/arial.ttf"
-                        android:layout_marginBottom="0dp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_ActualStartDate"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="15.0dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
                 </TableRow>
-            </TableLayout>
-        </TableRow>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ffe6e6e6"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp" />
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_column="0"
-                android:id="@+id/tv_Client"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="30dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/tableRow7">
-            <TableLayout
-                android:id="@+id/tableLayout5"
-                android:stretchColumns="*">
                 <TableRow
                     android:id="@+id/tableRow12"
                     android:minWidth="25px"
                     android:minHeight="25px"
-                    android:layout_marginBottom="0dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
-                        android:text="Notes"
+                        android:text="End Date:"
                         android:layout_column="0"
                         android:id="@+id/textview"
-                        android:textSize="18dp"
-                        android:textColor="#ff00947A"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="25.0dp"
-                        android:layout_marginRight="25.0dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="12dp"
-                        android:textStyle="normal"
                         foo:customFont="Fonts/arial.ttf"
-                        android:layout_marginBottom="0dp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_EndDate"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="15.0dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
                 </TableRow>
-            </TableLayout>
-        </TableRow>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ffe6e6e6"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp" />
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_column="0"
-                android:id="@+id/tv_Notes"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/tableRow7">
-            <TableLayout
-                android:id="@+id/tableLayout5"
-                android:stretchColumns="*">
                 <TableRow
                     android:id="@+id/tableRow12"
                     android:minWidth="25px"
                     android:minHeight="25px"
-                    android:layout_marginBottom="0dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp">
                     <TextView
-                        android:text="Description"
+                        android:text="Acctual End Date:"
                         android:layout_column="0"
                         android:id="@+id/textview"
-                        android:textSize="18dp"
-                        android:textColor="#ff00947A"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="25.0dp"
-                        android:layout_marginRight="25.0dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="12dp"
-                        android:textStyle="normal"
                         foo:customFont="Fonts/arial.ttf"
-                        android:layout_marginBottom="0dp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_ActualEndDate"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="15.0dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
                 </TableRow>
-            </TableLayout>
-        </TableRow>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ffe6e6e6"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp" />
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_column="0"
-                android:id="@+id/tv_Description"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            android:background="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/tableRow7">
-            <TableLayout
-                android:id="@+id/tableLayout5"
-                android:stretchColumns="*">
+            android:layout_marginBottom="5dp"
+            foo:cardCornerRadius="7dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:minWidth="25px"
+                android:minHeight="25px">
+                <TableRow
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:id="@+id/tableRow7">
+                    <TableLayout
+                        android:id="@+id/tableLayout5"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:minWidth="25px"
+                            android:minHeight="25px"
+                            android:layout_marginBottom="0dp">
+                            <TextView
+                                android:text="Manager"
+                                android:layout_column="0"
+                                android:id="@+id/textview"
+                                android:textSize="18dp"
+                                android:textColor="#ff00947A"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="25.0dp"
+                                android:layout_marginRight="25.0dp"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="12dp"
+                                android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
+                                android:layout_marginBottom="0dp" />
+                        </TableRow>
+                    </TableLayout>
+                </TableRow>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/view1"
+                    android:background="#ffe6e6e6"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp" />
                 <TableRow
                     android:id="@+id/tableRow12"
                     android:minWidth="25px"
                     android:minHeight="25px"
-                    android:layout_marginBottom="0dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
-                        android:text="Department"
+                        android:text="Delivery Manager:"
                         android:layout_column="0"
                         android:id="@+id/textview"
-                        android:textSize="18dp"
-                        android:textColor="#ff00947A"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="25.0dp"
-                        android:layout_marginRight="25.0dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="12dp"
-                        android:textStyle="normal"
                         foo:customFont="Fonts/arial.ttf"
-                        android:layout_marginBottom="0dp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_DeliveryManager"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="25dp" />
                 </TableRow>
-            </TableLayout>
-        </TableRow>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ffe6e6e6"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp" />
-        <TableRow
-            android:id="@+id/tableRow12"
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_column="0"
-                android:id="@+id/tv_Department"
-                android:textSize="12dp"
-                android:textColor="#ff000000"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:gravity="center_vertical"
-                foo:customFont="Fonts/arial.ttf"
-                android:layout_marginTop="5dp" />
-        </TableRow>
-        <TableRow
-            android:minWidth="25px"
-            android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:id="@+id/tableRow7">
-            <TableLayout
-                android:id="@+id/tableLayout5"
-                android:stretchColumns="*">
                 <TableRow
                     android:id="@+id/tableRow12"
                     android:minWidth="25px"
                     android:minHeight="25px"
-                    android:layout_marginBottom="0dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <TextView
-                        android:text="Staff"
+                        android:text="Project Manager:"
                         android:layout_column="0"
                         android:id="@+id/textview"
-                        android:textSize="18dp"
-                        android:textColor="#ff00947A"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="25.0dp"
-                        android:layout_marginRight="25.0dp"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
                         android:gravity="center_vertical"
-                        android:layout_marginTop="12dp"
-                        android:textStyle="normal"
                         foo:customFont="Fonts/arial.ttf"
-                        android:layout_marginBottom="0dp" />
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_ProjectManager"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15.0dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="25dp" />
                 </TableRow>
-            </TableLayout>
-        </TableRow>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:id="@+id/view1"
-            android:background="#ffe6e6e6"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="18dp" />
+                <TableRow
+                    android:id="@+id/tableRow12"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp">
+                    <TextView
+                        android:text="Project Coordinator:"
+                        android:layout_column="0"
+                        android:id="@+id/textview"
+                        android:textSize="12dp"
+                        android:textColor="#ff437800"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                    <TextView
+                        android:layout_column="1"
+                        android:id="@+id/tv_ProjectCoordinator"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15.0dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="25dp" />
+                </TableRow>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            android:background="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            foo:cardCornerRadius="7dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:minWidth="25px"
+                android:minHeight="25px">
+                <TableRow
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:id="@+id/tableRow7">
+                    <TableLayout
+                        android:id="@+id/tableLayout5"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:minWidth="25px"
+                            android:minHeight="25px"
+                            android:layout_marginBottom="0dp">
+                            <TextView
+                                android:text="Client"
+                                android:layout_column="0"
+                                android:id="@+id/textview"
+                                android:textSize="18dp"
+                                android:textColor="#ff00947A"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="25.0dp"
+                                android:layout_marginRight="25.0dp"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="12dp"
+                                android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
+                                android:layout_marginBottom="0dp" />
+                        </TableRow>
+                    </TableLayout>
+                </TableRow>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/view1"
+                    android:background="#ffe6e6e6"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp" />
+                <TableRow
+                    android:id="@+id/tableRow12"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_column="0"
+                        android:id="@+id/tv_Client"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="30dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                </TableRow>
+                <TableRow
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:id="@+id/tableRow7">
+                    <TableLayout
+                        android:id="@+id/tableLayout5"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:minWidth="25px"
+                            android:minHeight="25px"
+                            android:layout_marginBottom="0dp">
+                            <TextView
+                                android:text="Department"
+                                android:layout_column="0"
+                                android:id="@+id/textview"
+                                android:textSize="18dp"
+                                android:textColor="#ff00947A"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="25.0dp"
+                                android:layout_marginRight="25.0dp"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="12dp"
+                                android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
+                                android:layout_marginBottom="0dp" />
+                        </TableRow>
+                    </TableLayout>
+                </TableRow>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/view1"
+                    android:background="#ffe6e6e6"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp" />
+                <TableRow
+                    android:id="@+id/tableRow12"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp">
+                    <TextView
+                        android:layout_column="0"
+                        android:id="@+id/tv_Department"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                </TableRow>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
+            android:background="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            foo:cardCornerRadius="7dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:minWidth="25px"
+                android:minHeight="25px">
+                <TableRow
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:id="@+id/tableRow7">
+                    <TableLayout
+                        android:id="@+id/tableLayout5"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:minWidth="25px"
+                            android:minHeight="25px"
+                            android:layout_marginBottom="0dp">
+                            <TextView
+                                android:text="Notes"
+                                android:layout_column="0"
+                                android:id="@+id/textview"
+                                android:textSize="18dp"
+                                android:textColor="#ff00947A"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="25.0dp"
+                                android:layout_marginRight="25.0dp"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="12dp"
+                                android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
+                                android:layout_marginBottom="0dp" />
+                        </TableRow>
+                    </TableLayout>
+                </TableRow>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/view1"
+                    android:background="#ffe6e6e6"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp" />
+                <TableRow
+                    android:id="@+id/tableRow12"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_column="0"
+                        android:id="@+id/tv_Notes"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                </TableRow>
+                <TableRow
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="0dp"
+                    android:id="@+id/tableRow7">
+                    <TableLayout
+                        android:id="@+id/tableLayout5"
+                        android:stretchColumns="*">
+                        <TableRow
+                            android:id="@+id/tableRow12"
+                            android:minWidth="25px"
+                            android:minHeight="25px"
+                            android:layout_marginBottom="0dp">
+                            <TextView
+                                android:text="Description"
+                                android:layout_column="0"
+                                android:id="@+id/textview"
+                                android:textSize="18dp"
+                                android:textColor="#ff00947A"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="25.0dp"
+                                android:layout_marginRight="25.0dp"
+                                android:gravity="center_vertical"
+                                android:layout_marginTop="12dp"
+                                android:textStyle="normal"
+                                foo:customFont="Fonts/arial.ttf"
+                                android:layout_marginBottom="0dp" />
+                        </TableRow>
+                    </TableLayout>
+                </TableRow>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/view1"
+                    android:background="#ffe6e6e6"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp" />
+                <TableRow
+                    android:id="@+id/tableRow12"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp">
+                    <TextView
+                        android:layout_column="0"
+                        android:id="@+id/tv_Description"
+                        android:textSize="12dp"
+                        android:textColor="#ff000000"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:gravity="center_vertical"
+                        foo:customFont="Fonts/arial.ttf"
+                        android:layout_marginTop="5dp" />
+                </TableRow>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
     </LinearLayout>
 </ScrollView>

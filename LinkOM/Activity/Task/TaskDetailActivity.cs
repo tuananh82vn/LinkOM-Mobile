@@ -140,31 +140,34 @@ namespace LinkOM
 			var Code = FindViewById<TextView> (Resource.Id.tv_Code);
 			Code.Text = obj.Code;
 
+			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
+			Internal.Checked = obj.IsInternal;
+
 			var Status = FindViewById<TextView> (Resource.Id.tv_Status);
 			Status.Text = obj.StatusName;
 
-			var Internal = FindViewById<CheckBox> (Resource.Id.cb_Internal);
-			Internal.Checked = obj.IsInternal;
 
 			var Management = FindViewById<CheckBox> (Resource.Id.cb_Management);
 			Management.Checked = obj.IsManagerial;
 
-//			var Completed = FindViewById<TextView> (Resource.Id.tv_Completed);
-//			Completed.Text = obj.Completed;
-
-
 			var ProjectName = FindViewById<TextView> (Resource.Id.tv_ProjectName);
 			ProjectName.Text = obj.ProjectName;
 
-//			var ProjectManager = FindViewById<TextView> (Resource.Id.tv_ProjectManager);
-//			ProjectManager.Text = obj.ProjectManagerName;
+			var ProjectManager = FindViewById<TextView> (Resource.Id.tv_ProjectManager);
+			ProjectManager.Text = obj.ProjectManager;
+
+			var tv_AssignedTo = FindViewById<TextView> (Resource.Id.tv_AssignedTo);
+			tv_AssignedTo.Text = obj.AssignedToName;
+
+			var tv_Owner = FindViewById<TextView> (Resource.Id.tv_Owner);
+			tv_Owner.Text = obj.OwnerName;
+
 
 			var Phase = FindViewById<TextView> (Resource.Id.tv_Phase);
 			Phase.Text = obj.ProjectPhaseName;
 
-
-//			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
-//			Label.Text = obj.Label;
+			var Label = FindViewById<TextView> (Resource.Id.tv_Label);
+			Label.Text = obj.Label;
 
 
 			var AlloHours = FindViewById<TextView> (Resource.Id.tv_AlloHours);
@@ -173,9 +176,6 @@ namespace LinkOM
 			}
 			else
 				AlloHours.Text="0";
-
-//			var SpentHours = FindViewById<TextView> (Resource.Id.tv_SpentHours);
-//			SpentHours.Text = obj.SpentHours;
 
 			var StartDate = FindViewById<TextView> (Resource.Id.tv_StartDate);
 			if(obj.StartDate!=null)
@@ -197,8 +197,8 @@ namespace LinkOM
 			if(obj.TaskDescription!=null)
 				Description.Text = obj.TaskDescription;
 
-//			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
-//			DepartmentName.Text = obj.DepartmentName;
+			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
+			DepartmentName.Text = obj.DepartmentName;
 
 		}
 	}

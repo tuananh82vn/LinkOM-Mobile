@@ -286,6 +286,11 @@ namespace LinkOM
 
 			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
 
+			var ProjectId = Intent.GetIntExtra ("ProjectId", 0);
+			if (ProjectId != 0) {
+				spinner_Project.SetSelection(projectList.getPositionById (ProjectId));
+			}
+
 		}
 
 		//Handle item on action bar clicked

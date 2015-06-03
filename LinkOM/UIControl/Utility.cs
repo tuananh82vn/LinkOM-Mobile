@@ -28,7 +28,7 @@ namespace LinkOM
 				totalHeight += listItem.MeasuredHeight;
 			}
 
-			listView.LayoutParameters.Height = totalHeight + (listView.DividerHeight * (listView.Count - 1));
+			listView.LayoutParameters.Height = totalHeight + (listView.DividerHeight * (listView.Count - 1)) ;
 		}
 	}
 }

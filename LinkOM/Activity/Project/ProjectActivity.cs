@@ -137,9 +137,36 @@ namespace LinkOM
 
 			var menuItemName = menuItems[menuItemIndex];
 
-			var listItemName = projectList[info.Position].Name;
+			var ProjectId = projectList[info.Position].Id.Value;
 
-			Toast.MakeText(this, string.Format("Selected {0} for item {1}", menuItemName, listItemName), ToastLength.Short).Show();
+			if(menuItemName.Equals("Add Task")){
+				Intent Intent = new Intent (this, typeof(TaskAddActivity));
+				Intent.PutExtra ("ProjectId", ProjectId);
+				Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+				StartActivity(Intent);
+			}
+			else
+				if(menuItemName.Equals("Add Ticket")){
+					Intent Intent = new Intent (this, typeof(TicketAddActivity));
+					Intent.PutExtra ("ProjectId", ProjectId);
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity(Intent);
+				}
+				else
+					if(menuItemName.Equals("Add Issue")){
+						Intent Intent = new Intent (this, typeof(IssuesAddActivity));
+						Intent.PutExtra ("ProjectId", ProjectId);
+						Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+						StartActivity(Intent);
+					}
+//					else if(menuItemName.Equals("Add Document")){
+//						Intent Intent = new Intent (this, typeof(DocumentAddActivity));
+//						Intent.PutExtra ("ProjectId", ProjectId);
+//						Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+//						StartActivity(Intent);
+//					}
+
+//			Toast.MakeText(this, string.Format("Selected {0} for item {1}", menuItemName, listItemName), ToastLength.Short).Show();
 			return true;
 		}
 

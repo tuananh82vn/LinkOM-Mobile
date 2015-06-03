@@ -99,13 +99,13 @@
         android:layout_marginRight="40dp"
         android:layout_marginTop="5dp">
         <CheckBox
-            android:text="  Remember Me"
             android:button="@drawable/CheckBox_Style"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/cb_rememberMe"
-            android:textColor="#ff626262"
-            android:textSize="10dp" />
+            android:textColor="#ffbdbdbd"
+            android:textSize="10dp"
+            android:text="  Remember Me" />
     </TableRow>
     <TableRow
         android:id="@+id/tableRow12"
