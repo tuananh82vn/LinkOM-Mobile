@@ -17,13 +17,16 @@ namespace LinkOM
 	[Activity (Label = "MilestoneDetailActivity", Theme = "@style/Theme.Customtheme")]	
 	public class MilestoneDetailActivity : Activity
 	{
-		private ImageButton overflowButton;
 		public long MilestoneId;
-		public ListView milestoneCommentListView ;
+
 		public MilestonesDetailList MilestoneDetail;
 		public string results;
 
 		public MilestoneCommentListAdapter milestoneCommentListAdapter;
+		public ListView milestoneCommentListView ;
+
+		public TicketCommentListAdapter TicketCommentListAdapter;
+		public ListView ticketCommentListView ;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -42,10 +45,13 @@ namespace LinkOM
 			LoadMilestone ();
 
 			if(MilestoneDetail!=null)
-			DisplayMilestone (MilestoneDetail);
+				DisplayMilestone (MilestoneDetail);
 
 			if(MilestoneDetail!=null)
 				LoadMilestoneComment (MilestoneDetail.Id.Value);
+
+//			ScrollView scrollView = FindViewById<ScrollView> (Resource.Id.scrollView1);
+//			scrollView.Post(() => scrollView.FullScroll(FocusSearchDirection.Up));
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -67,6 +73,7 @@ namespace LinkOM
 			milestoneCommentListView.DividerHeight = 0;
 
 			Utility.setListViewHeightBasedOnChildren (milestoneCommentListView);
+
 		}
 
 		public void LoadMilestone(){
