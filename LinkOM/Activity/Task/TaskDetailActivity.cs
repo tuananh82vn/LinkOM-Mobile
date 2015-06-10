@@ -15,6 +15,7 @@ using Android.Text;
 using System.Text.RegularExpressions;
 using Android.Webkit;
 using Android.Graphics;
+using Android.Support.V7.Widget;
 
 namespace LinkOM
 {
@@ -51,10 +52,18 @@ namespace LinkOM
 			if(TaskDetail!=null)
 			LoadTaskComment (TaskDetail.Id);
 
+
+
+
+			//Console.WriteLine (taskCommentListView.Height);
+
 			//Lock Orientation
-			if (Settings.Orientation.Equals ("Portrait")) {
+			if (Settings.Orientation.Equals ("Portrait")) 
+			{
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
-			} else {
+			} 
+			else 
+			{
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
@@ -108,18 +117,8 @@ namespace LinkOM
 			taskCommentListView.Adapter = taskCommentListAdapter;
 
 			taskCommentListView.DividerHeight = 0;
-		}
 
-		public override void OnWindowFocusChanged(bool hasFocus)
-		{
-			if (hasFocus)
-			{
-				Utility.setListViewHeightBasedOnChildren (taskCommentListView);
-
-				//var temp = taskCommentListAdapter.GetHeight ();
-
-				//Utility.changeHeight (taskCommentListView,temp);
-			}
+			Utility.SetListViewHeightBasedOnChildren (taskCommentListView);
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)

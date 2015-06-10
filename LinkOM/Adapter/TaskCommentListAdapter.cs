@@ -15,8 +15,6 @@ namespace LinkOM
 
 		Activity _activity;
 
-		private int height = 0;
-
 		public TaskCommentListAdapter (Activity activity, List<TaskCommentObject> data)
 		{
 			_activity = activity;
@@ -50,13 +48,11 @@ namespace LinkOM
 			return 0;
 		}
 
-		public int GetHeight(){
-			return height;
-		}
-
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
+			var view = convertView;
+
+			view = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
 			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
 
@@ -71,9 +67,6 @@ namespace LinkOM
 
 			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
 			CommentDate.Text = _TaskCommentObject [position].CreatedDate.Value.ToString("dd/MM/yyyy  HH:mm:ss");
-
-			view.Measure (0, 0);
-			height += view.MeasuredHeight;
 
 			return view;
 		}

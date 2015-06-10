@@ -72,7 +72,7 @@ namespace LinkOM
 
 			milestoneCommentListView.DividerHeight = 0;
 
-			Utility.setListViewHeightBasedOnChildren (milestoneCommentListView);
+			Utility.SetListViewHeightBasedOnChildren (milestoneCommentListView);
 
 		}
 

@@ -400,7 +400,7 @@ namespace LinkOM
 			milestoneListView.Adapter = milestoneListAdapter;
 			milestoneListView.DividerHeight = 0;
 
-			Utility.setListViewHeightBasedOnChildren (milestoneListView);
+			Utility.SetListViewHeightBasedOnChildren (milestoneListView);
 		}
 	}
 }

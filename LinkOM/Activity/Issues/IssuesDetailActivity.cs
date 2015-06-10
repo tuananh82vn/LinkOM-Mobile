@@ -77,7 +77,7 @@ namespace LinkOM
 
 			issuesCommentListView.DividerHeight = 0;
 
-			Utility.setListViewHeightBasedOnChildren (issuesCommentListView);
+			Utility.SetListViewHeightBasedOnChildren (issuesCommentListView);
 
 			//ticketCommentListView.ItemClick += listView_ItemClick;
 

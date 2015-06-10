@@ -417,7 +417,7 @@ namespace LinkOM
 
 			taskCommentListView.DividerHeight = 0;
 
-			Utility.setListViewHeightBasedOnChildren (taskCommentListView);
+			Utility.SetListViewHeightBasedOnChildren (taskCommentListView);
 		}
 
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)
