@@ -209,7 +209,7 @@ namespace LinkOM
 			var Description = FindViewById<WebView> (Resource.Id.tv_Description);
 			if (obj.TaskDescription != null) {
 				Description.LoadData (Html.FromHtml(obj.TaskDescription).ToString(), "text/html", "utf8");
-				Description.SetBackgroundColor(Color.Transparent);
+				Description.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
 				WebSettings webSettings = Description.Settings;
 				webSettings.DefaultFontSize = 12;
 			}

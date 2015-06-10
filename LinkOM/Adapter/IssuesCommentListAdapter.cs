@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Android.App;
 using Android.Views;
 using Android.Text;
+using Android.Webkit;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -50,10 +52,12 @@ namespace LinkOM
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
-			var Name = view.FindViewById<TextView> (Resource.Id.tv_Name);
-			//Name.Text = Html.FromHtml(_TaskCommentObject [position].Comment.Trim()).ToString();
+			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
 			var msg =_IssuesCommentObject [position].Comment.Trim();
-			Name.TextFormatted = Html.FromHtml(msg);
+			Name.LoadData (Html.FromHtml(msg).ToString(), "text/html", "utf8");
+			Name.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
+			WebSettings webSettings = Name.Settings;
+			webSettings.DefaultFontSize = 12;
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
 			CreatedPerson.Text = _IssuesCommentObject [position].UserName.Trim();

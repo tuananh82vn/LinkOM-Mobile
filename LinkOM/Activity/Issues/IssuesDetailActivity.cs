@@ -11,6 +11,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Webkit;
+using Android.Text;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -156,9 +159,13 @@ namespace LinkOM
 			if(obj.RessolutionTargetDateString!=null)
 				tv_ResDate.Text = obj.RessolutionTargetDateString;
 
-			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.IssueDescription!=null)
-				Description.Text = obj.IssueDescription;
+			var Description = FindViewById<WebView> (Resource.Id.tv_Description);
+			if (obj.IssueDescription != null) {
+				Description.LoadData (Html.FromHtml(obj.IssueDescription).ToString(), "text/html", "utf8");
+				Description.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
+				WebSettings webSettings = Description.Settings;
+				webSettings.DefaultFontSize = 12;
+			}
 
 
 			var Action = FindViewById<TextView> (Resource.Id.tv_Action);

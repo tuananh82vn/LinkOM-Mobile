@@ -55,10 +55,9 @@ namespace LinkOM
 			view = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
 			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
-
 			var msg =_TaskCommentObject [position].Comment.Trim();
 			Name.LoadData (Html.FromHtml(msg).ToString(), "text/html", "utf8");
-			Name.SetBackgroundColor(Color.Transparent);
+			Name.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
 			WebSettings webSettings = Name.Settings;
 			webSettings.DefaultFontSize = 12;
 

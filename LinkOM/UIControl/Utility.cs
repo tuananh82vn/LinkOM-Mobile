@@ -30,9 +30,9 @@ namespace LinkOM
 
 				listItem.Measure(Atmost, Unspecified);
 
+				var height = listItem.MeasuredHeight - 100;
+
 				totalHeight += listItem.MeasuredHeight;
-
-
 			}
 
 //			Console.WriteLine("Total Items height = {0}", adapter.Count);
@@ -41,7 +41,7 @@ namespace LinkOM
 
 			var layoutParams = listView.LayoutParameters;
 
-			layoutParams.Height = totalHeight -400;
+			layoutParams.Height = totalHeight;
 
 			listView.LayoutParameters = layoutParams;
 			listView.RequestLayout();
