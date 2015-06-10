@@ -53,14 +53,14 @@ namespace LinkOM
 				Settings.Orientation ="Portrait";
 			}
 
-			//Register for push notification
-			GcmClient.CheckDevice(this);
-			GcmClient.CheckManifest(this);
-			string regId = GcmClient.GetRegistrationId(this);
-			Console.WriteLine("Registration id:"+regId);
-			if(regId.Trim().Equals("")){
-				GcmClient.Register (this, GcmBroadcastReceiver.SENDER_IDS);
-			}
+//			//Register for push notification
+//			GcmClient.CheckDevice(this);
+//			GcmClient.CheckManifest(this);
+//			string regId = GcmClient.GetRegistrationId(this);
+//			Console.WriteLine("Registration id:"+regId);
+//			if(regId.Trim().Equals("")){
+//				GcmClient.Register (this, GcmBroadcastReceiver.SENDER_IDS);
+//			}
 
 			var image = FindViewById<ImageView>(Resource.Id.floating_image);
 

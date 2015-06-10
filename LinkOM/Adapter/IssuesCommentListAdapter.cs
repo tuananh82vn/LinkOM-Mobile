@@ -3,6 +3,7 @@ using Android.Widget;
 using System.Collections.Generic;
 using Android.App;
 using Android.Views;
+using Android.Text;
 
 namespace LinkOM
 {
@@ -50,7 +51,9 @@ namespace LinkOM
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
 			var Name = view.FindViewById<TextView> (Resource.Id.tv_Name);
-			Name.Text = _IssuesCommentObject [position].Comment.Trim();
+			//Name.Text = Html.FromHtml(_TaskCommentObject [position].Comment.Trim()).ToString();
+			var msg =_IssuesCommentObject [position].Comment.Trim();
+			Name.TextFormatted = Html.FromHtml(msg);
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
 			CreatedPerson.Text = _IssuesCommentObject [position].UserName.Trim();

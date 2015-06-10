@@ -3,6 +3,9 @@ using Android.Widget;
 using System.Collections.Generic;
 using Android.App;
 using Android.Views;
+using Android.Text;
+using Android.Webkit;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -11,6 +14,8 @@ namespace LinkOM
 		List<TaskCommentObject> _TaskCommentObject;
 
 		Activity _activity;
+
+		private int height = 0;
 
 		public TaskCommentListAdapter (Activity activity, List<TaskCommentObject> data)
 		{
@@ -45,12 +50,21 @@ namespace LinkOM
 			return 0;
 		}
 
+		public int GetHeight(){
+			return height;
+		}
+
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
-			var Name = view.FindViewById<TextView> (Resource.Id.tv_Name);
-			Name.Text = _TaskCommentObject [position].Comment.Trim();
+			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
+
+			var msg =_TaskCommentObject [position].Comment.Trim();
+			Name.LoadData (Html.FromHtml(msg).ToString(), "text/html", "utf8");
+			Name.SetBackgroundColor(Color.Transparent);
+			WebSettings webSettings = Name.Settings;
+			webSettings.DefaultFontSize = 12;
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
 			CreatedPerson.Text = _TaskCommentObject [position].UserName.Trim();
@@ -58,6 +72,8 @@ namespace LinkOM
 			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
 			CommentDate.Text = _TaskCommentObject [position].CreatedDate.Value.ToString("dd/MM/yyyy  HH:mm:ss");
 
+			view.Measure (0, 0);
+			height += view.MeasuredHeight;
 
 			return view;
 		}

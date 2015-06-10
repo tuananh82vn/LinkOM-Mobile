@@ -7,8 +7,7 @@
     p1:layout_width="match_parent"
     p1:layout_height="wrap_content"
     p1:id="@+id/linearLayout1"
-    p1:background="#ffffffff"
-    p1:scrollbars="none">
+    p1:background="#ffffffff">
     <TableRow
         p1:id="@+id/tableRow8"
         p1:layout_width="match_parent"
@@ -43,19 +42,19 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/tableRow1">
-        <WebView
+        <TextView
             p1:text="Comment Name"
             p1:id="@+id/tv_Name"
             p1:layout_height="wrap_content"
             p1:gravity="center_vertical"
             p1:layout_width="match_parent"
-            p1:layout_marginLeft="20dp"
-            p1:textColor="#ff000000"
-            p1:background="@android:color/transparent"
+            p1:layout_marginLeft="25dp"
+            p1:textColor="#ffaeaeae"
             p1:layout_marginTop="5dp"
-            p1:layout_marginRight="20dp"
+            p1:layout_marginRight="25dp"
             foo:customFont="Fonts/arial.ttf"
             p1:textSize="12dp"
-            p1:layout_marginBottom="5dp" />
+            p1:layout_marginBottom="5dp"
+            p1:singleLine="true" />
     </TableRow>
 </LinearLayout>

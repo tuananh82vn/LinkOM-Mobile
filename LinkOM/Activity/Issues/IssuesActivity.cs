@@ -201,10 +201,12 @@ namespace LinkOM
 
 					if (statusList.Count > 0) {
 
-						buttonList = new List<Button> (statusList.Count);
+						List<Status> SortedList = statusList.OrderBy(o=>o.DisplayOrder).ToList();
+
+						buttonList = new List<Button> (SortedList.Count);
 
 
-						for (int i = 0; i < statusList.Count; i++) {
+						for (int i = 0; i < SortedList.Count; i++) {
 							//Init button
 							Button button = new Button (this);
 
@@ -212,10 +214,10 @@ namespace LinkOM
 
 							//Get number of task
 							if(issuesList!=null)
-								NumberOfIssues = CheckIssues (statusList [i].Name, issuesList);
+								NumberOfIssues = CheckIssues (SortedList [i].Name, issuesList);
 
 							//Add button into View
-							AddRow (statusList [i].Id ,statusList [i].Name,ColorHelper.GetColor(statusList [i].ColourName),button, NumberOfIssues);
+							AddRow (SortedList [i].Id ,SortedList [i].Name,ColorHelper.GetColor(SortedList [i].ColourName),button, NumberOfIssues);
 
 							//button.Text = NumberOfIssues.ToString ();
 							
@@ -264,9 +266,27 @@ namespace LinkOM
 				textView.Text = Title + " (" + NumberOfIssues.ToString () + ")";
 
 			}
-
-			textView.Click += HandleMyButton;
 			textView.Tag = id;
+			textView.Click += (sender, eventArgs) => {
+				if(NumberOfIssues!=0)
+				{
+					if (Settings.Orientation.Equals ("Portrait")) 
+					{
+						var activity = new Intent (this, typeof(IssuesListActivity));
+						activity.PutExtra ("IssuesStatusId", id);
+						StartActivity (activity);
+					}
+					else
+					{
+						GetIssuesListByStatusId (id);
+					}
+				}
+				else
+				{
+					Toast.MakeText (this, "No Issues Available.", ToastLength.Short).Show ();
+
+				}
+			};
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
 			button.LayoutParameters = layoutParams_button;
@@ -279,9 +299,9 @@ namespace LinkOM
 			else			
 				if (color == Color.Purple) {
 					button.SetBackgroundColor (Color.Purple);
-			}
-			else
-				button.SetBackgroundColor (color);
+				}
+				else
+					button.SetBackgroundColor (color);
 
 			if (color == Color.Black) {
 				button.SetTextColor (Color.White);
@@ -296,9 +316,28 @@ namespace LinkOM
 					}
 					else
 						button.SetTextColor (Color.Black);
-			
+
 			button.Tag = id;
-			//button.Click += HandleMyButton;
+			button.Click += (sender, eventArgs) => {
+				if(NumberOfIssues!=0)
+				{
+					if (Settings.Orientation.Equals ("Portrait")) 
+					{
+						var activity = new Intent (this, typeof(IssuesListActivity));
+						activity.PutExtra ("IssuesStatusId", id);
+						StartActivity (activity);
+					}
+					else
+					{
+						GetIssuesListByStatusId (id);
+					}
+				}
+				else
+				{
+					Toast.MakeText (this, "No Issues Available.", ToastLength.Short).Show ();
+
+				}
+			};
 
 
 			View view = new View (this);
@@ -329,21 +368,26 @@ namespace LinkOM
 			return Int32.Parse(Math.Round((float)dp * density).ToString());
 		}
 
+		private void HandleMyText(object sender, EventArgs e)
+		{
+			
+		}
+
 		private void HandleMyButton(object sender, EventArgs e)
 		{
 			int whichOne = 0;
-			TextView myObject2 = (TextView)sender;
+			Button myObject2 = (Button)sender;
 			whichOne = (int)myObject2.Tag;
 
 			if (Settings.Orientation.Equals ("Portrait")) {
-					var activity = new Intent (this, typeof(IssuesListActivity));
-					activity.PutExtra ("IssuesStatusId", whichOne);
-					StartActivity (activity);
+				var activity = new Intent (this, typeof(IssuesListActivity));
+				activity.PutExtra ("IssuesStatusId", whichOne);
+				StartActivity (activity);
 			}
 
 			else
 			{
-					GetIssuesListByStatusId (whichOne);
+				GetIssuesListByStatusId (whichOne);
 			}
 		}
 

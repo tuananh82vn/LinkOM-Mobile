@@ -101,6 +101,7 @@
     <Reference Include="Xamarin.Android.Support.v7.CardView">
       <HintPath>..\packages\Xamarin.Android.Support.v7.CardView.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.CardView.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Model\ViewModel\DocumentDetailList.cs" />
     <Compile Include="Adapter\MilestoneCommentListAdapter.cs" />
     <Compile Include="Model\ViewModel\MilestonesCommentList.cs" />
+    <Compile Include="Helper\HtmlRemoval.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

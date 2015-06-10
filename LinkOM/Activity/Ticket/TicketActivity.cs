@@ -198,23 +198,23 @@ namespace LinkOM
 
 				if (statusList.Count > 0) {
 
-					buttonList = new List<Button> (statusList.Count);
+					List<Status> SortedList = statusList.OrderBy(o=>o.DisplayOrder).ToList();
+
+					buttonList = new List<Button> (SortedList.Count);
 
 
-					for (int i = 0; i < statusList.Count; i++) {
+					for (int i = 0; i < SortedList.Count; i++) {
 						//Init button
 						Button button = new Button (this);
 						int NumberOfTicket = 0;
 
 						if (ticketList != null) {
 							//Get number of task
-							NumberOfTicket = CheckTicket (statusList [i].Name, ticketList);
+							NumberOfTicket = CheckTicket (SortedList [i].Name, ticketList);
 						}
 
 						//Add button into View
-						AddRow (statusList [i].Id, statusList [i].Name, ColorHelper.GetColor (statusList [i].ColourName), button, NumberOfTicket);
-
-
+						AddRow (SortedList [i].Id, SortedList [i].Name, ColorHelper.GetColor (SortedList [i].ColourName), button, NumberOfTicket);
 							
 						RunOnUiThread (() => button.Text = NumberOfTicket.ToString ());
 
@@ -259,18 +259,38 @@ namespace LinkOM
 
 			if (Settings.Orientation.Equals ("Portrait"))
 				textView.Text = Title;
-			else {
+			else 
+			{
 				textView.Text = Title + " (" + NumberOfTicket.ToString () + ")";
 
 			}
-			textView.Click += HandleMyButton;
 			textView.Tag = id;
+			textView.Click += (sender, eventArgs) => {
+				if(NumberOfTicket!=0)
+				{
+					if (Settings.Orientation.Equals ("Portrait")) 
+					{
+						var activity = new Intent (this, typeof(TicketListActivity));
+						activity.PutExtra ("TicketStatusId", id);
+						StartActivity (activity);
+					}
+					else
+					{
+						GetTicketDetailList (id);
+					}
+				}
+				else
+				{
+					Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
+				}
+			};
+
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
 			button.LayoutParameters = layoutParams_button;
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
+			button.Tag = id;
 			button.Text="0";
-
 			if (color == Color.White) {
 				button.SetBackgroundColor (Color.Gray);
 			}
@@ -290,9 +310,30 @@ namespace LinkOM
 					}
 					else
 						button.SetTextColor (Color.Black);
-			
+
 			button.Tag = id;
 			//button.Click += HandleMyButton;
+			button.Click += (sender, eventArgs) => {
+				if(NumberOfTicket!=0)
+				{
+					if (Settings.Orientation.Equals ("Portrait")) 
+					{
+						var activity = new Intent (this, typeof(TicketListActivity));
+						activity.PutExtra ("TicketStatusId", id);
+						StartActivity (activity);
+					}
+					else
+					{
+						GetTicketDetailList (id);
+					}
+				}
+				else
+				{
+					Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
+				}
+			};
+
+
 
 
 			View view = new View (this);
@@ -324,10 +365,15 @@ namespace LinkOM
 		}
 
 
+		private void HandleMyText(object sender, EventArgs e)
+		{
+			
+		}
+
 		private void HandleMyButton(object sender, EventArgs e)
 		{
 			int whichOne = 0;
-			TextView myObject2 = (TextView)sender;
+			Button myObject2 = (Button)sender;
 			whichOne = (int)myObject2.Tag;
 
 			if (Settings.Orientation.Equals ("Portrait")) 

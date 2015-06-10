@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.synotive.link.om" android:largeHeap="true" android:versionName="1.1.6" android:versionCode="21">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.synotive.link.om" android:largeHeap="true" android:versionName="1.1.7" android:versionCode="22">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
 	<application android:icon="@drawable/Icon" android:label="Link-OM" android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"></application>
 	<uses-permission android:name="android.permission.INTERNET" />

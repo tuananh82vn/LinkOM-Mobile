@@ -11,6 +11,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Text;
+using System.Text.RegularExpressions;
+using Android.Webkit;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -104,8 +108,18 @@ namespace LinkOM
 			taskCommentListView.Adapter = taskCommentListAdapter;
 
 			taskCommentListView.DividerHeight = 0;
+		}
 
-			Utility.setListViewHeightBasedOnChildren (taskCommentListView);
+		public override void OnWindowFocusChanged(bool hasFocus)
+		{
+			if (hasFocus)
+			{
+				Utility.setListViewHeightBasedOnChildren (taskCommentListView);
+
+				//var temp = taskCommentListAdapter.GetHeight ();
+
+				//Utility.changeHeight (taskCommentListView,temp);
+			}
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
@@ -193,9 +207,13 @@ namespace LinkOM
 			if(obj.ActualEndDate!=null)
 				ActualEndDate.Text = obj.ActualEndDateString;
 
-			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.TaskDescription!=null)
-				Description.Text = obj.TaskDescription;
+			var Description = FindViewById<WebView> (Resource.Id.tv_Description);
+			if (obj.TaskDescription != null) {
+				Description.LoadData (Html.FromHtml(obj.TaskDescription).ToString(), "text/html", "utf8");
+				Description.SetBackgroundColor(Color.Transparent);
+				WebSettings webSettings = Description.Settings;
+				webSettings.DefaultFontSize = 12;
+			}
 
 			var DepartmentName = FindViewById<TextView> (Resource.Id.tv_Department);
 			DepartmentName.Text = obj.DepartmentName;

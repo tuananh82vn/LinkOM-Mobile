@@ -195,28 +195,33 @@ namespace LinkOM
 
 			var statusList = TaskHelper.GetTaskStatus ();
 
-			if (statusList !=null) {
+			if (statusList != null) {
 
-				buttonList = new List<Button> (statusList.Count);
+				if (statusList.Count > 0) {
+
+					List<Status> SortedList = statusList.OrderBy(o=>o.DisplayOrder).ToList();
+
+					buttonList = new List<Button> (SortedList.Count);
 
 
-				for (int i = 0; i < statusList.Count; i++) {
-					//Init button
-					Button button = new Button (this);
-					int NumberOfTask = 0;
+					for (int i = 0; i < SortedList.Count; i++) {
+						//Init button
+						Button button = new Button (this);
+						int NumberOfTask = 0;
 
-					if(taskList!=null)
+						if (taskList != null)
 					//Get number of task
-						NumberOfTask = CheckTask (statusList[i].Name, taskList);
+							NumberOfTask = CheckTask (SortedList [i].Name, taskList);
 
-					//Add button into View
-					AddRow (statusList[i].Id ,statusList[i].Name,ColorHelper.GetColor(statusList[i].ColourName),button, NumberOfTask);
+						//Add button into View
+						AddRow (SortedList [i].Id, SortedList [i].Name, ColorHelper.GetColor (SortedList [i].ColourName), button, NumberOfTask);
 
-					//button.Text = NumberOfTask.ToString ();
+						//button.Text = NumberOfTask.ToString ();
 						
-					RunOnUiThread (() => button.Text =  NumberOfTask.ToString());
+						RunOnUiThread (() => button.Text = NumberOfTask.ToString ());
 
-					buttonList.Add (button);
+						buttonList.Add (button);
+					}
 				}
 			}
 			RunOnUiThread (() => progress.Dismiss ());
@@ -257,15 +262,50 @@ namespace LinkOM
 			else {
 				textView.Text = Title + " (" + NumberOfTask.ToString () + ")";
 			}
-
-			textView.Click += HandleMyButton;
 			textView.Tag = id;
+			textView.Click += (sender, eventArgs) =>{
+				if (NumberOfTask != 0) {
+
+					if (Settings.Orientation.Equals ("Portrait")) {
+						var activity = new Intent (this, typeof(TaskListActivity));
+						activity.PutExtra ("TaskStatusId", id);
+						StartActivity (activity);
+					}
+					//Landscape
+					else {
+						GetTaskList (id);
+					}
+				} 
+				else {
+					Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
+				}
+			};
+
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
 			button.LayoutParameters = layoutParams_button;
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
 			button.Text="0";
 			button.Gravity = GravityFlags.Center;
+			button.Tag = id;
+			button.Click += (sender, eventArgs) =>{
+				if (NumberOfTask != 0) {
+
+					if (Settings.Orientation.Equals ("Portrait")) {
+						var activity = new Intent (this, typeof(TaskListActivity));
+						activity.PutExtra ("TaskStatusId", id);
+						StartActivity (activity);
+					}
+					//Landscape
+					else {
+						GetTaskList (id);
+					}
+				} 
+				else {
+					Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
+				}
+			};
+
 			if (color == Color.White) {
 				button.SetBackgroundColor (Color.Gray);
 			}
@@ -319,24 +359,6 @@ namespace LinkOM
 			base.OnBackPressed();
 		}
 
-		private void HandleMyButton(object sender, EventArgs e)
-		{
-			int whichOne = 0;
-			TextView myObject2 = (TextView)sender;
-			whichOne = (int)myObject2.Tag;
-
-			if (Settings.Orientation.Equals ("Portrait")) 
-			{
-					var activity = new Intent (this, typeof(TaskListActivity));
-					activity.PutExtra ("TaskStatusId", whichOne);
-					StartActivity (activity);
-			}
-			//Landscape
-			else
-			{
-					GetTaskList (whichOne);
-			}
-		}
 
 
 		private void GetTaskList(int StatusId){
