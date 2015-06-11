@@ -56,6 +56,8 @@ namespace LinkOM
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
+
+			Console.WriteLine (" Item : -----------------------" + position + "  ---------------------------");
 			var view = convertView;
 
 			view = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);

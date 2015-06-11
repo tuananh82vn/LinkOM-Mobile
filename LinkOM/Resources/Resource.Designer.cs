@@ -6680,163 +6680,166 @@ namespace LinkOM
 			public const int CommentList = 2130903067;
 			
 			// aapt resource value: 0x7f03001c
-			public const int DashboardLayout = 2130903068;
+			public const int CommentList1 = 2130903068;
 			
 			// aapt resource value: 0x7f03001d
-			public const int Document = 2130903069;
+			public const int DashboardLayout = 2130903069;
 			
 			// aapt resource value: 0x7f03001e
-			public const int DocumentDetailLayout = 2130903070;
+			public const int Document = 2130903070;
 			
 			// aapt resource value: 0x7f03001f
-			public const int DocumentEdit = 2130903071;
+			public const int DocumentDetailLayout = 2130903071;
 			
 			// aapt resource value: 0x7f030020
-			public const int DocumentList = 2130903072;
+			public const int DocumentEdit = 2130903072;
 			
 			// aapt resource value: 0x7f030021
-			public const int filepicker_createfolder = 2130903073;
+			public const int DocumentList = 2130903073;
 			
 			// aapt resource value: 0x7f030022
-			public const int filepicker_fragment = 2130903074;
+			public const int filepicker_createfolder = 2130903074;
 			
 			// aapt resource value: 0x7f030023
-			public const int filepicker_listitem = 2130903075;
+			public const int filepicker_fragment = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int filepicker_mainactivity = 2130903076;
+			public const int filepicker_listitem = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int fragment_sample = 2130903077;
+			public const int filepicker_mainactivity = 2130903077;
 			
 			// aapt resource value: 0x7f030026
-			public const int HomeLayout = 2130903078;
+			public const int fragment_sample = 2130903078;
 			
 			// aapt resource value: 0x7f030027
-			public const int Issues = 2130903079;
+			public const int HomeLayout = 2130903079;
 			
 			// aapt resource value: 0x7f030028
-			public const int IssuesDetailLayout = 2130903080;
+			public const int Issues = 2130903080;
 			
 			// aapt resource value: 0x7f030029
-			public const int IssuesEdit = 2130903081;
+			public const int IssuesDetailLayout = 2130903081;
 			
 			// aapt resource value: 0x7f03002a
-			public const int IssuesList = 2130903082;
+			public const int IssuesEdit = 2130903082;
 			
 			// aapt resource value: 0x7f03002b
-			public const int IssuesListContainer = 2130903083;
+			public const int IssuesList = 2130903083;
 			
 			// aapt resource value: 0x7f03002c
-			public const int Knowledgebase = 2130903084;
+			public const int IssuesListContainer = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int KnowledgebaseList = 2130903085;
+			public const int Knowledgebase = 2130903085;
 			
 			// aapt resource value: 0x7f03002e
-			public const int Login = 2130903086;
+			public const int KnowledgebaseList = 2130903086;
 			
 			// aapt resource value: 0x7f03002f
-			public const int MainContentLayout2 = 2130903087;
+			public const int Login = 2130903087;
 			
 			// aapt resource value: 0x7f030030
-			public const int MilestoneDetailLayout = 2130903088;
+			public const int MainContentLayout2 = 2130903088;
 			
 			// aapt resource value: 0x7f030031
-			public const int MilestoneEdit = 2130903089;
+			public const int MilestoneDetailLayout = 2130903089;
 			
 			// aapt resource value: 0x7f030032
-			public const int MilestoneList = 2130903090;
+			public const int MilestoneEdit = 2130903090;
 			
 			// aapt resource value: 0x7f030033
-			public const int Milestones = 2130903091;
+			public const int MilestoneList = 2130903091;
 			
 			// aapt resource value: 0x7f030034
-			public const int month = 2130903092;
+			public const int Milestones = 2130903092;
 			
 			// aapt resource value: 0x7f030035
-			public const int mr_media_route_chooser_dialog = 2130903093;
+			public const int month = 2130903093;
 			
 			// aapt resource value: 0x7f030036
-			public const int mr_media_route_controller_dialog = 2130903094;
+			public const int mr_media_route_chooser_dialog = 2130903094;
 			
 			// aapt resource value: 0x7f030037
-			public const int mr_media_route_list_item = 2130903095;
+			public const int mr_media_route_controller_dialog = 2130903095;
 			
 			// aapt resource value: 0x7f030038
-			public const int NavigationMenu = 2130903096;
+			public const int mr_media_route_list_item = 2130903096;
 			
 			// aapt resource value: 0x7f030039
-			public const int pager_item = 2130903097;
+			public const int NavigationMenu = 2130903097;
 			
 			// aapt resource value: 0x7f03003a
-			public const int Project = 2130903098;
+			public const int pager_item = 2130903098;
 			
 			// aapt resource value: 0x7f03003b
-			public const int ProjectDetailLayout = 2130903099;
+			public const int Project = 2130903099;
 			
 			// aapt resource value: 0x7f03003c
-			public const int ProjectEdit = 2130903100;
+			public const int ProjectDetailLayout = 2130903100;
 			
 			// aapt resource value: 0x7f03003d
-			public const int ProjectList = 2130903101;
+			public const int ProjectEdit = 2130903101;
 			
 			// aapt resource value: 0x7f03003e
-			public const int select_dialog_item_material = 2130903102;
+			public const int ProjectList = 2130903102;
 			
 			// aapt resource value: 0x7f03003f
-			public const int select_dialog_multichoice_material = 2130903103;
+			public const int select_dialog_item_material = 2130903103;
 			
 			// aapt resource value: 0x7f030040
-			public const int select_dialog_singlechoice_material = 2130903104;
+			public const int select_dialog_multichoice_material = 2130903104;
 			
 			// aapt resource value: 0x7f030041
-			public const int SlidingTabLayout = 2130903105;
+			public const int select_dialog_singlechoice_material = 2130903105;
 			
 			// aapt resource value: 0x7f030042
-			public const int SpinnerItemDropdown = 2130903106;
+			public const int SlidingTabLayout = 2130903106;
 			
 			// aapt resource value: 0x7f030043
-			public const int SpinnerItemText = 2130903107;
+			public const int SpinnerItemDropdown = 2130903107;
 			
 			// aapt resource value: 0x7f030044
-			public const int SplashLayout = 2130903108;
+			public const int SpinnerItemText = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int support_simple_spinner_dropdown_item = 2130903109;
+			public const int SplashLayout = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int Task = 2130903110;
+			public const int support_simple_spinner_dropdown_item = 2130903110;
 			
 			// aapt resource value: 0x7f030047
-			public const int TaskDetailLayout = 2130903111;
+			public const int Task = 2130903111;
 			
 			// aapt resource value: 0x7f030048
-			public const int TaskEdit = 2130903112;
+			public const int TaskDetailLayout = 2130903112;
 			
 			// aapt resource value: 0x7f030049
-			public const int TaskList = 2130903113;
+			public const int TaskEdit = 2130903113;
 			
 			// aapt resource value: 0x7f03004a
-			public const int TaskListContainer = 2130903114;
+			public const int TaskList = 2130903114;
 			
 			// aapt resource value: 0x7f03004b
-			public const int Ticket = 2130903115;
+			public const int TaskListContainer = 2130903115;
 			
 			// aapt resource value: 0x7f03004c
-			public const int TicketDetailLayout = 2130903116;
+			public const int Ticket = 2130903116;
 			
 			// aapt resource value: 0x7f03004d
-			public const int TicketEdit = 2130903117;
+			public const int TicketDetailLayout = 2130903117;
 			
 			// aapt resource value: 0x7f03004e
-			public const int TicketList = 2130903118;
+			public const int TicketEdit = 2130903118;
 			
 			// aapt resource value: 0x7f03004f
-			public const int TicketListContainer = 2130903119;
+			public const int TicketList = 2130903119;
 			
 			// aapt resource value: 0x7f030050
-			public const int week = 2130903120;
+			public const int TicketListContainer = 2130903120;
+			
+			// aapt resource value: 0x7f030051
+			public const int week = 2130903121;
 			
 			static Layout()
 			{

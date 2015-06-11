@@ -12,6 +12,9 @@ namespace LinkOM
 
 		public static void SetListViewHeightBasedOnChildren(ListView listView)
 		{
+
+			Console.WriteLine ("SetListViewHeightBasedOnChildren");
+
 			var adapter = listView.Adapter;
 			if (adapter == null)
 				return;

@@ -240,6 +240,7 @@
     <Compile Include="Model\ViewModel\DocumentCommentObject.cs" />
     <Compile Include="Adapter\DocumentCommentListAdapter.cs" />
     <Compile Include="Helper\NetworkHelper.cs" />
+    <Compile Include="UIControl\MyViewHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -562,6 +563,9 @@
     <AndroidResource Include="Resources\drawable\calendar_pink.png" />
     <AndroidResource Include="Resources\drawable\Unchecked_Checkbox.png" />
     <AndroidResource Include="Resources\drawable\Checked_Checkbox.png" />
+    <AndroidResource Include="Resources\layout\CommentList1.axml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

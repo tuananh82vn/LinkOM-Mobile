@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:p1="http://schemas.android.com/apk/res/android"
+    xmlns:foo="http://schemas.android.com/apk/res-auto"
+    p1:id="@+id/tableRow8"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:background="#ffffffff"
+    p1:layout_marginTop="5dp">
+<!--        <TextView
+            p1:text="12/12/2012 01:01:01"
+            p1:layout_column="0"
+            p1:id="@+id/tv_CommentDate"
+            p1:textSize="12dp"
+            foo:customFont="Fonts/arial.ttf"
+            p1:layout_marginLeft="25dp"
+            p1:layout_width="150dp"
+            p1:layout_height="wrap_content"
+            p1:gravity="center_vertical"
+            p1:textColor="#ffa0c673"
+            p1:layout_marginRight="5dp" />
+        <TextView
+            p1:layout_column="1"
+            p1:id="@+id/tv_CreatedPerson"
+            p1:textSize="12dp"
+            foo:customFont="Fonts/arial.ttf"
+            p1:layout_height="wrap_content"
+            p1:layout_width="match_parent"
+            p1:gravity="right"
+            p1:layout_marginLeft="5dp"
+            p1:layout_marginRight="25dp"
+            p1:text="Create Person"
+            p1:textColor="#ffaeaeae" />-->
+    <WebView
+        p1:text="Comment Name"
+        p1:id="@+id/tv_Name"
+        p1:layout_height="match_parent"
+        p1:gravity="center_vertical"
+        p1:layout_width="match_parent"
+        p1:layout_marginLeft="20dp"
+        p1:textColor="#ff000000"
+        p1:background="@android:color/transparent"
+        p1:layout_marginTop="5dp"
+        p1:layout_marginRight="20dp"
+        foo:customFont="Fonts/arial.ttf"
+        p1:textSize="12dp"
+        p1:layout_marginBottom="5dp"
+        p1:scrollbars="none" />
+</TableRow>
