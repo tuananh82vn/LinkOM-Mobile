@@ -3,33 +3,35 @@ using Android.Widget;
 using System.Collections.Generic;
 using Android.App;
 using Android.Views;
-using Android.Webkit;
 using Android.Text;
+using Android.Webkit;
 using Android.Graphics;
 
 namespace LinkOM
 {
-	public class MilestoneCommentListAdapter : BaseAdapter
+	public class DocumentCommentListAdapter : BaseAdapter
 	{
-		List<MilestonesCommentList> _MilestoneCommentObject;
+		List<DocumentCommentObject> _DocumentCommentObject;
 
 		Activity _activity;
 
-		public MilestoneCommentListAdapter (Activity activity, List<MilestonesCommentList> data)
+		private int Height;
+
+		public DocumentCommentListAdapter (Activity activity, List<DocumentCommentObject> data)
 		{
 			_activity = activity;
-			_MilestoneCommentObject = data;
+			_DocumentCommentObject = data;
 		}
 
 		public override int Count 
 		{
 			get 
 				{  
-					if (_MilestoneCommentObject == null)
+					if (_DocumentCommentObject == null)
 					{
 						return 0;
 					}
-					return _MilestoneCommentObject.Count; 
+					return _DocumentCommentObject.Count; 
 				}
 		}
 
@@ -39,35 +41,44 @@ namespace LinkOM
 			return null;
 		}
 
-		public MilestonesCommentList GetItemAtPosition(int position)
+		public DocumentCommentObject GetItemAtPosition(int position)
 		{
-			return _MilestoneCommentObject[position];
+			return _DocumentCommentObject[position];
 		}
 
 		public override long GetItemId (int position) {
 			return 0;
 		}
 
+		public int GetHeight () {
+			return Height;
+		}
+
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
+			var view = convertView;
+
+			view = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
 			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
-			var msg =_MilestoneCommentObject [position].Comment.Trim();
+			var msg = _DocumentCommentObject [position].DocumentVersion;
+
 			Name.LoadData (Html.FromHtml(msg).ToString(), "text/html", "utf8");
 			Name.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
 			WebSettings webSettings = Name.Settings;
 			webSettings.DefaultFontSize = 12;
+			webSettings.SetSupportZoom (true);
+
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _MilestoneCommentObject [position].UserName.Trim();
+			CreatedPerson.Text = _DocumentCommentObject [position].PublishBy.Trim();
 
 			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
-			CommentDate.Text = _MilestoneCommentObject [position].CreatedDate.Value.ToString("dd/MM/yyyy  HH:mm:ss");
-
+			CommentDate.Text = _DocumentCommentObject [position].CreatedDate.Value.ToString("dd/MM/yyyy  HH:mm:ss");
 
 			return view;
 		}
+
 	}
 }
 

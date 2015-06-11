@@ -34,6 +34,7 @@ namespace LinkOM
 		public void InitData (){
 			
 			TaskFilter objFilter = new TaskFilter ();
+
 			objFilter.AssignedToId = Settings.UserId;
 				
 			taskList = TaskHelper.GetTaskList (objFilter);

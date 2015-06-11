@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using Gcm.Client;
 using Android.Content.PM;
 using Android.Views.Animations;
+using Android.Net;
+using Java.Net;
 
 
 namespace LinkOM
@@ -23,6 +25,10 @@ namespace LinkOM
 	[Activity(Theme = "@style/Theme.Customtheme", MainLauncher = true, NoHistory = true)]
 	public class SplashActivity : Activity
 	{
+		public ImageView imageLogo;
+		public Animation rotateAboutCenterAnimation;
+		public System.Timers.Timer _backgroundtimer;
+
 		protected override void OnCreate(Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -62,13 +68,22 @@ namespace LinkOM
 //				GcmClient.Register (this, GcmBroadcastReceiver.SENDER_IDS);
 //			}
 
-			var image = FindViewById<ImageView>(Resource.Id.floating_image);
+			imageLogo = FindViewById<ImageView>(Resource.Id.floating_image);
 
-			var rotateAboutCenterAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.rotate_center);
+			rotateAboutCenterAnimation = AnimationUtils.LoadAnimation(this, Resource.Animation.rotate_center);
 
-			image.StartAnimation(rotateAboutCenterAnimation);
+			imageLogo.StartAnimation(rotateAboutCenterAnimation);
 
-			Init ();
+			if (NetworkHelper.DetectNetwork()) 
+			{
+				Init ();
+			} 
+			else 
+			{
+				Toast.MakeText (this, "No Connection ...", ToastLength.Short).Show ();
+				KeepChecking ();
+			}
+
 		}
 
 		private void Init()
@@ -79,6 +94,29 @@ namespace LinkOM
 				StartActivity(typeof(CheckActivity));
 				this.Finish();
 			}); 
+		}
+
+		private void KeepChecking(){
+			_backgroundtimer = new System.Timers.Timer ();
+			//Trigger event every second
+			_backgroundtimer.Interval = 6000;
+			_backgroundtimer.Elapsed += OnTimeBackgrounddEvent;
+			_backgroundtimer.Start ();
+		}
+
+		private void OnTimeBackgrounddEvent(object sender, System.Timers.ElapsedEventArgs e)
+		{
+			RunOnUiThread (() => imageLogo.StartAnimation(rotateAboutCenterAnimation));
+
+			if (NetworkHelper.DetectNetwork()) 
+			{
+				_backgroundtimer.Stop ();
+				Init ();
+			} 
+			else 
+			{
+				RunOnUiThread (() => Toast.MakeText (this, "No Connection ...", ToastLength.Long).Show ());
+			}
 		}
 	}
 }

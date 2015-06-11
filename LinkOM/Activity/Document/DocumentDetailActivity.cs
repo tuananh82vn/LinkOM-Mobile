@@ -11,6 +11,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Webkit;
+using Android.Text;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -23,7 +26,9 @@ namespace LinkOM
 		public string results;
 
 	//	public DocumentCommentListAdapter DocumentCommentListAdapter;
-		public ListView ticketCommentListView ;
+		public ListView documentCommentListView ;
+
+		public DocumentCommentListAdapter documentCommentListAdapter;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -43,7 +48,7 @@ namespace LinkOM
 
 			DisplayDocument (DocumentDetail);
 
-			//LoadDocumentComment (DocumentDetail.Id);
+			LoadDocumentComment (DocumentDetail.Id);
 
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
@@ -66,7 +71,18 @@ namespace LinkOM
 			}
 	    }
 
+		public void LoadDocumentComment(int DocumentId){
 
+			documentCommentListAdapter = new DocumentCommentListAdapter (this, DocumentHelper.GetDocumentCommentList(DocumentId));
+
+			documentCommentListView = FindViewById<ListView> (Resource.Id.DocumentCommentListView);
+
+			documentCommentListView.Adapter = documentCommentListAdapter;
+
+			documentCommentListView.DividerHeight = 0;
+
+			Utility.SetListViewHeightBasedOnChildren (documentCommentListView);
+		}
 
 		public DocumentDetailList LoadDocumentDetail (int DocumentId){
 
@@ -150,9 +166,13 @@ namespace LinkOM
 			Category.Text = obj.DocumentCategoryName;
 
 
-			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.Description!=null)
-				Description.Text = obj.Description;
+			var Description = FindViewById<WebView> (Resource.Id.tv_Description);
+			if (obj.Description != null) {
+				Description.LoadData (Html.FromHtml(obj.Description).ToString(), "text/html", "utf8");
+				Description.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
+				WebSettings webSettings = Description.Settings;
+				webSettings.DefaultFontSize = 12;
+			}
 
 		}
 	}

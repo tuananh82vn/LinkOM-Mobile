@@ -237,6 +237,9 @@
     <Compile Include="Adapter\MilestoneCommentListAdapter.cs" />
     <Compile Include="Model\ViewModel\MilestonesCommentList.cs" />
     <Compile Include="Helper\HtmlRemoval.cs" />
+    <Compile Include="Model\ViewModel\DocumentCommentObject.cs" />
+    <Compile Include="Adapter\DocumentCommentListAdapter.cs" />
+    <Compile Include="Helper\NetworkHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

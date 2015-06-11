@@ -21,7 +21,7 @@ using Android.Views.Animations;
 namespace LinkOM
 {
 	[Activity(Label = "Link-OM", Icon = "@drawable/icon", Theme = "@style/Theme.Customtheme")]
-	public class LoginActivity : BaseActivity, TextView.IOnEditorActionListener
+	public class LoginActivity : Activity, TextView.IOnEditorActionListener
 	{
 		private LoginService _loginService;
 		private System.Timers.Timer _timer;
@@ -96,28 +96,28 @@ namespace LinkOM
 
 		}
 
-		protected override void OnStart()
-		{
-			BaseActivity.s_mainactivityvisible = true;
-			base.OnStart();
-		}
-
-		protected override void OnStop()
-		{
-
-			BaseActivity.s_mainactivityvisible = false;
-			base.OnPause();
-		}
+//		protected override void OnStart()
+//		{
+//			BaseActivity.s_mainactivityvisible = true;
+//			base.OnStart();
+//		}
+//
+//		protected override void OnStop()
+//		{
+//
+//			BaseActivity.s_mainactivityvisible = false;
+//			base.OnPause();
+//		}
 
 		protected override void OnResume()
 		{
-			if (m_isAppWentToBg)
-			{
-//				_backgroundtimer.Stop ();
-//				Toast.MakeText(Android.App.Application.Context, "foreground " +_backgroundSeconds.ToString(), ToastLength.Short).Show();
-//					_backgroundSeconds = 30;
-				m_isAppWentToBg = false;
-			}
+//			if (m_isAppWentToBg)
+//			{
+////				_backgroundtimer.Stop ();
+////				Toast.MakeText(Android.App.Application.Context, "foreground " +_backgroundSeconds.ToString(), ToastLength.Short).Show();
+////					_backgroundSeconds = 30;
+//				m_isAppWentToBg = false;
+//			}
 
 			base.OnResume();
 		}

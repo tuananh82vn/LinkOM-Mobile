@@ -15,6 +15,8 @@ namespace LinkOM
 
 		Activity _activity;
 
+		private int Height;
+
 		public TaskCommentListAdapter (Activity activity, List<TaskCommentObject> data)
 		{
 			_activity = activity;
@@ -48,6 +50,10 @@ namespace LinkOM
 			return 0;
 		}
 
+		public int GetHeight () {
+			return Height;
+		}
+
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 			var view = convertView;
@@ -56,10 +62,13 @@ namespace LinkOM
 
 			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
 			var msg =_TaskCommentObject [position].Comment.Trim();
+
 			Name.LoadData (Html.FromHtml(msg).ToString(), "text/html", "utf8");
 			Name.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
 			WebSettings webSettings = Name.Settings;
 			webSettings.DefaultFontSize = 12;
+			webSettings.SetSupportZoom (true);
+
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
 			CreatedPerson.Text = _TaskCommentObject [position].UserName.Trim();
@@ -69,6 +78,7 @@ namespace LinkOM
 
 			return view;
 		}
+
 	}
 }
 

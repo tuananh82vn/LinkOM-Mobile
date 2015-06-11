@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Text;
 
 namespace LinkOM
 {
@@ -280,7 +281,7 @@ namespace LinkOM
 			else
 				editText_AllocatedHours.Text = "";
 
-			editText_Description.Text = obj.TaskDescription;
+			editText_Description.Text = HtmlRemoval.RemoveHTMLTags(HtmlRemoval.StripTagsRegexCompiled(obj.TaskDescription));
 
 		}
 

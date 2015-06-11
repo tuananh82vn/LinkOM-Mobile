@@ -231,7 +231,7 @@ namespace LinkOM
 
 			editText_AllocatedHours.Text = obj.AllocatedHours.ToString();
 
-			editText_Description.Text = obj.TicketDiscription;
+			editText_Description.Text = HtmlRemoval.RemoveHTMLTags(HtmlRemoval.StripTagsRegexCompiled(obj.TicketDiscription));
 
 		}
 

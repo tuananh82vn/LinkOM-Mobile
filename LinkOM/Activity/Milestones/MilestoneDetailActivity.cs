@@ -11,6 +11,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Webkit;
+using Android.Text;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -171,9 +174,13 @@ namespace LinkOM
 				ExpectedEndDate.Text = obj.ExpectedCompletionDateString;
 
 
-			var Description = FindViewById<TextView> (Resource.Id.tv_Description);
-			if(obj.MilestoneDescription!=null)
-				Description.Text = obj.MilestoneDescription;
+			var Description = FindViewById<WebView> (Resource.Id.tv_Description);
+			if (obj.MilestoneDescription != null) {
+				Description.LoadData (Html.FromHtml(obj.MilestoneDescription).ToString(), "text/html", "utf8");
+				Description.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
+				WebSettings webSettings = Description.Settings;
+				webSettings.DefaultFontSize = 12;
+			}
 
 			var tv_Department = FindViewById<TextView> (Resource.Id.tv_Department);
 			if(obj.DepartmentName!=null)
