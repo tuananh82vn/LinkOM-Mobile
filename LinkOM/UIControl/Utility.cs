@@ -13,8 +13,6 @@ namespace LinkOM
 		public static void SetListViewHeightBasedOnChildren(ListView listView)
 		{
 
-			Console.WriteLine ("SetListViewHeightBasedOnChildren");
-
 			var adapter = listView.Adapter;
 			if (adapter == null)
 				return;
@@ -33,14 +31,11 @@ namespace LinkOM
 
 				listItem.Measure(Atmost, Unspecified);
 
-				var height = listItem.MeasuredHeight - 100;
+
+				var height = listItem.MeasuredHeight;
 
 				totalHeight += listItem.MeasuredHeight;
 			}
-
-//			Console.WriteLine("Total Items height = {0}", adapter.Count);
-//			Console.WriteLine("Total height = {0}", totalHeight);
-
 
 			var layoutParams = listView.LayoutParameters;
 
@@ -48,6 +43,42 @@ namespace LinkOM
 
 			listView.LayoutParameters = layoutParams;
 			listView.RequestLayout();
+		}
+
+		public static void SetListViewHeightBasedOnChildren2(ListView listView, int Height)
+		{
+
+			Console.WriteLine ("--Set List View Height Based On Children 2--");
+
+			var adapter = listView.Adapter;
+			if (adapter == null)
+				return;
+
+			var layoutParams = listView.LayoutParameters;
+
+			layoutParams.Height = Height;
+
+			listView.LayoutParameters = layoutParams;
+
+			listView.RequestLayout();
+		}
+
+		public static int CalcHeight(string temp){
+			int Height = 0;
+			int Length = 1;
+			double du = 0;
+
+			if (temp.Length > 50) {
+				Length = temp.Length / 50;
+				du = temp.Length % 50;
+				if (du > 0) {
+					Length = Length + 1;
+				}
+			}
+
+			Height += (Length * 70) + 50;
+			return Height;
+
 		}
 
 

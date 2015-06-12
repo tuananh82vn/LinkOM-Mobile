@@ -15,6 +15,8 @@ namespace LinkOM
 
 		Activity _activity;
 
+		private int Height;
+
 		public TicketCommentListAdapter (Activity activity, List<TicketCommentList> data)
 		{
 			_activity = activity;
@@ -48,6 +50,11 @@ namespace LinkOM
 			return 0;
 		}
 
+		public int GetHeight () {
+			return Height;
+		}
+
+
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 			var view = convertView ?? _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
@@ -58,6 +65,8 @@ namespace LinkOM
 			Name.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
 			WebSettings webSettings = Name.Settings;
 			webSettings.DefaultFontSize = 12;
+
+			Height += Utility.CalcHeight (Html.FromHtml (msg).ToString ());
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
 			CreatedPerson.Text = _TicketCommentObject [position].UserName.Trim();

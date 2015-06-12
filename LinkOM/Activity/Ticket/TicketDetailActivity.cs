@@ -80,7 +80,7 @@ namespace LinkOM
 
 			Utility.SetListViewHeightBasedOnChildren (ticketCommentListView);
 
-			//ticketCommentListView.ItemClick += listView_ItemClick;
+			Utility.SetListViewHeightBasedOnChildren2 (ticketCommentListView,TicketCommentListAdapter.GetHeight() + 150);
 
 		}
 

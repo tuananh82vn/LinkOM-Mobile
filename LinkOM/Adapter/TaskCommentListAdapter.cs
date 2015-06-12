@@ -57,20 +57,18 @@ namespace LinkOM
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
 
-			Console.WriteLine (" Item : -----------------------" + position + "  ---------------------------");
 			var view = convertView;
 
 			view = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
 
 			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
 			var msg =_TaskCommentObject [position].Comment.Trim();
-
 			Name.LoadData (Html.FromHtml(msg).ToString(), "text/html", "utf8");
 			Name.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
 			WebSettings webSettings = Name.Settings;
 			webSettings.DefaultFontSize = 12;
-			webSettings.SetSupportZoom (true);
 
+			Height += Utility.CalcHeight (Html.FromHtml (msg).ToString ());
 
 			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
 			CreatedPerson.Text = _TaskCommentObject [position].UserName.Trim();

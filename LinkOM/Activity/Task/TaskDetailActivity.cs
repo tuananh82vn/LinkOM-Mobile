@@ -52,9 +52,6 @@ namespace LinkOM
 			if(TaskDetail!=null)
 			LoadTaskComment (TaskDetail.Id);
 
-
-
-
 			//Console.WriteLine (taskCommentListView.Height);
 
 			//Lock Orientation
@@ -119,6 +116,8 @@ namespace LinkOM
 			taskCommentListView.DividerHeight = 0;
 
 			Utility.SetListViewHeightBasedOnChildren (taskCommentListView);
+
+			Utility.SetListViewHeightBasedOnChildren2 (taskCommentListView,taskCommentListAdapter.GetHeight() + 150);
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)
