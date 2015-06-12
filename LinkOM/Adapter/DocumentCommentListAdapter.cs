@@ -11,7 +11,7 @@ namespace LinkOM
 {
 	public class DocumentCommentListAdapter : BaseAdapter
 	{
-		List<DocumentCommentObject> _DocumentCommentObject;
+		List<DocumentCommentObject> _CommentObject;
 
 		Activity _activity;
 
@@ -20,18 +20,18 @@ namespace LinkOM
 		public DocumentCommentListAdapter (Activity activity, List<DocumentCommentObject> data)
 		{
 			_activity = activity;
-			_DocumentCommentObject = data;
+			_CommentObject = data;
 		}
 
 		public override int Count 
 		{
 			get 
 				{  
-					if (_DocumentCommentObject == null)
+					if (_CommentObject == null)
 					{
 						return 0;
 					}
-					return _DocumentCommentObject.Count; 
+					return _CommentObject.Count; 
 				}
 		}
 
@@ -43,7 +43,7 @@ namespace LinkOM
 
 		public DocumentCommentObject GetItemAtPosition(int position)
 		{
-			return _DocumentCommentObject[position];
+			return _CommentObject[position];
 		}
 
 		public override long GetItemId (int position) {
@@ -56,27 +56,36 @@ namespace LinkOM
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView;
+			MyViewHolder holder = null;
 
-			view = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
+			if(convertView != null)
+				holder = convertView.Tag as MyViewHolder;
 
-			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
-			var msg = _DocumentCommentObject [position].DocumentVersion;
+			if (holder == null) {
 
-			Name.LoadData (Html.FromHtml(msg).ToString(), "text/html", "utf8");
-			Name.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
-			WebSettings webSettings = Name.Settings;
+				holder = new MyViewHolder();
+
+				convertView = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
+
+				holder.Name = convertView.FindViewById<WebView> (Resource.Id.tv_Name);
+				holder.CreatedPerson = convertView.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
+				holder.CommentDate = convertView.FindViewById<TextView> (Resource.Id.tv_CommentDate);
+
+				convertView.Tag = holder;
+			}
+
+			var msg = _CommentObject [position].DocumentVersion.Trim ();
+			holder.Name.LoadData (Html.FromHtml (msg).ToString (), "text/html", "utf8");
+			holder.Name.SetBackgroundColor (Color.Argb (1, 0, 0, 0));
+			WebSettings webSettings = holder.Name.Settings;
 			webSettings.DefaultFontSize = 12;
-			webSettings.SetSupportZoom (true);
 
+			Height += Utility.CalcHeight (Html.FromHtml (msg).ToString ());
 
-			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _DocumentCommentObject [position].PublishBy.Trim();
+			holder.CreatedPerson.Text = _CommentObject [position].PublishBy.Trim ();
+			holder.CreatedPerson.Text = _CommentObject [position].CreatedDate.Value.ToString ("dd/MM/yyyy  HH:mm:ss");
 
-			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
-			CommentDate.Text = _DocumentCommentObject [position].CreatedDate.Value.ToString("dd/MM/yyyy  HH:mm:ss");
-
-			return view;
+			return convertView;
 		}
 
 	}

@@ -82,6 +82,8 @@ namespace LinkOM
 			documentCommentListView.DividerHeight = 0;
 
 			Utility.SetListViewHeightBasedOnChildren (documentCommentListView);
+
+			Utility.SetListViewHeightBasedOnChildren2 (documentCommentListView,documentCommentListAdapter.GetHeight()+150);
 		}
 
 		public DocumentDetailList LoadDocumentDetail (int DocumentId){

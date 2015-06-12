@@ -11,27 +11,29 @@ namespace LinkOM
 {
 	public class TaskCommentListAdapter : BaseAdapter
 	{
-		List<TaskCommentObject> _TaskCommentObject;
+		List<TaskCommentObject> _CommentObject;
 
 		Activity _activity;
 
 		private int Height;
 
+
+
 		public TaskCommentListAdapter (Activity activity, List<TaskCommentObject> data)
 		{
 			_activity = activity;
-			_TaskCommentObject = data;
+			_CommentObject = data;
 		}
 
 		public override int Count 
 		{
 			get 
 				{  
-					if (_TaskCommentObject == null)
+					if (_CommentObject == null)
 					{
 						return 0;
 					}
-					return _TaskCommentObject.Count; 
+					return _CommentObject.Count; 
 				}
 		}
 
@@ -43,7 +45,7 @@ namespace LinkOM
 
 		public TaskCommentObject GetItemAtPosition(int position)
 		{
-			return _TaskCommentObject[position];
+			return _CommentObject[position];
 		}
 
 		public override long GetItemId (int position) {
@@ -56,27 +58,36 @@ namespace LinkOM
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
+			MyViewHolder holder = null;
 
-			var view = convertView;
+			if(convertView != null)
+				holder = convertView.Tag as MyViewHolder;
 
-			view = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
+			if (holder == null) {
+				
+				holder = new MyViewHolder();
 
-			var Name = view.FindViewById<WebView> (Resource.Id.tv_Name);
-			var msg =_TaskCommentObject [position].Comment.Trim();
-			Name.LoadData (Html.FromHtml(msg).ToString(), "text/html", "utf8");
-			Name.SetBackgroundColor(Color.Argb(1, 0, 0, 0));
-			WebSettings webSettings = Name.Settings;
+				convertView = _activity.LayoutInflater.Inflate (Resource.Layout.CommentList, parent, false);
+
+				holder.Name = convertView.FindViewById<WebView> (Resource.Id.tv_Name);
+				holder.CreatedPerson = convertView.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
+				holder.CommentDate = convertView.FindViewById<TextView> (Resource.Id.tv_CommentDate);
+
+				convertView.Tag = holder;
+			}
+
+			var msg = _CommentObject [position].Comment.Trim ();
+			holder.Name.LoadData (Html.FromHtml (msg).ToString (), "text/html", "utf8");
+			holder.Name.SetBackgroundColor (Color.Argb (1, 0, 0, 0));
+			WebSettings webSettings = holder.Name.Settings;
 			webSettings.DefaultFontSize = 12;
 
 			Height += Utility.CalcHeight (Html.FromHtml (msg).ToString ());
 
-			var CreatedPerson = view.FindViewById<TextView> (Resource.Id.tv_CreatedPerson);
-			CreatedPerson.Text = _TaskCommentObject [position].UserName.Trim();
+			holder.CreatedPerson.Text = _CommentObject [position].UserName.Trim ();
+			holder.CreatedPerson.Text = _CommentObject [position].CreatedDate.Value.ToString ("dd/MM/yyyy  HH:mm:ss");
 
-			var CommentDate = view.FindViewById<TextView> (Resource.Id.tv_CommentDate);
-			CommentDate.Text = _TaskCommentObject [position].CreatedDate.Value.ToString("dd/MM/yyyy  HH:mm:ss");
-
-			return view;
+			return convertView;
 		}
 
 	}
