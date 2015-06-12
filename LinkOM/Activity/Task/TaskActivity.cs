@@ -210,7 +210,7 @@ namespace LinkOM
 						int NumberOfTask = 0;
 
 						if (taskList != null)
-					//Get number of task
+						    //Get number of task
 							NumberOfTask = CheckTask (SortedList [i].Name, taskList);
 
 						//Add button into View

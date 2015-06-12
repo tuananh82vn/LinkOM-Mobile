@@ -158,7 +158,6 @@
     <Compile Include="Activity\Document\DocumentAddActivity.cs" />
     <Compile Include="Activity\Dashboard\DashboardActivity.cs" />
     <Compile Include="Chart\TaskDataSource.cs" />
-    <Compile Include="Chart\ProjectTaskDataSource.cs" />
     <Compile Include="Activity\StartUp\HomeFragment.cs" />
     <Compile Include="UIControl\SlidingTabScrollView.cs" />
     <Compile Include="UIControl\SlidingTabStrip.cs" />
@@ -241,6 +240,9 @@
     <Compile Include="Adapter\DocumentCommentListAdapter.cs" />
     <Compile Include="Helper\NetworkHelper.cs" />
     <Compile Include="UIControl\MyViewHolder.cs" />
+    <Compile Include="ObjectHelper\ChartHelper.cs" />
+    <Compile Include="Model\ViewModel\ProjectTicketChart.cs" />
+    <Compile Include="Chart\AllTicketDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

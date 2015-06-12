@@ -12,6 +12,7 @@ using Java.Lang;
 
 using NChart3D_Android;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LinkOM
 {
@@ -41,6 +42,7 @@ namespace LinkOM
 
 			statusList = TaskHelper.GetTaskStatus ();
 
+			statusList = statusList.OrderBy(o=>o.DisplayOrder).ToList();
 
 			if (statusList!=null) {
 

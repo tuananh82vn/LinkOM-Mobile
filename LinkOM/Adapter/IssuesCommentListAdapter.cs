@@ -83,7 +83,7 @@ namespace LinkOM
 			Height += Utility.CalcHeight (Html.FromHtml (msg).ToString ());
 
 			holder.CreatedPerson.Text = _CommentObject [position].UserName.Trim ();
-			holder.CreatedPerson.Text = _CommentObject [position].CreatedDate.Value.ToString ("dd/MM/yyyy  HH:mm:ss");
+			holder.CommentDate.Text = _CommentObject [position].CreatedDate.Value.ToString ("dd/MM/yyyy  HH:mm:ss");
 
 			return convertView;
 		}

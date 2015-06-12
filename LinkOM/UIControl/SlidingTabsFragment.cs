@@ -63,7 +63,7 @@ namespace LinkOM
 
 		public TicketDataSource ticketData;
 
-		public ProjectTaskDataSource projectData;
+		public AllTicketDataSource projectData;
 
 		public NChartView mNChartView1;
 
@@ -73,7 +73,13 @@ namespace LinkOM
 
 		bool zoomed;
 
-		NChartBrush[] brushes;
+		public List<NChartBrush> brushes;
+
+		public List<ProjectTicketChart>  TicketDataList;
+
+		public List<ProjectTaskChart>  TaskDataList;
+
+		public List<NChartPieSeries> PieSeries;
 
 		public SamplePagerAdapter() : base()
 		{
@@ -82,10 +88,14 @@ namespace LinkOM
 			items.Add("Project-Task");
 			items.Add("Project-Ticket");
 
-
 			taskData = new TaskDataSource ();
 			ticketData = new TicketDataSource ();
-			projectData = new ProjectTaskDataSource ();
+
+			TicketDataList = ChartHelper.GetProjectTicketChart ();
+			TicketDataList = TicketDataList.Where (m => m.TotalTicket > 0).ToList();
+
+			TaskDataList = ChartHelper.GetProjectTaskChart ();
+			TaskDataList = TaskDataList.Where (m => m.TotalTask > 0).ToList();
 
 		}
 
@@ -146,6 +156,7 @@ namespace LinkOM
 					if (position == 1) {
 						seriesBar1.DataSource = ticketData;
 						seriesBar1.Tag = 1;
+
 						mNChartView1.Chart.CartesianSystem.XAxis.DataSource = ticketData;
 						mNChartView1.Chart.CartesianSystem.YAxis.DataSource = ticketData;
 						mNChartView1.Chart.Delegate = ticketData;
@@ -173,14 +184,6 @@ namespace LinkOM
 
 			if (position == 2 || position == 3) {
 
-				// Create brushes.
-				brushes = new NChartBrush[5];
-				brushes [0] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.38 * 255), (int)(0.8 * 255), (int)(0.91 * 255)));
-				brushes [1] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.8 * 255), (int)(0.86 * 255), (int)(0.22 * 255)));
-				brushes [2] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.9 * 255), (int)(0.29 * 255), (int)(0.51 * 255)));
-				brushes [3] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.9 * 255), (int)(0.7 * 255), (int)(0.8 * 255)));
-				brushes [4] = new NChartSolidColorBrush (Color.Argb (255, (int)(0.3 * 255), (int)(0.8 * 255), (int)(0.4 * 255)));
-
 				// Switch on antialiasing.
 				mNChartView1.Chart.ShouldAntialias = true;
 				mNChartView1.Chart.RemoveAllSeries ();
@@ -188,38 +191,37 @@ namespace LinkOM
 				mNChartView1.Chart.PolarSystem.Margin = new NChartMargin (10.0f, 10.0f, 10.0f, 20.0f);
 				mNChartView1.Chart.CartesianSystem.XAlongY.Color = Color.White;
 				mNChartView1.Chart.CartesianSystem.YAlongX.Color = Color.Gray;
-
-//				mNChartView1.Chart.Caption.Text = "Project Tasks";
-				// Create series that will be displayed on the chart.
-				NChartPieSeries series = new NChartPieSeries ();
-				series.DataSource = projectData;
-				series.Tag = 0;
-				series.Brush = brushes [0];
-				mNChartView1.Chart.AddSeries (series);
 				
-				NChartPieSeries series1 = new NChartPieSeries ();
-				series1.DataSource = projectData;
-				series1.Tag = 1;
-				series1.Brush = brushes [1];
-				mNChartView1.Chart.AddSeries (series1);
-				
-				NChartPieSeries series2 = new NChartPieSeries ();
-				series2.DataSource = projectData;
-				series2.Tag = 2;
-				series2.Brush = brushes [2];
-				mNChartView1.Chart.AddSeries (series2);
+				if (position == 3) {
+					// Create brushes.
+					brushes = new List<NChartBrush> (TicketDataList.Count);
 
-				NChartPieSeries series3 = new NChartPieSeries ();
-				series3.DataSource = projectData;
-				series3.Tag = 3;
-				series3.Brush = brushes [3];
-				mNChartView1.Chart.AddSeries (series3);
+					for (int i = 0; i < TicketDataList.Count; i++) {
+						NChartBrush tempBursh = new NChartSolidColorBrush (ColorHelper.GetColor (TicketDataList [i].TicketStatusColor));
 
-				NChartPieSeries series4 = new NChartPieSeries ();
-				series4.DataSource = projectData;
-				series4.Tag = 3;
-				series4.Brush = brushes [4];
-				mNChartView1.Chart.AddSeries (series4);
+						NChartPieSeries series = new NChartPieSeries ();
+						series.DataSource = new AllTicketDataSource (TicketDataList [i].TotalTicket.Value, TicketDataList [i].StatusName);
+						series.Tag = i;
+						series.Brush = tempBursh;
+						mNChartView1.Chart.AddSeries (series);
+					}
+				}
+
+				if (position == 2) {
+					// Create brushes.
+					brushes = new List<NChartBrush> (TaskDataList.Count);
+
+						for (int i = 0; i < TaskDataList.Count; i++) {
+							NChartBrush tempBursh = new NChartSolidColorBrush (ColorHelper.GetColor (TaskDataList [i].TaskStatusColor));
+
+						NChartPieSeries series = new NChartPieSeries ();
+							series.DataSource = new AllTicketDataSource (TaskDataList [i].TotalTask.Value, TaskDataList [i].StatusName);
+						series.Tag = i;
+						series.Brush = tempBursh;
+						mNChartView1.Chart.AddSeries (series);
+					}
+				}
+
 				
 				NChartPieSeriesSettings settings = new NChartPieSeriesSettings ();
 				settings.HoleRatio = 0.0f;

@@ -183,6 +183,7 @@ namespace LinkOM
 			_timer.Enabled = true;
 
 			_loginService = new LoginService();
+
 			LoginObject obj = _loginService.Login (username.Text, password.Text);
 
 

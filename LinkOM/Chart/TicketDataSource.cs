@@ -12,6 +12,7 @@ using Java.Lang;
 
 using NChart3D_Android;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LinkOM
 {
@@ -33,7 +34,6 @@ namespace LinkOM
 
 		public void InitData (){
 
-
 			TicketFilter objFilter = new TicketFilter ();
 			objFilter.AssignedToId = Settings.UserId;
 
@@ -48,6 +48,8 @@ namespace LinkOM
 
 
 			statusList = TicketHelper.GetTicketStatusList ();
+
+			statusList = statusList.OrderBy(o=>o.DisplayOrder).ToList();
 
 			if (statusList != null) {
 				if (statusList.Count > 0) {
@@ -81,7 +83,7 @@ namespace LinkOM
 			if (nChartValueAxis.Kind == NChartValueAxisKind.X)
 				return "";
 			else if (nChartValueAxis.Kind == NChartValueAxisKind.Y)
-				return "Status Ticket";
+				return "Status";
 			return null;
 		}
 
