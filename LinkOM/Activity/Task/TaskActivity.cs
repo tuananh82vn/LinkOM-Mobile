@@ -253,6 +253,7 @@ namespace LinkOM
 			TextView textView = new TextView (this);
 			TableRow.LayoutParams layoutParams_textView = new TableRow.LayoutParams (dpToPx(280), dpToPx(70));
 			layoutParams_textView.LeftMargin = dpToPx (10);
+
 			textView.LayoutParameters = layoutParams_textView;
 			textView.Gravity = GravityFlags.CenterVertical;
 			textView.TextSize = 18;
@@ -262,9 +263,11 @@ namespace LinkOM
 			else {
 				textView.Text = Title + " (" + NumberOfTask.ToString () + ")";
 			}
+
 			textView.Tag = id;
-			textView.Click += (sender, eventArgs) =>{
-				ButtonClick(NumberOfTask, id);
+
+			textView.Touch += (sender, TouchEventArgs)=>{
+				textViewOnTouch(NumberOfTask, id, LinearLayout_Inside , color, TouchEventArgs);
 			};
 
 
@@ -284,23 +287,12 @@ namespace LinkOM
 			else
 				button.SetBackgroundColor (color);
 			
-			if (color == Color.Black) {
+			if (color == Color.Black || color == Color.Blue || color == Color.Purple) {
 				button.SetTextColor (Color.White);
 			}
 			else
-				if (color == Color.Blue) {
-					button.SetTextColor (Color.White);
-				}
-				else
-					if (color == Color.Purple) {
-						button.SetTextColor (Color.White);
-					}
-					else
-						button.SetTextColor (Color.Black);
-
-			button.Tag = id;
-	//		button.Click += HandleMyButton;
-
+				button.SetTextColor (Color.Black);
+			
 
 			View view = new View (this);
 			TableRow.LayoutParams layoutParams_view = new TableRow.LayoutParams (TableRow.LayoutParams.MatchParent, dpToPx(1));
@@ -310,7 +302,6 @@ namespace LinkOM
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
 
 			if (Settings.Orientation.Equals ("Portrait"))
-				//LinearLayout_Inside.AddView (button);
 				RunOnUiThread (() => LinearLayout_Inside.AddView (button));
 
 
@@ -318,6 +309,43 @@ namespace LinkOM
 			RunOnUiThread (() => LinearLayout_Master.AddView (tableRow));
 			RunOnUiThread (() => LinearLayout_Master.AddView (view));
 		}
+
+		private void textViewOnTouch(int NumberOfTask ,int id, LinearLayout LinearLayout_Inside,Color color,  View.TouchEventArgs touchEventArgs)
+		{
+
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+				case MotionEventActions.Down:
+
+				case MotionEventActions.Move:
+					LinearLayout_Inside.SetBackgroundColor (color);
+					break;
+
+				case MotionEventActions.Up:
+					LinearLayout_Inside.SetBackgroundColor (Color.White);
+
+					if (NumberOfTask != 0) {
+
+						if (Settings.Orientation.Equals ("Portrait")) {
+							var activity = new Intent (this, typeof(TaskListActivity));
+							activity.PutExtra ("TaskStatusId", id);
+							StartActivity (activity);
+						}
+						//Landscape
+						else {
+							GetTaskList (id);
+						}
+					} 
+					else {
+						Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
+					}
+					break;
+
+				default:
+					break;
+			}
+
+		}	
 
 		private int dpToPx(int dp)
 		{

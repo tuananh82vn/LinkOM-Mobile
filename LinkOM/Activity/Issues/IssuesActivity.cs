@@ -262,30 +262,14 @@ namespace LinkOM
 
 			if (Settings.Orientation.Equals ("Portrait"))
 				textView.Text = Title;
-			else {
-				textView.Text = Title + " (" + NumberOfIssues.ToString () + ")";
-
+			else 
+			{
+					textView.Text = Title + " (" + NumberOfIssues.ToString () + ")";
 			}
-			textView.Tag = id;
-			textView.Click += (sender, eventArgs) => {
-				if(NumberOfIssues!=0)
-				{
-					if (Settings.Orientation.Equals ("Portrait")) 
-					{
-						var activity = new Intent (this, typeof(IssuesListActivity));
-						activity.PutExtra ("IssuesStatusId", id);
-						StartActivity (activity);
-					}
-					else
-					{
-						GetIssuesListByStatusId (id);
-					}
-				}
-				else
-				{
-					Toast.MakeText (this, "No Issues Available.", ToastLength.Short).Show ();
 
-				}
+			textView.Tag = id;
+			textView.Touch += (sender, TouchEventArgs)=>{
+				textViewOnTouch(NumberOfIssues, id, LinearLayout_Inside , color, TouchEventArgs);
 			};
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
@@ -297,25 +281,14 @@ namespace LinkOM
 				button.SetBackgroundColor (Color.Gray);
 			}
 			else			
-				if (color == Color.Purple) {
-					button.SetBackgroundColor (Color.Purple);
-				}
-				else
-					button.SetBackgroundColor (color);
+				button.SetBackgroundColor (color);
 
-			if (color == Color.Black) {
+
+			if (color == Color.Black || color == Color.Blue || color == Color.Purple) {
 				button.SetTextColor (Color.White);
 			}
 			else
-				if (color == Color.Blue) {
-					button.SetTextColor (Color.White);
-				}
-				else
-					if (color == Color.Purple) {
-						button.SetTextColor (Color.White);
-					}
-					else
-						button.SetTextColor (Color.Black);
+				button.SetTextColor (Color.Black);
 
 			button.Tag = id;
 			button.Click += (sender, eventArgs) => {
@@ -334,7 +307,7 @@ namespace LinkOM
 				}
 				else
 				{
-					Toast.MakeText (this, "No Issues Available.", ToastLength.Short).Show ();
+					Toast.MakeText (this, "No Issue Available.", ToastLength.Short).Show ();
 
 				}
 			};
@@ -345,22 +318,56 @@ namespace LinkOM
 			view.LayoutParameters = layoutParams_view;
 			view.SetBackgroundColor (Color.ParseColor("#AEAEAE"));
 
-			//LinearLayout_Inside.AddView (textView);
 
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
 
 			if (Settings.Orientation.Equals ("Portrait"))
-				//LinearLayout_Inside.AddView (button);
 				RunOnUiThread (() => LinearLayout_Inside.AddView (button));
-
-//			tableRow.AddView (LinearLayout_Inside);
-//			LinearLayout_Master.AddView (tableRow);
-//			LinearLayout_Master.AddView (view);
 
 			RunOnUiThread (() => tableRow.AddView (LinearLayout_Inside));
 			RunOnUiThread (() => LinearLayout_Master.AddView (tableRow));
 			RunOnUiThread (() => LinearLayout_Master.AddView (view));
 		}
+
+
+		private void textViewOnTouch(int NumberOfIssues ,int id, LinearLayout LinearLayout_Inside,Color color,  View.TouchEventArgs touchEventArgs)
+		{
+
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+			case MotionEventActions.Down:
+
+			case MotionEventActions.Move:
+				LinearLayout_Inside.SetBackgroundColor (color);
+				break;
+
+			case MotionEventActions.Up:
+				LinearLayout_Inside.SetBackgroundColor (Color.White);
+
+				if (NumberOfIssues != 0) {
+
+					if (Settings.Orientation.Equals ("Portrait")) {
+						var activity = new Intent (this, typeof(IssuesListActivity));
+						activity.PutExtra ("IssuesStatusId", id);
+						StartActivity (activity);
+					}
+					//Landscape
+					else 
+					{
+						GetIssuesListByStatusId (id);
+					}
+				} 
+				else 
+				{
+					Toast.MakeText (this, "No Issue Available.", ToastLength.Short).Show ();
+				}
+				break;
+
+			default:
+				break;
+			}
+
+		}	
 
 		private int dpToPx(int dp)
 		{
@@ -368,28 +375,28 @@ namespace LinkOM
 			return Int32.Parse(Math.Round((float)dp * density).ToString());
 		}
 
-		private void HandleMyText(object sender, EventArgs e)
-		{
-			
-		}
+//		private void HandleMyText(object sender, EventArgs e)
+//		{
+//			
+//		}
 
-		private void HandleMyButton(object sender, EventArgs e)
-		{
-			int whichOne = 0;
-			Button myObject2 = (Button)sender;
-			whichOne = (int)myObject2.Tag;
-
-			if (Settings.Orientation.Equals ("Portrait")) {
-				var activity = new Intent (this, typeof(IssuesListActivity));
-				activity.PutExtra ("IssuesStatusId", whichOne);
-				StartActivity (activity);
-			}
-
-			else
-			{
-				GetIssuesListByStatusId (whichOne);
-			}
-		}
+//		private void HandleMyButton(object sender, EventArgs e)
+//		{
+//			int whichOne = 0;
+//			Button myObject2 = (Button)sender;
+//			whichOne = (int)myObject2.Tag;
+//
+//			if (Settings.Orientation.Equals ("Portrait")) {
+//				var activity = new Intent (this, typeof(IssuesListActivity));
+//				activity.PutExtra ("IssuesStatusId", whichOne);
+//				StartActivity (activity);
+//			}
+//
+//			else
+//			{
+//				GetIssuesListByStatusId (whichOne);
+//			}
+//		}
 
 
 		private void GetIssuesListByStatusId(int StatusId){

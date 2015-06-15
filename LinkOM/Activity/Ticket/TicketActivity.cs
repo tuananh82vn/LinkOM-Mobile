@@ -264,32 +264,15 @@ namespace LinkOM
 				textView.Text = Title + " (" + NumberOfTicket.ToString () + ")";
 
 			}
-			textView.Tag = id;
-			textView.Click += (sender, eventArgs) => {
-				if(NumberOfTicket!=0)
-				{
-					if (Settings.Orientation.Equals ("Portrait")) 
-					{
-						var activity = new Intent (this, typeof(TicketListActivity));
-						activity.PutExtra ("TicketStatusId", id);
-						StartActivity (activity);
-					}
-					else
-					{
-						GetTicketDetailList (id);
-					}
-				}
-				else
-				{
-					Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
-				}
+
+			textView.Touch += (sender, TouchEventArgs)=>{
+				textViewOnTouch(NumberOfTicket, id, LinearLayout_Inside , color, TouchEventArgs);
 			};
 
 
 			TableRow.LayoutParams layoutParams_button = new TableRow.LayoutParams (dpToPx(70), dpToPx(70));
 			button.LayoutParameters = layoutParams_button;
 			button.Background =  Resources.GetDrawable(Resource.Drawable.RoundButton);
-			button.Tag = id;
 			button.Text="0";
 			if (color == Color.White) {
 				button.SetBackgroundColor (Color.Gray);
@@ -297,22 +280,13 @@ namespace LinkOM
 			else
 				button.SetBackgroundColor (color);
 
-			if (color == Color.Black) {
+			if (color == Color.Black || color == Color.Blue || color == Color.Purple) {
 				button.SetTextColor (Color.White);
 			}
 			else
-				if (color == Color.Blue) {
-					button.SetTextColor (Color.White);
-				}
-				else
-					if (color == Color.Purple) {
-						button.SetTextColor (Color.White);
-					}
-					else
-						button.SetTextColor (Color.Black);
+				button.SetTextColor (Color.Black);
 
 			button.Tag = id;
-			//button.Click += HandleMyButton;
 			button.Click += (sender, eventArgs) => {
 				if(NumberOfTicket!=0)
 				{
@@ -341,51 +315,59 @@ namespace LinkOM
 			view.LayoutParameters = layoutParams_view;
 			view.SetBackgroundColor (Color.ParseColor("#AEAEAE"));
 
-			//LinearLayout_Inside.AddView (textView);
-
 			RunOnUiThread (() => LinearLayout_Inside.AddView (textView));
 
 			if (Settings.Orientation.Equals ("Portrait"))
-				//LinearLayout_Inside.AddView (button);
 				RunOnUiThread (() => LinearLayout_Inside.AddView (button));
-
-//			tableRow.AddView (LinearLayout_Inside);
-//			LinearLayout_Master.AddView (tableRow);
-//			LinearLayout_Master.AddView (view);
 
 			RunOnUiThread (() => tableRow.AddView (LinearLayout_Inside));
 			RunOnUiThread (() => LinearLayout_Master.AddView (tableRow));
 			RunOnUiThread (() => LinearLayout_Master.AddView (view));
 		}
 
+		private void textViewOnTouch(int NumberOfTicket ,int id, LinearLayout LinearLayout_Inside,Color color,  View.TouchEventArgs touchEventArgs)
+		{
+
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+			case MotionEventActions.Down:
+
+			case MotionEventActions.Move:
+				LinearLayout_Inside.SetBackgroundColor (color);
+				break;
+
+			case MotionEventActions.Up:
+				LinearLayout_Inside.SetBackgroundColor (Color.White);
+
+				if (NumberOfTicket != 0) {
+
+					if (Settings.Orientation.Equals ("Portrait")) {
+						var activity = new Intent (this, typeof(TicketListActivity));
+						activity.PutExtra ("TicketStatusId", id);
+						StartActivity (activity);
+					}
+					//Landscape
+					else 
+					{
+						GetTicketDetailList (id);
+					}
+				} 
+				else 
+				{
+					Toast.MakeText (this, "No Ticket Available.", ToastLength.Short).Show ();
+				}
+				break;
+
+			default:
+				break;
+			}
+
+		}	
+
 		private int dpToPx(int dp)
 		{
 			float density = Resources.DisplayMetrics.Density;
 			return Int32.Parse(Math.Round((float)dp * density).ToString());
-		}
-
-
-		private void HandleMyText(object sender, EventArgs e)
-		{
-			
-		}
-
-		private void HandleMyButton(object sender, EventArgs e)
-		{
-			int whichOne = 0;
-			Button myObject2 = (Button)sender;
-			whichOne = (int)myObject2.Tag;
-
-			if (Settings.Orientation.Equals ("Portrait")) 
-			{
-				var activity = new Intent (this, typeof(TicketListActivity));
-				activity.PutExtra ("TicketStatusId", whichOne);
-				StartActivity (activity);
-			}
-			else
-			{
-				GetTicketDetailList (whichOne);
-			}
 		}
 
 
@@ -605,8 +587,6 @@ namespace LinkOM
 			ticketCommentListView.DividerHeight = 0;
 
 			Utility.SetListViewHeightBasedOnChildren (ticketCommentListView);
-
-			//ticketCommentListView.ItemClick += listView_ItemClick;
 
 		}
 
