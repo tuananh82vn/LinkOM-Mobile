@@ -169,10 +169,10 @@ namespace LinkOM
 
 			spinner_Label= FindViewById<Spinner> (Resource.Id.spinner_Label);
 
-			if (TaskDetail.StartDate != null)
-				StartDate = TaskDetail.StartDate;
-			else
-				StartDate = DateTime.Today;
+//			if (TaskDetail.StartDate != null)
+//				StartDate = TaskDetail.StartDate;
+//			else
+//				StartDate = DateTime.Today;
 
 			editText_StartDate.Click += delegate { ShowDialog (Start_DATE_DIALOG_ID); };
 			editText_EndDate.Click += delegate { ShowDialog (End_DATE_DIALOG_ID); };
@@ -275,6 +275,26 @@ namespace LinkOM
 			editText_ActualStartDate.Text = obj.ActualStartDateString;
 
 			editText_ActualEndDate.Text = obj.ActualEndDateString;
+
+			if (editText_StartDate.Text != "")
+				StartDate = DateTime.Parse (editText_StartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+			else
+				StartDate = DateTime.Today;
+
+			if (editText_EndDate.Text != "")
+				EndDate = DateTime.Parse (editText_EndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+			else
+				EndDate = DateTime.Today;
+
+			if (editText_ActualStartDate.Text != "")
+				ActualStartDate = DateTime.Parse (editText_ActualStartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+			else
+				ActualStartDate = DateTime.Today;
+
+			if (editText_ActualEndDate.Text != "")
+				ActualEndDate = DateTime.Parse (editText_ActualEndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+			else
+				ActualEndDate = DateTime.Today;
 
 			if (obj.AllocatedHours.HasValue)
 				editText_AllocatedHours.Text = obj.AllocatedHours.Value.ToString ();
@@ -423,6 +443,7 @@ namespace LinkOM
 				TaskObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
 
 			TaskObject.Description = editText_Description.Text;
+			TaskObject.IsApi = true;
 
 			ApiResultSave restult = TaskHelper.EditTask (TaskObject);
 			if (restult != null) {

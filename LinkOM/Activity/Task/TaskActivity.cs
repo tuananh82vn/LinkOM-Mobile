@@ -264,21 +264,7 @@ namespace LinkOM
 			}
 			textView.Tag = id;
 			textView.Click += (sender, eventArgs) =>{
-				if (NumberOfTask != 0) {
-
-					if (Settings.Orientation.Equals ("Portrait")) {
-						var activity = new Intent (this, typeof(TaskListActivity));
-						activity.PutExtra ("TaskStatusId", id);
-						StartActivity (activity);
-					}
-					//Landscape
-					else {
-						GetTaskList (id);
-					}
-				} 
-				else {
-					Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
-				}
+				ButtonClick(NumberOfTask, id);
 			};
 
 
@@ -289,21 +275,7 @@ namespace LinkOM
 			button.Gravity = GravityFlags.Center;
 			button.Tag = id;
 			button.Click += (sender, eventArgs) =>{
-				if (NumberOfTask != 0) {
-
-					if (Settings.Orientation.Equals ("Portrait")) {
-						var activity = new Intent (this, typeof(TaskListActivity));
-						activity.PutExtra ("TaskStatusId", id);
-						StartActivity (activity);
-					}
-					//Landscape
-					else {
-						GetTaskList (id);
-					}
-				} 
-				else {
-					Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
-				}
+				ButtonClick(NumberOfTask, id);
 			};
 
 			if (color == Color.White) {
@@ -359,7 +331,23 @@ namespace LinkOM
 			base.OnBackPressed();
 		}
 
+		private void ButtonClick(int NumberOfTask, int id){
+			if (NumberOfTask != 0) {
 
+				if (Settings.Orientation.Equals ("Portrait")) {
+					var activity = new Intent (this, typeof(TaskListActivity));
+					activity.PutExtra ("TaskStatusId", id);
+					StartActivity (activity);
+				}
+				//Landscape
+				else {
+					GetTaskList (id);
+				}
+			} 
+			else {
+				Toast.MakeText (this, "No Task Available.", ToastLength.Short).Show ();
+			}
+		}
 
 		private void GetTaskList(int StatusId){
 

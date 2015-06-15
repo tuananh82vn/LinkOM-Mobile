@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using Android.Content;
 using Android.Support.V4.App;
 using Android.Views;
+using Android.OS;
 using Android.Widget;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -18,7 +20,12 @@ namespace LinkOM
 		public MilestoneListAdapter milestoneList;
 		public DashboardObject temp;
 
-
+		public RelativeLayout bt_Task;
+		public RelativeLayout bt_Project;
+		public RelativeLayout bt_Ticket;
+		public RelativeLayout bt_Milestone;
+		public RelativeLayout bt_Issues;
+		public RelativeLayout bt_Document;
 
 		public HomeFragment(Activity context)
 		{
@@ -35,23 +42,24 @@ namespace LinkOM
 
 			var	view = inflater.Inflate (Resource.Layout.MainContentLayout2, null);
 
-			RelativeLayout bt_Task = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Task);
-			bt_Task.Click += btTaskClick;
+			bt_Task = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Task);
+			bt_Task.Touch += bt_TaskOnTouch;
 
-			RelativeLayout bt_Project = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Project);
-			bt_Project.Click += btProjectClick;
 
-			RelativeLayout bt_Ticket = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Ticket);
-			bt_Ticket.Click += bt_TicketClick;
+			bt_Project = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Project);
+			bt_Project.Touch += bt_ProjectOnTouch;
 
-			RelativeLayout bt_Milestone = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Milestone);
-			bt_Milestone.Click += bt_MilestoneClick;
+			bt_Ticket = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Ticket);
+			bt_Ticket.Touch += bt_TicketOnTouch;
 
-			RelativeLayout bt_Issues = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Issues);
-			bt_Issues.Click += bt_IssuesClick;
+			bt_Milestone = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Milestone);
+			bt_Milestone.Touch += bt_MilestoneOnTouch;
 
-			RelativeLayout bt_Document = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Documents);
-			bt_Document.Click += bt_DocumentClick;
+			bt_Issues = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Issues);
+			bt_Issues.Touch += bt_IssuesOnTouch;
+
+			bt_Document = view.FindViewById<RelativeLayout>(Resource.Id.relativeLayout_Documents);
+			bt_Document.Touch += bt_DocumentOnTouch;
 
 
 
@@ -68,6 +76,148 @@ namespace LinkOM
 
 			return view;
 		}
+
+		private void bt_DocumentOnTouch(object sender, View.TouchEventArgs touchEventArgs)
+		{
+
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+			case MotionEventActions.Down:
+
+			case MotionEventActions.Move:
+				bt_Document.SetBackgroundColor (Color.ParseColor("#C38741"));
+				break;
+
+			case MotionEventActions.Up:
+				bt_Document.SetBackgroundColor (Color.ParseColor("#E8A455"));
+				var activity = new Intent (base.Activity, typeof(DocumentActivity));
+				StartActivity (activity);
+				break;
+
+			default:
+				break;
+			}
+
+		}	
+
+		private void bt_IssuesOnTouch(object sender, View.TouchEventArgs touchEventArgs)
+		{
+
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+			case MotionEventActions.Down:
+
+			case MotionEventActions.Move:
+				bt_Issues.SetBackgroundColor (Color.ParseColor("#1E7392"));
+				break;
+
+			case MotionEventActions.Up:
+				bt_Issues.SetBackgroundColor (Color.ParseColor("#0292C5"));
+				var activity = new Intent (base.Activity, typeof(IssuesActivity));
+				StartActivity (activity);
+				break;
+
+			default:
+				break;
+			}
+
+		}	
+
+		private void bt_MilestoneOnTouch(object sender, View.TouchEventArgs touchEventArgs)
+		{
+
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+			case MotionEventActions.Down:
+
+			case MotionEventActions.Move:
+				bt_Milestone.SetBackgroundColor (Color.ParseColor("#2DA49A"));
+				break;
+
+			case MotionEventActions.Up:
+				bt_Milestone.SetBackgroundColor (Color.ParseColor("#39CCC0"));
+				var activity = new Intent (base.Activity, typeof(MilestoneActivity));
+				StartActivity (activity);
+				break;
+
+			default:
+				break;
+			}
+
+		}	
+
+		private void bt_TicketOnTouch(object sender, View.TouchEventArgs touchEventArgs)
+		{
+
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+			case MotionEventActions.Down:
+
+			case MotionEventActions.Move:
+				bt_Ticket.SetBackgroundColor (Color.ParseColor("#E84044"));
+				break;
+
+			case MotionEventActions.Up:
+				bt_Ticket.SetBackgroundColor (Color.ParseColor("#EE686B"));
+				var activity = new Intent (base.Activity, typeof(TicketActivity));
+				StartActivity (activity);
+				break;
+
+			default:
+				break;
+			}
+
+		}	
+
+		private void bt_ProjectOnTouch(object sender, View.TouchEventArgs touchEventArgs)
+		{
+			
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+				case MotionEventActions.Down:
+
+				case MotionEventActions.Move:
+					bt_Project.SetBackgroundColor (Color.ParseColor("#3D984E"));
+					break;
+
+				case MotionEventActions.Up:
+					bt_Project.SetBackgroundColor (Color.ParseColor("#5ECA72"));
+					var activity = new Intent (base.Activity, typeof(ProjectActivity));
+					StartActivity (activity);
+					break;
+
+				default:
+					break;
+			}
+
+		}	
+
+		private void bt_TaskOnTouch(object sender, View.TouchEventArgs touchEventArgs)
+		{
+
+			switch (touchEventArgs.Event.Action & MotionEventActions.Mask) 
+			{
+			case MotionEventActions.Down:
+
+			case MotionEventActions.Move:
+				bt_Task.SetBackgroundColor (Color.ParseColor("#6B4097"));
+				break;
+
+			case MotionEventActions.Up:
+				bt_Task.SetBackgroundColor (Color.ParseColor("#936DBA"));
+				var activity = new Intent (base.Activity, typeof(TaskActivity));
+				StartActivity (activity);
+				break;
+
+			default:
+				break;
+			}
+
+		}	
+
+
+
+
 
 
 		//Loading data
@@ -246,43 +396,5 @@ namespace LinkOM
 
 		}
 
-		public void btTaskClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (base.Activity, typeof(TaskActivity));
-			StartActivity (activity);
-		}
-
-		public void btProjectClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (base.Activity, typeof(ProjectActivity));
-			StartActivity (activity);
-		}
-
-		public void bt_TicketClick(object sender, EventArgs e)
-		{
-			
-			var activity = new Intent (base.Activity, typeof(TicketActivity));
-			StartActivity (activity);
-		}
-
-		public void bt_MilestoneClick(object sender, EventArgs e)
-		{
-			
-			var activity = new Intent (base.Activity, typeof(MilestoneActivity));
-			StartActivity (activity);
-		}
-
-		public void bt_IssuesClick(object sender, EventArgs e)
-		{
-
-			var activity = new Intent (base.Activity, typeof(IssuesActivity));
-			StartActivity (activity);
-		}
-
-		public void bt_DocumentClick(object sender, EventArgs e)
-		{
-			var activity = new Intent (base.Activity, typeof(DocumentActivity));
-			StartActivity (activity);
-		}
 	}
 }
