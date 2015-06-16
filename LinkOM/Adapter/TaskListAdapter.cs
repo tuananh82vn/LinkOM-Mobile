@@ -83,8 +83,8 @@ namespace LinkOM
 			var Priority = view.FindViewById<ImageView> (Resource.Id.image_Priority);
 			if(_TaskList [position].PriorityName.Equals("High"))
 				Priority.SetImageResource(Resource.Drawable.hight_priority);
-				else if(_TaskList [position].PriorityName.Equals("Medium"))
-						Priority.SetImageResource(Resource.Drawable.medium_priority);
+//				else if(_TaskList [position].PriorityName.Equals("Medium"))
+//						Priority.SetImageResource(Resource.Drawable.medium_priority);
 							else if(_TaskList [position].PriorityName.Equals("Low"))
 								Priority.SetImageResource(Resource.Drawable.low_priority);
 

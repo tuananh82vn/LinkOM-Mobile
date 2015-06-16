@@ -245,61 +245,26 @@ namespace LinkOM
 				return null;
 		}
 
-		public static ApiResultSave EditTicket(TicketEdit objTaskDetail){
+		public static async System.Threading.Tasks.Task<ApiResultSave> EditTicket(TicketEdit editTicket)
+		{
 
-			string url = Settings.InstanceURL;
+			ApiResultSave apiResultSave = new ApiResultSave();
 
-			string url_Task= url+"/api/EditTicket";
+			apiResultSave = await new WebApiHelper().EditAddObject("/API/EditTicket",editTicket);
 
-
-			var objTicket = (new
-				{
-					objTicket = new
-					{
-						TokenNumber = Settings.Token,
-						Item = objTaskDetail
-					}
-				});
-
-			string results_Task= ConnectWebAPI.Request(url_Task,objTicket);
-
-			if (results_Task != null) {
-
-				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
-				return data;
-
-			} 
-			else
-				return null;
+			return apiResultSave;
 		}
 
-		public static ApiResultSave AddTicket(TicketAdd objTaskDetail){
+		public static async System.Threading.Tasks.Task<ApiResultSave> AddTicket(TicketAdd addTicket)
+		{
 
-			string url = Settings.InstanceURL;
+			ApiResultSave apiResultSave = new ApiResultSave();
 
-			string url_Task= url+"/api/AddTicket";
+			apiResultSave = await new WebApiHelper().EditAddObject("/API/AddTicket",addTicket);
 
-
-			var objTicket = (new
-				{
-					objTicket = new
-					{
-						TokenNumber = Settings.Token,
-						Item = objTaskDetail
-					}
-				});
-
-			string results_Task= ConnectWebAPI.Request(url_Task,objTicket);
-
-			if (results_Task != null) {
-
-				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
-				return data;
-
-			} 
-			else
-				return null;
+			return apiResultSave;
 		}
+
 
 	}
 }

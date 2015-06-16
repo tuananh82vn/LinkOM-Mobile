@@ -108,8 +108,6 @@ namespace LinkOM
 
 			GetPriorityList ();
 
-
-
 			//Lock Orientation
 			if (Settings.Orientation.Equals ("Portrait")) {
 				RequestedOrientation = ScreenOrientation.SensorPortrait;
@@ -364,20 +362,25 @@ namespace LinkOM
 		}
 
 
-		public void btSaveClick()
+		public async void btSaveClick()
 		{
 
 			TaskAdd TaskObject = new TaskAdd ();
-			TaskObject.Title = editText_Title.Text;
+
+			TaskObject.Title = editText_Title.Text.Replace("'",string.Empty);
+
 			TaskObject.ProjectId = Selected_ProjectID;
 			TaskObject.TaskStatusId = Selected_StatusID;
 			TaskObject.PriorityId = Selected_PriorityID;
 			TaskObject.ProjectPhaseId = Selected_PhaseID;
+
 			TaskObject.Label = Selected_Label;
+
 			TaskObject.StartDate = DateTime.Parse(editText_StartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			TaskObject.EndDate = DateTime.Parse(editText_EndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			TaskObject.ActualStartDate = DateTime.Parse(editText_ActualStartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 			TaskObject.ActualEndDate = DateTime.Parse(editText_ActualEndDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
+
 			TaskObject.IsInternal = cb_Internal.Checked;
 			TaskObject.IsManagerial = cb_Management.Checked;
 			TaskObject.AssignedToId = Selected_AssignToStaffID;
@@ -386,15 +389,17 @@ namespace LinkOM
 			if (editText_AllocatedHours.Text != "")
 				TaskObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
 			
-			TaskObject.Description = editText_Description.Text;
+			TaskObject.Description = editText_Description.Text.Replace("'",string.Empty);
 
-			ApiResultSave restult = TaskHelper.AddTask (TaskObject);
+			ApiResultSave restult = await TaskHelper.AddTask (TaskObject);
 			if (restult != null) {
 				if (restult.Success) 
 				{
-					OnBackPressed ();
+					Intent Intent = new Intent (this, typeof(TaskActivity));
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity (Intent);
 					Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
-
+					this.Finish ();
 				} 
 				else
 					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();

@@ -283,7 +283,7 @@ namespace LinkOM
 
 
 
-		public void btSaveClick()
+		public async void btSaveClick()
 		{
 			IssuesAdd IssueObject = new IssuesAdd ();
 			IssueObject.Title = editText_Title.Text;
@@ -307,13 +307,16 @@ namespace LinkOM
 			if (editText_AllocatedHours.Text != "")
 				IssueObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
 
-			IssueObject.Description = editText_Description.Text;
+			IssueObject.Description = editText_Description.Text.Replace("'",string.Empty);
 
-			ApiResultSave restult = IssuesHelper.AddIssue (IssueObject);
+			ApiResultSave restult = await IssuesHelper.AddIssue (IssueObject);
 			if (restult != null) {
 				if (restult.Success) {
-					OnBackPressed ();
+					Intent Intent = new Intent (this, typeof(IssuesActivity));
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity (Intent);
 					Toast.MakeText (this, "Issue Added", ToastLength.Short).Show ();
+					this.Finish ();
 				}
 				else
 					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();

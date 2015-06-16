@@ -257,18 +257,31 @@ namespace LinkOM
 			return true;
 		}
 
-		public void btSaveClick()
+		public async void btSaveClick()
 		{
 
 			TicketEdit TicketObject = new TicketEdit ();
+
 			TicketObject.Id = TicketDetail.Id.Value;
-			TicketObject.Title = editText_Title.Text;
+			TicketObject.Title = editText_Title.Text.Replace("'",string.Empty);
+
+			if (Selected_ProjectID != 0)
 			TicketObject.ProjectId = Selected_ProjectID;
+			
+			if (Selected_StatusID != 0)
 			TicketObject.TicketStatusId = Selected_StatusID;
+
+			if (Selected_PriorityID != 0)
 			TicketObject.PriorityId = Selected_PriorityID;
+
 			TicketObject.Label = Selected_Label;
+
+			if (Selected_MethodID != 0)
 			TicketObject.TicketReceivedMethodId = Selected_MethodID;
+
+			if (Selected_TypeID != 0)
 			TicketObject.TicketTypeId= Selected_TypeID;
+			
 			if (editText_StartDate.Text != "")
 				TicketObject.StartDate = DateTime.Parse(editText_StartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
 
@@ -290,13 +303,18 @@ namespace LinkOM
 				TicketObject.AllocatedHours = Int32.Parse(editText_AllocatedHours.Text);
 
 
-			TicketObject.Description = editText_Description.Text;
+			TicketObject.Description = editText_Description.Text.Replace("'",string.Empty);
 
-			ApiResultSave restult = TicketHelper.EditTicket (TicketObject);
+
+			ApiResultSave restult = await TicketHelper.EditTicket (TicketObject);
+
 			if (restult != null) {
 				if (restult.Success) {
-					OnBackPressed ();
+					Intent Intent = new Intent (this, typeof(TicketActivity));
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity (Intent);
 					Toast.MakeText (this, "Ticket Saved", ToastLength.Short).Show ();
+					this.Finish ();
 				}
 				else
 					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();

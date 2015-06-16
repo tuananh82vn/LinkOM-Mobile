@@ -325,13 +325,20 @@ namespace LinkOM
 		}
 
 
-		public void btSaveClick()
+		public async void btSaveClick()
 		{
 			IssuesEdit IssueObject = new IssuesEdit ();
 			IssueObject.Id = IssuesDetail.Id.Value;
-			IssueObject.Title = editText_Title.Text;
+
+			IssueObject.Title = editText_Title.Text.Replace("'",string.Empty);
+
+			if (Selected_ProjectID != 0)
 			IssueObject.ProjectId = Selected_ProjectID;
+
+			if (Selected_StatusID != 0)
 			IssueObject.StatusId = Selected_StatusID;
+
+			if (Selected_PriorityID != 0)
 			IssueObject.PriorityId = Selected_PriorityID;
 
 			if (editText_OpenDate.Text != "")
@@ -350,13 +357,16 @@ namespace LinkOM
 			if (editText_AllocatedHours.Text != "")
 				IssueObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
 
-			IssueObject.Description = editText_Description.Text;
+			IssueObject.Description = editText_Description.Text.Replace("'",string.Empty);
 
-			ApiResultSave restult = IssuesHelper.EditIssue (IssueObject);
+			ApiResultSave restult = await IssuesHelper.EditIssue (IssueObject);
 			if (restult != null) {
 				if (restult.Success) {
-					OnBackPressed ();
+					Intent Intent = new Intent (this, typeof(IssuesActivity));
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity (Intent);
 					Toast.MakeText (this, "Issue Saved", ToastLength.Short).Show ();
+					this.Finish ();
 				}
 				else
 					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();

@@ -11,6 +11,8 @@ using System.Json;
 using System.Threading.Tasks;
 using System.Text;
 using Android.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace LinkOM
 {
@@ -33,7 +35,7 @@ namespace LinkOM
 				string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(json);
 
 
-				byte[] requestBytes = System.Text.Encoding.ASCII.GetBytes(jsonString);
+				byte[] requestBytes = System.Text.Encoding.UTF8.GetBytes(jsonString);
 
 				request.ContentLength = requestBytes.Length;
 

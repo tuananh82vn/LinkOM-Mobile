@@ -85,6 +85,10 @@ namespace LinkOM
 
 		public Spinner spinner_Label;
 
+		public List<FileReference> attachements = new List<FileReference>();
+
+		private List<Int32> lstDelAttachment = new List<Int32>();
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -169,17 +173,22 @@ namespace LinkOM
 
 			spinner_Label= FindViewById<Spinner> (Resource.Id.spinner_Label);
 
-//			if (TaskDetail.StartDate != null)
-//				StartDate = TaskDetail.StartDate;
-//			else
-//				StartDate = DateTime.Today;
-
-			editText_StartDate.Click += delegate { ShowDialog (Start_DATE_DIALOG_ID); };
-			editText_EndDate.Click += delegate { ShowDialog (End_DATE_DIALOG_ID); };
-			editText_ActualStartDate.Click += delegate { ShowDialog (Actual_Start_DATE_DIALOG_ID); };
-			editText_ActualEndDate.Click += delegate { ShowDialog (Actual_End_DATE_DIALOG_ID); };
+			editText_StartDate.Click += delegate {
+				ShowDialog (Start_DATE_DIALOG_ID);
+			};
+			editText_EndDate.Click += delegate {
+				ShowDialog (End_DATE_DIALOG_ID);
+			};
+			editText_ActualStartDate.Click += delegate {
+				ShowDialog (Actual_Start_DATE_DIALOG_ID);
+			};
+			editText_ActualEndDate.Click += delegate {
+				ShowDialog (Actual_End_DATE_DIALOG_ID);
+			};
 
 		}
+
+
 
 		private void GetProjectList(){
 
@@ -188,6 +197,7 @@ namespace LinkOM
 			spinner_Project.Adapter = projectList;
 
 			spinner_Project.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (project_ItemSelected);
+
 			if(TaskDetail.ProjectId!=null)
 			spinner_Project.SetSelection(projectList.getPositionById (TaskDetail.ProjectId));
 
@@ -410,16 +420,27 @@ namespace LinkOM
 			Selected_PhaseID = phaseList.GetItemAtPosition (e.Position).Id;
 		}
 
-		public void btSaveClick()
+		public async void btSaveClick()
 		{
 			
 			TaskEdit TaskObject = new TaskEdit ();
+
 			TaskObject.Id = TaskDetail.Id;
-			TaskObject.Title = editText_Title.Text;
-			TaskObject.ProjectId = Selected_ProjectID;
-			TaskObject.TaskStatusId = Selected_StatusID;
-			TaskObject.PriorityId = Selected_PriorityID;
-			TaskObject.ProjectPhaseId = Selected_PhaseID;
+
+			TaskObject.Title = editText_Title.Text.Replace("'",string.Empty);
+
+			if (Selected_ProjectID != 0)
+				TaskObject.ProjectId = Selected_ProjectID;
+			
+			if (Selected_StatusID != 0)
+				TaskObject.TaskStatusId = Selected_StatusID;
+			
+			if (Selected_PriorityID != 0)
+				TaskObject.PriorityId = Selected_PriorityID;
+			
+			if (Selected_PhaseID != 0)
+				TaskObject.ProjectPhaseId = Selected_PhaseID;
+			
 			TaskObject.Label = Selected_Label;
 
 			if (editText_StartDate.Text != "")
@@ -436,20 +457,33 @@ namespace LinkOM
 			
 			TaskObject.IsInternal = cb_Internal.Checked;
 			TaskObject.IsManagerial = cb_Management.Checked;
+
+			if (Selected_AssignToStaffID != 0)
 			TaskObject.AssignedToId = Selected_AssignToStaffID;
+			
+			if (Selected_OwnerStaffID != 0)
 			TaskObject.OwnerId = Selected_OwnerStaffID;
 
 			if (editText_AllocatedHours.Text != "")
-				TaskObject.AllocatedHours = Double.Parse(editText_AllocatedHours.Text);
+				TaskObject.AllocatedHours = editText_AllocatedHours.Text;
 
-			TaskObject.Description = editText_Description.Text;
-			TaskObject.IsApi = true;
+			TaskObject.Description = editText_Description.Text.Replace("'",string.Empty);
 
-			ApiResultSave restult = TaskHelper.EditTask (TaskObject);
-			if (restult != null) {
-				if (restult.Success) {
-					OnBackPressed ();
+			TaskObject.removeFileRefIds = "";
+			TaskObject.Attachments = attachements.Where(f => f.FileId == null).ToList();
+
+			ApiResultSave restult = await TaskHelper.EditTask (TaskObject);
+
+			if (restult != null) 
+			{
+				if (restult.Success) 
+				{
+					Intent Intent = new Intent (this, typeof(TaskActivity));
+					Intent.SetFlags (ActivityFlags.ClearWhenTaskReset);
+					StartActivity (Intent);
 					Toast.MakeText (this, "Task Saved", ToastLength.Short).Show ();
+					this.Finish ();
+
 				}
 				else
 					Toast.MakeText (this, restult.ErrorMessage, ToastLength.Short).Show ();

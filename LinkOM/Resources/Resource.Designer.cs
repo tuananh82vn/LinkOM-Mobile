@@ -7700,8 +7700,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f070131
 			public const int DropDownNav_Customtheme = 2131165489;
 			
-			// aapt resource value: 0x7f070139
-			public const int MyTheme_ActionBar_TitleTextStyle = 2131165497;
+			// aapt resource value: 0x7f07013c
+			public const int MyTheme_ActionBar_TitleTextStyle = 2131165500;
 			
 			// aapt resource value: 0x7f070085
 			public const int Platform_AppCompat = 2131165317;
@@ -7970,8 +7970,8 @@ namespace LinkOM
 			// aapt resource value: 0x7f070001
 			public const int Theme_MediaRouter_Light = 2131165185;
 			
-			// aapt resource value: 0x7f070138
-			public const int Theme_Splash = 2131165496;
+			// aapt resource value: 0x7f07013b
+			public const int Theme_Splash = 2131165499;
 			
 			// aapt resource value: 0x7f0700d0
 			public const int ThemeOverlay_AppCompat = 2131165392;
@@ -8203,6 +8203,15 @@ namespace LinkOM
 			
 			// aapt resource value: 0x7f070135
 			public const int button_text = 2131165493;
+			
+			// aapt resource value: 0x7f070138
+			public const int myTheme = 2131165496;
+			
+			// aapt resource value: 0x7f070139
+			public const int myTheme_ActionBar = 2131165497;
+			
+			// aapt resource value: 0x7f07013a
+			public const int myTheme_ActionBar_Text = 2131165498;
 			
 			static Style()
 			{

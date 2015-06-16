@@ -161,60 +161,24 @@ namespace LinkOM
 				return null;
 		}
 
-		public static ApiResultSave EditIssue(IssuesEdit objTaskDetail){
+		public static async System.Threading.Tasks.Task<ApiResultSave> EditIssue(IssuesEdit editIssue)
+		{
 
-			string url = Settings.InstanceURL;
+			ApiResultSave apiResultSave = new ApiResultSave();
 
-			string url_Task= url+"/api/EditIssue";
+			apiResultSave = await new WebApiHelper().EditAddObject("/API/EditIssue",editIssue);
 
-
-			var objIssue = (new
-				{
-					objIssue = new
-					{
-						TokenNumber = Settings.Token,
-						Item = objTaskDetail
-					}
-				});
-
-			string results_Task= ConnectWebAPI.Request(url_Task,objIssue);
-
-			if (results_Task != null) {
-
-				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
-				return data;
-
-			} 
-			else
-				return null;
+			return apiResultSave;
 		}
 
-		public static ApiResultSave AddIssue(IssuesAdd objTaskDetail){
+		public static async System.Threading.Tasks.Task<ApiResultSave> AddIssue(IssuesAdd addIssue)
+		{
 
-			string url = Settings.InstanceURL;
+			ApiResultSave apiResultSave = new ApiResultSave();
 
-			string url_Task= url+"/api/AddIssue";
+			apiResultSave = await new WebApiHelper().EditAddObject("/API/AddIssue",addIssue);
 
-
-			var objIssue = (new
-				{
-					objIssue = new
-					{
-						TokenNumber = Settings.Token,
-						Item = objTaskDetail
-					}
-				});
-
-			string results_Task= ConnectWebAPI.Request(url_Task,objIssue);
-
-			if (results_Task != null) {
-
-				ApiResultSave data = Newtonsoft.Json.JsonConvert.DeserializeObject<ApiResultSave> (results_Task);
-				return data;
-
-			} 
-			else
-				return null;
+			return apiResultSave;
 		}
 
 

@@ -29,9 +29,8 @@
         <item name="android:actionModeBackground">@drawable/cab_background_top_customtheme</item>
         <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_customtheme</item>
         <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Customtheme</item>
-        
-        
     </style>
+
 
     <style name="ActionBar.Solid.Customtheme" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
         <item name="android:background">@drawable/ab_solid_customtheme</item>
@@ -108,6 +107,21 @@
         <item name="android:fullDark">@color/white</item>
         <item name="android:topBright">@android:color/transparent</item>
         <item name="android:topDark">@android:color/transparent</item>
+    </style>
+
+
+   <style name="myTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/myTheme.ActionBar</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+    </style>
+
+    <style name="myTheme.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_solid_customtheme</item>
+        <item name="android:titleTextStyle">@style/myTheme.ActionBar.Text</item>
+    </style>
+
+    <style name="myTheme.ActionBar.Text" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>

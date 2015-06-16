@@ -381,21 +381,23 @@ namespace LinkOM
 		}
 
 
-		public void btSaveClick()
+		public async void btSaveClick()
 		{
 
 			TicketAdd TicketObject = new TicketAdd ();
+
 			if (editText_Title.Text.Equals ("")) {
 				tv_TicketTitle.SetTextColor (Android.Graphics.Color.Red);
 
-				Toast.MakeText (this, "Please input ticket title", ToastLength.Short).Show ();
+				Toast.MakeText (this, "Please input Ticket Title", ToastLength.Short).Show ();
 				return;
 			} 
 			else 
 			{
 				tv_TicketTitle.SetTextColor (Android.Graphics.Color.ParseColor("#ff00947A"));
-				TicketObject.Title = editText_Title.Text;
+				TicketObject.Title = editText_Title.Text.Replace("'",string.Empty);
 			}
+
 			TicketObject.ProjectId = Selected_ProjectID;
 			TicketObject.TicketStatusId = Selected_StatusID;
 			TicketObject.PriorityId = Selected_PriorityID;
@@ -406,7 +408,7 @@ namespace LinkOM
 			TicketObject.AssignedToId = Selected_AssignToStaffID;
 			TicketObject.OwnerId = Selected_OwnerStaffID;
 			TicketObject.UserName = Settings.Username;
-			TicketObject.Description = editText_Description.Text;
+			TicketObject.Description = editText_Description.Text.Replace("'",string.Empty);
 
 			if (editText_StartDate.Text != "") {
 				tv_StartDate_Title.SetTextColor (Android.Graphics.Color.ParseColor ("#ff437800"));
@@ -439,10 +441,7 @@ namespace LinkOM
 			if (editText_AllocatedHours.Text != "")
 				TicketObject.AllocatedHours = editText_AllocatedHours.Text;
 
-			TicketObject.IsApi = true;
-			TicketObject.UserId = Settings.UserId;
-
-			ApiResultSave restult = TicketHelper.AddTicket (TicketObject);
+			ApiResultSave restult = await TicketHelper.AddTicket (TicketObject);
 
 			if (restult != null) {
 				if (restult.Success) {

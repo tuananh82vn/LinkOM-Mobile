@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Text;
 using Android.Webkit;
 using Android.Graphics;
+using Android.Util;
 
 namespace LinkOM
 {

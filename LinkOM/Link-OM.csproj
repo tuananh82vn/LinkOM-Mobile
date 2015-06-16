@@ -243,6 +243,7 @@
     <Compile Include="ObjectHelper\ChartHelper.cs" />
     <Compile Include="Model\ViewModel\ProjectTicketChart.cs" />
     <Compile Include="Chart\AllTicketDataSource.cs" />
+    <Compile Include="WebApiHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

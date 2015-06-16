@@ -16,6 +16,7 @@ using Android.Views.InputMethods;
 using Android.Text;
 using Android.Content.PM;
 using com.refractored.fab;
+using System.Threading;
 
 namespace LinkOM
 {
@@ -35,6 +36,7 @@ namespace LinkOM
 
 		public ListView taskListView ;
 
+		public ProgressDialog progress;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -57,8 +59,9 @@ namespace LinkOM
 			mSearch.SetOnEditorActionListener (this);
 			mSearch.TextChanged += InputSearchOnTextChanged;
 
-//
+
 //			var inputManager = (InputMethodManager)GetSystemService(InputMethodService);
+
 //			inputManager.HideSoftInputFromWindow(this.CurrentFocus.WindowToken, HideSoftInputFlags.None);
 
 			StatusId= Intent.GetIntExtra ("TaskStatusId",0);
@@ -134,7 +137,6 @@ namespace LinkOM
 				
 				TaskFilter objFilter = new TaskFilter ();
 				objFilter.AssignedToId = Settings.UserId;
-				objFilter.MainStatusId = StatusId;
 				objFilter.TaskStatusId = StatusId.ToString ();
 					
 				taskList = new TaskListAdapter (this, TaskHelper.GetTaskList(objFilter));
@@ -218,6 +220,7 @@ namespace LinkOM
 			ActivityOptions opts = ActivityOptions.MakeCustomAnimation (this, Resource.Animation.fade, Resource.Animation.hold);
 
 			StartActivity (activity, opts.ToBundle ());
+
 		}
 
 		public bool OnEditorAction (TextView v, ImeAction actionId, KeyEvent e)

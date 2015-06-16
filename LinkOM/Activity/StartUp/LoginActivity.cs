@@ -20,7 +20,7 @@ using Android.Views.Animations;
 
 namespace LinkOM
 {
-	[Activity(Label = "Link-OM", Icon = "@drawable/icon", Theme = "@style/Theme.Customtheme")]
+	[Activity(Label = "Link-OM", Icon = "@drawable/icon", Theme = "@style/myTheme")]
 	public class LoginActivity : Activity, TextView.IOnEditorActionListener
 	{
 		private LoginService _loginService;
@@ -36,6 +36,7 @@ namespace LinkOM
 		public ImageView imageView_logo;
 
 //		public RadialProgressView progressView;
+
 
 
 		protected override void OnCreate (Bundle bundle)
