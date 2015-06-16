@@ -277,14 +277,17 @@ namespace LinkOM
 			if(obj.IsManagerial)
 				cb_Management.Checked = obj.IsManagerial;
 			
+			if(obj.StartDateString!=null)
+				editText_StartDate.Text = obj.StartDateString;
 
-			editText_StartDate.Text = obj.StartDateString;
+			if(obj.EndDateString!=null)
+				editText_EndDate.Text = obj.EndDateString;
 
-			editText_EndDate.Text = obj.EndDateString;
+			if(obj.ActualStartDateString!=null)
+				editText_ActualStartDate.Text = obj.ActualStartDateString;
 
-			editText_ActualStartDate.Text = obj.ActualStartDateString;
-
-			editText_ActualEndDate.Text = obj.ActualEndDateString;
+			if(obj.ActualEndDateString!=null)
+				editText_ActualEndDate.Text = obj.ActualEndDateString;
 
 			if (editText_StartDate.Text != "")
 				StartDate = DateTime.Parse (editText_StartDate.Text,System.Globalization.CultureInfo.GetCultureInfo("en-AU").DateTimeFormat);
@@ -311,7 +314,9 @@ namespace LinkOM
 			else
 				editText_AllocatedHours.Text = "";
 
-			editText_Description.Text = HtmlRemoval.RemoveHTMLTags(HtmlRemoval.StripTagsRegexCompiled(obj.TaskDescription));
+
+			if(obj.TaskDescription!=null)
+				editText_Description.Text = HtmlRemoval.RemoveHTMLTags(HtmlRemoval.StripTagsRegexCompiled(obj.TaskDescription));
 
 		}
 

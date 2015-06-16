@@ -44,13 +44,10 @@
             p1:layout_marginRight="5dp"
             p1:textSize="12dp" />
         <ImageView
-            p1:src="@drawable/hight_priority"
             p1:layout_column="1"
             p1:id="@+id/image_Priority"
-            p1:layout_marginRight="20dp"
             p1:layout_marginTop="5dp"
             p1:layout_width="wrap_content"
-            p1:layout_height="match_parent"
-            p1:layout_marginLeft="5dp" />
+            p1:layout_height="match_parent" />
     </TableRow>
 </LinearLayout>

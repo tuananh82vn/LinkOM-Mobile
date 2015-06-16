@@ -214,24 +214,31 @@ namespace LinkOM
 
 		public void DisplayTicket(TicketDetailList obj){
 
-			editText_Title.Text = obj.Title;
+			if(obj.Title!=null)
+				editText_Title.Text = obj.Title;
 
 			if (obj.IsInternal.HasValue)
 				cb_Internal.Checked = obj.IsInternal.Value;
 			else
 				cb_Internal.Checked = false;
 
-			editText_StartDate.Text = obj.StartDateString;
+			if(obj.StartDateString!=null)
+				editText_StartDate.Text = obj.StartDateString;
 
-			editText_EndDate.Text = obj.EndDateString;
+			if(obj.EndDateString!=null)
+				editText_EndDate.Text = obj.EndDateString;
 
-			editText_ActualStartDate.Text = obj.ActualStartDateString;
+			if(obj.ActualStartDateString!=null)
+				editText_ActualStartDate.Text = obj.ActualStartDateString;
 
-			editText_ActualEndDate.Text = obj.ActualEndDateString;
+			if(obj.ActualEndDateString!=null)
+				editText_ActualEndDate.Text = obj.ActualEndDateString;
 
-			editText_AllocatedHours.Text = obj.AllocatedHours.ToString();
+			if(obj.AllocatedHours!=null)
+				editText_AllocatedHours.Text = obj.AllocatedHours.ToString();
 
-			editText_Description.Text = HtmlRemoval.RemoveHTMLTags(HtmlRemoval.StripTagsRegexCompiled(obj.TicketDiscription));
+			if(obj.TicketDiscription!=null)
+				editText_Description.Text = HtmlRemoval.RemoveHTMLTags(HtmlRemoval.StripTagsRegexCompiled(obj.TicketDiscription));
 
 		}
 

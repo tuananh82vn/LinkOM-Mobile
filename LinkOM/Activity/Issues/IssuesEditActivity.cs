@@ -240,17 +240,26 @@ namespace LinkOM
 
 			editText_Title.Text = obj.Title;
 
-			editText_OpenDate.Text = obj.OpenDateString;
+			if(obj.OpenDateString!=null)
+				editText_OpenDate.Text = obj.OpenDateString;
 
-			editText_CloseDate.Text = obj.CloseDateString;
+			if(obj.CloseDateString!=null)
+				editText_CloseDate.Text = obj.CloseDateString;
 
-			editText_ResDate.Text = obj.RessolutionTargetDateString;
 
-			editText_AllocatedHours.Text = obj.AllocatedHours.ToString();
+			if(obj.RessolutionTargetDateString!=null)
+				editText_ResDate.Text = obj.RessolutionTargetDateString;
 
-			editText_Description.Text = HtmlRemoval.RemoveHTMLTags(HtmlRemoval.StripTagsRegexCompiled(obj.IssueDescription));
 
-			editText_Action.Text = obj.IssueAction;
+			if(obj.AllocatedHours!=null)
+				editText_AllocatedHours.Text = obj.AllocatedHours.ToString();
+
+
+			if(obj.IssueDescription!=null)
+				editText_Description.Text = HtmlRemoval.RemoveHTMLTags(HtmlRemoval.StripTagsRegexCompiled(obj.IssueDescription));
+
+			if(obj.IssueAction!=null)
+				editText_Action.Text = obj.IssueAction;
 
 		}
 
