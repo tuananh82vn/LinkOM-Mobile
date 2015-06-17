@@ -84,6 +84,15 @@ namespace LinkOM
 				KeepChecking ();
 			}
 
+
+			PackageManager manager = this.PackageManager;
+			PackageInfo info = manager.GetPackageInfo(this.PackageName, 0);
+			string version = info.VersionName;
+
+			if (!version.Equals (Settings.Version)) {
+				Settings.Version = version;
+				Settings.WhatsNew = false;
+			}
 		}
 
 		private void Init()

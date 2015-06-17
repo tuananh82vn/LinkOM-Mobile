@@ -80,4 +80,8 @@
   		<string name="drawer_open">Open</string>
   		<string name="drawer_close">Close</string>
   		<string name="menu_refresh">Refresh</string>
+
+  		<string name="what_news_title">What\'s New</string>
+  		<string name="alert_dialog_ok">OK</string>
+  		<string name="alert_dialog_cancel">Cancel</string>
 </resources>

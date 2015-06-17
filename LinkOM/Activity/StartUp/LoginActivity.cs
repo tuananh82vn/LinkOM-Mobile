@@ -37,6 +37,7 @@ namespace LinkOM
 
 //		public RadialProgressView progressView;
 
+		private const int DIALOG_TEXT_ENTRY = 7;
 
 
 		protected override void OnCreate (Bundle bundle)
@@ -95,31 +96,54 @@ namespace LinkOM
 				RequestedOrientation = ScreenOrientation.SensorLandscape;
 			}
 
+			if(!Settings.WhatsNew)
+				ShowDialog (DIALOG_TEXT_ENTRY);
+
 		}
 
-//		protected override void OnStart()
-//		{
-//			BaseActivity.s_mainactivityvisible = true;
-//			base.OnStart();
-//		}
-//
-//		protected override void OnStop()
-//		{
-//
-//			BaseActivity.s_mainactivityvisible = false;
-//			base.OnPause();
-//		}
+
+		protected override Dialog OnCreateDialog (int id)
+		{
+			switch (id) {
+			case DIALOG_TEXT_ENTRY: {
+					// This example shows how to add a custom layout to an AlertDialog
+					var factory = LayoutInflater.From (this);
+
+					var text_entry_view = factory.Inflate (Resource.Layout.WhatNews, null);
+
+					TextView tv_Version = text_entry_view.FindViewById<TextView>(Resource.Id.tv_Version);
+
+					tv_Version.Text = "VERSION 1.2.2 17 JUNE 2015";
+
+					ListView lv_News = text_entry_view.FindViewById<ListView>(Resource.Id.lv_News);
+
+					lv_News.Adapter = new WhatsNewListAdapter(this);
+
+					var builder = new AlertDialog.Builder (this);
+
+					builder.SetIconAttribute (Android.Resource.Attribute.AlertDialogIcon);
+
+					builder.SetTitle (Resource.String.what_news_title);
+
+					builder.SetView (text_entry_view);
+
+					builder.SetPositiveButton (Resource.String.alert_dialog_ok, OkClicked);
+
+					builder.SetIcon (Resource.Drawable.what_news);
+
+					return builder.Create ();
+				}
+			}
+			return null;
+		}
+
+		private void OkClicked (object sender, DialogClickEventArgs e)
+		{
+			Settings.WhatsNew = true;
+		}
 
 		protected override void OnResume()
 		{
-//			if (m_isAppWentToBg)
-//			{
-////				_backgroundtimer.Stop ();
-////				Toast.MakeText(Android.App.Application.Context, "foreground " +_backgroundSeconds.ToString(), ToastLength.Short).Show();
-////					_backgroundSeconds = 30;
-//				m_isAppWentToBg = false;
-//			}
-
 			base.OnResume();
 		}
 

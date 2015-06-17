@@ -145,7 +145,6 @@
     <Compile Include="Activity\Issues\IssuesAddActivity.cs" />
     <Compile Include="Activity\StartUp\HomeActivity.cs" />
     <Compile Include="Helper\ActionBarDrawerEventArgs.cs" />
-    <Compile Include="Adapter\MenuListAdapter.cs" />
     <Compile Include="Model\ViewModel\TaskCommentObject.cs" />
     <Compile Include="UIControl\Utility.cs" />
     <Compile Include="Adapter\TicketCommentListAdapter.cs" />
@@ -244,6 +243,8 @@
     <Compile Include="Model\ViewModel\ProjectTicketChart.cs" />
     <Compile Include="Chart\AllTicketDataSource.cs" />
     <Compile Include="WebApiHelper.cs" />
+    <Compile Include="Adapter\MenuListAdapter.cs" />
+    <Compile Include="Adapter\WhatsNewListAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -569,6 +570,9 @@
     <AndroidResource Include="Resources\layout\CommentList1.axml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\WhatNews.axml" />
+    <AndroidResource Include="Resources\drawable\what_news.png" />
+    <AndroidResource Include="Resources\layout\WhatsNewList.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

@@ -31,6 +31,12 @@ namespace LinkOM
 		private const string OrientationKey = "OrientationKey";
 		private static readonly string OrientationKey_Default = string.Empty;
 
+		private const string VersionKey = "VersionKey";
+		private static readonly string VersionKey_Default = string.Empty;
+
+		private const string WhatsNewKey = "WhatsNewKey";
+		private static readonly bool WhatsNewKey_Default = false;
+
 		private static ISettings AppSettings
 		{
 			get
@@ -85,6 +91,19 @@ namespace LinkOM
 		{
 			get { return AppSettings.GetValueOrDefault(OrientationKey, OrientationKey_Default); }
 			set { AppSettings.AddOrUpdateValue(OrientationKey, value); }
+		}
+
+
+		public static string Version
+		{
+			get { return AppSettings.GetValueOrDefault(VersionKey, VersionKey_Default); }
+			set { AppSettings.AddOrUpdateValue(VersionKey, value); }
+		}
+
+		public static bool WhatsNew	
+		{
+			get { return AppSettings.GetValueOrDefault(WhatsNewKey, WhatsNewKey_Default); }
+			set { AppSettings.AddOrUpdateValue(WhatsNewKey, value); }
 		}
 
 
