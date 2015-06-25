@@ -573,6 +573,7 @@
     <AndroidResource Include="Resources\layout\WhatNews.axml" />
     <AndroidResource Include="Resources\drawable\what_news.png" />
     <AndroidResource Include="Resources\layout\WhatsNewList.axml" />
+    <AndroidResource Include="Resources\drawable\error.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

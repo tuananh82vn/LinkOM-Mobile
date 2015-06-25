@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Content.PM;
+using Android.Graphics.Drawables;
 
 namespace LinkOM
 {
@@ -97,6 +98,8 @@ namespace LinkOM
 		public TextView tv_StartDate_Title;
 		public TextView tv_EndDate_Title ;
 
+		public ScrollView scrollView;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -139,7 +142,9 @@ namespace LinkOM
 
 
 		public void InitControl(){
-			
+
+			scrollView = FindViewById<ScrollView> (Resource.Id.scrollView);
+
 			editText_Title = FindViewById<EditText> (Resource.Id.editText_Title);
 
 			spinner_Project = FindViewById<Spinner> (Resource.Id.spinner_Project);
@@ -249,6 +254,7 @@ namespace LinkOM
 
 			spinner_AssignedTo.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (AssignToStaff_ItemSelected);
 
+
 		}
 
 
@@ -346,6 +352,8 @@ namespace LinkOM
 
 			spinner_Status.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (Status_ItemSelected);
 
+
+
 		}
 
 		private void Status_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)
@@ -386,15 +394,24 @@ namespace LinkOM
 
 			TicketAdd TicketObject = new TicketAdd ();
 
-			if (editText_Title.Text.Equals ("")) {
-				tv_TicketTitle.SetTextColor (Android.Graphics.Color.Red);
+			if (editText_Title.Text.Equals ("")) 
+			{
+				Drawable icon_error = Resources.GetDrawable(Resource.Drawable.error);//this should be your error image.
+				icon_error.SetBounds(0,0,icon_error.IntrinsicWidth,icon_error.IntrinsicHeight);
 
-				Toast.MakeText (this, "Please input Ticket Title", ToastLength.Short).Show ();
+				tv_TicketTitle.RequestFocus ();
+				tv_TicketTitle.SetError ("",icon_error);
+
+				scrollView.ScrollTo (tv_TicketTitle.Left, tv_TicketTitle.Top);
+
+//				tv_TicketTitle.SetTextColor (Android.Graphics.Color.Red);
+//				Toast.MakeText (this, "Please input Ticket Title", ToastLength.Short).Show ();
 				return;
 			} 
 			else 
 			{
-				tv_TicketTitle.SetTextColor (Android.Graphics.Color.ParseColor("#ff00947A"));
+				tv_TicketTitle.SetError ("",null);
+//				tv_TicketTitle.SetTextColor (Android.Graphics.Color.ParseColor("#ff00947A"));
 				TicketObject.Title = editText_Title.Text.Replace("'",string.Empty);
 			}
 
@@ -411,22 +428,41 @@ namespace LinkOM
 			TicketObject.Description = editText_Description.Text.Replace("'",string.Empty);
 
 			if (editText_StartDate.Text != "") {
-				tv_StartDate_Title.SetTextColor (Android.Graphics.Color.ParseColor ("#ff437800"));
+				editText_StartDate.SetError ("",null);
 				TicketObject.StartDate = DateTime.Parse (editText_StartDate.Text, System.Globalization.CultureInfo.GetCultureInfo ("en-AU").DateTimeFormat);
 			}
 			else {
-				tv_StartDate_Title.SetTextColor (Android.Graphics.Color.Red);
-				Toast.MakeText (this, "Please input Start Date", ToastLength.Short).Show ();
+				Drawable icon_error = Resources.GetDrawable(Resource.Drawable.error);//this should be your error image.
+				icon_error.SetBounds(0,0,icon_error.IntrinsicWidth,icon_error.IntrinsicHeight);
+
+				editText_StartDate.RequestFocus ();
+				editText_StartDate.SetError ("",icon_error);
+
+				int[] loc = new int[2];
+
+				editText_StartDate.GetLocationInWindow(loc);
+
+				scrollView.ScrollTo (0,loc[0]);
 				return;
 			}
 
 			if (editText_EndDate.Text != "") {
-				tv_EndDate_Title.SetTextColor (Android.Graphics.Color.ParseColor ("#ff437800"));
+				editText_EndDate.SetError ("",null);
 				TicketObject.EndDate = DateTime.Parse (editText_EndDate.Text, System.Globalization.CultureInfo.GetCultureInfo ("en-AU").DateTimeFormat);
 			}
-			else {
-				tv_EndDate_Title.SetTextColor (Android.Graphics.Color.Red);
-				Toast.MakeText (this, "Please input End Date", ToastLength.Short).Show ();
+			else 
+			{
+				Drawable icon_error = Resources.GetDrawable(Resource.Drawable.error);//this should be your error image.
+				icon_error.SetBounds(0,0,icon_error.IntrinsicWidth,icon_error.IntrinsicHeight);
+
+				editText_EndDate.RequestFocus ();
+				editText_EndDate.SetError ("",icon_error);
+
+				int[] loc = new int[2];
+
+				editText_EndDate.GetLocationInWindow(loc);
+
+				scrollView.ScrollTo (0,loc[0]);
 				return;
 			}
 
