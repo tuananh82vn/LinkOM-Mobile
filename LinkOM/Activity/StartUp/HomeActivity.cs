@@ -53,7 +53,7 @@ namespace LinkOM
 
 			//DrawerToggle is the animation that happens with the indicator next to the actionbar
 			this.drawerToggle = new MyActionBarDrawerToggle (this, this.drawerLayout,
-				Resource.Drawable.ic_drawer_light,
+				Resource.Drawable.action_menu,
 				Resource.String.drawer_open,
 				Resource.String.drawer_close);
 

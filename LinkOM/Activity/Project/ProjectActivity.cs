@@ -18,6 +18,7 @@ using Android.Text;
 using Android.Content.PM;
 using System.Collections;
 using com.refractored.fab;
+using Android.Graphics;
 
 
 namespace LinkOM
@@ -57,6 +58,11 @@ namespace LinkOM
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
 			ActionBar.SetTitle(Resource.String.project_title);
 			ActionBar.SetDisplayShowTitleEnabled (true);
+
+			var upArrow = Resources.GetDrawable(Resource.Drawable.abc_ic_ab_back_mtrl_am_alpha);
+			upArrow.SetColorFilter(Resources.GetColor(Resource.Color.white), PorterDuff.Mode.SrcIn);
+			ActionBar.SetHomeAsUpIndicator (upArrow);
+
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
 

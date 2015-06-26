@@ -17,6 +17,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.Support.V4.Widget;
+using Android.Graphics;
 
 namespace LinkOM
 {
@@ -39,6 +40,12 @@ namespace LinkOM
 
 			ActionBar.NavigationMode = ActionBarNavigationMode.Standard;
 			ActionBar.SetTitle(Resource.String.Knowledgebase_title);
+
+			var upArrow = Resources.GetDrawable(Resource.Drawable.abc_ic_ab_back_mtrl_am_alpha);
+			upArrow.SetColorFilter(Resources.GetColor(Resource.Color.white), PorterDuff.Mode.SrcIn);
+			ActionBar.SetHomeAsUpIndicator (upArrow);
+
+
 			ActionBar.SetDisplayShowTitleEnabled (true);
 			ActionBar.SetDisplayHomeAsUpEnabled(true);
 			ActionBar.SetHomeButtonEnabled(true);
